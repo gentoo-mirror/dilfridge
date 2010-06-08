@@ -22,7 +22,6 @@ PATCHES=(
 	"${FILESDIR}/qt-4.6-nolibx11.patch"
 	"${FILESDIR}/qt-4.6-nox11r6.patch"
 	"${FILESDIR}/qt-4.6.2-alpha.patch"
-	"${FILESDIR}/qt-4.6-sharedtest.patch"
 )
 
 pkg_setup() {
@@ -170,7 +169,7 @@ src_install() {
 	fi
 
 	if use glib; then
-		QCONFIG_DEFINE="$(use glib && echo QT_GLIB)
+		QCONFIG_DEFINE="QT_SHARED $(use glib && echo QT_GLIB)
 				$(use ssl && echo QT_OPENSSL)"
 		install_qconfigs
 	fi
