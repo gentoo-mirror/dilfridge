@@ -14,12 +14,17 @@ IUSE="doc"
 
 RDEPEND="media-libs/tiff
 	media-libs/jpeg
-	sys-libs/zlib"
+	sys-libs/zlib
+	x11-libs/libX11
+	x11-libs/libXau
+	x11-libs/libXdmcp
+	x11-libs/libXext
+	x11-libs/libXinerama
+	x11-libs/libXrandr
+	x11-libs/libXxf86vm
+	x11-libs/libXScrnSaver"
 DEPEND="${RDEPEND}
 	app-arch/unzip
-	x11-libs/libX11
-	x11-libs/libXScrnSaver
-	x11-libs/libXinerama
 	dev-util/ftjam"
 
 S="${WORKDIR}/${MY_P}"
