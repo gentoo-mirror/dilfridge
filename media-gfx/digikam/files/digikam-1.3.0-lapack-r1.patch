@@ -1,0 +1,141 @@
+diff -u -r digikam-1.3.0-orig/CMakeLists.txt digikam-1.3.0/CMakeLists.txt
+--- digikam-1.3.0-orig/CMakeLists.txt	2010-06-07 23:23:08.000000000 +0200
++++ digikam-1.3.0/CMakeLists.txt	2010-08-25 22:11:31.000000000 +0200
+@@ -2,6 +2,11 @@
+ 
+ OPTION(ENABLE_THEMEDESIGNER "Build digiKam theme designer (default=OFF)" OFF)
+ OPTION(ENABLE_THUMBS_DB "Build digiKam with thumbnails database support (default=ON)" ON)
++OPTION(ENABLE_SYSTEM_LAPACK "Link digiKam against system lapack library (needs Fortran compiler, default=OFF)" OFF)
++
++IF(ENABLE_SYSTEM_LAPACK)
++  ENABLE_LANGUAGE(Fortran)
++ENDIF(ENABLE_SYSTEM_LAPACK)
+ 
+ # ==================================================================================================
+ # Information to update before to release this package.
+@@ -138,6 +143,11 @@
+ FIND_PACKAGE(Kexiv2)
+ FIND_PACKAGE(Kipi)
+ 
++IF(ENABLE_SYSTEM_LAPACK)
++  # Detect the presence of a lapack library in the system
++  FIND_PACKAGE(LAPACK)
++ENDIF(ENABLE_SYSTEM_LAPACK)
++
+ # Extract version of libjpeg so that we can use the appropriate dir
+ # See bug #227313, #228483
+ FILE(READ "${JPEG_INCLUDE_DIR}/jpeglib.h" jpeglib_h_content)
+@@ -267,6 +277,10 @@
+ PRINT_LIBRARY_STATUS("libkexiv2" "http://www.digikam.org/sharedlibs" " (version >= 1.1.0)" KEXIV2_FOR_DIGIKAM)
+ PRINT_LIBRARY_STATUS("libkdcraw" "http://www.digikam.org/sharedlibs" " (version >= 1.1.0)" KDCRAW_FOR_DIGIKAM)
+ 
++IF(ENABLE_SYSTEM_LAPACK)
++  PRINT_LIBRARY_STATUS("liblapack" "http://www.netlib.org/lapack/" "" LAPACK_FOUND)
++ENDIF(ENABLE_SYSTEM_LAPACK)
++
+ # ================================================================
+ 
+ IF(GPHOTO2_FOUND)
+@@ -363,8 +377,13 @@
+ ENDIF(DOXYGEN_FOUND)
+ 
+ IF(LCMS_FOUND AND JPEG_FOUND AND PNG_FOUND AND TIFF_FOUND AND JASPER_FOUND AND KDCRAW_FOR_DIGIKAM AND KEXIV2_FOR_DIGIKAM AND KIPI_FOUND)
++  IF(ENABLE_SYSTEM_LAPACK AND NOT LAPACK_FOUND)
++    MESSAGE(FATAL_ERROR " digiKam will be compiled................. NO  (Look README file for more details about dependencies)")
++    SET(DIGIKAM_CAN_BE_COMPILED false)
++  ELSE(ENABLE_SYSTEM_LAPACK AND NOT LAPACK_FOUND)
+     MESSAGE(STATUS " digiKam will be compiled................. YES")
+     SET(DIGIKAM_CAN_BE_COMPILED true)
++  ENDIF(ENABLE_SYSTEM_LAPACK AND NOT LAPACK_FOUND)
+ ELSE(LCMS_FOUND AND JPEG_FOUND AND PNG_FOUND AND TIFF_FOUND AND AND JASPER_FOUND AND KDCRAW_FOR_DIGIKAM AND KEXIV2_FOR_DIGIKAM AND KIPI_FOUND)
+     MESSAGE(FATAL_ERROR " digiKam will be compiled................. NO  (Look README file for more details about dependencies)")
+     SET(DIGIKAM_CAN_BE_COMPILED false)
+@@ -527,7 +546,10 @@
+         ${CMAKE_CURRENT_SOURCE_DIR}/libs/dimg/loaders/pgfsettings.cpp
+        )
+ 
+-    SET(libclapack_SRCS
++    IF(ENABLE_SYSTEM_LAPACK)
++      INCLUDE_DIRECTORIES(${LAPACK_INCLUDE_DIRS})
++    ELSE(ENABLE_SYSTEM_LAPACK)
++      SET(libclapack_SRCS
+         ${CMAKE_CURRENT_SOURCE_DIR}/libs/3rdparty/clapack/abort_.c
+         ${CMAKE_CURRENT_SOURCE_DIR}/libs/3rdparty/clapack/dgesv.c
+         ${CMAKE_CURRENT_SOURCE_DIR}/libs/3rdparty/clapack/dlaswp.c
+@@ -560,6 +582,7 @@
+         ${CMAKE_CURRENT_SOURCE_DIR}/libs/3rdparty/clapack/util.c
+         ${CMAKE_CURRENT_SOURCE_DIR}/libs/3rdparty/clapack/xerbla.c
+        )
++    ENDIF(ENABLE_SYSTEM_LAPACK)
+ 
+     SET(libdimgfilters_SRCS
+         ${libclapack_SRCS}
+diff -u -r digikam-1.3.0-orig/digikam/CMakeLists.txt digikam-1.3.0/digikam/CMakeLists.txt
+--- digikam-1.3.0-orig/digikam/CMakeLists.txt	2010-06-07 23:16:45.000000000 +0200
++++ digikam-1.3.0/digikam/CMakeLists.txt	2010-08-25 23:09:40.000000000 +0200
+@@ -54,7 +54,6 @@
+                      ${CMAKE_CURRENT_SOURCE_DIR}/../libs/3rdparty/lprof
+                      ${CMAKE_CURRENT_SOURCE_DIR}/../libs/3rdparty/sqlite2
+                      ${CMAKE_CURRENT_SOURCE_DIR}/../libs/3rdparty/libpgf
+-                     ${CMAKE_CURRENT_SOURCE_DIR}/../libs/3rdparty/clapack
+                      ${CMAKE_CURRENT_SOURCE_DIR}/../libs/3rdparty/cimg
+                      ${CMAKE_CURRENT_SOURCE_DIR}/../libs/themeengine
+                      ${CMAKE_CURRENT_SOURCE_DIR}/../utilities/kipiiface
+@@ -94,6 +93,12 @@
+                      ${TIFF_INCLUDE_DIR}
+                    )
+ 
++IF(ENABLE_SYSTEM_LAPACK)
++   INCLUDE_DIRECTORIES(${LAPACK_INCLUDE_DIRS})
++ELSE(ENABLE_SYSTEM_LAPACK)
++   INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../libs/3rdparty/clapack)
++ENDIF(ENABLE_SYSTEM_LAPACK)
++
+ IF(LENSFUN_LIBRARY)
+    INCLUDE_DIRECTORIES(${LENSFUN_INCLUDE_DIR})
+ ENDIF(LENSFUN_LIBRARY)
+@@ -188,6 +193,10 @@
+                       ${KIPI_LIBRARIES}
+               )
+ 
++IF(ENABLE_SYSTEM_LAPACK)
++    TARGET_LINK_LIBRARIES(digikamcore ${LAPACK_LIBRARIES})
++ENDIF(ENABLE_SYSTEM_LAPACK)
++
+ IF(MARBLEWIDGET_FOUND)
+     TARGET_LINK_LIBRARIES(digikamcore ${LIBMARBLEWIDGET_LIBRARY})
+ ENDIF(MARBLEWIDGET_FOUND)
+@@ -246,6 +255,10 @@
+                       ${QT_QTSQL_LIBRARY}
+                      )
+ 
++IF(ENABLE_SYSTEM_LAPACK)
++    TARGET_LINK_LIBRARIES(digikamdatabase ${LAPACK_LIBRARIES})
++ENDIF(ENABLE_SYSTEM_LAPACK)
++
+ SET_TARGET_PROPERTIES(digikamdatabase PROPERTIES VERSION 1.0.0 SOVERSION 1 )
+ INSTALL(TARGETS digikamdatabase ${INSTALL_TARGETS_DEFAULT_ARGS} )
+ 
+diff -u -r digikam-1.3.0-orig/libs/CMakeLists.txt digikam-1.3.0/libs/CMakeLists.txt
+--- digikam-1.3.0-orig/libs/CMakeLists.txt	2010-06-07 23:16:40.000000000 +0200
++++ digikam-1.3.0/libs/CMakeLists.txt	2010-08-25 23:11:00.000000000 +0200
+@@ -14,13 +14,18 @@
+                      imageproperties
+                      dialogs
+                      3rdparty/cimg
+-                     3rdparty/clapack
+                      ${JPEG_INCLUDE_DIR}
+                      ${TIFF_INCLUDE_DIR}
+                      ${PNG_INCLUDE_DIR}
+                      ${JASPER_INCLUDE_DIR}
+                    )
+ 
++IF(ENABLE_SYSTEM_LAPACK)
++    INCLUDE_DIRECTORIES( ${LAPACK_INCLUDE_DIRS} )
++ELSE(ENABLE_SYSTEM_LAPACK)
++    INCLUDE_DIRECTORIES( 3rdparty/clapack )
++ENDIF(ENABLE_SYSTEM_LAPACK)
++
+ ADD_SUBDIRECTORY( histogram )
+ ADD_SUBDIRECTORY( dmetadata )
+ ADD_SUBDIRECTORY( dimg )
