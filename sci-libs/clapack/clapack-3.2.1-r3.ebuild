@@ -4,11 +4,11 @@
 
 EAPI="3"
 
-inherit eutils multilib toolchain-funcs versionator
+inherit eutils multilib toolchain-funcs versionator cmake-utils
 
 DESCRIPTION="f2c'ed version of LAPACK"
 HOMEPAGE="http://www.netlib.org/clapack/"
-SRC_URI="http://www.netlib.org/${PN}/${P}.tgz"
+SRC_URI="http://www.netlib.org/${PN}/${P}-CMAKE.tgz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -17,13 +17,15 @@ IUSE=""
 
 RDEPEND=">=dev-libs/libf2c-20081126[static-libs]"
 DEPEND="${RDEPEND}"
-S="${WORKDIR}"/CLAPACK-${PV}
+S="${WORKDIR}"/clapack-${PV}-CMAKE
 
 src_prepare() {
 	rm -rf F2CLIBS BLAS
 
-	epatch "${FILESDIR}"/${PV}-solib.patch
+	epatch "${FILESDIR}"/${P}-noblasf2c.patch
 
+#	epatch "${FILESDIR}"/${PV}-solib.patch
+#
 	sed \
 		-e "s:^CC.*$:CC = $(tc-getCC):g" \
 		-e "s:^CFLAGS.*$:CFLAGS = ${CFLAGS} -fPIC:g" \
@@ -35,18 +37,4 @@ src_prepare() {
 	sed \
 		-e 's:"f2c.h":<f2c.h>:g' \
 		-i SRC/*.c || die
-}
-
-src_compile() {
-	emake -C INSTALL F2CLIB="${EPREFIX}"/usr/$(get_libdir)/libf2c.a || die "compile failed"
-	emake -C SRC || die "compile failed"
-}
-
-src_install() {
-	insinto /usr/include/${PN}
-	doins INCLUDE/${PN}.h || die
-	dolib.so lib${PN}.so.${PV} || die
-	dosym lib${PN}.so.${PV} /usr/$(get_libdir)/lib${PN}.so.$(get_version_component_range 1-2) || die
-	dosym lib${PN}.so.${PV} /usr/$(get_libdir)/lib${PN}.so.$(get_major_version) || die
-	dosym lib${PN}.so.${PV} /usr/$(get_libdir)/lib${PN}.so || die
 }
