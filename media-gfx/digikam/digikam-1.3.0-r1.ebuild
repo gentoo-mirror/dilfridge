@@ -58,6 +58,7 @@ RDEPEND="${CDEPEND}
 #   (the fun of unbundling)
 DEPEND="${CDEPEND}
 	sys-devel/gcc[fortran]
+	dev-libs/libf2c
 	sys-devel/gettext
 "
 
@@ -66,9 +67,12 @@ S="${WORKDIR}/${MY_P}"
 src_prepare() {
 	# Patch to unbundle lapack.
 	epatch "${FILESDIR}/${PN}-1.3.0-lapack-r1.patch"
+	# We still need clapack.h though
+	cp "${S}/libs/3rdparty/clapack/clapack.h" "${S}/libs/dimg/filters/sharp/"
+
 	# Patch to unbundled libpgf.
 	# epatch "${FILESDIR}/${PN}-1.3.0-libpgf.patch"
-	ewarn Need to re-enable pgf patch.
+	ewarn Need to re-enable pgf patch!!!!!!!!!!!!!!!
 
 	kde4-base_src_prepare
 }
