@@ -4,6 +4,10 @@
 
   26 Aug 2010; Andreas K. Huettel (dilfridge) <mail@akhuettel.de>
   files/clapack-3.2.1-noblasf2c.patch:
+  Builds. Does not install yet.
+
+  26 Aug 2010; Andreas K. Huettel (dilfridge) <mail@akhuettel.de>
+  files/clapack-3.2.1-noblasf2c.patch:
   Much better. Now only the i_len_trim problem remains...
 
 *clapack-3.2.1-r3 (26 Aug 2010)
