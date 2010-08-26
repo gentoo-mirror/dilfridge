@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-inherit linux-info perl-app
+inherit base linux-info perl-app autotools
 
 DESCRIPTION="A small daemon which collects system performance statistics - with a near-infinite number of plugins"
 HOMEPAGE="http://collectd.org"
@@ -22,9 +22,9 @@ IUSE="contrib debug kernel_linux kernel_FreeBSD kernel_Darwin"
 # The plugin lists have to follow here since they extend IUSE
 
 COLLECTD_SOURCE_PLUGINS="apache apcups apple_sensors ascent battery bind conntrack contextswitch
-	cpu cpufreq curl dbi df disk dns email entropy exec filecount fscache gmond
+	cpu cpufreq curl curl_xml dbi df disk dns email entropy exec filecount fscache gmond
 	hddtemp interface ipmi iptables ipvs irq java libvirt load madwifi mbmon memcachec
-	memcached memory multimeter mysql netlink network nfs nginx ntpd nut olsrd
+	memcached memory modbus multimeter mysql netlink network nfs nginx ntpd nut olsrd
 	onewire openvpn oracle perl postgresql powerdns processes protocols python routeros
 	rrdcached sensors serial snmp swap table tail tape tcpconns teamspeak2 ted thermal
 	tokyotyrant uptime users vmem vserver wireless zfs_arc"
@@ -40,7 +40,7 @@ COLLECTD_MISC_PLUGINS="uuid"
 COLLECTD_PLUGINS="${COLLECTD_SOURCE_PLUGINS} ${COLLECTD_TARGET_PLUGINS}
 	${COLLECTD_FILTER_PLUGINS} ${COLLECTD_MISC_PLUGINS}"
 
-COLLECTD_DISABLED_PLUGINS="curl_json netapp ping xmms"
+COLLECTD_DISABLED_PLUGINS="curl_json netapp pinba ping xmms"
 
 for plugin in ${COLLECTD_PLUGINS}; do
 	IUSE="${IUSE} cd_${plugin}"
@@ -53,14 +53,16 @@ COMMON_DEPEND="
 	cd_ascent?		( net-misc/curl dev-libs/libxml2 )
 	cd_bind?		( dev-libs/libxml2 )
 	cd_curl?		( net-misc/curl )
+	cd_curl_xml?		( net-misc/curl dev-libs/libxml2 )
 	cd_dbi?			( dev-db/libdbi )
 	cd_dns?			( net-libs/libpcap )
 	cd_gmond?		( sys-cluster/ganglia )
 	cd_ipmi?		( >=sys-libs/openipmi-2.0.11 )
-	cd_iptables?		( net-firewall/iptables )
+	cd_iptables?		( >=net-firewall/iptables-1.4.9.1-r2 )
 	cd_java?		( virtual/jre dev-java/java-config-wrapper )
 	cd_libvirt?		( app-emulation/libvirt dev-libs/libxml2 )
 	cd_memcachec?		( dev-libs/libmemcached )
+	cd_modbus?		( dev-libs/libmodbus )
 	cd_mysql?		( >=virtual/mysql-5.0 )
 	cd_netlink?		( sys-apps/iproute2 )
 	cd_network?		( dev-libs/libgcrypt )
@@ -71,7 +73,7 @@ COMMON_DEPEND="
 	cd_onewire?		( sys-fs/owfs )
 	cd_oracle?		( >=dev-db/oracle-instantclient-basic-11.1.0.7.0 )
 	cd_perl?		( dev-lang/perl[ithreads] sys-devel/libperl[ithreads] )
-	cd_postgres?		( >=virtual/postgresql-base-8.2 )
+	cd_postgres?		( >=dev-db/postgresql-base-8.2 )
 	cd_python?		( || ( dev-lang/python:2.4  dev-lang/python:2.5 dev-lang/python:2.6 ) )
 	cd_rrdcached?		( >=net-analyzer/rrdtool-1.4 )
 	cd_rrdtool?		( >=net-analyzer/rrdtool-1.2.27 )
@@ -226,16 +228,24 @@ pkg_setup() {
 	elog
 
 	if use kernel_linux; then
-		elog "Checking your linux kernel configuration..."
-		collectd_linux_kernel_checks
-		elog "... done."
+		if linux_config_exists; then
+			elog "Checking your linux kernel configuration..."
+			collectd_linux_kernel_checks
+			elog "... done."
+		else
+			elog "Cannot find a linux kernel configuration. Continuing anyway."
+		fi
 	fi
 }
 
 src_prepare() {
+	base_src_prepare
+
 	# There's some strange prefix handling in the default config file, resulting in 
 	# paths like "/usr/var/..."
 	sed -i -e "s:@prefix@/var:/var:g" src/collectd.conf.in || die
+
+	eautoreconf
 }
 
 src_configure() {
