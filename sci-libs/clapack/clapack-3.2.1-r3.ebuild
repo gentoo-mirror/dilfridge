@@ -17,24 +17,18 @@ IUSE=""
 
 RDEPEND=">=dev-libs/libf2c-20081126[static-libs]"
 DEPEND="${RDEPEND}"
+
 S="${WORKDIR}"/clapack-${PV}-CMAKE
 
 src_prepare() {
-	rm -rf F2CLIBS BLAS
-
 	epatch "${FILESDIR}"/${P}-noblasf2c.patch
-
-#	epatch "${FILESDIR}"/${PV}-solib.patch
-#
-	sed \
-		-e "s:^CC.*$:CC = $(tc-getCC):g" \
-		-e "s:^CFLAGS.*$:CFLAGS = ${CFLAGS} -fPIC:g" \
-		-e "s:^LOADER.*$:LOADER = $(tc-getCC):g" \
-		-e "s:^LOADOPTS.*$:LOADOPTS = ${LDFLAGS} -Wl,-soname,libclapack.so.$(get_version_component_range 1-2):g" \
-		-e "s:LAPACKLIB.*$:LAPACKLIB = libclapack.so.${PV}:g" \
-		make.inc.example > make.inc
 
 	sed \
 		-e 's:"f2c.h":<f2c.h>:g' \
 		-i SRC/*.c || die
+}
+
+src_configure() {
+	mycmakeargs=( $(cmake-utils_use_enable test TESTS) )
+	cmake-utils_src_configure
 }

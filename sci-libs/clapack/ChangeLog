@@ -3,6 +3,11 @@
 # $Header: /var/cvsroot/gentoo-x86/sci-libs/clapack/ChangeLog,v 1.5 2010/04/25 11:32:11 jlec Exp $
 
   27 Aug 2010; Andreas K. Huettel (dilfridge) <mail@akhuettel.de>
+  -files/3.2.1-solib.patch, clapack-3.2.1-r3.ebuild,
+  files/clapack-3.2.1-noblasf2c.patch:
+  Compiles and installs correctly. All tests succeed.
+
+  27 Aug 2010; Andreas K. Huettel (dilfridge) <mail@akhuettel.de>
   files/clapack-3.2.1-noblasf2c.patch:
   First version that installs, still buggy
 
