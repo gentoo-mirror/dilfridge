@@ -63,14 +63,7 @@ DEPEND="${CDEPEND}
 
 S="${WORKDIR}/${MY_P}"
 
-src_prepare() {
-	# Patch to unbundled libpgf.
-	epatch "${FILESDIR}/${PN}-1.3.0-libpgf.patch"
-	# Patch to unbundle lapack.
-	epatch "${FILESDIR}/${PN}-1.3.0-lapack.patch"
-
-	kde4-base_src_prepare
-}
+PATCHES=( "${FILESDIR}/${P}"-{docs,pgf,clapack}.patch )
 
 src_configure() {
 	local backend
