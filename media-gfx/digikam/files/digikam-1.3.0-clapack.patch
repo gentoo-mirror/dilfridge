@@ -1,0 +1,114 @@
+diff -r -u -N digikam-1.3.0-2-pgf/CMakeLists.txt digikam-1.3.0/CMakeLists.txt
+--- digikam-1.3.0-2-pgf/CMakeLists.txt	2010-08-26 23:44:46.000000000 +0200
++++ digikam-1.3.0/CMakeLists.txt	2010-08-28 00:23:12.000000000 +0200
+@@ -141,6 +141,7 @@
+ FIND_PACKAGE(Kdcraw)
+ FIND_PACKAGE(Kexiv2)
+ FIND_PACKAGE(Kipi)
++FIND_PACKAGE(CLAPACK)
+ 
+ # Extract version of libjpeg so that we can use the appropriate dir
+ # See bug #227313, #228483
+@@ -538,7 +539,8 @@
+         ${CMAKE_CURRENT_SOURCE_DIR}/libs/dimg/loaders/pgfsettings.cpp
+        )
+ 
+-    SET(libclapack_SRCS
++    if(NOT CLAPACK_FOUND)
++      SET(libclapack_SRCS
+         ${CMAKE_CURRENT_SOURCE_DIR}/libs/3rdparty/clapack/abort_.c
+         ${CMAKE_CURRENT_SOURCE_DIR}/libs/3rdparty/clapack/dgesv.c
+         ${CMAKE_CURRENT_SOURCE_DIR}/libs/3rdparty/clapack/dlaswp.c
+@@ -571,6 +573,7 @@
+         ${CMAKE_CURRENT_SOURCE_DIR}/libs/3rdparty/clapack/util.c
+         ${CMAKE_CURRENT_SOURCE_DIR}/libs/3rdparty/clapack/xerbla.c
+        )
++    endif(NOT CLAPACK_FOUND)
+ 
+     SET(libdimgfilters_SRCS
+         ${libclapack_SRCS}
+diff -r -u -N digikam-1.3.0-2-pgf/cmake/modules/FindCLAPACK.cmake digikam-1.3.0/cmake/modules/FindCLAPACK.cmake
+--- digikam-1.3.0-2-pgf/cmake/modules/FindCLAPACK.cmake	1970-01-01 01:00:00.000000000 +0100
++++ digikam-1.3.0/cmake/modules/FindCLAPACK.cmake	2010-08-28 00:21:02.000000000 +0200
+@@ -0,0 +1,38 @@
++# - Try to find clapack library
++# Once done this will define
++#
++#  CLAPACK_FOUND - system has CLAPACK library
++#  CLAPACK_INCLUDE_DIR - the CLAPACK include directory
++#  CLAPACK_LIBRARY - the marblewidget library
++#
++#  copyright 2008 by Patrick Spendrin <ps_ml@gmx.de>
++#  copyright 2010 by Andreas K. Huettel <mail@akhuettel.de>
++#  use this file as you like
++#
++
++if(CLAPACK_INCLUDE_DIR AND CLAPACK_LIBRARY)
++
++  # Already in cache
++  set(CLAPACK_FOUND TRUE)
++
++else(CLAPACK_INCLUDE_DIR AND CLAPACK_LIBRARY)
++
++  find_path(CLAPACK_INCLUDE_DIR clapack.h)
++  find_library(CLAPACK_LIBRARY NAMES libclapack)
++
++  if(CLAPACK_INCLUDE_DIR AND CLAPACK_LIBRARY)
++    set(CLAPACK_FOUND TRUE)
++  endif(CLAPACK_INCLUDE_DIR AND CLAPACK_LIBRARY)
++
++  if(CLAPACK_FOUND)
++    if (NOT CLAPACK_FIND_QUIETLY)
++      message(STATUS "Found clapack: ${CLAPACK_LIBRARY}")
++    endif (NOT CLAPACK_FIND_QUIETLY)
++  else(CLAPACK_FOUND)
++    if(CLAPACK_FIND_REQUIRED)
++      message(FATAL_ERROR "Could NOT find any clapack library")
++    endif(CLAPACK_FIND_REQUIRED)
++  endif(CLAPACK_FOUND)
++
++  mark_as_advanced(CLAPACK_INCLUDE_DIR CLAPACK_LIBRARY)
++endif(CLAPACK_INCLUDE_DIR AND CLAPACK_LIBRARY)
+diff -r -u -N digikam-1.3.0-2-pgf/digikam/CMakeLists.txt digikam-1.3.0/digikam/CMakeLists.txt
+--- digikam-1.3.0-2-pgf/digikam/CMakeLists.txt	2010-08-26 23:39:47.000000000 +0200
++++ digikam-1.3.0/digikam/CMakeLists.txt	2010-08-28 00:27:51.000000000 +0200
+@@ -53,7 +53,6 @@
+                      # specific libs and utilities
+                      ${CMAKE_CURRENT_SOURCE_DIR}/../libs/3rdparty/lprof
+                      ${CMAKE_CURRENT_SOURCE_DIR}/../libs/3rdparty/sqlite2
+-                     ${CMAKE_CURRENT_SOURCE_DIR}/../libs/3rdparty/clapack
+                      ${CMAKE_CURRENT_SOURCE_DIR}/../libs/3rdparty/cimg
+                      ${CMAKE_CURRENT_SOURCE_DIR}/../libs/themeengine
+                      ${CMAKE_CURRENT_SOURCE_DIR}/../utilities/kipiiface
+@@ -103,10 +102,18 @@
+    INCLUDE_DIRECTORIES(${LENSFUN_INCLUDE_DIR})
+ ENDIF(LENSFUN_LIBRARY)
+ 
++IF(CLAPACK_FOUND)
++   INCLUDE_DIRECTORIES(${CLAPACK_INCLUDE_DIR})
++ELSE(CLAPACK_FOUND)
++   INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../libs/3rdparty/clapack)
++ENDIF(CLAPACK_FOUND)
++
+ # Shared libdigikamcore ################################################################
+ 
+-# Disable Clapack C code warnings.
+-SET_SOURCE_FILES_PROPERTIES(${libclapack_SRCS} PROPERTIES COMPILE_FLAGS "-w")
++IF(NOT CLAPACK_FOUND)
++   # Disable Clapack C code warnings.
++   SET_SOURCE_FILES_PROPERTIES(${libclapack_SRCS} PROPERTIES COMPILE_FLAGS "-w")
++ENDIF(NOT CLAPACK_FOUND)
+ 
+ IF(NOT PGF_FOUND)
+    # Disable libpgf warnings.
+@@ -199,6 +206,10 @@
+    TARGET_LINK_LIBRARIES(digikamcore ${PGF_LIBRARIES})
+ ENDIF(PGF_FOUND)
+ 
++IF(CLAPACK_FOUND)
++   TARGET_LINK_LIBRARIES(digikamcore ${CLAPACK_LIBRARY})
++ENDIF(CLAPACK_FOUND)
++
+ IF(MARBLEWIDGET_FOUND)
+     TARGET_LINK_LIBRARIES(digikamcore ${LIBMARBLEWIDGET_LIBRARY})
+ ENDIF(MARBLEWIDGET_FOUND)

@@ -58,21 +58,16 @@ RDEPEND="${CDEPEND}
 #   (the fun of unbundling)
 DEPEND="${CDEPEND}
 	sys-devel/gcc[fortran]
-	dev-libs/libf2c
 	sys-devel/gettext
 "
 
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
-	# Patch to unbundle lapack.
-	epatch "${FILESDIR}/${PN}-1.3.0-lapack-r1.patch"
-	# We still need clapack.h though
-	cp "${S}/libs/3rdparty/clapack/clapack.h" "${S}/libs/dimg/filters/sharp/"
-
 	# Patch to unbundled libpgf.
-	# epatch "${FILESDIR}/${PN}-1.3.0-libpgf.patch"
-	ewarn Need to re-enable pgf patch!!!!!!!!!!!!!!!
+	epatch "${FILESDIR}/${PN}-1.3.0-libpgf.patch"
+	# Patch to unbundle lapack.
+	epatch "${FILESDIR}/${PN}-1.3.0-lapack.patch"
 
 	kde4-base_src_prepare
 }
@@ -85,7 +80,6 @@ src_configure() {
 	mycmakeargs=(
 		-DWITH_LQR=ON
 		-DGWENVIEW_SEMANTICINFO_BACKEND=${backend}
-		-DENABLE_SYSTEM_LAPACK=ON
 		$(cmake-utils_use_with addressbook KdepimLibs)
 		$(cmake-utils_use_build doc)
 		$(cmake-utils_use_with geolocation MarbleWidget)
