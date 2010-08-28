@@ -37,7 +37,7 @@ CDEPEND="
 	media-libs/tiff
 	media-libs/libpgf
 	>=media-plugins/kipi-plugins-1.2.0-r1
-	virtual/lapack
+	>=sci-libs/clapack-3.2.1-r3
 	x11-libs/qt-gui[qt3support]
 	x11-libs/qt-sql[sqlite]
 	addressbook? ( >=kde-base/kdepimlibs-${KDE_MINIMAL} )
