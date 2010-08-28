@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/clapack/clapack-3.2.1-r2.ebuild,v 1.1 2010/04/25 09:40:16 jlec Exp $
+# $Header: $
 
 EAPI="3"
 
-inherit eutils multilib toolchain-funcs versionator cmake-utils
+inherit eutils cmake-utils
 
 DESCRIPTION="f2c'ed version of LAPACK"
 HOMEPAGE="http://www.netlib.org/clapack/"
@@ -15,7 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=dev-libs/libf2c-20081126[static-libs]"
+RDEPEND=">=dev-libs/libf2c-20081126[static-libs]
+	virtual/blas"
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}"/clapack-${PV}-CMAKE
