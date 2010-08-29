@@ -64,6 +64,13 @@ S="${WORKDIR}/${MY_P}"
 
 PATCHES=( "${FILESDIR}/${PN}"-1.3.0-{docs,pgf,clapack}.patch )
 
+src_prepare() {
+	kde4-base_src_prepare
+
+	find . -name "*.cpp" -exec sed -e 's:"f2c.h":<f2c.h>:g' -i {} \; || die
+	find . -name "*.cpp" -exec sed -e 's:"clapack.h":<clapack.h>:g' -i {} \; || die
+}
+
 src_configure() {
 	local backend
 

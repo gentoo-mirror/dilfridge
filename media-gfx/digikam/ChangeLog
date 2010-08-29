@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Aug 2010; Andreas K. Huettel (dilfridge) <mail@akhuettel.de>
+  digikam-1.4.0.ebuild:
+  Change clapack and f2c headers from local to global in ebuild.
+
 *digikam-1.4.0 (28 Aug 2010)
 
   28 Aug 2010; Andreas K. Huettel (dilfridge) <mail@akhuettel.de>
