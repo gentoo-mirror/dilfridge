@@ -3,6 +3,7 @@
 <pkgmetadata>
 	<herd>no-herd</herd>
 	<maintainer>
-		<email>mail@akhuettel.de</email>
+		<email>dilfridge@gentoo.org</email>
+		<name>Andreas K. Huettel</name>
 	</maintainer>
 </pkgmetadata>
