@@ -4,6 +4,10 @@
 
   18 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   digikam-1.4.0.ebuild:
+  Even worse. We need both backends sqlite and mysql.
+
+  18 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-1.4.0.ebuild:
   It seems that we need not sqlite but mysql in qt-sql...
 
 *digikam-1.2.0-r2 (18 Sep 2010)
