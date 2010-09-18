@@ -1,19 +1,18 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/kipi-plugins/kipi-plugins-1.4.0.ebuild,v 1.1 2010/09/18 00:14:50 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/kipi-plugins/kipi-plugins-1.2.0-r2.ebuild,v 1.3 2010/09/18 14:20:09 dilfridge Exp $
 
 EAPI="2"
 
 OPENGL_REQUIRED="optional"
-KDE_LINGUAS="ar ast be ca@valencia cs de en_GB eo es et eu fi ga gl hi hne ja km
-lt ms nb nds nl nn oc pl pt pt_BR ro ru se sk th tr uk zh_TW"
+KDE_LINGUAS="ar be ca cs da de el en_GB es et fi fr ga gl hi hne is it ja km
+lt lv ms nb nds nl nn oc pa pl pt pt_BR ro ru se sk sv th tr uk zh_CN zh_TW"
 KMNAME="extragear/graphics"
-KDE_MINIMAL="4.5"
 inherit flag-o-matic kde4-base
 
 DESCRIPTION="Plugins for the KDE Image Plugin Interface"
 HOMEPAGE="http://www.kipi-plugins.org"
-[[ ${PV} != *9999* ]] && SRC_URI="mirror://sourceforge/kipi/${P}.tar.bz2"
+[[ ${PV} != *9999* ]] && SRC_URI="mirror://sourceforge/kipi/${P}.tar.bz2 kipi-plugins-1.2.0-jpeg.patch.bz2"
 
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
@@ -36,7 +35,7 @@ DEPEND="
 		>=media-libs/libgpod-0.7
 		x11-libs/gtk+:2
 	)
-	redeyes? ( media-libs/opencv )
+	redeyes? ( >=media-libs/opencv-1.0 )
 	scanner? (
 		>=kde-base/libksane-${KDE_MINIMAL}
 		media-gfx/sane-backends
@@ -45,11 +44,12 @@ DEPEND="
 RDEPEND="${DEPEND}
 	cdr? ( app-cdr/k3b )
 	expoblending? ( media-gfx/hugin )
-	imagemagick? ( media-gfx/imagemagick )
+	imagemagick? ( >=media-gfx/imagemagick-5.5.4 )
 	mjpeg? ( media-video/mjpegtools )
 "
 
-PATCHES=( "${FILESDIR}/${PN}-1.3.0-expoblending.patch" )
+PATCHES=( "${DISTDIR}/${P}-jpeg.patch.bz2"
+	"${FILESDIR}/${P}-expoblending.patch" )
 
 src_configure() {
 	# Remove flags -floop-block -floop-interchange

@@ -1,12 +1,12 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/kipi-plugins/kipi-plugins-1.4.0.ebuild,v 1.1 2010/09/18 00:14:50 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/kipi-plugins/kipi-plugins-1.3.0.ebuild,v 1.1 2010/09/15 20:28:27 dilfridge Exp $
 
 EAPI="2"
 
 OPENGL_REQUIRED="optional"
-KDE_LINGUAS="ar ast be ca@valencia cs de en_GB eo es et eu fi ga gl hi hne ja km
-lt ms nb nds nl nn oc pl pt pt_BR ro ru se sk th tr uk zh_TW"
+KDE_LINGUAS="ar ast be ca da de el en_GB eo es fr hne hr is it ja
+lt lv ms nb nds nn oc pa pl pt pt_BR ro ru se sk th uk zh_CN zh_TW"
 KMNAME="extragear/graphics"
 KDE_MINIMAL="4.5"
 inherit flag-o-matic kde4-base
