@@ -42,7 +42,7 @@ CDEPEND="
 	>=sci-libs/clapack-3.2.1-r3
 	virtual/mysql
 	x11-libs/qt-gui[qt3support]
-	x11-libs/qt-sql[sqlite]
+	x11-libs/qt-sql[mysql]
 	addressbook? ( >=kde-base/kdepimlibs-${KDE_MINIMAL} )
 	geolocation? ( >=kde-base/marble-${KDE_MINIMAL} )
 	gphoto2? ( media-libs/libgphoto2 )

@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  18 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-1.4.0.ebuild:
+  It seems that we need not sqlite but mysql in qt-sql...
+
 *digikam-1.2.0-r2 (18 Sep 2010)
 *digikam-1.1.0-r1 (18 Sep 2010)
 
