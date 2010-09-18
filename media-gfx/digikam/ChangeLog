@@ -2,6 +2,17 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*digikam-1.2.0-r2 (18 Sep 2010)
+*digikam-1.1.0-r1 (18 Sep 2010)
+
+  18 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +digikam-1.1.0-r1.ebuild, +files/digikam-1.1.0-libpgf.patch,
+  +files/digikam-1.1.0-libpng14.patch, +digikam-1.2.0-r2.ebuild,
+  +files/digikam-1.2.0-lapack.patch, +files/digikam-1.2.0-libpgf.patch,
+  +files/digikam-1.2.0-ratingwidget.patch, +digikam-1.4.0.ebuild,
+  +files/digikam-1.4.0-clapack.patch, metadata.xml:
+  Synced files with main tree.
+
   29 Aug 2010; Andreas K. Huettel (dilfridge) <mail@akhuettel.de>
   digikam-1.4.0.ebuild:
   Change clapack and f2c headers from local to global in ebuild.
