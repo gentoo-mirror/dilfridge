@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  klayout-0.20.2.ebuild:
+  Rubyfied.
+
 *klayout-0.20.2 (15 Jun 2010)
 
   15 Jun 2010; Andreas K. Huettel (dilfridge) <mail@akhuettel.de>

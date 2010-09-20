@@ -4,7 +4,12 @@
 
 EAPI="2"
 
-inherit eutils multilib toolchain-funcs
+USE_RUBY="ruby18"
+# note: define maximally ONE implementation here
+
+RUBY_OPTIONAL=yes
+
+inherit eutils multilib toolchain-funcs ruby-ng
 
 DESCRIPTION="Viewer and editor for GDS and OASIS integrated circuit layouts"
 HOMEPAGE="http://www.klayout.de/"
@@ -15,31 +20,21 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="ruby"
 
-RDEPEND="x11-libs/qt-gui:4[qt3support]
-	ruby? ( dev-lang/ruby )"
-
+RDEPEND="x11-libs/qt-gui:4[qt3support]"
 DEPEND="${RDEPEND}"
 
-src_prepare() {
+all_ruby_prepare() {
 	epatch "${FILESDIR}/${P}-configureonly.patch"
 
 	# now we generate the stub build configuration file for the home-brew build system
 	cp "${FILESDIR}/${P}-Makefile.conf.linux-gentoo" "${S}/config/Makefile.conf.linux-gentoo" || die
 }
 
-src_configure() {
-	local rbinc rblib rbflags
+each_ruby_configure() {
+	local rbflags
 
 	if use ruby ; then
-
-		# get the location of the ruby.h header file
-		rbinc=$(ruby -rrbconfig -e "puts Config::CONFIG['archdir'] || Config::CONFIG['rubyhdrdir']")
-
-		# get the filename of libruby.so
-		rblib=$(ruby -rrbconfig -e "puts Config::CONFIG['LIBRUBY']")
-
-		rbflags="-rblib /usr/$(get_libdir)/${rblib} -rbinc ${rbinc}"
-
+		rbflags="-rblib $(ruby_get_libruby) -rbinc $(ruby_get_hdrdir)"
 	fi
 
 	./build.sh \
@@ -51,14 +46,14 @@ src_configure() {
 		${rbflags} || die "Configuration failed"
 }
 
-src_compile() {
+each_ruby_compile() {
 	cd build.linux-gentoo
 	tc-export CC CXX AR LD RANLIB
 	export AR="${AR} -r"
 	emake all || die "Build failed"
 }
 
-src_install() {
+each_ruby_install() {
 	cd build.linux-gentoo
 	emake install || die "make install failed"
 
