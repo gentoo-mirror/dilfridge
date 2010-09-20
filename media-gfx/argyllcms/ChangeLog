@@ -4,6 +4,10 @@
 
   20 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   argyllcms-1.3.0.ebuild:
+  Really fix --as-needed with an ugly modification.
+
+  20 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  argyllcms-1.3.0.ebuild:
   Fixed the build system to honour the MAKEOPTS job number, fixed forced
   --as-needed issue (bug 338155).
 

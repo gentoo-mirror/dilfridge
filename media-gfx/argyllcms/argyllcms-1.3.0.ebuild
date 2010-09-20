@@ -30,7 +30,12 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}/${MY_P}"
 
 src_compile() {
+	# Make it respect LDFLAGS
 	echo "LINKFLAGS += ${LDFLAGS} ;" >> Jamtop
+
+	# Evil hack to get --as-needed working. The build system unfortunately lists all
+	# the shared libraries by default on the command line _before_ the object to be built...
+	echo "STDLIBS += -ldl -lrt -lX11 -lXext -lXxf86vm -lXinerama -lXrandr -lXau -lXdmcp -lXss -ltiff ;" >> Jamtop
 
 	local jobnumber=$(echo "${MAKEOPTS}" | sed -ne "/-j/ { s/.*\(-j[[:space:]]*[0-9]\+\).*/\1/; p }")
 	[ ${jobnumber} ] || jobnumber=-j1
