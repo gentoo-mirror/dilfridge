@@ -31,11 +31,15 @@ S="${WORKDIR}/${MY_P}"
 
 src_compile() {
 	echo "LINKFLAGS += ${LDFLAGS} ;" >> Jamtop
-	emake || die "emake failed"
+
+	local jobnumber=$(echo "${MAKEOPTS}" | sed -ne "/-j/ { s/.*\(-j[[:space:]]*[0-9]\+\).*/\1/; p }")
+	[ ${jobnumber} ] || jobnumber=-j1
+
+	jam -q -fJambase ${jobnumber} || die
 }
 
 src_install() {
-	emake install || die
+	jam -q -fJambase install || die
 
 	rm bin/License.txt || die
 	dobin bin/* || die
