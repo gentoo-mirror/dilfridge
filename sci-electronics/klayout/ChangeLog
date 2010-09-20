@@ -3,6 +3,10 @@
 # $Header: $
 
   20 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  files/klayout-0.20.2-Makefile.conf.linux-gentoo:
+  Should use LDFLAGS now.
+
+  20 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   klayout-0.20.2.ebuild:
   Rubyfied.
 

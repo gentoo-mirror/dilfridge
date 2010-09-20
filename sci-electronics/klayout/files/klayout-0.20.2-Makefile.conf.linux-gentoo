@@ -16,7 +16,7 @@ DEFS=-DQT_THREAD_SUPPORT -DQT3_SUPPORT
 
 # Linker options
 
-LOPT=-Wl,-E -o
+LOPT=-Wl,-E ${LDFLAGS} -o
 LOPT_SO=-shared -fPIC -o
 
 LIBS=-L$(QTLIB) -lQtGui -lQtCore -lQtXml -lrt -lstdc++ -lcrypt
