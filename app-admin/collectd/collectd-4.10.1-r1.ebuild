@@ -21,6 +21,8 @@ IUSE="contrib debug kernel_linux kernel_FreeBSD kernel_Darwin"
 
 # The plugin lists have to follow here since they extend IUSE
 
+COLLECTD_MASKED=yes
+
 COLLECTD_TESTED_PLUGINS="apache battery bind conntrack contextswitch cpu cpufreq
 	dbi df disk dns email entropy hddtemp iptables irq load memory network
 	swap tcpconns thermal uptime users logfile syslog csv rrdtool"
@@ -46,9 +48,15 @@ COLLECTD_PLUGINS="${COLLECTD_SOURCE_PLUGINS} ${COLLECTD_TARGET_PLUGINS}
 
 COLLECTD_DISABLED_PLUGINS="curl_json netapp pinba ping xmms"
 
-for plugin in ${COLLECTD_PLUGINS}; do
-	IUSE="${IUSE} cd_${plugin}"
-done
+if [ "${COLLECTD_MASKED}" ]; then
+	for plugin in ${COLLECTD_PLUGINS}; do
+		IUSE="${IUSE} cd_${plugin}"
+	done
+else
+	for plugin in ${COLLECTD_TESTED_PLUGINS}; do
+		IUSE="${IUSE} cd_${plugin}"
+	done
+fi
 
 # Now come the dependencies.
 
