@@ -233,14 +233,19 @@ pkg_setup() {
 	done
 	einfo
 
+	local warnplugins;
 	for plugin in ${COLLECTD_PLUGINS}; do
 		if (! has ${plugin} ${COLLECTD_TESTED_PLUGINS}) && use cd_${plugin}; then
-			ewarn
-			ewarn "You have enabled the ${plugin} plugin. Feel free to try, but be aware that it is in Gentoo so"
-			ewarn "far completely untested and may not even compile. Please file a bug if you encounter problems."
-			ewarn "Positive feedback is also welcome."
+			warnplugins+="${plugin} "
 		fi
 	done
+	if [ ${warnplugins} ]; then
+		ewarn
+		ewarn "You have enabled the following plugins: ${warnplugins}"
+		ewarn "Feel free to try, but be aware that these plugins are in Gentoo so far completely"
+		ewarn "untested and may not even compile. Please file a bug if you encounter problems."
+		ewarn "Positive feedback is also welcome."
+	fi
 
 	if use kernel_linux; then
 		if linux_config_exists; then
