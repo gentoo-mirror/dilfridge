@@ -227,10 +227,7 @@ collectd_linux_kernel_checks() {
 pkg_setup() {
 	einfo
 	einfo "The following plug-ins are in general not supported by this ebuild (e.g. because"
-	einfo -n "Gentoo does not provide required dependencies):"
-	for plugin in ${COLLECTD_DISABLED_PLUGINS}; do
-		einfo -n "${plugin} "
-	done
+	einfo "Gentoo does not provide required dependencies): ${COLLECTD_DISABLED_PLUGINS}"
 	einfo
 
 	local warnplugins;
