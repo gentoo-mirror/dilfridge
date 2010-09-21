@@ -21,6 +21,10 @@ IUSE="contrib debug kernel_linux kernel_FreeBSD kernel_Darwin"
 
 # The plugin lists have to follow here since they extend IUSE
 
+COLLECTD_TESTED_PLUGINS="apache battery bind conntrack contextswitch cpu cpufreq
+	dbi df disk dns email entropy hddtemp iptables irq load memory network
+	swap tcpconns thermal uptime users logfile syslog csv rrdtool"
+
 COLLECTD_SOURCE_PLUGINS="apache apcups apple_sensors ascent battery bind conntrack contextswitch
 	cpu cpufreq curl curl_xml dbi df disk dns email entropy exec filecount fscache gmond
 	hddtemp interface ipmi iptables ipvs irq java libvirt load madwifi mbmon memcachec
@@ -221,19 +225,28 @@ collectd_linux_kernel_checks() {
 }
 
 pkg_setup() {
-	elog
-	elog "The following plug-ins are in general not supported by this ebuild (e.g. because"
-	elog "Gentoo does not provide required dependencies):"
+	einfo
+	einfo "The following plug-ins are in general not supported by this ebuild (e.g. because"
+	einfo "Gentoo does not provide required dependencies):"
 	for plugin in ${COLLECTD_DISABLED_PLUGINS}; do
-		elog "${plugin}"
+		einfo "${plugin} "
 	done
-	elog
+	einfo
+
+	for plugin in ${COLLECTD_PLUGINS}; do
+		if (! has ${plugin} ${COLLECTD_TESTED_PLUGINS}) && use cd_${plugin}; then
+			ewarn
+			ewarn "You have enabled the ${plugin} plugin. Feel free to try, but be aware that it is in Gentoo so"
+			ewarn "far completely untested and may not even compile. Please file a bug if you encounter problems."
+			ewarn "Positive feedback is also welcome."
+		fi
+	done
 
 	if use kernel_linux; then
 		if linux_config_exists; then
-			elog "Checking your linux kernel configuration..."
+			einfo
+			einfo "Checking your linux kernel configuration:"
 			collectd_linux_kernel_checks
-			elog "... done."
 		else
 			elog "Cannot find a linux kernel configuration. Continuing anyway."
 		fi
@@ -333,7 +346,7 @@ src_install() {
 
 collectd_rdeps() {
 	use cd_${1} \
-	&& elog "The ${1} plug-in\tneeds\t${2}\tto be installed localy or remotely to work."
+	&& elog "The ${1} plug-in needs ${2} to be installed locally or remotely to work."
 }
 
 pkg_postinst() {
