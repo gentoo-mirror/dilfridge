@@ -121,13 +121,13 @@ collectd_plugin_kernel_linux() {
 		multi_opt=${2//\ /\ or\ }
 		case ${3} in
 			(info)
-				elog "The ${1} plug-in\tcan use features enabled by\t${multi_opt}\tin your kernel"
+				elog "The ${1} plug-in can use features enabled by ${multi_opt} in your kernel"
 			;;
 			(warn)
-				ewarn "The ${1} plug-in\tuses features enabled by\t${multi_opt}\tin your kernel"
+				ewarn "The ${1} plug-in uses features enabled by ${multi_opt} in your kernel"
 			;;
 			(error)
-				eerror "The ${1} plug-in\tneeds features enabled by\t${multi_opt}\tin your kernel"
+				eerror "The ${1} plug-in needs features enabled by ${multi_opt} in your kernel"
 			;;
 			(*)
 				die "function collectd_plugin_kernel_linux called with invalid third argument"
@@ -227,9 +227,9 @@ collectd_linux_kernel_checks() {
 pkg_setup() {
 	einfo
 	einfo "The following plug-ins are in general not supported by this ebuild (e.g. because"
-	einfo "Gentoo does not provide required dependencies):"
+	einfo -n "Gentoo does not provide required dependencies):"
 	for plugin in ${COLLECTD_DISABLED_PLUGINS}; do
-		einfo "${plugin} "
+		einfo -n "${plugin} "
 	done
 	einfo
 
@@ -239,7 +239,7 @@ pkg_setup() {
 			warnplugins+="${plugin} "
 		fi
 	done
-	if [ ${warnplugins} ]; then
+	if [ "${warnplugins}" ]; then
 		ewarn
 		ewarn "You have enabled the following plugins: ${warnplugins}"
 		ewarn "Feel free to try, but be aware that these plugins are in Gentoo so far completely"
@@ -350,8 +350,9 @@ src_install() {
 }
 
 collectd_rdeps() {
-	use cd_${1} \
-	&& elog "The ${1} plug-in needs ${2} to be installed locally or remotely to work."
+	if (use cd_${1} && ! has_version "${2}"); then
+		elog "The ${1} plug-in needs ${2} to be installed locally or remotely to work."
+	fi
 }
 
 pkg_postinst() {
