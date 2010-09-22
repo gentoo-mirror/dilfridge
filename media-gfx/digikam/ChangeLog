@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*digikam-1.4.0-r51 (22 Sep 2010)
+
+  22 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-1.4.0-r1.ebuild, +digikam-1.4.0-r51.ebuild:
+  Renamed -r1 to -r51 and copied -r0 to -r1
+
   18 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   digikam-1.4.0.ebuild:
   Even worse. We need both backends sqlite and mysql.

@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/digikam/digikam-1.4.0.ebuild,v 1.2 2010/09/18 14:40:36 dilfridge Exp $
+# $Header: $
 
 EAPI="2"
 
@@ -40,9 +40,8 @@ CDEPEND="
 	media-libs/libpgf
 	>=media-plugins/kipi-plugins-1.2.0-r1
 	>=sci-libs/clapack-3.2.1-r3
-	virtual/mysql
 	x11-libs/qt-gui[qt3support]
-	x11-libs/qt-sql[mysql,sqlite]
+	x11-libs/qt-sql[sqlite]
 	addressbook? ( >=kde-base/kdepimlibs-${KDE_MINIMAL} )
 	geolocation? ( >=kde-base/marble-${KDE_MINIMAL} )
 	gphoto2? ( media-libs/libgphoto2 )
@@ -63,7 +62,14 @@ DEPEND="${CDEPEND}
 
 S="${WORKDIR}/${MY_P}"
 
-PATCHES=( "${FILESDIR}/${PN}"-1.3.0-{docs,pgf}.patch "${FILESDIR}/${P}"-clapack.patch)
+PATCHES=( "${FILESDIR}/${PN}"-1.3.0-{docs,pgf,clapack}.patch )
+
+src_prepare() {
+	kde4-base_src_prepare
+
+	find . -name "*.cpp" -exec sed -e 's:"f2c.h":<f2c.h>:g' -i {} \; || die
+	find . -name "*.cpp" -exec sed -e 's:"clapack.h":<clapack.h>:g' -i {} \; || die
+}
 
 src_configure() {
 	local backend
