@@ -1,0 +1,79 @@
+[22:22:02] <dilfridge> ssuominen: around=
+[22:22:04] <dilfridge> ?
+[22:43:31] <Anarchy> jlec, that will be fine no rush on it.
+[22:55:58] <ssuominen> dilfridge: for a moment
+[22:57:27] <dilfridge> I have a question on how to best bump an ebuild to the tree
+[22:57:34] <dilfridge> about "required stability in ~arch"
+[22:57:35] <robbat2|na> dilfridge, sup?
+[22:58:04] <dilfridge> I would like to bump app-admin/collectd to the tre
+[22:58:11] <dilfridge> http://git.overlays.gentoo.org/gitweb/?p=user/dilfridge.git;a=tree;f=app-admin/collectd;hb=HEAD
+[22:58:30] <dilfridge> this has a huge number of plugins, and some require specific hardware / software
+[22:58:56] <dilfridge> Plugin building is controlled by useflags, but I cant test all
+[22:59:29] <dilfridge> dberkhol suggested that I have two ebuilds, a ~arch which has only the "tested building plugins" and a masked with all
+[22:59:47] <chithead> you cannot build-test all?
+[22:59:56] <dilfridge> is there a way to mask e.g. -r51 .. -r99 for all versions?
+[23:00:02] <robbat2|na> "to the tree"? bump is not the word at all. migrate to the tree
+[23:00:11] <robbat2|na> bump = version bump or revision bump
+[23:00:15] <ssuominen> build-test all would be enough to stick it into ~arch
+[23:00:18] <dilfridge> chithead: that might be possible 
+[23:00:30] <robbat2|na> yes, just build-test them all and put that as ~arch
+[23:00:45] <dilfridge> ok then I will target that and "activate" all useflags that I have build-tested. 
+[23:01:05] <dilfridge> thx guys problem solved, will take a few more days though...
+[23:01:23] <robbat2|na> and that ebuild looks like it's going to want USE_EXPAND instead of the manual cd_ stuff
+[23:01:27] <dilfridge> yes true
+[23:01:47] <dilfridge> how much buerocracy loops are needed for USE_EXPAND?
+[23:02:05] <dilfridge> s/buerocracy/bureaucracy/
+[23:02:36] <dilfridge> just ask on dev ml?
+[23:03:05] <robbat2|na> yup
+[23:03:11] <dilfridge> ok will do
+[23:03:24] <robbat2|na> also, the errors you spew when linux_config_exists is false are very misleading
+[23:03:33] <dilfridge> ok
+[23:03:46] <robbat2|na> unless i'm misreading something
+[23:03:47] <robbat2|na> one sec
+[23:04:36] <darkside_> uhm, what? # hal is autodetected by configure, so there is no point in a hal useflag.
+[23:05:08] <dilfridge> darkside_: yes not patched yet, but this affects only _one_ plugin
+[23:05:45] <dilfridge> robbat2|na: this tries to figure out what kernel options might be improved for the plugins to work
+[23:05:46] -*- ssuominen -C slocate
+[23:06:06] <robbat2|na> collectd_plugin_kernel_linux <--- i'd refactor that, to have a specific error for linux_config_exists failure. also your linux_chkconfig_present will only correctly check the first flag 
+if multiple are specified
+[23:06:41] <dilfridge> ok will reread
+[23:06:57] <robbat2|na> if linux_chkconfig_present ${opt}; then return 0; fi
+[23:07:09] <ssuominen> there's a requirement to ask on dev ML before adding USE_EXPAND?
+[23:07:22] <robbat2|na> so you return out of the function on the first successful option, no way to specify multiple options must be set together
+[23:07:39] <robbat2|na> ssuominen, non written, but every past one was asked about
+[23:08:00] <ssuominen> robbat2|na: except the one I added just week ago, then ;-)
+[23:08:07] <ssuominen> one for XFCE_PLUGINS
+[23:09:11] <robbat2|na> dilfridge, lastly, why a DEPEND on sys-kernel/vserver-sources? that's a perfectly valid kernel to be prebuilt and have no kernel sources on a machine
+[23:09:42] <dilfridge> robbat2|na: yes that's true but why not go for "check one option" for simplicity's sake
+[23:10:23] <robbat2|na> dilfridge, ok, just document that in the function header then
+[23:10:34] <dilfridge> it is :)
+[23:11:01] <dilfridge> robbat2|na: about the vserver, simply because I did not get to that plugin yet (and have no experience with that)
+[23:11:12] <robbat2|na> use the eclass doc syntax?
+[23:11:19] <dilfridge> ok
+[23:11:36] <dilfridge> will do
+[23:12:59] <dilfridge> ok give me a few days and I will clean things up and send mail :) thanks for your help
+
+
+ 544   * libnatapp (optional)
+ 545     Required for the “netapp” plugin.
+ 546     This library is part of the “Manage ONTAP SDK” published by NetApp.
+
+ 560   * liboping (optional)
+ 561     Used by the `ping' plugin to send and receive ICMP packets.
+ 562     <http://verplant.org/liboping/>
+
+ 586   * librouteros (optional)
+ 587     Used by the `routeros' plugin to connect to a device running `RouterOS'.
+ 588     <http://verplant.org/librouteros/>
+
+ 596   * librt, libsocket, libkstat, libdevinfo (optional)
+ 597     Various standard Solaris libraries which provide system functions.
+ 598     <http://developers.sun.com/solaris/>
+
+ 625   * libxmms (optional)
+ 626     <http://www.xmms.org/>
+
+ 628   * libyajl (optional)
+ 629     Parse JSON data. This is needed for the `curl_json' plugin.
+ 630     <http://github.com/lloyd/yajl>
+
