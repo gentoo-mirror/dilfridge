@@ -78,13 +78,188 @@ if multiple are specified
  630     <http://github.com/lloyd/yajl>
 
 
+Build-tested plugins:
+
 apache apcups apple_sensors ascent battery bind conntrack contextswitch
 cpu cpufreq curl curl_xml dbi df disk dns email entropy exec filecount fscache gmond
 hddtemp interface ipmi iptables ipvs irq java libvirt load madwifi mbmon memcachec
 memcached memory modbus multimeter mysql netlink network nfs nginx ntpd nut olsrd
-onewire openvpn oracle perl postgresql powerdns processes protocols python routeros
+onewire openvpn perl postgresql powerdns processes protocols python routeros
 rrdcached sensors serial snmp swap table tail tape tcpconns teamspeak2 ted thermal
 tokyotyrant uptime users vmem vserver wireless zfs_arc csv exec logfile network 
 notify_desktop notify_email perl python rrdcached rrdtool syslog unixsock write_http
 match_empty_counter match_hashed match_regex match_timediff match_value
 target_notification target_replace target_scale target_set uuid
+
+
+Configuration:
+  Libraries:
+    libcurl . . . . . . . yes
+    libdbi  . . . . . . . yes
+    libesmtp  . . . . . . yes
+    libganglia  . . . . . yes
+    libgcrypt . . . . . . yes
+    libiokit  . . . . . . no
+    libiptc . . . . . . . yes
+    libjvm  . . . . . . . yes
+    libkstat  . . . . . . no (Solaris only)
+    libkvm  . . . . . . . no
+    libmemcached  . . . . yes
+    libmodbus . . . . . . yes
+    libmysql  . . . . . . yes
+    libnetapp . . . . . . no (netapp_api.h not found)
+    libnetlink  . . . . . no (libnetlink.h not found)
+    libnetsnmp  . . . . . yes
+    libnotify . . . . . . yes
+    liboconfig  . . . . . yes (shipped version)
+    libopenipmi . . . . . no (/usr/bin/pkg-config --cflags OpenIPMIpthread failed)
+    liboping  . . . . . . no ('oping.h' not found)
+    libpcap . . . . . . . yes
+    libperfstat . . . . . no (AIX only)
+    libperl . . . . . . . no
+    libpq . . . . . . . . yes
+    libpthread  . . . . . yes
+    librouteros . . . . . no ('routeros_api.h' not found)
+    librrd  . . . . . . . yes
+    libsensors  . . . . . yes
+    libstatgrab . . . . . no (/usr/bin/pkg-config doesn't know libstatgrab)
+    libtokyotyrant  . . . yes
+    libupsclient  . . . . no (symbol upscli_connect not found)
+    libvirt . . . . . . . yes
+    libxml2 . . . . . . . yes
+    libxmms . . . . . . . no
+    libyajl . . . . . . . no (yajl/yajl_parse.h not found)
+    libevent  . . . . . . 
+    protobuf-c  . . . . . no
+    oracle  . . . . . . . no (ORACLE_HOME is not set)
+    python  . . . . . . . yes
+
+  Features:
+    daemon mode . . . . . yes
+    debug . . . . . . . . no
+
+  Bindings:
+    perl  . . . . . . . . yes
+
+  Modules:
+    apache  . . . . . . . yes
+    apcups  . . . . . . . yes
+    apple_sensors . . . . no (disabled on command line)
+    ascent  . . . . . . . yes
+    battery . . . . . . . yes
+    bind  . . . . . . . . yes
+    conntrack . . . . . . yes
+    contextswitch . . . . yes
+    cpu . . . . . . . . . yes
+    cpufreq . . . . . . . yes
+    csv . . . . . . . . . yes
+    curl  . . . . . . . . yes
+    curl_json . . . . . . no (disabled on command line)
+    curl_xml  . . . . . . yes
+    dbi . . . . . . . . . yes
+    df  . . . . . . . . . yes
+    disk  . . . . . . . . yes
+    dns . . . . . . . . . yes
+    email . . . . . . . . yes
+    entropy . . . . . . . yes
+    exec  . . . . . . . . yes
+    filecount . . . . . . yes
+    fscache . . . . . . . yes
+    gmond . . . . . . . . yes
+    hddtemp . . . . . . . yes
+    interface . . . . . . yes
+    ipmi  . . . . . . . . no (dependency error)
+    iptables  . . . . . . yes
+    ipvs  . . . . . . . . no (dependency error) (ip_vs.h not found)
+    irq . . . . . . . . . yes
+    java  . . . . . . . . yes
+    libvirt . . . . . . . yes
+    load  . . . . . . . . yes
+    logfile . . . . . . . yes
+    madwifi . . . . . . . yes
+    match_empty_counter . yes
+    match_hashed  . . . . yes
+    match_regex . . . . . yes
+    match_timediff  . . . yes
+    match_value . . . . . yes
+    mbmon . . . . . . . . yes
+    memcachec . . . . . . yes
+    memcached . . . . . . yes
+    memory  . . . . . . . yes
+    modbus  . . . . . . . yes
+    multimeter  . . . . . yes
+    mysql . . . . . . . . yes
+    netapp  . . . . . . . no (disabled on command line)
+    netlink . . . . . . . no (dependency error)
+    network . . . . . . . yes
+    nfs . . . . . . . . . yes
+    nginx . . . . . . . . yes
+    notify_desktop  . . . yes
+    notify_email  . . . . yes
+    ntpd  . . . . . . . . yes
+    nut . . . . . . . . . no (dependency error)
+    olsrd . . . . . . . . yes
+    onewire . . . . . . . yes
+    openvpn . . . . . . . yes
+    oracle  . . . . . . . no (disabled on command line)
+    perl  . . . . . . . . no (needs libperl)
+    pinba . . . . . . . . no (disabled on command line)
+    ping  . . . . . . . . no (disabled on command line)
+    postgresql  . . . . . yes
+    powerdns  . . . . . . yes
+    processes . . . . . . yes
+    protocols . . . . . . yes
+    python  . . . . . . . yes
+    routeros  . . . . . . no (dependency error)
+    rrdcached . . . . . . yes
+    rrdtool . . . . . . . yes
+    sensors . . . . . . . yes
+    serial  . . . . . . . yes
+    snmp  . . . . . . . . yes
+    swap  . . . . . . . . yes
+    syslog  . . . . . . . yes
+    table . . . . . . . . yes
+    tail  . . . . . . . . yes
+    tape  . . . . . . . . no (dependency error)
+    target_notification . yes
+    target_replace  . . . yes
+    target_scale  . . . . yes
+    target_set  . . . . . yes
+    tcpconns  . . . . . . yes
+    teamspeak2  . . . . . yes
+    ted . . . . . . . . . yes
+    thermal . . . . . . . yes
+    tokyotyrant . . . . . yes
+    unixsock  . . . . . . yes
+    uptime  . . . . . . . yes
+    users . . . . . . . . yes
+    uuid  . . . . . . . . yes
+    vmem  . . . . . . . . yes
+    vserver . . . . . . . yes
+    wireless  . . . . . . yes
+    write_http  . . . . . yes
+    xmms  . . . . . . . . no (disabled on command line)
+    zfs_arc . . . . . . . no (dependency error)
+
+configure: error: "Some plugins are missing dependencies - see the summary above for details"
+
+!!! Please attach the following file when seeking support:
+!!! /var/tmp/portage/app-admin/collectd-4.10.1-r1/work/collectd-4.10.1/config.log
+ * ERROR: app-admin/collectd-4.10.1-r1 failed:
+ *   econf failed
+ * 
+ * Call stack:
+ *     ebuild.sh, line   54:  Called src_configure
+ *   environment, line 4369:  Called econf '--config-cache' '--without-included-ltdl' '--localstatedir=/var' '--disable-debug' '--disable-curl_json' '--disable-netapp' '--disable-pinba' '--disable-ping' 
+'--disable-xmms' '--enable-apache' '--enable-apcups' '--disable-apple_sensors' '--enable-ascent' '--enable-battery' '--enable-bind' '--enable-conntrack' '--enable-contextswitch' '--enable-cpu' 
+'--enable-cpufreq' '--enable-curl' '--enable-curl_xml' '--enable-dbi' '--enable-df' '--enable-disk' '--enable-dns' '--enable-email' '--enable-entropy' '--enable-exec' '--enable-filecount' '--enable-fscache' 
+'--enable-gmond' '--enable-hddtemp' '--enable-interface' '--enable-ipmi' '--enable-iptables' '--enable-ipvs' '--enable-irq' '--enable-java' '--enable-libvirt' '--enable-load' '--enable-madwifi' 
+'--enable-mbmon' '--enable-memcachec' '--enable-memcached' '--enable-memory' '--enable-modbus' '--enable-multimeter' '--enable-mysql' '--enable-netlink' '--enable-network' '--enable-nfs' '--enable-nginx' 
+'--enable-ntpd' '--enable-nut' '--enable-olsrd' '--enable-onewire' '--enable-openvpn' '--disable-oracle' '--enable-perl' '--enable-postgresql' '--enable-powerdns' '--enable-processes' '--enable-protocols' 
+'--enable-python' '--enable-routeros' '--enable-rrdcached' '--enable-sensors' '--enable-serial' '--enable-snmp' '--enable-swap' '--enable-table' '--enable-tail' '--enable-tape' '--enable-tcpconns' 
+'--enable-teamspeak2' '--enable-ted' '--enable-thermal' '--enable-tokyotyrant' '--enable-uptime' '--enable-users' '--enable-vmem' '--enable-vserver' '--enable-wireless' '--enable-zfs_arc' '--enable-csv' 
+'--enable-exec' '--enable-logfile' '--enable-network' '--enable-notify_desktop' '--enable-notify_email' '--enable-perl' '--enable-python' '--enable-rrdcached' '--enable-rrdtool' '--enable-syslog' 
+'--enable-unixsock' '--enable-write_http' '--enable-match_empty_counter' '--enable-match_hashed' '--enable-match_regex' '--enable-match_timediff' '--enable-match_value' '--enable-target_notification' 
+'--enable-target_replace' '--enable-target_scale' '--enable-target_set' '--enable-uuid' '--with-java=/opt/sun-jdk-1.6.0.20'
+ *     ebuild.sh, line  544:  Called die
+
