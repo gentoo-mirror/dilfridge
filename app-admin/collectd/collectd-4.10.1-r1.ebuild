@@ -43,75 +43,75 @@ COLLECTD_FILTER_PLUGINS="match_empty_counter match_hashed match_regex match_time
 
 COLLECTD_MISC_PLUGINS="uuid"
 
-COLLECTD_PLUGINS="${COLLECTD_SOURCE_PLUGINS} ${COLLECTD_TARGET_PLUGINS}
+COLLECTD_ALL_PLUGINS="${COLLECTD_SOURCE_PLUGINS} ${COLLECTD_TARGET_PLUGINS}
 	${COLLECTD_FILTER_PLUGINS} ${COLLECTD_MISC_PLUGINS}"
 
 COLLECTD_DISABLED_PLUGINS="curl_json netapp pinba ping xmms"
 
 if [ "${COLLECTD_MASKED}" ]; then
-	for plugin in ${COLLECTD_PLUGINS}; do
-		IUSE="${IUSE} cd_${plugin}"
+	for plugin in ${COLLECTD_ALL_PLUGINS}; do
+		IUSE="${IUSE} collectd_plugins_${plugin}"
 	done
 else
 	for plugin in ${COLLECTD_TESTED_PLUGINS}; do
-		IUSE="${IUSE} cd_${plugin}"
+		IUSE="${IUSE} collectd_plugins_${plugin}"
 	done
 fi
 
 # Now come the dependencies.
 
 COMMON_DEPEND="
-	cd_apache?		( net-misc/curl )
-	cd_ascent?		( net-misc/curl dev-libs/libxml2 )
-	cd_bind?		( dev-libs/libxml2 )
-	cd_curl?		( net-misc/curl )
-	cd_curl_xml?		( net-misc/curl dev-libs/libxml2 )
-	cd_dbi?			( dev-db/libdbi )
-	cd_dns?			( net-libs/libpcap )
-	cd_gmond?		( sys-cluster/ganglia )
-	cd_ipmi?		( >=sys-libs/openipmi-2.0.11 )
-	cd_iptables?		( >=net-firewall/iptables-1.4.9.1-r2 )
-	cd_java?		( virtual/jre dev-java/java-config-wrapper )
-	cd_libvirt?		( app-emulation/libvirt dev-libs/libxml2 )
-	cd_memcachec?		( dev-libs/libmemcached )
-	cd_modbus?		( dev-libs/libmodbus )
-	cd_mysql?		( >=virtual/mysql-5.0 )
-	cd_netlink?		( sys-apps/iproute2 )
-	cd_network?		( dev-libs/libgcrypt )
-	cd_nginx?		( net-misc/curl )
-	cd_notify_desktop?	( x11-libs/libnotify )
-	cd_notify_email?	( >=net-libs/libesmtp-1.0.4 dev-libs/openssl )
-	cd_nut?			( >=sys-power/nut-2.2.0 )
-	cd_onewire?		( sys-fs/owfs )
-	cd_oracle?		( >=dev-db/oracle-instantclient-basic-11.1.0.7.0 )
-	cd_perl?		( dev-lang/perl[ithreads] sys-devel/libperl[ithreads] )
-	cd_postgresql?		( >=dev-db/postgresql-base-8.2 )
-	cd_python?		( || ( dev-lang/python:2.4  dev-lang/python:2.5 dev-lang/python:2.6 ) )
-	cd_rrdcached?		( >=net-analyzer/rrdtool-1.4 )
-	cd_rrdtool?		( >=net-analyzer/rrdtool-1.2.27 )
-	cd_sensors?		( sys-apps/lm_sensors )
-	cd_snmp?		( net-analyzer/net-snmp )
-	cd_tokyotyrant?		( net-misc/tokyotyrant )
-	cd_uuid? 		( sys-apps/hal )
-	cd_write_http?		( net-misc/curl )
+	collectd_plugins_apache?		( net-misc/curl )
+	collectd_plugins_ascent?		( net-misc/curl dev-libs/libxml2 )
+	collectd_plugins_bind?		( dev-libs/libxml2 )
+	collectd_plugins_curl?		( net-misc/curl )
+	collectd_plugins_curl_xml?		( net-misc/curl dev-libs/libxml2 )
+	collectd_plugins_dbi?			( dev-db/libdbi )
+	collectd_plugins_dns?			( net-libs/libpcap )
+	collectd_plugins_gmond?		( sys-cluster/ganglia )
+	collectd_plugins_ipmi?		( >=sys-libs/openipmi-2.0.11 )
+	collectd_plugins_iptables?		( >=net-firewall/iptables-1.4.9.1-r2 )
+	collectd_plugins_java?		( virtual/jre dev-java/java-config-wrapper )
+	collectd_plugins_libvirt?		( app-emulation/libvirt dev-libs/libxml2 )
+	collectd_plugins_memcachec?		( dev-libs/libmemcached )
+	collectd_plugins_modbus?		( dev-libs/libmodbus )
+	collectd_plugins_mysql?		( >=virtual/mysql-5.0 )
+	collectd_plugins_netlink?		( sys-apps/iproute2 )
+	collectd_plugins_network?		( dev-libs/libgcrypt )
+	collectd_plugins_nginx?		( net-misc/curl )
+	collectd_plugins_notify_desktop?	( x11-libs/libnotify )
+	collectd_plugins_notify_email?	( >=net-libs/libesmtp-1.0.4 dev-libs/openssl )
+	collectd_plugins_nut?			( >=sys-power/nut-2.2.0 )
+	collectd_plugins_onewire?		( sys-fs/owfs )
+	collectd_plugins_oracle?		( >=dev-db/oracle-instantclient-basic-11.1.0.7.0 )
+	collectd_plugins_perl?		( dev-lang/perl[ithreads] sys-devel/libperl[ithreads] )
+	collectd_plugins_postgresql?		( >=dev-db/postgresql-base-8.2 )
+	collectd_plugins_python?		( || ( dev-lang/python:2.4  dev-lang/python:2.5 dev-lang/python:2.6 ) )
+	collectd_plugins_rrdcached?		( >=net-analyzer/rrdtool-1.4 )
+	collectd_plugins_rrdtool?		( >=net-analyzer/rrdtool-1.2.27 )
+	collectd_plugins_sensors?		( sys-apps/lm_sensors )
+	collectd_plugins_snmp?		( net-analyzer/net-snmp )
+	collectd_plugins_tokyotyrant?		( net-misc/tokyotyrant )
+	collectd_plugins_uuid? 		( sys-apps/hal )
+	collectd_plugins_write_http?		( net-misc/curl )
 
 	kernel_FreeBSD?	(
-		cd_disk?	( >=sys-libs/libstatgrab-0.16 )
-		cd_interface?	( >=sys-libs/libstatgrab-0.16 )
-		cd_load?	( >=sys-libs/libstatgrab-0.16 )
-		cd_memory?	( >=sys-libs/libstatgrab-0.16 )
-		cd_swap?	( >=sys-libs/libstatgrab-0.16 )
-		cd_users?	( >=sys-libs/libstatgrab-0.16 )
+		collectd_plugins_disk?	( >=sys-libs/libstatgrab-0.16 )
+		collectd_plugins_interface?	( >=sys-libs/libstatgrab-0.16 )
+		collectd_plugins_load?	( >=sys-libs/libstatgrab-0.16 )
+		collectd_plugins_memory?	( >=sys-libs/libstatgrab-0.16 )
+		collectd_plugins_swap?	( >=sys-libs/libstatgrab-0.16 )
+		collectd_plugins_users?	( >=sys-libs/libstatgrab-0.16 )
 	)"
 
 DEPEND="${COMMON_DEPEND}
 	dev-util/pkgconfig
 	kernel_linux?	(
-		cd_vserver?	( sys-kernel/vserver-sources )
+		collectd_plugins_vserver?	( sys-kernel/vserver-sources )
 	)"
 
 RDEPEND="${COMMON_DEPEND}
-	cd_syslog?		( virtual/logger )"
+	collectd_plugins_syslog?		( virtual/logger )"
 
 PATCHES=( "${FILESDIR}/${P}-libiptc.patch" )
 
@@ -122,7 +122,7 @@ collectd_plugin_kernel_linux() {
 	#   one of them is enabled.
 	#
 	local multi_opt
-	if use cd_${1}; then
+	if use collectd_plugins_${1}; then
 		for opt in ${2}; do
 			if linux_chkconfig_present ${opt}; then return 0; fi
 		done
@@ -239,8 +239,8 @@ pkg_setup() {
 	einfo
 
 	local warnplugins;
-	for plugin in ${COLLECTD_PLUGINS}; do
-		if (! has ${plugin} ${COLLECTD_TESTED_PLUGINS}) && use cd_${plugin}; then
+	for plugin in ${COLLECTD_ALL_PLUGINS}; do
+		if (! has ${plugin} ${COLLECTD_TESTED_PLUGINS}) && use collectd_plugins_${plugin}; then
 			warnplugins+="${plugin} "
 		fi
 	done
@@ -308,27 +308,27 @@ src_configure() {
 	done
 
 	# Set enable/disable for each single plugin.
-	for plugin in ${COLLECTD_PLUGINS}; do
+	for plugin in ${COLLECTD_ALL_PLUGINS}; do
 		if has ${plugin} ${osdependent_plugins}; then
 			# plugin is os-dependent ...
 			if has ${plugin} ${myos_plugins}; then
 				# ... and available in this os
-				myconf="${myconf} $(use_enable cd_${plugin} ${plugin})"
+				myconf="${myconf} $(use_enable collectd_plugins_${plugin} ${plugin})"
 			else
 				# ... and NOT available in this os
-				if use cd_${plugin}; then
+				if use collectd_plugins_${plugin}; then
 					ewarn "You try to enable the ${plugin} plugin, but it is not available for this"
 					ewarn "kernel. Disabling it automatically."
 				fi
 				myconf="${myconf} --disable-${plugin}"
 			fi
 		else
-			myconf="${myconf} $(use_enable cd_${plugin} ${plugin})"
+			myconf="${myconf} $(use_enable collectd_plugins_${plugin} ${plugin})"
 		fi
 	done
 
 	# Need JAVA_HOME for java.
-	if use cd_java; then
+	if use collectd_plugins_java; then
 		myconf="${myconf} --with-java=$(java-config -g JAVA_HOME)"
 	fi
 
@@ -355,7 +355,7 @@ src_install() {
 }
 
 collectd_rdeps() {
-	if (use cd_${1} && ! has_version "${2}"); then
+	if (use collectd_plugins_${1} && ! has_version "${2}"); then
 		elog "The ${1} plug-in needs ${2} to be installed locally or remotely to work."
 	fi
 }

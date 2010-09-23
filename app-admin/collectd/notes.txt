@@ -77,3 +77,14 @@ if multiple are specified
  629     Parse JSON data. This is needed for the `curl_json' plugin.
  630     <http://github.com/lloyd/yajl>
 
+
+apache apcups apple_sensors ascent battery bind conntrack contextswitch
+cpu cpufreq curl curl_xml dbi df disk dns email entropy exec filecount fscache gmond
+hddtemp interface ipmi iptables ipvs irq java libvirt load madwifi mbmon memcachec
+memcached memory modbus multimeter mysql netlink network nfs nginx ntpd nut olsrd
+onewire openvpn oracle perl postgresql powerdns processes protocols python routeros
+rrdcached sensors serial snmp swap table tail tape tcpconns teamspeak2 ted thermal
+tokyotyrant uptime users vmem vserver wireless zfs_arc csv exec logfile network 
+notify_desktop notify_email perl python rrdcached rrdtool syslog unixsock write_http
+match_empty_counter match_hashed match_regex match_timediff match_value
+target_notification target_replace target_scale target_set uuid
