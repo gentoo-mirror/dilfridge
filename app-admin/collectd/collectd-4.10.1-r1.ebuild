@@ -13,7 +13,7 @@ SRC_URI="${HOMEPAGE}/files/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="allplugins contrib debug kernel_linux kernel_FreeBSD kernel_Darwin"
+IUSE="contrib debug kernel_linux kernel_FreeBSD kernel_Darwin"
 
 # The plugin lists have to follow here since they extend IUSE
 
@@ -58,11 +58,7 @@ COLLECTD_MISC_PLUGINS="uuid"
 COLLECTD_ALL_PLUGINS=${COLLECTD_TESTED_PLUGINS}
 
 for plugin in ${COLLECTD_TESTED_PLUGINS}; do
-	if use allplugins ; then
-		IUSE="${IUSE} +collectd_plugins_${plugin}"
-	else
-		IUSE="${IUSE} collectd_plugins_${plugin}"
-	fi
+	IUSE="${IUSE} collectd_plugins_${plugin}"
 done
 
 # Now come the dependencies.
@@ -93,7 +89,7 @@ COMMON_DEPEND="
 	collectd_plugins_oracle?		( >=dev-db/oracle-instantclient-basic-11.1.0.7.0 )
 	collectd_plugins_perl?			( dev-lang/perl[ithreads] sys-devel/libperl[ithreads] )
 	collectd_plugins_postgresql?		( >=dev-db/postgresql-base-8.2 )
-	collectd_plugins_python?		( || ( dev-lang/python:2.4  dev-lang/python:2.5 dev-lang/python:2.6 ) )
+	collectd_plugins_python?		( =dev-lang/python-2* )
 	collectd_plugins_rrdcached?		( >=net-analyzer/rrdtool-1.4 )
 	collectd_plugins_rrdtool?		( >=net-analyzer/rrdtool-1.2.27 )
 	collectd_plugins_sensors?		( sys-apps/lm_sensors )
@@ -129,7 +125,7 @@ PATCHES=( "${FILESDIR}/${P}"-{libperl,libiptc}.patch )
 #   one of them is enabled. If no, depending on the third argument an elog, ewarn, or eerror message
 #   is emitted.
 collectd_plugin_kernel_linux() {
-	local multi_opt
+	local multi_opt opt
 	if use collectd_plugins_${1}; then
 		for opt in ${2}; do
 			if linux_chkconfig_present ${opt}; then return 0; fi
@@ -293,32 +289,33 @@ src_configure() {
 
 	# Disable what needs to be disabled.
 	for plugin in ${COLLECTD_DISABLED_PLUGINS}; do
-		myconf="${myconf} --disable-${plugin}"
+		myconf+=" --disable-${plugin}"
 	done
 
 	# Set enable/disable for each single plugin.
+	local plugin
 	for plugin in ${COLLECTD_ALL_PLUGINS}; do
 		if has ${plugin} ${osdependent_plugins}; then
 			# plugin is os-dependent ...
 			if has ${plugin} ${myos_plugins}; then
 				# ... and available in this os
-				myconf="${myconf} $(use_enable collectd_plugins_${plugin} ${plugin})"
+				myconf+=" $(use_enable collectd_plugins_${plugin} ${plugin})"
 			else
 				# ... and NOT available in this os
 				if use collectd_plugins_${plugin}; then
 					ewarn "You try to enable the ${plugin} plugin, but it is not available for this"
 					ewarn "kernel. Disabling it automatically."
 				fi
-				myconf="${myconf} --disable-${plugin}"
+				myconf+=" --disable-${plugin}"
 			fi
 		else
-			myconf="${myconf} $(use_enable collectd_plugins_${plugin} ${plugin})"
+			myconf+=" $(use_enable collectd_plugins_${plugin} ${plugin})"
 		fi
 	done
 
 	# Need JAVA_HOME for java.
 	if use collectd_plugins_java; then
-		myconf="${myconf} --with-java=$(java-config -g JAVA_HOME)"
+		myconf+=" --with-java=$(java-config -g JAVA_HOME)"
 	fi
 
 	# Finally, run econf.

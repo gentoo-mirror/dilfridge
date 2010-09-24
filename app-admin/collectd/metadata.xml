@@ -7,7 +7,6 @@
 Yes I know many of the use flag descriptions are not particularly useful right now. Will fill in
 something more descriptive soon... dilfridge
 -->
-		<flag name='allplugins'>Enable all plugins by default. Single plugins can still be disabled using -...</flag>
 		<flag name='collectd_plugins_apache'>Build the apache input plugin (transferred bytes, handled requests, detailed scoreboard statistics)</flag>
 		<flag name='collectd_plugins_apcups'>Build the apcups input plugin (UPS charge, load, input/output/battery voltage, etc.)</flag>
 		<flag name='collectd_plugins_apple_sensors'>Build the apple_sensors input plugin (temperature, fanspeed and voltage)</flag>
