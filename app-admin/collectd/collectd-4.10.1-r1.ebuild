@@ -13,19 +13,28 @@ SRC_URI="${HOMEPAGE}/files/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="contrib debug kernel_linux kernel_FreeBSD kernel_Darwin"
-
-# hal is autodetected by configure, so there is no point in a hal useflag.
-# DEPENDing it for now for the UUID plugin, so we get a consistent state...
-# TODO: patch configure.in to provide with/without-hal
+IUSE="allplugins contrib debug kernel_linux kernel_FreeBSD kernel_Darwin"
 
 # The plugin lists have to follow here since they extend IUSE
 
-COLLECTD_MASKED=yes
+# Plugins that to my knowledge cannot be supported (eg. dependencies not in gentoo)
+COLLECTD_DISABLED_PLUGINS="curl_json netapp pinba ping xmms"
 
-COLLECTD_TESTED_PLUGINS="apache battery bind conntrack contextswitch cpu cpufreq
-	dbi df disk dns email entropy hddtemp iptables irq load memory network
-	swap tcpconns thermal uptime users logfile syslog csv rrdtool"
+# Plugins that have been (compile) tested and can be enabled via COLLECTD_PLUGINS
+COLLECTD_TESTED_PLUGINS="apache apcups ascent battery bind conntrack contextswitch
+	cpu cpufreq curl curl_xml dbi df disk dns email entropy exec filecount fscache gmond
+	hddtemp interface iptables irq java libvirt load madwifi mbmon memcachec
+	memcached memory multimeter mysql network nfs nginx ntpd olsrd
+	onewire openvpn postgresql powerdns processes protocols python
+	rrdcached sensors serial snmp swap table tail tcpconns teamspeak2 ted thermal
+	tokyotyrant uptime users vmem vserver wireless csv exec logfile network
+	notify_desktop notify_email perl python rrdcached rrdtool syslog unixsock write_http
+	match_empty_counter match_hashed match_regex match_timediff match_value
+	target_notification target_replace target_scale target_set uuid"
+
+# Plugins that still need some work
+COLLECTD_UNTESTED_PLUGINS="oracle ipmi ipvs netlink apple_sensors routeros tape zfs_arc nut perl
+	modbus"
 
 COLLECTD_SOURCE_PLUGINS="apache apcups apple_sensors ascent battery bind conntrack contextswitch
 	cpu cpufreq curl curl_xml dbi df disk dns email entropy exec filecount fscache gmond
@@ -43,65 +52,63 @@ COLLECTD_FILTER_PLUGINS="match_empty_counter match_hashed match_regex match_time
 
 COLLECTD_MISC_PLUGINS="uuid"
 
-COLLECTD_ALL_PLUGINS="${COLLECTD_SOURCE_PLUGINS} ${COLLECTD_TARGET_PLUGINS}
-	${COLLECTD_FILTER_PLUGINS} ${COLLECTD_MISC_PLUGINS}"
+#COLLECTD_ALL_PLUGINS="${COLLECTD_SOURCE_PLUGINS} ${COLLECTD_TARGET_PLUGINS}
+#	${COLLECTD_FILTER_PLUGINS} ${COLLECTD_MISC_PLUGINS}"
 
-COLLECTD_DISABLED_PLUGINS="curl_json netapp pinba ping xmms"
+COLLECTD_ALL_PLUGINS=${COLLECTD_TESTED_PLUGINS}
 
-if [ "${COLLECTD_MASKED}" ]; then
-	for plugin in ${COLLECTD_ALL_PLUGINS}; do
+for plugin in ${COLLECTD_TESTED_PLUGINS}; do
+	if use allplugins ; then
+		IUSE="${IUSE} +collectd_plugins_${plugin}"
+	else
 		IUSE="${IUSE} collectd_plugins_${plugin}"
-	done
-else
-	for plugin in ${COLLECTD_TESTED_PLUGINS}; do
-		IUSE="${IUSE} collectd_plugins_${plugin}"
-	done
-fi
+	fi
+done
 
 # Now come the dependencies.
 
 COMMON_DEPEND="
 	collectd_plugins_apache?		( net-misc/curl )
 	collectd_plugins_ascent?		( net-misc/curl dev-libs/libxml2 )
-	collectd_plugins_bind?		( dev-libs/libxml2 )
-	collectd_plugins_curl?		( net-misc/curl )
+	collectd_plugins_bind?			( dev-libs/libxml2 )
+	collectd_plugins_curl?			( net-misc/curl )
 	collectd_plugins_curl_xml?		( net-misc/curl dev-libs/libxml2 )
 	collectd_plugins_dbi?			( dev-db/libdbi )
 	collectd_plugins_dns?			( net-libs/libpcap )
-	collectd_plugins_gmond?		( sys-cluster/ganglia )
-	collectd_plugins_ipmi?		( >=sys-libs/openipmi-2.0.11 )
+	collectd_plugins_gmond?			( sys-cluster/ganglia )
+	collectd_plugins_ipmi?			( >=sys-libs/openipmi-2.0.11 )
 	collectd_plugins_iptables?		( >=net-firewall/iptables-1.4.9.1-r2 )
-	collectd_plugins_java?		( virtual/jre dev-java/java-config-wrapper )
+	collectd_plugins_java?			( virtual/jre dev-java/java-config-wrapper )
 	collectd_plugins_libvirt?		( app-emulation/libvirt dev-libs/libxml2 )
 	collectd_plugins_memcachec?		( dev-libs/libmemcached )
 	collectd_plugins_modbus?		( dev-libs/libmodbus )
-	collectd_plugins_mysql?		( >=virtual/mysql-5.0 )
+	collectd_plugins_mysql?			( >=virtual/mysql-5.0 )
 	collectd_plugins_netlink?		( sys-apps/iproute2 )
 	collectd_plugins_network?		( dev-libs/libgcrypt )
-	collectd_plugins_nginx?		( net-misc/curl )
+	collectd_plugins_nginx?			( net-misc/curl )
 	collectd_plugins_notify_desktop?	( x11-libs/libnotify )
-	collectd_plugins_notify_email?	( >=net-libs/libesmtp-1.0.4 dev-libs/openssl )
+	collectd_plugins_notify_email?		( >=net-libs/libesmtp-1.0.4 dev-libs/openssl )
 	collectd_plugins_nut?			( >=sys-power/nut-2.2.0 )
 	collectd_plugins_onewire?		( sys-fs/owfs )
 	collectd_plugins_oracle?		( >=dev-db/oracle-instantclient-basic-11.1.0.7.0 )
-	collectd_plugins_perl?		( dev-lang/perl[ithreads] sys-devel/libperl[ithreads] )
+	collectd_plugins_perl?			( dev-lang/perl[ithreads] sys-devel/libperl[ithreads] )
 	collectd_plugins_postgresql?		( >=dev-db/postgresql-base-8.2 )
 	collectd_plugins_python?		( || ( dev-lang/python:2.4  dev-lang/python:2.5 dev-lang/python:2.6 ) )
 	collectd_plugins_rrdcached?		( >=net-analyzer/rrdtool-1.4 )
 	collectd_plugins_rrdtool?		( >=net-analyzer/rrdtool-1.2.27 )
 	collectd_plugins_sensors?		( sys-apps/lm_sensors )
-	collectd_plugins_snmp?		( net-analyzer/net-snmp )
+	collectd_plugins_snmp?			( net-analyzer/net-snmp )
 	collectd_plugins_tokyotyrant?		( net-misc/tokyotyrant )
-	collectd_plugins_uuid? 		( sys-apps/hal )
+	collectd_plugins_uuid? 			( sys-apps/hal )
 	collectd_plugins_write_http?		( net-misc/curl )
 
 	kernel_FreeBSD?	(
-		collectd_plugins_disk?	( >=sys-libs/libstatgrab-0.16 )
+		collectd_plugins_disk?		( >=sys-libs/libstatgrab-0.16 )
 		collectd_plugins_interface?	( >=sys-libs/libstatgrab-0.16 )
-		collectd_plugins_load?	( >=sys-libs/libstatgrab-0.16 )
+		collectd_plugins_load?		( >=sys-libs/libstatgrab-0.16 )
 		collectd_plugins_memory?	( >=sys-libs/libstatgrab-0.16 )
-		collectd_plugins_swap?	( >=sys-libs/libstatgrab-0.16 )
-		collectd_plugins_users?	( >=sys-libs/libstatgrab-0.16 )
+		collectd_plugins_swap?		( >=sys-libs/libstatgrab-0.16 )
+		collectd_plugins_users?		( >=sys-libs/libstatgrab-0.16 )
 	)"
 
 DEPEND="${COMMON_DEPEND}
@@ -113,14 +120,15 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 	collectd_plugins_syslog?		( virtual/logger )"
 
-PATCHES=( "${FILESDIR}/${P}-libiptc.patch" )
+PATCHES=( "${FILESDIR}/${P}"-{libperl,libiptc}.patch )
 
+# @FUNCTION: collectd_plugin_kernel_linux
+# @DESCRIPTION:
+# USAGE: <plug-in name> <kernel_options> <severity>
+# kernel_options is a list of kernel configurations options; the check tests whether at least
+#   one of them is enabled. If no, depending on the third argument an elog, ewarn, or eerror message
+#   is emitted.
 collectd_plugin_kernel_linux() {
-	#
-	# USAGE: <plug-in name> <kernel_options> <severity>
-	# kernel_options is a list of kernel configurations options; the check tests whether at least
-	#   one of them is enabled.
-	#
 	local multi_opt
 	if use collectd_plugins_${1}; then
 		for opt in ${2}; do
@@ -129,13 +137,13 @@ collectd_plugin_kernel_linux() {
 		multi_opt=${2//\ /\ or\ }
 		case ${3} in
 			(info)
-				elog "The ${1} plug-in can use features enabled by ${multi_opt} in your kernel"
+				elog "The ${1} plug-in can use kernel features that are disabled now; enable ${multi_opt} in your kernel"
 			;;
 			(warn)
-				ewarn "The ${1} plug-in uses features enabled by ${multi_opt} in your kernel"
+				ewarn "The ${1} plug-in uses kernel features that are disabled now; enable ${multi_opt} in your kernel"
 			;;
 			(error)
-				eerror "The ${1} plug-in needs features enabled by ${multi_opt} in your kernel"
+				eerror "The ${1} plug-in needs kernel features that are disabled now; enable ${multi_opt} in your kernel"
 			;;
 			(*)
 				die "function collectd_plugin_kernel_linux called with invalid third argument"
@@ -233,25 +241,6 @@ collectd_linux_kernel_checks() {
 }
 
 pkg_setup() {
-	einfo
-	einfo "The following plug-ins are in general not supported by this ebuild (e.g. because"
-	einfo "Gentoo does not provide required dependencies): ${COLLECTD_DISABLED_PLUGINS}"
-	einfo
-
-	local warnplugins;
-	for plugin in ${COLLECTD_ALL_PLUGINS}; do
-		if (! has ${plugin} ${COLLECTD_TESTED_PLUGINS}) && use collectd_plugins_${plugin}; then
-			warnplugins+="${plugin} "
-		fi
-	done
-	if [ "${warnplugins}" ]; then
-		ewarn
-		ewarn "You have enabled the following plugins: ${warnplugins}"
-		ewarn "Feel free to try, but be aware that these plugins are in Gentoo so far completely"
-		ewarn "untested and may not even compile. Please file a bug if you encounter problems."
-		ewarn "Positive feedback is also welcome."
-	fi
-
 	if use kernel_linux; then
 		if linux_config_exists; then
 			einfo
