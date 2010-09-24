@@ -9,7 +9,6 @@ something more descriptive soon... dilfridge
 -->
 		<flag name='collectd_plugins_apache'>Build the apache input plugin (transferred bytes, handled requests, detailed scoreboard statistics)</flag>
 		<flag name='collectd_plugins_apcups'>Build the apcups input plugin (UPS charge, load, input/output/battery voltage, etc.)</flag>
-		<flag name='collectd_plugins_apple_sensors'>Build the apple_sensors input plugin (temperature, fanspeed and voltage)</flag>
 		<flag name='collectd_plugins_ascent'>Build the ascent input plugin (statistics about a free server for World of Warcraft)</flag>
 		<flag name='collectd_plugins_battery'>Build the battery input plugin (charge, current and voltage of ACPI and PMU based laptop batteries)</flag>
 		<flag name='collectd_plugins_bind'>Build the bind input plugin (name server and resolver statistics)</flag>
@@ -32,9 +31,7 @@ something more descriptive soon... dilfridge
 		<flag name='collectd_plugins_gmond'>Build the gmond input plugin</flag>
 		<flag name='collectd_plugins_hddtemp'>Build the hddtemp input plugin</flag>
 		<flag name='collectd_plugins_interface'>Build the interface input plugin</flag>
-		<flag name='collectd_plugins_ipmi'>Build the ipmi input plugin</flag> 
 		<flag name='collectd_plugins_iptables'>Build the iptables input plugin</flag> 
-		<flag name='collectd_plugins_ipvs'>Build the ipvs input plugin</flag> 
 		<flag name='collectd_plugins_irq'>Build the irq input plugin</flag> 
 		<flag name='collectd_plugins_java'>Build the java input plugin</flag> 
 		<flag name='collectd_plugins_libvirt'>Build the libvirt input plugin</flag> 
@@ -50,28 +47,23 @@ something more descriptive soon... dilfridge
 		<flag name='collectd_plugins_memcachec'>Build the memcachec input plugin</flag>
 		<flag name='collectd_plugins_memcached'>Build the memcached input plugin</flag> 
 		<flag name='collectd_plugins_memory'>Build the memory input plugin</flag> 
-		<flag name='collectd_plugins_modbus'>Build the modbus input plugin</flag> 
 		<flag name='collectd_plugins_multimeter'>Build the multimeter input plugin</flag> 
 		<flag name='collectd_plugins_mysql'>Build the mysql input plugin</flag> 
-		<flag name='collectd_plugins_netlink'>Build the netlink input plugin</flag> 
 		<flag name='collectd_plugins_network'>Build the network input/output plugin</flag> 
 		<flag name='collectd_plugins_nfs'>Build the nfs input plugin</flag> 
 		<flag name='collectd_plugins_nginx'>Build the nginx input plugin</flag> 
 		<flag name='collectd_plugins_notify_desktop'>Build the notify_desktop output plugin</flag>
 		<flag name='collectd_plugins_notify_email'>Build the notify_email output plugin</flag>
 		<flag name='collectd_plugins_ntpd'>Build the ntpd input plugin</flag> 
-		<flag name='collectd_plugins_nut'>Build the nut input plugin</flag> 
 		<flag name='collectd_plugins_olsrd'>Build the olsrd input plugin</flag>
 		<flag name='collectd_plugins_onewire'>Build the onewire input plugin</flag> 
 		<flag name='collectd_plugins_openvpn'>Build the openvpn input plugin</flag> 
-		<flag name='collectd_plugins_oracle'>Build the oracle input plugin</flag> 
 		<flag name='collectd_plugins_perl'>Build the perl language binding plugin</flag> 
 		<flag name='collectd_plugins_postgresql'>Build the postgresql input plugin</flag> 
 		<flag name='collectd_plugins_powerdns'>Build the powerdns input plugin</flag> 
 		<flag name='collectd_plugins_processes'>Build the processes input plugin</flag> 
 		<flag name='collectd_plugins_protocols'>Build the protocols input plugin</flag> 
 		<flag name='collectd_plugins_python'>Build the python language binding plugin</flag> 
-		<flag name='collectd_plugins_routeros'>Build the routeros input plugin</flag>
 		<flag name='collectd_plugins_rrdcached'>Build the rrdcached input/output plugin</flag> 
 		<flag name='collectd_plugins_rrdtool'>Build the rrdtool output plugin</flag>
 		<flag name='collectd_plugins_sensors'>Build the sensors input plugin</flag> 
@@ -81,7 +73,6 @@ something more descriptive soon... dilfridge
 		<flag name='collectd_plugins_syslog'>Build the syslog output plugin</flag>
 		<flag name='collectd_plugins_table'>Build the table input plugin</flag> 
 		<flag name='collectd_plugins_tail'>Build the tail input plugin</flag> 
-		<flag name='collectd_plugins_tape'>Build the tape input plugin</flag> 
 		<flag name='collectd_plugins_target_notification'>Build the target_notification filter plugin</flag>
 		<flag name='collectd_plugins_target_replace'>Build the target_replace filter plugin</flag>
 		<flag name='collectd_plugins_target_scale'>Build the target_scale filter plugin</flag>
@@ -99,7 +90,6 @@ something more descriptive soon... dilfridge
 		<flag name='collectd_plugins_vserver'>Build the vserver input plugin</flag> 
 		<flag name='collectd_plugins_wireless'>Build the wireless input plugin</flag> 
 		<flag name='collectd_plugins_write_http'>Build the write_http output plugin</flag>
-		<flag name='collectd_plugins_zfs_arc'>Build the zfs_arc input plugin</flag>
 		<flag name='contrib'>Install user-contributed files in the doc directory</flag>
 	</use>
 </pkgmetadata>

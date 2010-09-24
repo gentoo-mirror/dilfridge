@@ -25,7 +25,7 @@ COLLECTD_TESTED_PLUGINS="apache apcups ascent battery bind conntrack contextswit
 	cpu cpufreq curl curl_xml dbi df disk dns email entropy exec filecount fscache gmond
 	hddtemp interface iptables irq java libvirt load madwifi mbmon memcachec
 	memcached memory multimeter mysql network nfs nginx ntpd olsrd
-	onewire openvpn postgresql powerdns processes protocols python
+	onewire openvpn perl postgresql powerdns processes protocols python
 	rrdcached sensors serial snmp swap table tail tcpconns teamspeak2 ted thermal
 	tokyotyrant uptime users vmem vserver wireless csv exec logfile network
 	notify_desktop notify_email perl python rrdcached rrdtool syslog unixsock write_http
@@ -33,8 +33,7 @@ COLLECTD_TESTED_PLUGINS="apache apcups ascent battery bind conntrack contextswit
 	target_notification target_replace target_scale target_set uuid"
 
 # Plugins that still need some work
-COLLECTD_UNTESTED_PLUGINS="oracle ipmi ipvs netlink apple_sensors routeros tape zfs_arc nut perl
-	modbus"
+COLLECTD_UNTESTED_PLUGINS="oracle ipmi ipvs netlink apple_sensors routeros tape zfs_arc nut modbus"
 
 COLLECTD_SOURCE_PLUGINS="apache apcups apple_sensors ascent battery bind conntrack contextswitch
 	cpu cpufreq curl curl_xml dbi df disk dns email entropy exec filecount fscache gmond
@@ -72,19 +71,15 @@ COMMON_DEPEND="
 	collectd_plugins_dbi?			( dev-db/libdbi )
 	collectd_plugins_dns?			( net-libs/libpcap )
 	collectd_plugins_gmond?			( sys-cluster/ganglia )
-	collectd_plugins_ipmi?			( >=sys-libs/openipmi-2.0.11 )
 	collectd_plugins_iptables?		( >=net-firewall/iptables-1.4.9.1-r2 )
 	collectd_plugins_java?			( virtual/jre dev-java/java-config-wrapper )
 	collectd_plugins_libvirt?		( app-emulation/libvirt dev-libs/libxml2 )
 	collectd_plugins_memcachec?		( dev-libs/libmemcached )
-	collectd_plugins_modbus?		( dev-libs/libmodbus )
 	collectd_plugins_mysql?			( >=virtual/mysql-5.0 )
-	collectd_plugins_netlink?		( sys-apps/iproute2 )
 	collectd_plugins_network?		( dev-libs/libgcrypt )
 	collectd_plugins_nginx?			( net-misc/curl )
 	collectd_plugins_notify_desktop?	( x11-libs/libnotify )
 	collectd_plugins_notify_email?		( >=net-libs/libesmtp-1.0.4 dev-libs/openssl )
-	collectd_plugins_nut?			( >=sys-power/nut-2.2.0 )
 	collectd_plugins_onewire?		( sys-fs/owfs )
 	collectd_plugins_oracle?		( >=dev-db/oracle-instantclient-basic-11.1.0.7.0 )
 	collectd_plugins_perl?			( dev-lang/perl[ithreads] sys-devel/libperl[ithreads] )

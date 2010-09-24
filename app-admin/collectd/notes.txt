@@ -34,3 +34,19 @@
  630     <http://github.com/lloyd/yajl>
 
 
+		<flag name='collectd_plugins_apple_sensors'>Build the apple_sensors input plugin (temperature, fanspeed and voltage)</flag>
+		<flag name='collectd_plugins_ipmi'>Build the ipmi input plugin</flag> 
+		<flag name='collectd_plugins_ipvs'>Build the ipvs input plugin</flag> 
+		<flag name='collectd_plugins_modbus'>Build the modbus input plugin</flag> 
+		<flag name='collectd_plugins_netlink'>Build the netlink input plugin</flag> 
+		<flag name='collectd_plugins_nut'>Build the nut input plugin</flag> 
+		<flag name='collectd_plugins_oracle'>Build the oracle input plugin</flag> 
+		<flag name='collectd_plugins_routeros'>Build the routeros input plugin</flag>
+		<flag name='collectd_plugins_tape'>Build the tape input plugin</flag> 
+		<flag name='collectd_plugins_zfs_arc'>Build the zfs_arc input plugin</flag>
+
+
+	collectd_plugins_ipmi?			( >=sys-libs/openipmi-2.0.11 )
+	collectd_plugins_modbus?		( dev-libs/libmodbus )
+	collectd_plugins_netlink?		( sys-apps/iproute2 )
+	collectd_plugins_nut?			( >=sys-power/nut-2.2.0 )
