@@ -50,3 +50,6 @@
 	collectd_plugins_modbus?		( dev-libs/libmodbus )
 	collectd_plugins_netlink?		( sys-apps/iproute2 )
 	collectd_plugins_nut?			( >=sys-power/nut-2.2.0 )
+
+	collectd_plugin_kernel_linux ipmi IPMI_HANDLER warn
+	collectd_plugin_kernel_linux ipvs IP_VS warn

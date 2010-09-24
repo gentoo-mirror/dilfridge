@@ -18,7 +18,12 @@ IUSE="contrib debug kernel_linux kernel_FreeBSD kernel_Darwin"
 # The plugin lists have to follow here since they extend IUSE
 
 # Plugins that to my knowledge cannot be supported (eg. dependencies not in gentoo)
-COLLECTD_DISABLED_PLUGINS="curl_json netapp pinba ping xmms"
+COLLECTD_IMPOSSIBLE_PLUGINS="curl_json netapp pinba ping xmms"
+
+# Plugins that still need some work
+COLLECTD_UNTESTED_PLUGINS="oracle ipmi ipvs netlink apple_sensors routeros tape zfs_arc nut modbus"
+
+COLLECTD_DISABLED_PLUGINS="${COLLECTD_IMPOSSIBLE_PLUGINS} ${COLLECTD_UNTESTED_PLUGINS}"
 
 # Plugins that have been (compile) tested and can be enabled via COLLECTD_PLUGINS
 COLLECTD_TESTED_PLUGINS="apache apcups ascent battery bind conntrack contextswitch
@@ -31,9 +36,6 @@ COLLECTD_TESTED_PLUGINS="apache apcups ascent battery bind conntrack contextswit
 	notify_desktop notify_email perl python rrdcached rrdtool syslog unixsock write_http
 	match_empty_counter match_hashed match_regex match_timediff match_value
 	target_notification target_replace target_scale target_set uuid"
-
-# Plugins that still need some work
-COLLECTD_UNTESTED_PLUGINS="oracle ipmi ipvs netlink apple_sensors routeros tape zfs_arc nut modbus"
 
 COLLECTD_SOURCE_PLUGINS="apache apcups apple_sensors ascent battery bind conntrack contextswitch
 	cpu cpufreq curl curl_xml dbi df disk dns email entropy exec filecount fscache gmond
@@ -176,8 +178,6 @@ collectd_linux_kernel_checks() {
 
 	# interface.c:/proc/net/dev
 	collectd_plugin_kernel_linux interface PROC_FS warn
-	collectd_plugin_kernel_linux ipmi IPMI_HANDLER warn
-	collectd_plugin_kernel_linux ipvs IP_VS warn
 
 	# irq.c:/proc/interrupts
 	collectd_plugin_kernel_linux irq PROC_FS warn
