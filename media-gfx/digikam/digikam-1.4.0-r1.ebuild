@@ -18,12 +18,14 @@ MY_P="${PN}-${PV/_/-}"
 
 DESCRIPTION="A digital photo management application for KDE."
 HOMEPAGE="http://www.digikam.org/"
-SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2"
+SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2
+	handbook? ( mirror://gentoo/${PN}-doc-${PV}.tar.bz2 )"
 
-LICENSE="GPL-2"
+LICENSE="GPL-2
+	handbook? ( FDL-1.2 )"
 KEYWORDS="~amd64 ~x86"
 SLOT="4"
-IUSE="addressbook debug doc geolocation gphoto2 lensfun semantic-desktop themedesigner +thumbnails video"
+IUSE="addressbook debug doc geolocation gphoto2 handbook lensfun semantic-desktop themedesigner +thumbnails video"
 
 CDEPEND="
 	>=kde-base/kdelibs-${KDE_MINIMAL}[semantic-desktop?]
@@ -65,6 +67,13 @@ S="${WORKDIR}/${MY_P}"
 
 PATCHES=( "${FILESDIR}/${P}"-docs.patch "${FILESDIR}/${PN}"-1.3.0-pgf.patch "${FILESDIR}/${P}"-clapack.patch)
 
+src_prepare() {
+	mkdir -p doc
+	[ -f doc/CMakeLists.txt ] || ( echo > doc/CMakeLists.txt )
+
+	kde4-base_src_prepare
+}
+
 src_configure() {
 	local backend
 
@@ -86,4 +95,15 @@ src_configure() {
 	)
 
 	kde4-base_src_configure
+}
+
+src_install() {
+	kde4-base_src_install
+
+	if use doc; then
+		# install the api documentation
+		dodir /usr/share/doc/${PF}/html || die
+		insinto /usr/share/doc/${PF}/html
+		doins -r ${CMAKE_BUILD_DIR}/api/html/* || die
+	fi
 }
