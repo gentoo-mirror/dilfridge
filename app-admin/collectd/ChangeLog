@@ -3,6 +3,10 @@
 # $Header: $
 
   24 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.1-r1.ebuild, metadata.xml:
+  More local variables, and use-flag documentation.
+
+  24 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   collectd-4.10.1-r1.ebuild, metadata.xml, notes.txt:
   Removed useflag descriptions and dependencies for disabled plugins.
 

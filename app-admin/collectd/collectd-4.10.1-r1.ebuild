@@ -59,6 +59,7 @@ COLLECTD_ALL_PLUGINS=${COLLECTD_TESTED_PLUGINS}
 for plugin in ${COLLECTD_TESTED_PLUGINS}; do
 	IUSE="${IUSE} collectd_plugins_${plugin}"
 done
+unset plugin
 
 # Now come the dependencies.
 
@@ -283,12 +284,12 @@ src_configure() {
 	local myconf="$(use_enable debug)"
 
 	# Disable what needs to be disabled.
+	local plugin
 	for plugin in ${COLLECTD_DISABLED_PLUGINS}; do
 		myconf+=" --disable-${plugin}"
 	done
 
 	# Set enable/disable for each single plugin.
-	local plugin
 	for plugin in ${COLLECTD_ALL_PLUGINS}; do
 		if has ${plugin} ${osdependent_plugins}; then
 			# plugin is os-dependent ...
