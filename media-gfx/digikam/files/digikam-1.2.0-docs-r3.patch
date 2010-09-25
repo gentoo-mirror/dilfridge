@@ -1,0 +1,58 @@
+diff -ruN old/digikam/CMakeLists.txt new/digikam/CMakeLists.txt
+--- old/digikam/CMakeLists.txt  2010-03-28 19:19:21.000000000 -0300
++++ new/digikam/CMakeLists.txt  2010-03-30 19:44:00.296860646 -0300
+@@ -1258,18 +1260,41 @@
+ # ==================================================================================================
+ # API documentation generation
+ 
+-IF(DOXYGEN_FOUND)
++# Checks if user ask to build documentation.
++IF(BUILD_DOC)
++    IF(DOXYGEN_FOUND)
++
++        MESSAGE(STATUS "")
++        MESSAGE(STATUS "Documentation will be installed")
++	MESSAGE(STATUS "")
+ 
+-    SET(API_DIR ${CMAKE_BINARY_DIR}/api)
+-    SET(SOURCE_DIR ${CMAKE_SOURCE_DIR})
+-    SET(DOXYFILE ${CMAKE_BINARY_DIR}/Doxyfile)
+-    SET(WARNFILE ${CMAKE_BINARY_DIR}/doxygen-warn.log)
++        SET(API_DIR ${CMAKE_BINARY_DIR}/api)
++        SET(SOURCE_DIR ${CMAKE_SOURCE_DIR})
++        SET(DOXYFILE ${CMAKE_BINARY_DIR}/Doxyfile)
++        SET(WARNFILE ${CMAKE_BINARY_DIR}/doxygen-warn.log)
+ 
+-    CONFIGURE_FILE(Doxyfile.cmake ${DOXYFILE})
++        CONFIGURE_FILE(Doxyfile.cmake ${DOXYFILE})
+ 
+-    ADD_CUSTOM_TARGET(doc ${DOXYGEN_EXECUTABLE} ${DOXYFILE}
+-                      WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
++        ADD_CUSTOM_TARGET(doc ALL ${DOXYGEN_EXECUTABLE} ${DOXYFILE}
++                          WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
++
++    ELSE(DOXYGEN_FOUND)
++    
++        MESSAGE(STATUS "")
++        MESSAGE(STATUS "Documentation will NOT be installed")
++	MESSAGE(STATUS "Doxygen wasn't found on the system")
++	MESSAGE(STATUS "")
++
++    ENDIF(DOXYGEN_FOUND)
++
++ELSE(BUILD_DOC)
++
++    MESSAGE(STATUS "")
++    MESSAGE(STATUS "Documentation will NOT be installed")
++    MESSAGE(STATUS "Because the option -DBUILD_DOC=ON wasn't passed to cmake")
++    MESSAGE(STATUS "")
++
++ENDIF(BUILD_DOC)
+ 
+-ENDIF(DOXYGEN_FOUND)
+ include(MacroOptionalAddSubdirectory)
+ macro_optional_add_subdirectory( po )
++
++# Build the handbook
++add_subdirectory( doc )
++

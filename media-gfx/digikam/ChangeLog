@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*digikam-1.2.0-r3 (25 Sep 2010)
+
+  25 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +digikam-1.2.0-r3.ebuild, +files/digikam-1.2.0-docs-r3.patch,
+  +files/digikam-1.2.0-libpgf-r3.patch:
+  Backported documentation additions to 1.2.0
+
   25 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   digikam-1.4.0-r1.ebuild:
   Added elog about api docs and installed readme-handbook.txt
