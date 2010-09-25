@@ -23,8 +23,6 @@ COLLECTD_IMPOSSIBLE_PLUGINS="curl_json netapp pinba ping xmms"
 # Plugins that still need some work
 COLLECTD_UNTESTED_PLUGINS="oracle ipmi ipvs netlink apple_sensors routeros tape zfs_arc nut modbus"
 
-COLLECTD_DISABLED_PLUGINS="${COLLECTD_IMPOSSIBLE_PLUGINS} ${COLLECTD_UNTESTED_PLUGINS}"
-
 # Plugins that have been (compile) tested and can be enabled via COLLECTD_PLUGINS
 COLLECTD_TESTED_PLUGINS="apache apcups ascent battery bind conntrack contextswitch
 	cpu cpufreq curl curl_xml dbi df disk dns email entropy exec filecount fscache gmond
@@ -37,24 +35,7 @@ COLLECTD_TESTED_PLUGINS="apache apcups ascent battery bind conntrack contextswit
 	match_empty_counter match_hashed match_regex match_timediff match_value
 	target_notification target_replace target_scale target_set uuid"
 
-COLLECTD_SOURCE_PLUGINS="apache apcups apple_sensors ascent battery bind conntrack contextswitch
-	cpu cpufreq curl curl_xml dbi df disk dns email entropy exec filecount fscache gmond
-	hddtemp interface ipmi iptables ipvs irq java libvirt load madwifi mbmon memcachec
-	memcached memory modbus multimeter mysql netlink network nfs nginx ntpd nut olsrd
-	onewire openvpn oracle perl postgresql powerdns processes protocols python routeros
-	rrdcached sensors serial snmp swap table tail tape tcpconns teamspeak2 ted thermal
-	tokyotyrant uptime users vmem vserver wireless zfs_arc"
-
-COLLECTD_TARGET_PLUGINS="csv exec logfile network notify_desktop notify_email perl python
-	rrdcached rrdtool syslog unixsock write_http"
-
-COLLECTD_FILTER_PLUGINS="match_empty_counter match_hashed match_regex match_timediff match_value
-	target_notification target_replace target_scale target_set"
-
-COLLECTD_MISC_PLUGINS="uuid"
-
-#COLLECTD_ALL_PLUGINS="${COLLECTD_SOURCE_PLUGINS} ${COLLECTD_TARGET_PLUGINS}
-#	${COLLECTD_FILTER_PLUGINS} ${COLLECTD_MISC_PLUGINS}"
+COLLECTD_DISABLED_PLUGINS="${COLLECTD_IMPOSSIBLE_PLUGINS} ${COLLECTD_UNTESTED_PLUGINS}"
 
 COLLECTD_ALL_PLUGINS=${COLLECTD_TESTED_PLUGINS}
 
@@ -283,8 +264,9 @@ src_configure() {
 	# Do we debug?
 	local myconf="$(use_enable debug)"
 
-	# Disable what needs to be disabled.
 	local plugin
+
+	# Disable what needs to be disabled.
 	for plugin in ${COLLECTD_DISABLED_PLUGINS}; do
 		myconf+=" --disable-${plugin}"
 	done
