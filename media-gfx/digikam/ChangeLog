@@ -3,6 +3,10 @@
 # $Header: $
 
   25 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  -digikam-1.4.0-r51.ebuild:
+  Cleanup
+
+  25 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   digikam-1.2.0-r3.ebuild:
   Seems like api doc building needs latex.
 
