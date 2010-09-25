@@ -40,11 +40,13 @@ KMEXTRA="
 	filters/libmsooxml/
 	filters/xsltfilter/
 	filters/kchart/
+	filters/kformula/
 	interfaces/
 	kounavail/
 	plugins/
 	tools/
 	kchart/
+	kformula/
 "
 #	doc/api/"
 KMEXTRACTONLY="
