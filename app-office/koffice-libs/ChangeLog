@@ -4,6 +4,10 @@
 
   25 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   koffice-libs-2.2.2.ebuild:
+  It helps to actually enable the build of kformula.
+
+  25 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  koffice-libs-2.2.2.ebuild:
   Integrated kformula here since it provides only a kpart
 
   07 Sep 2010; Andreas K. Huettel (dilfridge) <mail@akhuettel.de>

@@ -62,6 +62,7 @@ src_configure() {
 		$(cmake-utils_use_with opengl OpenGL)
 		$(cmake-utils_use_with openexr OpenEXR)
 		-DBUILD_kchart=ON
+		-DBUILD_kformula=ON
 		$(cmake-utils_use_build reports koreport)
 	)
 	use crypt && \
