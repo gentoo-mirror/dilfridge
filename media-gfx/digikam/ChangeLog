@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-1.2.0-r3.ebuild:
+  Fixed path of unpacked handbook files
+
 *digikam-1.2.0-r3 (25 Sep 2010)
 
   25 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>

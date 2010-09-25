@@ -65,8 +65,12 @@ S="${WORKDIR}/${MY_P}"
 PATCHES=( "${FILESDIR}/${P}"-{ratingwidget,libpgf-r3,docs-r3,lapack}.patch )
 
 src_prepare() {
-	mkdir -p doc
-	[ -f doc/CMakeLists.txt ] || ( echo > doc/CMakeLists.txt )
+	if use handbook; then
+		mv "${WORKDIR}/${PN}-1.4.0/doc" "${S}/" || die
+	else
+		mkdir doc || die
+		echo > doc/CMakeLists.txt || die
+	fi
 
 	kde4-base_src_prepare
 }
