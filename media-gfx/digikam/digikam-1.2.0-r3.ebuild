@@ -66,7 +66,7 @@ PATCHES=( "${FILESDIR}/${P}"-{ratingwidget,libpgf-r3,docs-r3,lapack}.patch )
 
 src_prepare() {
 	if use handbook; then
-		mv "${WORKDIR}/${PN}-1.4.0/doc" "${S}/" || die
+		mv "${WORKDIR}/${PN}"-1.4.0/* "${S}/" || die
 	else
 		mkdir doc || die
 		echo > doc/CMakeLists.txt || die
