@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-1.4.0-r1.ebuild:
+  Added elog about api docs and installed readme-handbook.txt
+
   24 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   digikam-1.4.0-r1.ebuild, files/digikam-1.4.0-docs.patch:
   Finished - now doc controls the building of the api documentation and

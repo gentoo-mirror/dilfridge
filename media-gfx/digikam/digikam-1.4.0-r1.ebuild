@@ -106,4 +106,16 @@ src_install() {
 		insinto /usr/share/doc/${PF}/html
 		doins -r ${CMAKE_BUILD_DIR}/api/html/* || die
 	fi
+
+	if use handbook; then
+		dodoc readme-handbook.txt || die
+	fi
+}
+
+pkg_postinst() {
+	kde4-base_pkg_postinst
+
+	if use doc; then
+		elog The digikam api documentation has been installed at /usr/share/doc/${PF}/html
+	fi
 }
