@@ -1,7 +1,7 @@
-diff -ruN old/digikam/CMakeLists.txt new/digikam/CMakeLists.txt
---- old/digikam/CMakeLists.txt  2010-03-28 19:19:21.000000000 -0300
-+++ new/digikam/CMakeLists.txt  2010-03-30 19:44:00.296860646 -0300
-@@ -1258,18 +1260,41 @@
+diff -u -r -N digikam-1.2.0-2/CMakeLists.txt digikam-1.2.0/CMakeLists.txt
+--- digikam-1.2.0-2/CMakeLists.txt	2010-09-25 18:01:53.000000000 +0200
++++ digikam-1.2.0/CMakeLists.txt	2010-09-25 18:05:16.000000000 +0200
+@@ -1260,18 +1260,43 @@
  # ==================================================================================================
  # API documentation generation
  
@@ -9,25 +9,25 @@ diff -ruN old/digikam/CMakeLists.txt new/digikam/CMakeLists.txt
 +# Checks if user ask to build documentation.
 +IF(BUILD_DOC)
 +    IF(DOXYGEN_FOUND)
-+
-+        MESSAGE(STATUS "")
-+        MESSAGE(STATUS "Documentation will be installed")
-+	MESSAGE(STATUS "")
  
 -    SET(API_DIR ${CMAKE_BINARY_DIR}/api)
 -    SET(SOURCE_DIR ${CMAKE_SOURCE_DIR})
 -    SET(DOXYFILE ${CMAKE_BINARY_DIR}/Doxyfile)
 -    SET(WARNFILE ${CMAKE_BINARY_DIR}/doxygen-warn.log)
++        MESSAGE(STATUS "")
++        MESSAGE(STATUS "Documentation will be installed")
++	MESSAGE(STATUS "")
+ 
+-    CONFIGURE_FILE(Doxyfile.cmake ${DOXYFILE})
 +        SET(API_DIR ${CMAKE_BINARY_DIR}/api)
 +        SET(SOURCE_DIR ${CMAKE_SOURCE_DIR})
 +        SET(DOXYFILE ${CMAKE_BINARY_DIR}/Doxyfile)
 +        SET(WARNFILE ${CMAKE_BINARY_DIR}/doxygen-warn.log)
  
--    CONFIGURE_FILE(Doxyfile.cmake ${DOXYFILE})
-+        CONFIGURE_FILE(Doxyfile.cmake ${DOXYFILE})
- 
 -    ADD_CUSTOM_TARGET(doc ${DOXYGEN_EXECUTABLE} ${DOXYFILE}
 -                      WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
++        CONFIGURE_FILE(Doxyfile.cmake ${DOXYFILE})
++
 +        ADD_CUSTOM_TARGET(doc ALL ${DOXYGEN_EXECUTABLE} ${DOXYFILE}
 +                          WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 +
@@ -53,6 +53,4 @@ diff -ruN old/digikam/CMakeLists.txt new/digikam/CMakeLists.txt
  include(MacroOptionalAddSubdirectory)
  macro_optional_add_subdirectory( po )
 +
-+# Build the handbook
 +add_subdirectory( doc )
-+

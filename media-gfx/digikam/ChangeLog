@@ -3,6 +3,10 @@
 # $Header: $
 
   25 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  files/digikam-1.2.0-docs-r3.patch:
+  Fixed the docs patch.
+
+  25 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   digikam-1.2.0-r3.ebuild:
   Really move all doc files.
 
