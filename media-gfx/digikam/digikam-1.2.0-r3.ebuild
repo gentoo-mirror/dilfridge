@@ -58,6 +58,7 @@ RDEPEND="${CDEPEND}
 DEPEND="${CDEPEND}
 	sys-devel/gcc[fortran]
 	sys-devel/gettext
+	doc? ( virtual/latex-base )
 "
 
 S="${WORKDIR}/${MY_P}"
