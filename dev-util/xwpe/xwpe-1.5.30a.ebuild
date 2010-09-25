@@ -6,7 +6,7 @@ EAPI=2
 
 inherit base
 
-DESCRIPTION="Programming environment mimicking Borland C and Pascal"
+DESCRIPTION="Simple programming environment mimicking ancient Borland C and Pascal"
 HOMEPAGE="http://www.identicalsoftware.com/xwpe/"
 SRC_URI="http://www.identicalsoftware.com/${PN}/${P}.tar.gz"
 

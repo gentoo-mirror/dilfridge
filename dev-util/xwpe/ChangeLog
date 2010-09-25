@@ -3,6 +3,10 @@
 # $Header: $
 
   25 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  xwpe-1.5.30a.ebuild:
+  Improved description
+
+  25 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   files/xwpe-1.5.30a-destdir.patch:
   Respect LDFLAGS
 
