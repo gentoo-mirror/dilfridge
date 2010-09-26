@@ -39,7 +39,7 @@ COLLECTD_DISABLED_PLUGINS="${COLLECTD_IMPOSSIBLE_PLUGINS} ${COLLECTD_UNTESTED_PL
 
 COLLECTD_ALL_PLUGINS=${COLLECTD_TESTED_PLUGINS}
 
-for plugin in ${COLLECTD_TESTED_PLUGINS}; do
+for plugin in ${COLLECTD_ALL_PLUGINS}; do
 	IUSE="${IUSE} collectd_plugins_${plugin}"
 done
 unset plugin
@@ -105,25 +105,27 @@ PATCHES=( "${FILESDIR}/${P}"-{libperl,libiptc}.patch )
 #   is emitted.
 collectd_plugin_kernel_linux() {
 	local multi_opt opt
-	if use collectd_plugins_${1}; then
-		for opt in ${2}; do
-			if linux_chkconfig_present ${opt}; then return 0; fi
-		done
-		multi_opt=${2//\ /\ or\ }
-		case ${3} in
-			(info)
-				elog "The ${1} plug-in can use kernel features that are disabled now; enable ${multi_opt} in your kernel"
-			;;
-			(warn)
-				ewarn "The ${1} plug-in uses kernel features that are disabled now; enable ${multi_opt} in your kernel"
-			;;
-			(error)
-				eerror "The ${1} plug-in needs kernel features that are disabled now; enable ${multi_opt} in your kernel"
-			;;
-			(*)
-				die "function collectd_plugin_kernel_linux called with invalid third argument"
-			;;
-		esac
+	if has ${1} ${COLLECTD_ALL_PLUGINS}; then
+		if use collectd_plugins_${1}; then
+			for opt in ${2}; do
+				if linux_chkconfig_present ${opt}; then return 0; fi
+			done
+			multi_opt=${2//\ /\ or\ }
+			case ${3} in
+				(info)
+					elog "The ${1} plug-in can use kernel features that are disabled now; enable ${multi_opt} in your kernel"
+				;;
+				(warn)
+					ewarn "The ${1} plug-in uses kernel features that are disabled now; enable ${multi_opt} in your kernel"
+				;;
+				(error)
+					eerror "The ${1} plug-in needs kernel features that are disabled now; enable ${multi_opt} in your kernel"
+				;;
+				(*)
+					die "function collectd_plugin_kernel_linux called with invalid third argument"
+				;;
+			esac
+		fi
 	fi
 }
 
