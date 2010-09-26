@@ -132,8 +132,6 @@ collectd_plugin_kernel_linux() {
 collectd_linux_kernel_checks() {
 	linux-info_pkg_setup
 
-	elog
-
 	# battery.c:/proc/pmu/battery_%i
 	# battery.c:/proc/acpi/battery
 	collectd_plugin_kernel_linux battery PROC_FS warn
@@ -211,8 +209,6 @@ collectd_linux_kernel_checks() {
 	# wireless.c:/proc/net/wireless
 	collectd_plugin_kernel_linux wireless PROC_FS warn
 	collectd_plugin_kernel_linux wireless "MAC80211 IEEE80211" warn
-
-	elog
 }
 
 pkg_setup() {

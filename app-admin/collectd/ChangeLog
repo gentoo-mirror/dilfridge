@@ -4,6 +4,10 @@
 
   26 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   collectd-4.10.1-r1.ebuild:
+  Removed spurious elogs.
+
+  26 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.1-r1.ebuild:
   Added some additional sanity checking
 
   24 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
