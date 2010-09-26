@@ -1,14 +1,3 @@
-[23:00:15] <ssuominen> build-test all would be enough to stick it into ~arch
-[23:00:30] <robbat2|na> yes, just build-test them all and put that as ~arch
-[23:00:45] <dilfridge> ok then I will target that and "activate" all useflags that I have build-tested. 
-[23:01:05] <dilfridge> thx guys problem solved, will take a few more days though...
-[23:01:23] <robbat2|na> and that ebuild looks like it's going to want USE_EXPAND instead of the manual cd_ stuff
-[23:01:27] <dilfridge> yes true
-[23:01:47] <dilfridge> how much buerocracy loops are needed for USE_EXPAND?
-[23:02:36] <dilfridge> just ask on dev ml?
-[23:03:05] <robbat2|na> yup
-[23:03:11] <dilfridge> ok will do
-
 
  544   * libnatapp (optional)
  545     Required for the “netapp” plugin.
@@ -53,3 +42,9 @@
 
 	collectd_plugin_kernel_linux ipmi IPMI_HANDLER warn
 	collectd_plugin_kernel_linux ipvs IP_VS warn
+
+
+"Sane minimum":
+USE_EXPAND="${USE_EXPAND} COLLECTD_PLUGINS"
+COLLECTD_PLUGINS="df interface irq load memory rrdtool swap syslog"
+
