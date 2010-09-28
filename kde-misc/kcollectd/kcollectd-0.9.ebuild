@@ -19,4 +19,4 @@ IUSE=""
 DEPEND="dev-libs/boost
 	net-analyzer/rrdtool"
 RDEPEND="${DEPEND}
-	|| ( app-admin/collectd[cd_rrdtool] app-admin/collectd[cd_rrdcached] )"
+	|| ( app-admin/collectd[collectd_plugins_rrdtool] app-admin/collectd[collectd_plugins_rrdcached] )"
