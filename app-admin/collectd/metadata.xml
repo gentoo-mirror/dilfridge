@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>maintainer-wanted</herd>
+	<herd>no-herd</herd>
+	<maintainer>
+		<email>dilfridge@gentoo.org</email>
+		<name>Andreas K. Huettel</name>
+	</maintainer>
 	<use>
 		<flag name='collectd_plugins_apache'>Build the apache input plugin (transferred bytes, handled requests, detailed scoreboard statistics)</flag>
 		<flag name='collectd_plugins_apcups'>Build the apcups input plugin (UPS charge, load, input/output/battery voltage, etc.)</flag>
