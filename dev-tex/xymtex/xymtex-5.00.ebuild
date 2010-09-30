@@ -6,7 +6,7 @@ EAPI=3
 
 inherit latex-package versionator
 
-DESCRIPTION="LaTeX package for drawing chemical structures"
+DESCRIPTION="LaTeX package for rendering high-quality chemical structure diagrams"
 HOMEPAGE="http://xymtex.com/"
 MY_PV="$(delete_all_version_separators)"
 SRC_URI="${HOMEPAGE}/fujitas3/${PN}/xym${MY_PV}/xym-up/${PN}${MY_PV}.zip"
