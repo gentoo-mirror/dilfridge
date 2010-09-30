@@ -21,6 +21,8 @@ RDEPEND=""
 
 S="${WORKDIR}/${PN}"
 
+TEXMF=/usr/share/texmf-site
+
 src_compile() {
 	local subdir
 	for subdir in base chemist xymtxpdf xymtxps; do
