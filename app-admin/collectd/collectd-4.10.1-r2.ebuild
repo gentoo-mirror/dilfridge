@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/collectd/collectd-4.10.1-r2.ebuild,v 1.1 2010/09/28 15:17:05 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/collectd/collectd-4.10.1-r2.ebuild,v 1.3 2010/09/29 18:26:44 flameeyes Exp $
 
 EAPI="2"
 
@@ -46,6 +46,8 @@ unset plugin
 
 # Now come the dependencies.
 
+# this cannot be in the dependencies if the USE flag is not listed
+# 	collectd_plugins_oracle?		( >=dev-db/oracle-instantclient-basic-11.1.0.7.0 )
 COMMON_DEPEND="
 	collectd_plugins_apache?		( net-misc/curl )
 	collectd_plugins_ascent?		( net-misc/curl dev-libs/libxml2 )
@@ -65,7 +67,6 @@ COMMON_DEPEND="
 	collectd_plugins_notify_desktop?	( x11-libs/libnotify )
 	collectd_plugins_notify_email?		( >=net-libs/libesmtp-1.0.4 dev-libs/openssl )
 	collectd_plugins_onewire?		( sys-fs/owfs )
-	collectd_plugins_oracle?		( >=dev-db/oracle-instantclient-basic-11.1.0.7.0 )
 	collectd_plugins_perl?			( dev-lang/perl[ithreads] sys-devel/libperl[ithreads] )
 	collectd_plugins_postgresql?		( >=dev-db/postgresql-base-8.2 )
 	collectd_plugins_python?		( =dev-lang/python-2* )
@@ -226,7 +227,7 @@ pkg_setup() {
 src_prepare() {
 	base_src_prepare
 
-	# There's some strange prefix handling in the default config file, resulting in 
+	# There's some strange prefix handling in the default config file, resulting in
 	# paths like "/usr/var/..."
 	sed -i -e "s:@prefix@/var:/var:g" src/collectd.conf.in || die
 
