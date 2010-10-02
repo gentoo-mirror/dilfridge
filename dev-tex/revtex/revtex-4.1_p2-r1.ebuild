@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/revtex/revtex-4.1_p2-r1.ebuild,v 1.1 2010/10/02 17:37:33 dilfridge Exp $
 
 EAPI=2
 
