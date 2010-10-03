@@ -1,0 +1,5 @@
+
+# 03 Oct 2010
+# a failed attempt at updating, resulting in even more breakage
+=dev-texlive/texlive-context-2009b
+
