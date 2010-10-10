@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*collectd-4.10.1-r3 (10 Oct 2010)
+
+  10 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +collectd-4.10.1-r3.ebuild, +files/collectd-4.10.1-noowniptc.patch:
+  Added patch to completely disable the bundled libiptc. The build will now
+  rather fail.
+
   10 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   collectd-4.10.1-r2.ebuild:
   Resync with tree: dont apply -Werror patch, unconditionally depend on
