@@ -96,7 +96,7 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 	collectd_plugins_syslog?		( virtual/logger )"
 
-PATCHES=( "${FILESDIR}/${P}"-{libperl,libiptc}.patch )
+PATCHES=( "${FILESDIR}/${P}"-{libperl,libiptc,werror}.patch )
 
 # @FUNCTION: collectd_plugin_kernel_linux
 # @DESCRIPTION:

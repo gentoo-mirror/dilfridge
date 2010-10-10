@@ -1,0 +1,57 @@
+diff -r -u collectd-4.10.1.orig/configure.in collectd-4.10.1/configure.in
+--- collectd-4.10.1.orig/configure.in	2010-07-09 12:01:59.000000000 +0200
++++ collectd-4.10.1/configure.in	2010-10-09 22:54:47.000000000 +0200
+@@ -488,7 +488,7 @@
+ # Emulate behavior of src/Makefile.am
+ if test "x$GCC" = "xyes"
+ then
+-	CFLAGS="$CFLAGS -Wall -Werror"
++	CFLAGS="$CFLAGS -Wall"
+ fi
+ 
+ AC_CACHE_CHECK([for strtok_r],
+@@ -2692,7 +2692,7 @@
+ 	SAVE_LDFLAGS="$LDFLAGS"
+ 	# trigger an error if Perl_load_module*() uses __attribute__nonnull__(3)
+ 	# (see issues #41 and #42)
+-	CFLAGS="$CFLAGS $PERL_CFLAGS -Wall -Werror"
++	CFLAGS="$CFLAGS $PERL_CFLAGS -Wall"
+ 	LDFLAGS="$LDFLAGS $PERL_LDFLAGS"
+ 
+ 	AC_CACHE_CHECK([for broken Perl_load_module()],
+diff -r -u collectd-4.10.1.orig/src/libcollectdclient/Makefile.am collectd-4.10.1/src/libcollectdclient/Makefile.am
+--- collectd-4.10.1.orig/src/libcollectdclient/Makefile.am	2010-07-09 12:01:59.000000000 +0200
++++ collectd-4.10.1/src/libcollectdclient/Makefile.am	2010-10-09 22:56:23.000000000 +0200
+@@ -1,7 +1,7 @@
+ AUTOMAKE_OPTIONS = foreign no-dependencies
+ 
+ if COMPILER_IS_GCC
+-AM_CFLAGS = -Wall -Werror
++AM_CFLAGS = -Wall
+ endif
+ 
+ pkginclude_HEADERS = client.h lcc_features.h
+diff -r -u collectd-4.10.1.orig/src/Makefile.am collectd-4.10.1/src/Makefile.am
+--- collectd-4.10.1.orig/src/Makefile.am	2010-07-09 12:01:59.000000000 +0200
++++ collectd-4.10.1/src/Makefile.am	2010-10-09 22:57:08.000000000 +0200
+@@ -7,7 +7,7 @@
+ endif
+ 
+ if COMPILER_IS_GCC
+-AM_CFLAGS = -Wall -Werror
++AM_CFLAGS = -Wall
+ endif
+ 
+ AM_CPPFLAGS = -DPREFIX='"${prefix}"'
+diff -r -u collectd-4.10.1.orig/src/owniptc/Makefile.am collectd-4.10.1/src/owniptc/Makefile.am
+--- collectd-4.10.1.orig/src/owniptc/Makefile.am	2010-07-09 12:01:59.000000000 +0200
++++ collectd-4.10.1/src/owniptc/Makefile.am	2010-10-09 22:56:51.000000000 +0200
+@@ -3,7 +3,7 @@
+ EXTRA_DIST = libiptc.c README.collectd
+ 
+ if COMPILER_IS_GCC
+-AM_CFLAGS = -Wall -Werror
++AM_CFLAGS = -Wall
+ endif
+ 
+ noinst_LTLIBRARIES = libiptc.la
