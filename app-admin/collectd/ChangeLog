@@ -3,6 +3,11 @@
 # $Header: $
 
   10 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.1-r2.ebuild:
+  Resync with tree: dont apply -Werror patch, unconditionally depend on
+  iptables
+
+  10 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   collectd-4.10.1-r2.ebuild, +files/collectd-4.10.1-werror.patch:
   Disabled -Werror
 
