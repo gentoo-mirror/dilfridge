@@ -46,10 +46,7 @@ unset plugin
 
 # Now come the dependencies.
 
-# this cannot be in the dependencies if the USE flag is not listed
-# 	collectd_plugins_oracle?		( >=dev-db/oracle-instantclient-basic-11.1.0.7.0 )
 COMMON_DEPEND="
-	>=net-firewall/iptables-1.4.9.1-r2
 	collectd_plugins_apache?		( net-misc/curl )
 	collectd_plugins_ascent?		( net-misc/curl dev-libs/libxml2 )
 	collectd_plugins_bind?			( dev-libs/libxml2 )
@@ -97,7 +94,7 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 	collectd_plugins_syslog?		( virtual/logger )"
 
-PATCHES=( "${FILESDIR}/${P}"-{libperl,libiptc}.patch )
+PATCHES=( "${FILESDIR}/${P}"-{libperl,libiptc,noowniptc}.patch )
 
 # @FUNCTION: collectd_plugin_kernel_linux
 # @DESCRIPTION:
@@ -249,6 +246,11 @@ src_configure() {
 	# Need JAVA_HOME for java.
 	if use collectd_plugins_java; then
 		myconf+=" --with-java=$(java-config -g JAVA_HOME)"
+	fi
+
+	# Need libiptc ONLY for iptables. If we try to use it otherwise bug 340109 happens.
+	if ! use collectd_plugins_iptables; then
+		myconf+=" --with-libiptc=no"
 	fi
 
 	# Finally, run econf.
