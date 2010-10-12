@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*digikam-1.5.0 (12 Oct 2010)
+
+  12 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +digikam-1.5.0.ebuild, +files/digikam-1.5.0-pgf.patch:
+  Version bump. Builds and installs fine. The database dependencies and the
+  liblensfun detection still need some checking.
+
   25 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   -digikam-1.4.0-r51.ebuild:
   Cleanup
