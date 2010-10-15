@@ -86,13 +86,13 @@ src_configure() {
 	mycmakeargs=(
 		-DFORCED_UNBUNDLE=ON
 		-DWITH_LQR=ON
+		-DWITH_LENSFUN=ON
 		-DGWENVIEW_SEMANTICINFO_BACKEND=${backend}
 		$(cmake-utils_use_with addressbook KdepimLibs)
 		$(cmake-utils_use_build doc)
 		$(cmake-utils_use_with geolocation MarbleWidget)
 		$(cmake-utils_use_enable gphoto2 GPHOTO2)
 		$(cmake-utils_use_with gphoto2)
-		$(cmake-utils_use_with lensfun LensFun)
 		$(cmake-utils_use_with semantic-desktop Soprano)
 		$(cmake-utils_use_enable themedesigner)
 		$(cmake-utils_use_enable thumbnails THUMBS_DB)

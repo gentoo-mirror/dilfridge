@@ -3,6 +3,10 @@
 # $Header: $
 
   15 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-1.5.0.ebuild:
+  Force-enabled lensfun.
+
+  15 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   digikam-1.5.0.ebuild, -files/digikam-1.5.0-pgf.patch,
   +files/digikam-1.5.0-unbundle.patch:
   Apply unbundle logic also to lensfun. Problem is, lensfun is not yet
