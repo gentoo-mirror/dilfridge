@@ -4,6 +4,10 @@
 
   15 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   digikam-1.5.0.ebuild:
+  Resync with main tree; updated linguas
+
+  15 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-1.5.0.ebuild:
   Correct qt-sql dependency
 
   15 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
