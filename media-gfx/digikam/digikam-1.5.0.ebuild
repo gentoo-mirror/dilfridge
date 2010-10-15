@@ -25,7 +25,7 @@ LICENSE="GPL-2
 	handbook? ( FDL-1.2 )"
 KEYWORDS="~amd64 ~x86"
 SLOT="4"
-IUSE="addressbook debug doc geolocation gphoto2 handbook lensfun semantic-desktop themedesigner +thumbnails video"
+IUSE="addressbook debug doc geolocation gphoto2 handbook semantic-desktop themedesigner +thumbnails video"
 
 CDEPEND="
 	>=kde-base/kdelibs-${KDE_MINIMAL}[semantic-desktop?]
@@ -36,6 +36,7 @@ CDEPEND="
 	media-libs/jasper
 	>=media-libs/jpeg-8
 	media-libs/lcms:0
+	>=media-libs/lensfun-0.2.5
 	media-libs/liblqr
 	media-libs/libpng
 	media-libs/tiff
@@ -48,7 +49,6 @@ CDEPEND="
 	addressbook? ( >=kde-base/kdepimlibs-${KDE_MINIMAL} )
 	geolocation? ( >=kde-base/marble-${KDE_MINIMAL} )
 	gphoto2? ( media-libs/libgphoto2 )
-	lensfun? ( >=media-libs/lensfun-0.2.5 )
 "
 RDEPEND="${CDEPEND}
 	>=kde-base/kreadconfig-${KDE_MINIMAL}
@@ -65,7 +65,7 @@ DEPEND="${CDEPEND}
 
 S="${WORKDIR}/${MY_P}"
 
-PATCHES=( "${FILESDIR}/${PN}"-1.4.0-docs.patch "${FILESDIR}/${P}"-pgf.patch "${FILESDIR}/${PN}"-1.4.0-clapack.patch)
+PATCHES=( "${FILESDIR}/${PN}"-1.4.0-docs.patch "${FILESDIR}/${P}"-unbundle.patch )
 
 src_prepare() {
 	if use handbook; then
