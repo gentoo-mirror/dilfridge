@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-context/ChangeLog,v 1.36 2010/02/02 21:02:42 abcd Exp $
 
+  16 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  -texlive-context-2009b.ebuild:
+  Give up this route
+
   03 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org> Manifest:
   Just for fun replaced the main context module with the one from 2010 to
   see what happens.
