@@ -4,6 +4,10 @@
 
   16 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   kipi-plugins-1.5.0.ebuild:
+  Added handbook license
+
+  16 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  kipi-plugins-1.5.0.ebuild:
   Added handbook functionality
 
 *kipi-plugins-1.5.0 (16 Oct 2010)

@@ -16,7 +16,8 @@ HOMEPAGE="http://www.kipi-plugins.org"
 [[ ${PV} != *9999* ]] && SRC_URI="mirror://sourceforge/kipi/${P}.tar.bz2
 	handbook? ( mirror://gentoo/${PN}-doc-${PV}.tar.bz2 )"
 
-LICENSE="GPL-2"
+LICENSE="GPL-2
+	handbook? ( FDL-1.2 )"
 KEYWORDS="~amd64 ~x86"
 SLOT="4"
 IUSE="cdr calendar crypt debug expoblending handbook +imagemagick ipod mjpeg redeyes scanner"
@@ -90,4 +91,3 @@ src_install() {
 		dodoc readme-handbook.txt || die
 	fi
 }
-
