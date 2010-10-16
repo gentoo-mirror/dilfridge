@@ -13,12 +13,13 @@ inherit flag-o-matic kde4-base
 
 DESCRIPTION="Plugins for the KDE Image Plugin Interface"
 HOMEPAGE="http://www.kipi-plugins.org"
-[[ ${PV} != *9999* ]] && SRC_URI="mirror://sourceforge/kipi/${P}.tar.bz2"
+[[ ${PV} != *9999* ]] && SRC_URI="mirror://sourceforge/kipi/${P}.tar.bz2
+	handbook? ( mirror://gentoo/${PN}-doc-${PV}.tar.bz2 )"
 
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
 SLOT="4"
-IUSE="cdr calendar crypt debug expoblending +imagemagick ipod mjpeg redeyes scanner"
+IUSE="cdr calendar crypt debug expoblending handbook +imagemagick ipod mjpeg redeyes scanner"
 
 DEPEND="
 	>=dev-libs/expat-2.0.1
@@ -51,6 +52,14 @@ RDEPEND="${DEPEND}
 
 PATCHES=( "${FILESDIR}/${PN}-1.3.0-expoblending.patch" )
 
+src_prepare() {
+	if use handbook; then
+		echo "add_subdirectory( doc )" >> CMakeLists.txt
+	fi
+
+	kde4-base_src_prepare
+}
+
 src_configure() {
 	# Remove flags -floop-block -floop-interchange
 	# -floop-strip-mine due to bug #305443.
@@ -73,3 +82,12 @@ src_configure() {
 
 	kde4-base_src_configure
 }
+
+src_install() {
+	kde4-base_src_install
+
+	if use handbook; then
+		dodoc readme-handbook.txt || die
+	fi
+}
+
