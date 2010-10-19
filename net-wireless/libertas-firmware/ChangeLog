@@ -6,6 +6,10 @@
   libertas-firmware-20101019.ebuild:
   Corrected S
 
+  19 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  libertas-firmware-20101019.ebuild:
+  Corrected S
+
 *libertas-firmware-20101019 (19 Oct 2010)
 
   19 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>

@@ -5,6 +5,7 @@
 inherit multilib
 
 MY_P=${P/-firmware/}
+MY_PN=${PN/-firmware/}
 
 DESCRIPTION="Firmware for the Marvell Libertas chipsets (OLPC, GuruPlug)"
 
@@ -19,7 +20,7 @@ DEPEND=""
 RDEPEND=""
 SLOT=0
 
-S=${WORKDIR}/${MY_P}
+S=${WORKDIR}/${MY_PN}
 
 src_install() {
 	insinto $(get_libdir)/firmware
