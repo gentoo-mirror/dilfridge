@@ -19,6 +19,8 @@ DEPEND=""
 RDEPEND=""
 SLOT=0
 
+S=${WORKDIR}/${MY_P}
+
 src_install() {
 	insinto $(get_libdir)/firmware
 	doins *.bin || die
