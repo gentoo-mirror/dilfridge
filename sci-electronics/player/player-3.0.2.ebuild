@@ -8,7 +8,7 @@ inherit eutils python
 
 DESCRIPTION="A network server for robot control"
 HOMEPAGE="http://playerstage.sourceforge.net/index.php?src=player"
-SRC_URI="mirror://sourceforge/playerstage/${P}.tar.bz2"
+SRC_URI="mirror://sourceforge/playerstage/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
