@@ -22,6 +22,11 @@ RDEPEND="${DEPEND}
 	|| ( app-admin/collectd[collectd_plugins_rrdtool] app-admin/collectd[collectd_plugins_rrdcached] )"
 
 src_prepare() {
+	# Working around the eclass linguas magic is way more complicated than just
+	# force-enabling de. The files are organized differently here, and when the eclass
+	# removes de.po, the build fails...
+	USE+=" linguas_de"
+
 	kde4-base_src_prepare
 
 	find "${S}" -name "*.docbook" \
