@@ -3,6 +3,10 @@
 # $Header: $
 
   29 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +collectd-4.10.1-r3.ebuild, +files/logrotate:
+  Started with improvements from bug 342985
+
+  29 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   collectd-4.10.1-r2.ebuild, files/collectd.confd, files/collectd.initd:
   Resync with main tree
 
