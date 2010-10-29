@@ -3,6 +3,10 @@
 # $Header: $
 
   29 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.1-r3.ebuild:
+  Added netlink plugin for testing
+
+  29 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   +collectd-4.10.1-r3.ebuild, +files/logrotate:
   Started with improvements from bug 342985
 

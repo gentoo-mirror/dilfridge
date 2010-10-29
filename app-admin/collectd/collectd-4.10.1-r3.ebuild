@@ -21,13 +21,13 @@ IUSE="contrib debug kernel_linux kernel_FreeBSD kernel_Darwin"
 COLLECTD_IMPOSSIBLE_PLUGINS="curl_json netapp pinba ping xmms"
 
 # Plugins that still need some work
-COLLECTD_UNTESTED_PLUGINS="oracle ipmi ipvs netlink apple_sensors routeros tape zfs_arc nut modbus"
+COLLECTD_UNTESTED_PLUGINS="oracle ipmi ipvs apple_sensors routeros tape zfs_arc nut modbus"
 
 # Plugins that have been (compile) tested and can be enabled via COLLECTD_PLUGINS
 COLLECTD_TESTED_PLUGINS="apache apcups ascent battery bind conntrack contextswitch
 	cpu cpufreq curl curl_xml dbi df disk dns email entropy exec filecount fscache gmond
 	hddtemp interface iptables irq java libvirt load madwifi mbmon memcachec
-	memcached memory multimeter mysql network nfs nginx ntpd olsrd
+	memcached memory multimeter mysql netlink network nfs nginx ntpd olsrd
 	onewire openvpn perl postgresql powerdns processes protocols python
 	rrdcached sensors serial snmp swap table tail tcpconns teamspeak2 ted thermal
 	tokyotyrant uptime users vmem vserver wireless csv exec logfile network
@@ -60,6 +60,7 @@ COMMON_DEPEND="
 	collectd_plugins_libvirt?		( app-emulation/libvirt dev-libs/libxml2 )
 	collectd_plugins_memcachec?		( dev-libs/libmemcached )
 	collectd_plugins_mysql?			( >=virtual/mysql-5.0 )
+	collectd_plugins_netlink?		( >=sys-apps/iproute2-2.6.34 )
 	collectd_plugins_network?		( dev-libs/libgcrypt )
 	collectd_plugins_nginx?			( net-misc/curl )
 	collectd_plugins_notify_desktop?	( x11-libs/libnotify )

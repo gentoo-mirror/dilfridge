@@ -49,6 +49,7 @@
 		<flag name='collectd_plugins_memory'>Build the memory input plugin (physical memory utilization)</flag> 
 		<flag name='collectd_plugins_multimeter'>Build the multimeter input plugin (reads a voltage or current from a multimeter connected to a serial bus)</flag> 
 		<flag name='collectd_plugins_mysql'>Build the mysql input plugin (connects to an MySQL-database and issues a SHOW STATUS command)</flag> 
+		<flag name='collectd_plugins_netlink'>Build the netlink input plugin (opens a netlink socket to the Linux kernel for getting statistics)</flag> 
 		<flag name='collectd_plugins_network'>Build the network input/output plugin (communicates with other instances of collectd)</flag> 
 		<flag name='collectd_plugins_nfs'>Build the nfs input plugin (usage of the Network File System)</flag> 
 		<flag name='collectd_plugins_nginx'>Build the nginx input plugin (number of requests handled by the nginx daemon)</flag> 
