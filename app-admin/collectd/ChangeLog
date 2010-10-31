@@ -4,6 +4,10 @@
 
   31 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   collectd-4.10.1-r3.ebuild:
+  Resync with tree
+
+  31 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.1-r3.ebuild:
   Added ipmi plugin for testing
 
   29 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
