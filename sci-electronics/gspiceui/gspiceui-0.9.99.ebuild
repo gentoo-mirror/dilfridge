@@ -5,7 +5,7 @@
 EAPI="2"
 
 WX_GTK_VER="2.8"
-inherit wxwidgets
+inherit eutils wxwidgets
 
 MY_P="${PN}-v${PV}"
 
@@ -28,6 +28,9 @@ RDEPEND="${DEPEND}
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
+	# Use gentoo LDFLAGS when linking 
+	epatch "${FILESDIR}/${P}-flags.patch"
+
 	# Removing pre-configured CXXFLAGS from Makefile. The Makefile then only appends
 	# the flags required for wxwidgets to the Gentoo preset.
 	sed -i \

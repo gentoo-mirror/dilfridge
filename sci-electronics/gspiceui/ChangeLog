@@ -3,6 +3,10 @@
 # $Header: $
 
   31 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  gspiceui-0.9.99.ebuild, +files/gspiceui-0.9.99-flags.patch:
+  Fix LDFLAGS
+
+  31 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   gspiceui-0.9.99.ebuild, metadata.xml:
   Resync with tree
 
