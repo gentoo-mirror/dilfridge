@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  gspiceui-0.9.99.ebuild, metadata.xml:
+  Resync with tree
+
 *gspiceui-0.9.99 (16 Jul 2010)
 
   16 Jul 2010; Thomas Beierlein <tomjbe@gentoo.org> -gspiceui-0.9.98.ebuild,
