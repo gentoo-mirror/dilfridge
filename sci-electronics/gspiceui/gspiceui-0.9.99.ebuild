@@ -31,12 +31,6 @@ src_prepare() {
 	# Use gentoo LDFLAGS when linking 
 	epatch "${FILESDIR}/${P}-flags.patch"
 
-	# Removing pre-configured CXXFLAGS from Makefile. The Makefile then only appends
-	# the flags required for wxwidgets to the Gentoo preset.
-	sed -i \
-		-e "s:CXXFLAGS = -O -pipe:CXXFLAGS += :" \
-		src/Makefile || die "Patching src/Makefile failed"
-
 	# Adjusting the doc path at src/main/HelpTasks.cpp
 	sed -i \
 		-e "s:/share/gspiceui/html/gSpiceUI.html:/share/doc/${PF}/html/gSpiceUI.html:" \
@@ -60,7 +54,7 @@ src_install() {
 		doins -r lib/* || die
 	fi
 
-	make_desktop_entry gspiceui "GNU Spice GUI" gspiceui.xpm "Electronics"
+	make_desktop_entry gspiceui "GNU Spice GUI" gspiceui "Electronics"
 }
 
 pkg_postinst() {
