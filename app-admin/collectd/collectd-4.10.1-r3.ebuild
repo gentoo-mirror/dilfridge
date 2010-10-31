@@ -21,12 +21,12 @@ IUSE="contrib debug kernel_linux kernel_FreeBSD kernel_Darwin"
 COLLECTD_IMPOSSIBLE_PLUGINS="curl_json netapp pinba ping xmms"
 
 # Plugins that still need some work
-COLLECTD_UNTESTED_PLUGINS="oracle ipmi ipvs apple_sensors routeros tape zfs_arc nut modbus"
+COLLECTD_UNTESTED_PLUGINS="oracle ipvs apple_sensors routeros tape zfs_arc nut modbus"
 
 # Plugins that have been (compile) tested and can be enabled via COLLECTD_PLUGINS
 COLLECTD_TESTED_PLUGINS="apache apcups ascent battery bind conntrack contextswitch
 	cpu cpufreq curl curl_xml dbi df disk dns email entropy exec filecount fscache gmond
-	hddtemp interface iptables irq java libvirt load madwifi mbmon memcachec
+	hddtemp interface ipmi iptables irq java libvirt load madwifi mbmon memcachec
 	memcached memory multimeter mysql netlink network nfs nginx ntpd olsrd
 	onewire openvpn perl postgresql powerdns processes protocols python
 	rrdcached sensors serial snmp swap table tail tcpconns teamspeak2 ted thermal
@@ -55,6 +55,7 @@ COMMON_DEPEND="
 	collectd_plugins_dbi?			( dev-db/libdbi )
 	collectd_plugins_dns?			( net-libs/libpcap )
 	collectd_plugins_gmond?			( sys-cluster/ganglia )
+	collectd_plugins_ipmi?			( >=sys-libs/openipmi-2.0.16-r1 )
 	collectd_plugins_iptables?		( >=net-firewall/iptables-1.4.9.1-r2 )
 	collectd_plugins_java?			( virtual/jre dev-java/java-config-wrapper )
 	collectd_plugins_libvirt?		( app-emulation/libvirt dev-libs/libxml2 )

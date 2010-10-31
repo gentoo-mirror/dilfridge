@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.1-r3.ebuild:
+  Added ipmi plugin for testing
+
   29 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   collectd-4.10.1-r3.ebuild:
   Added netlink plugin for testing
