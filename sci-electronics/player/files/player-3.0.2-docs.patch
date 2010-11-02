@@ -1,0 +1,19 @@
+diff -ruN player-3.0.2.orig/doc/CMakeLists.txt player-3.0.2/doc/CMakeLists.txt
+--- player-3.0.2.orig/doc/CMakeLists.txt	2009-07-13 16:03:44.000000000 +0200
++++ player-3.0.2/doc/CMakeLists.txt	2010-11-01 17:39:12.000000000 +0100
+@@ -44,7 +44,7 @@
+         CONFIGURE_FILE (${doxygenConfigFileIn} ${doxygenConfigFile} @ONLY)
+ 
+         # Build documentation target
+-        ADD_CUSTOM_TARGET (doc
++        ADD_CUSTOM_TARGET (doc ALL
+             ${DOXYGEN_EXECUTABLE} ${doxygenConfigFile}
+             DEPENDS ${doxygenConfigFile}
+             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+@@ -79,4 +79,4 @@
+     ELSE (DOXYGEN_FOUND)
+         MESSAGE (STATUS "Documentation will not be built - Doxygen not found")
+     ENDIF (DOXYGEN_FOUND)
+-ENDIF (BUILD_DOCUMENTATION)
+\ Kein Zeilenumbruch am Dateiende.
++ENDIF (BUILD_DOCUMENTATION)

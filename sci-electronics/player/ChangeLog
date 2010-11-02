@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Nov 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +player-2.0.4.ebuild, player-3.0.2.ebuild, +files/player-3.0.2-docs.patch:
+  Re-added 2.0.4 and started from scratch
+
 *player-3.0.2 (25 Oct 2010)
 
   25 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
