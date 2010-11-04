@@ -9,7 +9,7 @@ DESCRIPTION="Plugin using KDE's KParts technology to embed file viewers into non
 HOMEPAGE="http://www.unix-ag.uni-kl.de/~fischer/kpartsplugin/"
 SRC_URI="http://www.unix-ag.uni-kl.de/~fischer/kpartsplugin/${P}.tar.bz2"
 
-LICENSE="GPL-3"
+LICENSE="GPL-3 BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
@@ -18,6 +18,6 @@ IUSE=""
 S="${WORKDIR}/${PN}"
 
 src_prepare() {
-	sed -e :/usr/lib/nsbrowser/plugins/:/usr/$(get_libdir)/${PLUGINS_DIR}/: -i CMakeLists.txt \
-	    || die "sed failed"
+	echo "set( PLUGIN_INSTALL_DIR \"/usr/$(get_libdir)/${PLUGINS_DIR}/\" )" >> CMakeLists.txt || die
+	kde4-base_src_prepare
 }

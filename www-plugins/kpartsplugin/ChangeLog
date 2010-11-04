@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Nov 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  kpartsplugin-20100723.ebuild:
+  Fixed
+
 *kpartsplugin-20100723 (04 Nov 2010)
 
   04 Nov 2010; Andreas K. Huettel <dilfridge@gentoo.org>
