@@ -30,12 +30,15 @@ RDEPEND=">=x11-libs/gtk+-2.8
 DEPEND=">=dev-util/scons-0.96.1
 	${RDEPEND}"
 
+PATCHES=( "${FILESDIR}/${P}-boost.patch" )
+
 src_compile() {
 	# scons options differ from make options -> remove everything except "-jX" and "-j X"
 	local sconsopts=$(echo "${MAKEOPTS}" | sed -ne "/-j/ { s/.*\(-j[[:space:]]*[0-9]\+\).*/\1/; p }")
 
 	scons CC="$(tc-getCC)" CXX="$(tc-getCXX)" CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" \
 		LDFLAGS="${LDFLAGS}" ${sconsopts} DESTDIR="${D}" PREFIX="/usr" \
+		CPPFLAGS='-UBOOST_SYSTEM_NO_DEPRECATED' USE_EXT_BOOST=1 \
 		|| die 'Please add "${S}/config.opts" when filing bugs reports!'
 }
 
