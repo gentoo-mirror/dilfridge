@@ -8,12 +8,12 @@ inherit autotools eutils flag-o-matic check-reqs java-pkg-opt-2 multilib toolcha
 
 DESCRIPTION="Software development platform for CAD/CAE, 3D surface/solid modeling and data exchange."
 HOMEPAGE="http://www.opencascade.org"
-SRC_URI="http://files.opencascade.com/OCC_${PV}_release/OpenCASCADE_src.tgz"
+SRC_URI="http://files.opencascade.com/OCC_${PV}_release/OpenCASCADE_src.tgz -> ${P}.tgz"
 
 LICENSE="Open-CASCADE-Technology-Public-License"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug doc examples java opengl stlport X"
+IUSE="debug doc examples java opengl source stlport X"
 DEPEND="java? ( virtual/jdk )
 	opengl? ( virtual/opengl
 		virtual/opengl )
@@ -23,8 +23,7 @@ DEPEND="java? ( virtual/jdk )
 	>=dev-lang/tk-8.4
 	>=dev-tcltk/itcl-3.2
 	>=dev-tcltk/itk-3.2
-	x86? ( >=dev-tcltk/tix-8.1 )
-	amd64? ( >=dev-tcltk/tix-8.4.2 )
+	>=dev-tcltk/tix-8.4.2
 	stlport? ( dev-libs/STLport )"
 RDEPEND=${DEPEND}
 
@@ -140,30 +139,27 @@ src_install() {
 
 	# Symlinks for keeping original OpenCascade folder structure and
 	# add a link lib to lib64 in ros/Linux if we are on amd64
-	dosym lin ${INSTALL_DIR}/Linux
+	# dosym lin ${INSTALL_DIR}/Linux
 
 	if use amd64 ; then
 		mv "${D}""${INSTALL_DIR}"/lin/lib "${D}""${INSTALL_DIR}"/lin/lib64
 		dosym lib64 ${INSTALL_DIR}/lin/lib
 	fi
 
-	#symlink for config.h
-	dosym ${INSTALL_DIR}/config.h ${INSTALL_DIR}/inc/config.h
-
 	# Tweak the environment variables script
 	cp "${FILESDIR}"/env.ksh.template env.ksh
-	sed -i "s:VAR_CASROOT:${INSTALL_DIR}:g" env.ksh
+	sed -i "s:VAR_CASROOT:${INSTALL_DIR}/lin:g" env.ksh
 
 	# Build the env.d environment variables
 	cp "${FILESDIR}"/env.ksh.template 50${PN}
 	sed -i \
 		-e 's:export ::g' \
-		-e "s:VAR_CASROOT:${INSTALL_DIR}:g" \
+		-e "s:VAR_CASROOT:${INSTALL_DIR}/lin:g" \
 		-e '1,2d' \
 		-e '4,14d' \
-		-e "s:ros/Linux/lib/:ros/Linux/$(get_libdir)/:g" ./50${PN} \
+		-e "s:/Linux/lib/:/$(get_libdir)/:g" ./50${PN} \
 	|| die "Creation of the /etc/env.d/50opencascade failed!"
-	sed -i "2i\PATH=${INSTALL_DIR}/Linux/bin/\nLDPATH=${INSTALL_DIR}/Linux/$(get_libdir)" ./50${PN} \
+	sed -i "2i\PATH=${INSTALL_DIR}/lin/bin\nLDPATH=${INSTALL_DIR}/lin/$(get_libdir)" ./50${PN} \
 	|| die "Creation of the /etc/env.d/50opencascade failed!"
 
 	# Update both env.d and script with the libraries variables
@@ -187,9 +183,14 @@ src_install() {
 	# Install folders
 	cd "${S}"/../
 
-	## why is this needed?
-	insinto ${INSTALL_DIR}/../
-	doins -r ros
+	## Do we really need this USE-flag?
+	if use source; then
+		#symlink for config.h
+		dosym ${INSTALL_DIR}/lin/config.h ${INSTALL_DIR}/inc/config.h
+
+		insinto ${INSTALL_DIR}/../
+		doins -r ros
+	fi
 
 	if use examples; then
 		insinto /usr/share/doc/${PF}/examples
