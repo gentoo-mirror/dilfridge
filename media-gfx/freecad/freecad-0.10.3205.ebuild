@@ -2,11 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI=3
+PYTHON_DEPEND=2
 
-PYTHON_DEPEND="2"
-
-inherit multilib python
+inherit base multilib autotools python
 
 MY_P="freecad-${PV}"
 MY_PD="FreeCAD-${PV}"
@@ -21,7 +20,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="
-	sci-libs/opencascade
+	>=sci-libs/opencascade-6.3-r3
 	x11-libs/qt-gui:4
 	x11-libs/qt-svg:4
 	x11-libs/qt-webkit:4
@@ -36,13 +35,20 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	dev-lang/swig"
 
+PATCHES=( "${FILESDIR}/${P}-asneeded.patch" )
+
 S="${WORKDIR}/${MY_PD}"
 
 pkg_setup() {
 	python_set_active_version 2
 }
 
-src_configure () {
+src_prepare() {
+	base_src_prepare
+	eautoreconf
+}
+
+src_configure() {
 	 econf \
 		--with-qt4-include="${EPREFIX}"/usr/include/qt4 \
 		--with-qt4-bin="${EPREFIX}"//usr/bin \
@@ -51,7 +57,7 @@ src_configure () {
 		--with-occ-lib=${CASROOT}/lib
 }
 
-src_install () {
+src_install() {
 	emake  DESTDIR="${D}" install || die "install failed"
 	dodoc README.Linux ChangeLog.txt || die
 }

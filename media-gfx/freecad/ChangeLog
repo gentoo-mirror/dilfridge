@@ -3,6 +3,10 @@
 # $Header: $
 
   07 Nov 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  freecad-0.10.3205.ebuild, +files/freecad-0.10.3205-asneeded.patch:
+  First working version
+
+  07 Nov 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   freecad-0.10.3205.ebuild:
   Cleanup
 
