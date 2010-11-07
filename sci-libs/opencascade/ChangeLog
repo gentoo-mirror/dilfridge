@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Nov 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  opencascade-6.3-r3.ebuild, metadata.xml:
+  First complete and working version
+
 *opencascade-6.3-r3 (06 Nov 2010)
 
   06 Nov 2010; Andreas K. Huettel <dilfridge@gentoo.org>

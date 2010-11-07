@@ -3,7 +3,4 @@
 <pkgmetadata>
 <herd>sci</herd>
 <maintainer><email>dilfridge@gentoo.org</email></maintainer>
-<use>
-	<flag name="stlport"> Enables support for STL files</flag>
-</use>
 </pkgmetadata>
