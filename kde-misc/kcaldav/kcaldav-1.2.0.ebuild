@@ -23,6 +23,6 @@ PATCHES=( "${FILESDIR}/${P}-unbundle.patch" )
 S=${WORKDIR}/${P}/src
 
 src_configure() {
-  mycmakeargs=( -DKCALDAV_VERSION=${PV} )
-  kde4-base_src_configure
+	mycmakeargs=( -DKCALDAV_VERSION=${PV} )
+	kde4-base_src_configure
 }

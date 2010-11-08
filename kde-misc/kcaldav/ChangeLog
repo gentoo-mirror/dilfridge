@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Nov 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  files/kcaldav-1.2.0-unbundle.patch:
+  Builds now.
+
 *kcaldav-1.2.0 (08 Nov 2010)
 
   08 Nov 2010; Andreas K. Huettel <dilfridge@gentoo.org>
