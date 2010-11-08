@@ -1,0 +1,31 @@
+diff -urN kcaldav-1.2.0.orig/src/CMakeLists.txt kcaldav-1.2.0/src/CMakeLists.txt
+--- kcaldav-1.2.0.orig/src/CMakeLists.txt	2010-11-03 07:28:48.000000000 +0100
++++ kcaldav-1.2.0/src/CMakeLists.txt	2010-11-08 23:38:19.000000000 +0100
+@@ -3,6 +3,8 @@
+ 
+ project("kcaldav")
+ 
++find_package(libcaldav REQUIRED)
++
+ find_package(KDE4 REQUIRED)
+ find_package(Qt4 REQUIRED)
+ include(KDE4Defaults)
+@@ -45,16 +47,13 @@
+ 
+ kde4_add_library(kcal_caldav SHARED ${kcal_caldav_LIB_SRCS})
+ 
+-# add imported target
+-add_library(kcaldav_caldav_lib STATIC IMPORTED)
+-# point the imported target at the real file
+-set_target_properties(kcaldav_caldav_lib PROPERTIES IMPORTED_LOCATION libcaldav.a)
++include_directories( ${LIBCALDAV_INCLUDE_DIR} )
+ 
+ target_link_libraries(kcal_caldav  
+                         ${KDE4_KDECORE_LIBS} 
+                         ${KDEPIMLIBS_KCAL_LIBS} 
+                         ${KDEPIMLIBS_KRESOURCES_LIBS} 
+-                        kcaldav_caldav_lib 
++                        ${LIBCALDAV_LIBRARIES}
+                         ${CURL_LIBRARIES}
+                         ${GLIB2_LIBRARIES})
+ 
