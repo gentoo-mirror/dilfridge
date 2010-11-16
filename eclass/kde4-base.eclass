@@ -13,7 +13,10 @@
 # NOTE: KDE 4 ebuilds by default define EAPI="2", this can be redefined but
 # eclass will fail with version older than 2.
 
-inherit kde4-functions base eutils
+# In case the variable is not set in the ebuild, let virtualx eclass not do anything
+: ${VIRTUALX_REQUIRED:=manual}
+
+inherit kde4-functions base virtualx eutils
 
 get_build_type
 if [[ ${BUILD_TYPE} = live ]]; then
@@ -753,7 +756,22 @@ kde4-base_src_test() {
 	cmake-utils_src_configure
 	kde4-base_src_compile
 
-	cmake-utils_src_test
+	if [[ ${VIRTUALX_REQUIRED} == always ]] ||
+		( [[ ${VIRTUALX_REQUIRED} == optional ]] && use test ) ||
+		( [[ ${VIRTUALX_REQUIRED} == tests ]] && use test ); then
+
+		if [[ ${maketype} ]]; then
+			# surprise- we are already INSIDE virtualmake!!!
+			ewarn "QA Notice: This version of kde4-base.eclass includes the virtualx functionality."
+			ewarn "           You may NOT set maketype or call virtualmake from the ebuild. Applying workaround."
+			cmake-utils_src_test
+		else
+			export maketype="cmake-utils_src_test"
+			virtualmake
+		fi
+	else
+		cmake-utils_src_test
+	fi
 }
 
 # @FUNCTION: kde4-base_src_install
