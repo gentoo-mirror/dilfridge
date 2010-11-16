@@ -13,6 +13,16 @@
 # NOTE: KDE 4 ebuilds by default define EAPI="2", this can be redefined but
 # eclass will fail with version older than 2.
 
+# @ECLASS-VARIABLE: VIRTUALX_REQUIRED
+# @DESCRIPTION:
+#  Do we need an X server? Valid values are "always", "optional", and "manual".
+#  "tests" is a synonym for "optional". While virtualx.eclass supports in principle
+#  also the use of an X server during other ebuild phases, we only use it in
+#  src_test here. Most likely you'll want to set "optional", which introduces the
+#  use-flag "test" (if not already present), adds dependencies conditional on that
+#  use-flag, and automatically runs (only) the ebuild test phase with a virtual X server
+#  present. This makes things a lot more comfortable than the bare virtualx eclass.
+
 # In case the variable is not set in the ebuild, let virtualx eclass not do anything
 : ${VIRTUALX_REQUIRED:=manual}
 
@@ -757,8 +767,7 @@ kde4-base_src_test() {
 	kde4-base_src_compile
 
 	if [[ ${VIRTUALX_REQUIRED} == always ]] ||
-		( [[ ${VIRTUALX_REQUIRED} == optional ]] && use test ) ||
-		( [[ ${VIRTUALX_REQUIRED} == tests ]] && use test ); then
+		( [[ ${VIRTUALX_REQUIRED} != manual ]] && use test ); then
 
 		if [[ ${maketype} ]]; then
 			# surprise- we are already INSIDE virtualmake!!!
