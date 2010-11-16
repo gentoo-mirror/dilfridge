@@ -10,13 +10,14 @@ inherit kde4-meta
 
 DESCRIPTION="KOffice presentation program."
 
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=">=dev-libs/boost-1.35.0"
 RDEPEND="${DEPEND}"
 
 KMEXTRACTONLY="
+	KoConfig.h.cmake
 	filters/libmsooxml/
 	libs/
 "
@@ -32,4 +33,5 @@ src_install() {
 
 	# this is already installed by koffice-data
 	rm -f "${D}/usr/include/config-opengl.h"
+	rm -f "${D}/usr/include/KoConfig.h"
 }
