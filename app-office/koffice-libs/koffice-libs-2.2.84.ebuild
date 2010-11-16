@@ -30,8 +30,6 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 #	doc? ( app-doc/doxygen )"
 
-PATCHES=( "${FILESDIR}/${P}-kspreadcommon.patch" )
-
 KMEXTRA="
 	doc/koffice/
 	doc/thesaurus/
@@ -50,6 +48,7 @@ KMEXTRA="
 "
 #	doc/api/"
 KMEXTRACTONLY="
+	KoConfig.h.cmake
 	doc/koffice.desktop
 	filters/
 "
