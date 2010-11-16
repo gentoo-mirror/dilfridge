@@ -1,0 +1,10 @@
+# ChangeLog for kde-base/ksystemlog
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*ksystemlog-4.5.3-r99 (16 Nov 2010)
+
+  16 Nov 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +ksystemlog-4.5.3-r99.ebuild, +metadata.xml:
+  Added ebuild for eclass testing
+

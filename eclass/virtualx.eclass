@@ -22,12 +22,25 @@
 #  the dependency?
 : ${VIRTUALX_USE:=test}
 
+# @ECLASS-VARIABLE: VIRTUALX_DBUS_REQUIRED
+# @DESCRIPTION:
+#  Is a d-bus session bus needed?
+#  Valid values are "always", "optional", and "manual".
+#  "tests" is a synonym for "optional".
+: ${VIRTUALX_DBUS_REQUIRED:=manual}
+
 # @ECLASS-VARIABLE: VIRTUALX_DEPEND
 # @DESCRIPTION:
 #  Dep string available for use outside of eclass, in case a more
 #  complicated dep is needed.
 VIRTUALX_DEPEND="!prefix? ( x11-base/xorg-server )
 	x11-apps/xhost"
+
+# @ECLASS-VARIABLE: VIRTUALX_DBUS_DEPEND
+# @DESCRIPTION:
+#  Dep string available for use outside of eclass, in case a more
+#  complicated dep is needed.
+VIRTUALX_DBUS_DEPEND="sys-apps/dbus"
 
 case ${VIRTUALX_REQUIRED} in
 	always)
@@ -48,6 +61,28 @@ case ${VIRTUALX_REQUIRED} in
 		eerror "  optional (default if unset)"
 		eerror "  manual"
 		die "Invalid value (${VIRTUALX_REQUIRED}) for VIRTUALX_REQUIRED"
+		;;
+esac
+
+case ${VIRTUALX_DBUS_REQUIRED} in
+	always)
+		DEPEND+=" ${VIRTUALX_DBUS_DEPEND}"
+		RDEPEND=""
+		;;
+	optional|tests)
+		DEPEND+="${VIRTUALX_USE}? ( ${VIRTUALX_DBUS_DEPEND} )"
+		RDEPEND=""
+		IUSE="${VIRTUALX_USE}"
+		;;
+	manual)
+		;;
+	*)
+		eerror "Invalid value (${VIRTUALX_DBUS_REQUIRED}) for VIRTUALX_DBUS_REQUIRED"
+		eerror "Valid values are:"
+		eerror "  always"
+		eerror "  optional (default if unset)"
+		eerror "  manual"
+		die "Invalid value (${VIRTUALX_DBUS_REQUIRED}) for VIRTUALX_DBUS_REQUIRED"
 		;;
 esac
 
@@ -122,10 +157,27 @@ virtualmake() {
 		einfo "Starting Xvfb on \$DISPLAY=${XDISPLAY} ..."
 
 		export DISPLAY=:${XDISPLAY}
-		#Do not break on error, but setup $retval, as we need
-		#to kill Xvfb
-		${maketype} "$@"
-		retval=$?
+
+		if [[ ${VIRTUALX_DBUS_REQUIRED} == always ]] ||
+			( [[ ${VIRTUALX_REQUIRED} == optional ]] && use ${VIRTUALX_USE} ) ||
+			( [[ ${VIRTUALX_REQUIRED} == tests ]] && use ${VIRTUALX_USE} ); then
+
+			einfo Starting dbus session for the test processes
+			eval `dbus-launch --sh-syntax --exit-with-session`
+
+			#Do not break on error, but setup $retval, as we need
+			#to kill Xvfb
+			${maketype} "$@"
+			retval=$?
+
+			# and now we just hope the session goes away again???
+
+		else
+			#Do not break on error, but setup $retval, as we need
+			#to kill Xvfb
+			${maketype} "$@"
+			retval=$?
+		fi
 
 		#Now kill Xvfb
 		kill $(cat /tmp/.X${XDISPLAY}-lock)
