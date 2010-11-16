@@ -10,14 +10,17 @@ inherit kde4-meta
 
 DESCRIPTION="KPlato is a project management application."
 
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="~app-office/kchart-${PV}:${SLOT}[reports]
 	~app-office/koffice-libs-${PV}:${SLOT}[reports]"
 RDEPEND="${DEPEND}"
 
-KMEXTRACTONLY="libs/"
+KMEXTRACTONLY="
+	KoConfig.h.cmake
+	libs/
+"
 KMEXTRA="
 	filters/${KMMODULE}/
 	kdgantt/
@@ -38,4 +41,5 @@ src_install() {
 
 	# this is already installed by koffice-data
 	rm -f "${D}/usr/include/config-opengl.h"
+	rm -f "${D}/usr/include/KoConfig.h"
 }
