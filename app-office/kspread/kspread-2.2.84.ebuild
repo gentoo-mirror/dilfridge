@@ -10,7 +10,7 @@ inherit kde4-meta
 
 DESCRIPTION="KOffice spreadsheet application."
 
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="+solver"
 
 DEPEND="
@@ -20,6 +20,7 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 KMEXTRACTONLY="
+	KoConfig.h.cmake
 	kchart/
 	interfaces/
 	libs/
@@ -44,4 +45,5 @@ src_install() {
 
 	# this is already installed by koffice-data
 	rm -f "${D}/usr/include/config-opengl.h"
+	rm -f "${D}/usr/include/KoConfig.h"
 }
