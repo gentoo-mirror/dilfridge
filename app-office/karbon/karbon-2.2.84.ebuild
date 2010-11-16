@@ -10,7 +10,7 @@ inherit kde4-meta
 
 DESCRIPTION="KOffice vector drawing application."
 
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="+pstoedit wpg"
 
 DEPEND="
@@ -22,6 +22,7 @@ RDEPEND="${DEPEND}"
 
 KMEXTRA="filters/${KMMODULE}"
 KMEXTRACTONLY="
+	KoConfig.h.cmake
 	libs/
 	plugins/
 	filters/
@@ -41,4 +42,5 @@ src_install() {
 
 	# this is already installed by koffice-data
 	rm -f "${D}/usr/include/config-opengl.h"
+	rm -f "${D}/usr/include/KoConfig.h.cmake"
 }
