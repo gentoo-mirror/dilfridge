@@ -44,11 +44,11 @@ VIRTUALX_DBUS_DEPEND="sys-apps/dbus"
 
 case ${VIRTUALX_REQUIRED} in
 	always)
-		DEPEND="${VIRTUALX_DEPEND}"
+		DEPEND="${VIRTUALX_DEPEND} "
 		RDEPEND=""
 		;;
 	optional|tests)
-		DEPEND="${VIRTUALX_USE}? ( ${VIRTUALX_DEPEND} )"
+		DEPEND="${VIRTUALX_USE}? ( ${VIRTUALX_DEPEND} ) "
 		RDEPEND=""
 		IUSE="${VIRTUALX_USE}"
 		;;
@@ -66,13 +66,10 @@ esac
 
 case ${VIRTUALX_DBUS_REQUIRED} in
 	always)
-		DEPEND+=" ${VIRTUALX_DBUS_DEPEND}"
-		RDEPEND=""
+		DEPEND+="${VIRTUALX_DBUS_DEPEND} "
 		;;
 	optional|tests)
-		DEPEND+="${VIRTUALX_USE}? ( ${VIRTUALX_DBUS_DEPEND} )"
-		RDEPEND=""
-		IUSE="${VIRTUALX_USE}"
+		DEPEND+="${VIRTUALX_USE}? ( ${VIRTUALX_DBUS_DEPEND} ) "
 		;;
 	manual)
 		;;
