@@ -159,22 +159,15 @@ virtualmake() {
 			( [[ ${VIRTUALX_REQUIRED} == optional ]] && use ${VIRTUALX_USE} ) ||
 			( [[ ${VIRTUALX_REQUIRED} == tests ]] && use ${VIRTUALX_USE} ); then
 
-			einfo Starting dbus session for the test processes
-			eval `dbus-launch --sh-syntax --exit-with-session`
-
-			#Do not break on error, but setup $retval, as we need
-			#to kill Xvfb
-			${maketype} "$@"
-			retval=$?
-
-			# and now we just hope the session goes away again???
-
-		else
-			#Do not break on error, but setup $retval, as we need
-			#to kill Xvfb
-			${maketype} "$@"
-			retval=$?
+			ewarn 'Allowing access to system messagebus (experimental feature)'
+			addread /var/run/dbus/system_bus_socket
+			addwrite /var/run/dbus/system_bus_socket
 		fi
+
+		#Do not break on error, but setup $retval, as we need
+		#to kill Xvfb
+		${maketype} "$@"
+		retval=$?
 
 		#Now kill Xvfb
 		kill $(cat /tmp/.X${XDISPLAY}-lock)
