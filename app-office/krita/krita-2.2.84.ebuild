@@ -11,7 +11,7 @@ inherit kde4-meta
 
 DESCRIPTION="KOffice image manipulation program."
 
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="gmm +kdcraw openexr +pdf +tiff"
 
 DEPEND="
@@ -26,9 +26,10 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
-PATCHES=( "${FILESDIR}/${P}-xlibs.patch" )
-
-KMEXTRACTONLY="libs/"
+KMEXTRACTONLY="
+	KoConfig.h.cmake
+	libs/
+"
 
 KMLOADLIBS="koffice-libs"
 
@@ -54,4 +55,5 @@ src_install() {
 
 	# this is already installed by koffice-data
 	rm -f "${D}/usr/include/config-opengl.h"
+	rm -f "${D}/usr/include/KoConfig.h"
 }
