@@ -10,7 +10,7 @@ inherit kde4-meta
 
 DESCRIPTION="KOffice word processor."
 
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="wpd"
 
 DEPEND="
@@ -25,6 +25,7 @@ KMEXTRA="filters/${KMMODULE}/
 "
 
 KMEXTRACTONLY="
+	KoConfig.h.cmake
 	filters/
 	kspread/
 	libs/
@@ -46,4 +47,5 @@ src_install() {
 
 	# this is already installed by koffice-data
 	rm -f "${D}/usr/include/config-opengl.h"
+	rm -f "${D}/usr/include/KoConfig.h"
 }
