@@ -35,7 +35,6 @@ KMEXTRA="
 	doc/thesaurus/
 	filters/generic_wrapper/
 	filters/libkowmf/
-	filters/libmso/
 	filters/libmsooxml/
 	filters/xsltfilter/
 	filters/kchart/
