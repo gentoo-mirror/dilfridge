@@ -27,7 +27,8 @@ KMEXTRACTONLY="
 	filters/
 	plugins/
 "
-KMEXTRA="filters/${KMMODULE}/"
+KMEXTRA="filters/${KMMODULE}/
+	filters/libmso"
 
 KMLOADLIBS="koffice-libs"
 
