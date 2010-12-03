@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*karbon-2.2.91 (03 Dec 2010)
+
+  03 Dec 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +karbon-2.2.91.ebuild:
+  Version bump
+
   17 Nov 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   karbon-2.2.84.ebuild:
   Remove correct file
