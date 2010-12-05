@@ -14,8 +14,6 @@ DESCRIPTION="Shared KOffice libraries."
 KEYWORDS="~amd64 ~x86"
 IUSE="crypt openexr reports"
 
-# the contents of kchart have been _temporarily_ moved into koffice-libs in 2.2.0
-
 RDEPEND="
 	>=app-office/koffice-data-${PV}:${SLOT}
 	dev-libs/libxml2
@@ -40,11 +38,13 @@ KMEXTRA="
 	filters/kchart/
 	filters/kformula/
 	interfaces/
-	kounavail/
-	plugins/
-	tools/
 	kchart/
 	kformula/
+	kounavail/
+	plugins/
+	servicetypes/
+	templates/
+	tools/
 "
 
 KMEXTRACTONLY="
