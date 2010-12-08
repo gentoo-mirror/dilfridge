@@ -2,6 +2,42 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.1-r3.ebuild:
+  Resync with tree
+
+  31 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.1-r3.ebuild:
+  Added ipmi plugin for testing
+
+  29 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.1-r3.ebuild:
+  Added netlink plugin for testing
+
+  29 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +collectd-4.10.1-r3.ebuild, +files/logrotate:
+  Started with improvements from bug 342985
+
+  29 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.1-r2.ebuild, files/collectd.confd, files/collectd.initd:
+  Resync with main tree
+
+  12 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.1-r2.ebuild, -collectd-4.10.1-r3.ebuild:
+  Moved changes back to -r2, no version bump
+
+*collectd-4.10.1-r3 (10 Oct 2010)
+
+  10 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +collectd-4.10.1-r3.ebuild, +files/collectd-4.10.1-noowniptc.patch:
+  Added patch to completely disable the bundled libiptc. The build will now
+  rather fail.
+
+  10 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.1-r2.ebuild:
+  Resync with tree: dont apply -Werror patch, unconditionally depend on
+  iptables
+
   10 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   collectd-4.10.1-r2.ebuild, +files/collectd-4.10.1-werror.patch:
   Disabled -Werror

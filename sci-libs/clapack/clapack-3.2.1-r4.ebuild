@@ -13,13 +13,13 @@ SRC_URI="http://www.netlib.org/${PN}/${P}-CMAKE.tgz"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="test"
 
-RDEPEND=">=dev-libs/libf2c-20081126[static-libs]
+RDEPEND=">=dev-libs/libf2c-20090407-r1
 	virtual/cblas"
 DEPEND="${RDEPEND}"
 
-S="${WORKDIR}"/clapack-${PV}-CMAKE
+S=${WORKDIR}/${P}-CMAKE
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-noblasf2c-r4.patch
@@ -34,6 +34,6 @@ src_prepare() {
 }
 
 src_configure() {
-	mycmakeargs=( $(cmake-utils_use_enable test TESTS) )
+	local mycmakeargs=( $(cmake-utils_use_enable test TESTS) )
 	cmake-utils_src_configure
 }

@@ -1,0 +1,34 @@
+# ChangeLog for sci-electronics/player
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  02 Nov 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +player-2.0.4.ebuild, player-3.0.2.ebuild, +files/player-3.0.2-docs.patch:
+  Re-added 2.0.4 and started from scratch
+
+*player-3.0.2 (25 Oct 2010)
+
+  25 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  -player-2.0.4.ebuild, +player-3.0.2.ebuild:
+  Started with analysis and version bump
+
+----------------- sci -> dilfridge --------------------------------------
+
+  19 Sep 2010; Justin Lecher <jlec@gentoo.org> player-2.0.4.ebuild:
+  virtual/glut -> media-libs/freeglut & virtual/glu -> virtual/opengl
+  Correction
+
+  29 Jun 2010; Justin Lecher <jlec@gentoo.org> player-2.0.4.ebuild:
+  Python ABI fixes
+
+  01 Feb 2009; <elias@pipping.org>
+  sci-mathematics/octave-forge-octcdf/metadata.xml,
+  sci-mathematics/octave-forge-specfun/metadata.xml:
+  add SLOT
+
+*player-2.0.4 (23 Nov 2007)
+	
+  23 Nov 2007; Sébastien Fabbro <bicatali@gentoo.org> +metadata.xml,
+  +player-2.0.4.ebuild:
+  Initial import. Thanks Angelo Arrifano for his work. See bug #26373 for
+  problems.

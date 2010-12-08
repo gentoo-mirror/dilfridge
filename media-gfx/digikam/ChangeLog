@@ -2,6 +2,53 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*digikam-1.2.0-r4 (25 Nov 2010)
+
+  25 Nov 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-1.2.0-r3.ebuild, +digikam-1.2.0-r4.ebuild, digikam-1.5.0.ebuild,
+  digikam-1.6.0.ebuild:
+  Resync with tree
+
+*digikam-1.6.0 (24 Nov 2010)
+
+  24 Nov 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +digikam-1.6.0.ebuild, +files/digikam-1.6.0-docs.patch:
+  Version bump
+
+  16 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org> Manifest:
+  Remanifested after updating doc-showfoto distfile
+
+*digikam-1.5.0-r1 (16 Oct 2010)
+
+  16 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +digikam-1.5.0-r1.ebuild:
+  Added the showfoto handbook
+
+  15 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-1.5.0.ebuild:
+  Resync with main tree; updated linguas
+
+  15 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-1.5.0.ebuild:
+  Correct qt-sql dependency
+
+  15 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-1.5.0.ebuild:
+  Force-enabled lensfun.
+
+  15 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-1.5.0.ebuild, -files/digikam-1.5.0-pgf.patch,
+  +files/digikam-1.5.0-unbundle.patch:
+  Apply unbundle logic also to lensfun. Problem is, lensfun is not yet
+  found!
+
+*digikam-1.5.0 (12 Oct 2010)
+
+  12 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +digikam-1.5.0.ebuild, +files/digikam-1.5.0-pgf.patch:
+  Version bump. Builds and installs fine. The database dependencies and the
+  liblensfun detection still need some checking.
+
   25 Sep 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   -digikam-1.4.0-r51.ebuild:
   Cleanup

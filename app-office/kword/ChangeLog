@@ -1,0 +1,16 @@
+# ChangeLog for app-office/kword
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*kword-2.2.91 (04 Dec 2010)
+
+  04 Dec 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +kword-2.2.91.ebuild:
+  Version bump
+
+*kword-2.2.84 (17 Nov 2010)
+
+  17 Nov 2010; Andreas K. Huettel <dilfridge@gentoo.org> kword-2.2.2.ebuild,
+  +kword-2.2.84.ebuild:
+  First ~working version
+
