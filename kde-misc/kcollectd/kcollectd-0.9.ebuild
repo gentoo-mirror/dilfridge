@@ -25,11 +25,9 @@ src_prepare() {
 	# Working around the eclass linguas magic is way more complicated than just
 	# force-enabling de. The files are organized differently here, and when the eclass
 	# removes de.po, the build fails...
+
+	local olduse=${USE}
 	USE+=" linguas_de"
-
 	kde4-base_src_prepare
-
-	find "${S}" -name "*.docbook" \
-		-exec sed -i -r -e 's/DocBook XML V4\.1\.2-Based Variant/DocBook XML V4.2-Based Variant/g' {} + \
-		|| die 'failed to fix DocBook variant version'
+	USE=${olduse}
 }
