@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/collectd/collectd-4.10.1-r4.ebuild,v 1.1 2010/11/08 22:52:14 dilfridge Exp $
+# $Header: $
 
 EAPI="2"
 
@@ -21,7 +21,7 @@ IUSE="contrib debug kernel_linux kernel_FreeBSD kernel_Darwin"
 COLLECTD_IMPOSSIBLE_PLUGINS="curl_json netapp pinba ping xmms"
 
 # Plugins that still need some work
-COLLECTD_UNTESTED_PLUGINS="oracle ipvs apple_sensors routeros tape zfs_arc nut modbus"
+COLLECTD_UNTESTED_PLUGINS="ipvs apple_sensors routeros tape zfs_arc nut modbus"
 
 # Plugins that have been (compile) tested and can be enabled via COLLECTD_PLUGINS
 COLLECTD_TESTED_PLUGINS="apache apcups ascent battery bind conntrack contextswitch
@@ -31,7 +31,7 @@ COLLECTD_TESTED_PLUGINS="apache apcups ascent battery bind conntrack contextswit
 	onewire openvpn perl postgresql powerdns processes protocols python
 	rrdcached sensors serial snmp swap table tail tcpconns teamspeak2 ted thermal
 	tokyotyrant uptime users vmem vserver wireless csv exec logfile network
-	notify_desktop notify_email perl python rrdcached rrdtool syslog unixsock write_http
+	notify_desktop notify_email oracle perl python rrdcached rrdtool syslog unixsock write_http
 	match_empty_counter match_hashed match_regex match_timediff match_value
 	target_notification target_replace target_scale target_set uuid"
 
@@ -67,7 +67,8 @@ COMMON_DEPEND="
 	collectd_plugins_notify_desktop?	( x11-libs/libnotify )
 	collectd_plugins_notify_email?		( >=net-libs/libesmtp-1.0.4 dev-libs/openssl )
 	collectd_plugins_onewire?		( sys-fs/owfs )
-	collectd_plugins_perl?			( dev-lang/perl[ithreads] sys-devel/libperl[ithreads] )
+	collectd_plugins_oracle?		( >=dev-db/oracle-instantclient-basic-11.2.0.1.0 )
+	collectd_plugins_perl?			( dev-lang/perl[ithreads] ( || ( sys-devel/libperl[ithreads] >=sys-devel/libperl-5.10 ) ) )
 	collectd_plugins_postgresql?		( >=dev-db/postgresql-base-8.2 )
 	collectd_plugins_python?		( =dev-lang/python-2* )
 	collectd_plugins_rrdcached?		( >=net-analyzer/rrdtool-1.4 )
@@ -96,7 +97,8 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 	collectd_plugins_syslog?		( virtual/logger )"
 
-PATCHES=( "${FILESDIR}/${PN}-4.10.1"-{libperl,libiptc,noowniptc}.patch )
+PATCHES=( "${FILESDIR}/${PN}-4.10.1"-{libperl,libiptc,noowniptc}.patch
+	"${FILESDIR}/${P}"-libocci.patch )
 
 # @FUNCTION: collectd_plugin_kernel_linux
 # @DESCRIPTION:
@@ -294,4 +296,12 @@ pkg_postinst() {
 	collectd_rdeps memcached ">=net-misc/memcached-1.2.2-r2"
 	collectd_rdeps ntpd net-misc/ntp
 	collectd_rdeps openvpn ">=net-misc/openvpn-2.0.9"
+
+	if use collectd_plugins_email; then
+		ewarn "The email plug-in is deprecated. To submit statistics please use the unixsock plugin."
+	fi
+	if use contrib; then
+		elog "The scripts in /usr/share/doc/${PF}/collection3 for generating graphs need dev-perl/HTML-Parser,"
+		elog "dev-perl/config-general, dev-perl/regexp-common, and net-analyzer/rrdtool[perl] to be installed."
+	fi
 }
