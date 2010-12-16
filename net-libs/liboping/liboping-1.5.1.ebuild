@@ -4,28 +4,26 @@
 
 EAPI=3
 
-DESCRIPTION="A C library to generate ICMP echo requests and ncurses based utility to ping multiple hosts at once"
+DESCRIPTION="C library and ncurses based program to generate ICMP echo requests and ping multiple hosts at once"
 HOMEPAGE="http://verplant.org/liboping"
-SRC_URI="${HOMEPAGE}/files/${P}.tar.bz2"
+SRC_URI="http://verplant.org/${PN}/files/${P}.tar.bz2"
 
-LICENSE="GPL-3"
+LICENSE="LGPL-2.1 GPL-2"
 SLOT="0"
-KEYWORDS="~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="perl"
 
-DEPEND="perl? ( dev-lang/perl sys-devel/libperl  )"
-RDEPEND="${DEPEND} sys-libs/ncurses"
+DEPEND="
+	sys-libs/ncurses
+	perl? ( dev-lang/perl sys-devel/libperl  )
+"
+RDEPEND=${DEPEND}
 
 src_configure() {
-	if use !perl ; then
-		 myconf="${myconf} --without-perl-bindings"	
-	fi
-
-	econf ${myconf} --prefix=/usr --disable-static || die "Configure failed!"
+	econf $(use_with perl perl-bindings) --disable-static
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die "Install failed!"
+	make DESTDIR="${D}" install || die
 	find "${D}" -name '*.la'  -delete
 }
-
