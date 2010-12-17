@@ -4,9 +4,9 @@
 
 EAPI="2"
 
-inherit kde4-base
+inherit waf-utils
 
-DESCRIPTION="Semantik - a mindmapping-like tool for document generation."
+DESCRIPTION="Mindmapping-like tool for document generation."
 HOMEPAGE="http://freehackers.org/~tnagy/semantik.html"
 SRC_URI="http://freehackers.org/~tnagy/${P}.tar.bz2"
 
@@ -25,20 +25,3 @@ RDEPEND="
 	x11-libs/qt-xmlpatterns
 	dev-lang/python[xml]
 "
-S=${WORKDIR}/${P}
-
-src_prepare () {
-	epatch ${FILESDIR}/${P}-wscript_ldconfig.patch
-}
-
-src_configure() {
-	./waf configure --prefix=/usr/ || die
-}
-
-src_compile() {
-	./waf || die
-}
-
-src_install() {
-	DESTDIR=${D} ./waf install
-}
