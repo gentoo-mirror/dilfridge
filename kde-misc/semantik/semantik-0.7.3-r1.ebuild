@@ -25,3 +25,11 @@ RDEPEND="
 	x11-libs/qt-xmlpatterns
 	dev-lang/python[xml]
 "
+
+PATCHES=( "${FILESDIR}/${P}"-wscript_ldconfig.patch )
+
+src_configure() {
+	CCFLAGS="${CFLAGS}" LINKFLAGS="${LDFLAGS}" "${S}"/waf \
+		--prefix=/usr \
+		configure || die "configure failed"
+}
