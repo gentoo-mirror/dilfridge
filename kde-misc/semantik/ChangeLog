@@ -1,0 +1,11 @@
+# ChangeLog for kde-misc/semantik
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*semantik-0.7.3 (17 Dec 2010)
+
+  17 Dec 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +semantik-0.7.3.ebuild, +files/semantik-0.7.3-wscript_ldconfig.patch,
+  +metadata.xml:
+  Added files from bug 185523
+
