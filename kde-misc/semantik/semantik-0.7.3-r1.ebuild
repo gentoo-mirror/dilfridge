@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-inherit waf-utils
+inherit kde4-base waf-utils
 
 DESCRIPTION="Mindmapping-like tool for document generation."
 HOMEPAGE="http://freehackers.org/~tnagy/semantik.html"
