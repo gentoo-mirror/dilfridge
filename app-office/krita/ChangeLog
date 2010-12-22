@@ -2,6 +2,17 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*krita-2.2.2-r1 (22 Dec 2010)
+*krita-2.1.2 (22 Dec 2010)
+
+  22 Dec 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  +files/krita-2.1.0-opengl.patch, +files/krita-2.1.1-libpng14.patch,
+  +krita-2.1.2.ebuild, +files/krita-2.1.2-gcc45.patch,
+  +krita-2.2.2-r1.ebuild, +files/krita-2.2.2-exiv2.patch,
+  +files/krita-2.2.2-xlibs.patch, metadata.xml:
+  Resync with tree; added krita-2.2.2-r1 with an upstream build fix for
+  exiv2 api breakage
+
 *krita-2.2.91 (04 Dec 2010)
 
   04 Dec 2010; Andreas K. Huettel <dilfridge@gentoo.org>
