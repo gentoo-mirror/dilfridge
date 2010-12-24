@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Dec 2010; Andreas K. Huettel <dilfridge@gentoo.org>
+  kcollectd-0.9.ebuild:
+  Added rebuild of fdo mime / desktop database
+
   14 Dec 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   kcollectd-0.9.ebuild:
   Removed DTD magic as it is in the eclass now; fixed linguas workaround
