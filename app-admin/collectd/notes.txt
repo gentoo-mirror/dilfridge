@@ -3,10 +3,6 @@
  545     Required for the “netapp” plugin.
  546     This library is part of the “Manage ONTAP SDK” published by NetApp.
 
- 560   * liboping (optional)
- 561     Used by the `ping' plugin to send and receive ICMP packets.
- 562     <http://verplant.org/liboping/>
-
  586   * librouteros (optional)
  587     Used by the `routeros' plugin to connect to a device running `RouterOS'.
  588     <http://verplant.org/librouteros/>
@@ -18,13 +14,8 @@
  625   * libxmms (optional)
  626     <http://www.xmms.org/>
 
- 628   * libyajl (optional)
- 629     Parse JSON data. This is needed for the `curl_json' plugin.
- 630     <http://github.com/lloyd/yajl>
-
 
 		<flag name='collectd_plugins_apple_sensors'>Build the apple_sensors input plugin (temperature, fanspeed and voltage)</flag>
-		<flag name='collectd_plugins_ipmi'>Build the ipmi input plugin</flag> 
 		<flag name='collectd_plugins_ipvs'>Build the ipvs input plugin</flag> 
 		<flag name='collectd_plugins_modbus'>Build the modbus input plugin</flag> 
 		<flag name='collectd_plugins_netlink'>Build the netlink input plugin</flag> 
@@ -42,9 +33,3 @@
 
 	collectd_plugin_kernel_linux ipmi IPMI_HANDLER warn
 	collectd_plugin_kernel_linux ipvs IP_VS warn
-
-
-"Sane minimum":
-USE_EXPAND="${USE_EXPAND} COLLECTD_PLUGINS"
-COLLECTD_PLUGINS="df interface irq load memory rrdtool swap syslog"
-
