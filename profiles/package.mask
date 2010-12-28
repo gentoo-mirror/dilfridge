@@ -3,3 +3,5 @@
 # a failed attempt at updating, resulting in even more breakage
 =dev-texlive/texlive-context-2009b
 
+# does not work yet, I should really learn more about clapack vs lapack, cblas vs blas, c vs fortran
+=sci-libs/clapack-3.2.1-r4
