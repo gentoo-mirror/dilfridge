@@ -17,20 +17,21 @@ KEYWORDS="~amd64 ~x86"
 
 IUSE=""
 
-RDEPEND=">=x11-libs/gtk+-2.8
-	>=dev-cpp/gtkmm-2.4
-	>=media-video/mjpegtools-1.8.0
+RDEPEND="
+	app-i18n/enca
+	app-cdr/dvd+rw-tools
+	dev-cpp/gtkmm:2.4
+	dev-cpp/libxmlpp:2.6
 	media-libs/libdvdread
+	media-sound/twolame
 	media-video/dvdauthor
 	media-video/ffmpeg
-	app-cdr/dvd+rw-tools
-	media-sound/twolame
-	dev-cpp/libxmlpp:2.6"
+	>=media-video/mjpegtools-1.8.0
+	>=x11-libs/gtk+-2.8
+"
 
 DEPEND=">=dev-util/scons-0.96.1
 	${RDEPEND}"
-
-PATCHES=( "${FILESDIR}/${P}-boost.patch" )
 
 src_compile() {
 	# scons options differ from make options -> remove everything except "-jX" and "-j X"
