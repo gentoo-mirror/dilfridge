@@ -1,6 +1,12 @@
 # ChangeLog for app-office/karbon
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*karbon-2.3.0 (08 Jan 2011)
+
+  08 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  +karbon-2.3.0.ebuild:
+  Resync with kde overlay
 
 *karbon-2.2.91 (03 Dec 2010)
 
