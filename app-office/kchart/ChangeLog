@@ -1,0 +1,8 @@
+# ChangeLog for app-office/kchart
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  08 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  -kchart-9999.ebuild:
+  Remove the dead
+
