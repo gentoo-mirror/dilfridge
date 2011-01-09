@@ -4,21 +4,25 @@
 
 EAPI=3
 
-KDE_LINGUAS="be ca ca@valencia de el en_GB eo es et eu fi fr he hi hne hu is it km
-ko lt lv nds nn pa pl pt pt_BR ro se sl sv th tr vi zh_CN zh_TW"
-KMNAME="extragear/graphics"
+if [ "${PV}" != "9999" ]; then
+	KDE_LINGUAS="be ca ca@valencia de el en_GB eo es et eu fi fr he hi hne hu is it km
+		ko lt lv nds nn pa pl pt pt_BR ro se sl sv th tr vi zh_CN zh_TW"
+else
+	KMNAME="extragear/graphics"
+fi
 
 CMAKE_MIN_VERSION=2.8
 
 # needed for sufficiently new libkdcraw
 KDE_MINIMAL="4.5"
-inherit versionator kde4-base
+
+inherit kde4-base
 
 MY_P="${PN}-${PV/_/-}"
 
 DESCRIPTION="A digital photo management application for KDE."
 HOMEPAGE="http://www.digikam.org/"
-SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2
+[[ ${PV} != *9999* ]] && SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2
 	handbook? ( mirror://gentoo/${PN}-doc-1.4.0.tar.bz2 )"
 
 LICENSE="GPL-2
@@ -66,7 +70,7 @@ DEPEND="${CDEPEND}
 
 S="${WORKDIR}/${MY_P}"
 
-PATCHES=( "${FILESDIR}/${P}"-docs.patch )
+PATCHES=( "${FILESDIR}/${PN}"-1.7.0-docs.patch )
 
 src_prepare() {
 	if use handbook; then
