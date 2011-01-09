@@ -1,6 +1,12 @@
 # ChangeLog for app-office/krita
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*krita-2.3.0 (09 Jan 2011)
+
+  09 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  +krita-2.3.0.ebuild:
+  Resync with kde overlay
 
   23 Dec 2010; Andreas K. Huettel <dilfridge@gentoo.org>
   files/krita-2.2.2-exiv2.patch:
