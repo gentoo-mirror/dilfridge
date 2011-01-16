@@ -1,6 +1,9 @@
 # ChangeLog for profile directory
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  16 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org> package.mask:
+  Masked the digikam 2.0.0 beta, needs more work
 
   03 Oct 2010; Andreas K. Huettel <dilfridge@gentoo.org> +package.mask:
   pmasked the update attempt for context-2009
