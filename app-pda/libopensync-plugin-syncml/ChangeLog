@@ -1,0 +1,10 @@
+# ChangeLog for app-pda/libopensync-plugin-syncml
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*libopensync-plugin-syncml-0.40_pre06175 (16 Jan 2011)
+
+  16 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  +libopensync-plugin-syncml-0.40_pre06175.ebuild:
+  Version bump
+
