@@ -3,6 +3,10 @@
 # $Header: $
 
   17 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  karbon-2.3.1.ebuild:
+  Port last-minute changes to 2.3.1
+
+  17 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   karbon-2.3.0.ebuild:
   Resync with main tree
 

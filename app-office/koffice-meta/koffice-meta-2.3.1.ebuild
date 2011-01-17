@@ -1,10 +1,10 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/app-office/koffice-meta/koffice-meta-2.3.0.ebuild,v 1.1 2011/01/14 20:38:15 dilfridge Exp $
 
-EAPI=2
+EAPI=3
 
-DESCRIPTION="KOffice - merge this to pull in all KOffice-derived packages."
+DESCRIPTION="KOffice - merge this to pull in all KOffice-derived packages"
 HOMEPAGE="http://www.koffice.org/"
 LICENSE="GPL-2"
 
@@ -16,7 +16,7 @@ RDEPEND="
 	>=app-office/karbon-${PV}:${SLOT}
 	>=app-office/kexi-${PV}:${SLOT}
 	>=app-office/koffice-data-${PV}:${SLOT}
-	>=app-office/koffice-libs-${PV}:${SLOT}
+	>=app-office/koffice-libs-${PV}:${SLOT}[reports?]
 	>=app-office/kpresenter-${PV}:${SLOT}
 	>=app-office/krita-${PV}:${SLOT}
 	>=app-office/kspread-${PV}:${SLOT}
