@@ -19,8 +19,10 @@ DEPEND="
 	>=dev-cpp/eigen-2.0.3:2
 	>=media-libs/qimageblitz-0.0.4
 	>=media-gfx/exiv2-0.16
+	sci-libs/fftw:3.0
+	sys-devel/gcc[openmp]
 	gmm? ( sci-mathematics/gmm )
-	kdcraw? ( >=kde-base/libkdcraw-${KDE_MINIMAL} )
+	kdcraw? ( $(add_kdebase_dep libkdcraw) )
 	opengl? ( media-libs/glew )
 	pdf? ( >=app-text/poppler-0.12.3-r3[qt4] )
 "
@@ -37,6 +39,7 @@ src_configure() {
 	mycmakeargs=(
 		-DWITH_Eigen2=ON
 		-DWITH_Exiv2=ON
+		-DWITH_FFTW3=ON
 		-DWITH_JPEG=ON
 		$(cmake-utils_use_with openexr OpenEXR)
 		$(cmake-utils_use_with gmm)
