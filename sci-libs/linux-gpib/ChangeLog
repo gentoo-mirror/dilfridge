@@ -3,6 +3,12 @@
 # $Header: $
 
   24 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  linux-gpib-3.2.15.ebuild, +files/linux-gpib-3.2.15-build.patch,
+  -files/linux-gpib-3.2.15-drivers-make.am.patch,
+  -files/linux-gpib-3.2.15-language-python-makefile.am.patch, +notes.txt:
+  Builds now
+
+  24 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   -linux-gpib-3.2.11.ebuild, -files/linux-gpib-3.2.11-drivers-make.am.patch,
   -files/linux-gpib-3.2.11-drivers-make.in.patch,
   -files/linux-gpib-3.2.11-language-python-makefile.am.patch,

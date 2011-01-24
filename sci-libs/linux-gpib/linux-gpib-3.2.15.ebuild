@@ -4,7 +4,7 @@
 
 EAPI=3
 
-inherit eutils linux-mod autotools
+inherit base linux-mod autotools
 
 DESCRIPTION="Kernel module and driver library for GPIB (IEEE 488.2) hardware"
 HOMEPAGE="http://linux-gpib.sourceforge.net/"
@@ -30,6 +30,8 @@ DEPEND="${RDEPEND}
 	doc? ( app-text/docbook-sgml-utils )
 "
 
+PATCHES=( "${FILESDIR}/${P}-build.patch" )
+
 pkg_setup () {
 	linux-mod_pkg_setup
 
@@ -40,21 +42,16 @@ pkg_setup () {
 	esac
 
 	if [ ${KV_PATCH} -lt 8 ] ; then
-		die "Kernels older than 2.6.8 are not supported."
+		die "Kernel versions older than 2.6.8 are not supported."
 	fi
 }
 
 src_prepare () {
-	# Needed to prevent sandbox violations
-	epatch "${FILESDIR}/${P}-drivers-make.am.patch"
-
-	# Needed to install Gpib.py inside the sandbox
-	epatch "${FILESDIR}/${P}-language-python-makefile.am.patch"
-
+	base_src_prepare
 	eautoreconf
 }
 
-src_configure () {
+src_configure() {
 	set_arch_to_kernel
 	econf \
 		$(use_enable pcmcia) \
@@ -67,8 +64,13 @@ src_configure () {
 		$(use_enable tcl tcl-binding) \
 		$(use_enable doc documentation) \
 		--with-linux-srcdir=${KV_DIR} \
-		|| die "configure failed"
+		|| die
 }
+
+src_compile() {
+	emake || die
+}
+
 
 src_install () {
 
@@ -125,30 +127,27 @@ pkg_preinst () {
 }
 
 pkg_postinst () {
+	linux-mod_pkg_postinst
 
-	/sbin/depmod -ae
-	make -C "${S}"/drivers device-file-check-emerge
-	module-rebuild add ${CATEGORY}/${PF}
+	# WHAT IS THIS?!?!?!?
+	# make -C "${S}"/drivers device-file-check-emerge
 
 	einfo "You need to run the 'gpib_config' utility to setup the driver before"
 	einfo "you can use it. In order to do it automatically you can add to your"
 	einfo "start script something like this (supposing the appropriate driver"
 	einfo "is loaded on the startup):"
 	einfo "		gpib_config --minor 0"
-	echo
 	einfo ""
 	einfo "To give a user access to the computer's gpib board you will have to add"
 	einfo "them to the group 'gpib' or, you could change the permissions on the device"
 	einfo "files /dev/gpib[0-15] to something you like better, using 'chmod'."
-	echo
 	einfo ""
 	einfo "Edit /etc/gpib.conf to match your interface board, and any devices you wish"
 	einfo "to open via ibfind().  See the documentation in /usr/share/linux-gpib/html for"
 	einfo "more information."
+	einfo ""
 
 	if use pcmcia ; then
-		echo
-		einfo ""
 		einfo "For PCMCIA cards:"
 		einfo "All files needed for a PCMCIA board were copied to /etc/pcmcia."
 		einfo "You may wish to edit the options passed to the gpib_config call in the"
@@ -161,8 +160,6 @@ pkg_postinst () {
 	fi
 
 	if use firmware ; then
-		echo
-		einfo ""
 		einfo "For Agilent (HP) 82341C and 82341D cards:"
 		einfo "The firmware for these boards is uploaded by passing the appropriate"
 		einfo "firmware file from /usr/share/linux-gpib/hp_82341 directory to"
@@ -172,9 +169,4 @@ pkg_postinst () {
 		einfo ""
 	fi
 
-}
-
-pkg_postrm() {
-	/sbin/depmod -ae
-	module-rebuild del ${CATEGORY}/${PF}
 }
