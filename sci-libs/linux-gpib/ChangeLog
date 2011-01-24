@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*linux-gpib-3.2.15 (24 Jan 2011)
+
+  24 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  +linux-gpib-3.2.15.ebuild, +files/linux-gpib-3.2.15-drivers-make.am.patch,
+  +files/linux-gpib-3.2.15-language-python-makefile.am.patch:
+  Blind version bump
+
   24 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   linux-gpib-3.2.11.ebuild:
   Cleanup
