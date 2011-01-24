@@ -1,35 +1,35 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 inherit eutils linux-mod
 
-DESCRIPTION="The Linux GPIB Package is a support package for GPIB (IEEE 488.2) hardware."
+DESCRIPTION="Kernel module and driver library for GPIB (IEEE 488.2) hardware"
 HOMEPAGE="http://linux-gpib.sourceforge.net/"
 SRC_URI="mirror://sourceforge/linux-gpib/${P}.tar.gz
-   firmware? ( http://linux-gpib.sourceforge.net/firmware/gpib_firmware-2006-11-12.tar.gz )"
+	firmware? ( http://linux-gpib.sourceforge.net/firmware/gpib_firmware-2006-11-12.tar.gz )"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="pcmcia static debug guile perl php python tcl doc firmware"
-RESTRICT="nomirror"
 
-RDEPEND="tcl? ( dev-lang/tcl )
- 		 guile? ( dev-scheme/guile )
-		 perl? ( dev-lang/perl )
-		 php? ( dev-lang/php )
-		 python? ( dev-lang/python )
-		 firmware? ( sys-apps/fxload )"
+RDEPEND="
+	tcl? ( dev-lang/tcl )
+	guile? ( dev-scheme/guile )
+	perl? ( dev-lang/perl )
+	php? ( dev-lang/php )
+	python? ( dev-lang/python )
+	firmware? ( sys-apps/fxload )
+"
 
 DEPEND="${RDEPEND}
-		sys-kernel/module-rebuild
-		doc? ( app-text/docbook-sgml-utils )"
-
-get_version
-#check_KV
+	sys-kernel/module-rebuild
+	doc? ( app-text/docbook-sgml-utils )
+"
 
 pkg_setup () {
+	linux-mod_pkg_setup
 
 	case ${KV_MINOR} in
 		4) die "This version of Linux-GPIB requires a version 2.6.x of the Linux kernel. 2.4.x kernels are supported by Linux-GPIB versions 3.1.x." ;;
@@ -40,12 +40,9 @@ pkg_setup () {
 	if [ ${KV_PATCH} -lt 8 ] ; then
 		die "Kernels older than 2.6.8 are not supported."
 	fi
-
-
 }
 
 src_unpack () {
-
 	unpack ${A}
 	cd "${S}"
 
@@ -53,16 +50,13 @@ src_unpack () {
 	epatch "${FILESDIR}/${P}-drivers-make.am.patch"
 	epatch "${FILESDIR}/${P}-drivers-make.in.patch"
 
-        #These two patches are needed to install Gpib.py inside the sandbox
-        epatch "${FILESDIR}/${P}-language-python-makefile.am.patch"
-        epatch "${FILESDIR}/${P}-language-python-makefile.in.patch"
-
+	# These two patches are needed to install Gpib.py inside the sandbox
+	epatch "${FILESDIR}/${P}-language-python-makefile.am.patch"
+	epatch "${FILESDIR}/${P}-language-python-makefile.in.patch"
 }
 
 src_compile () {
-
 	set_arch_to_kernel
-
 	econf \
 		$(use_enable pcmcia) \
 		$(use_enable static) \
@@ -76,7 +70,6 @@ src_compile () {
 		--with-linux-srcdir=${KV_DIR} \
 		|| die "configure failed"
 	emake || die "compile problem"
-
 }
 
 src_install () {
@@ -109,25 +102,24 @@ src_install () {
 	if use pcmcia ; then
 		dodir /etc/pcmcia
 		insinto /etc/pcmcia
-		doins ${S}/etc/pcmcia/*
+		doins "${S}"/etc/pcmcia/*
 	fi
 
 	if use firmware ; then
 
 		dodir "${FIRM_DIR}/agilent_8237a"
 		insinto "${FIRM_DIR}/agilent_8237a"
-		doins ${WORKDIR}/gpib_firmware-2006-11-12/agilent_8237a/*
+		doins "${WORKDIR}"/gpib_firmware-2006-11-12/agilent_8237a/*
 
 		dodir "${FIRM_DIR}/ni_gpib_usb_b"
 		insinto "${FIRM_DIR}/ni_gpib_usb_b"
-		doins ${WORKDIR}/gpib_firmware-2006-11-12/ni_gpib_usb_b/*
+		doins "${WORKDIR}"/gpib_firmware-2006-11-12/ni_gpib_usb_b/*
 
 		dodir "/usr/share/linux-gpib/hp_82341"
 		insinto "/usr/share/linux-gpib/hp_82341"
-		doins ${WORKDIR}/gpib_firmware-2006-11-12/hp_82341/*
+		doins "${WORKDIR}"/gpib_firmware-2006-11-12/hp_82341/*
 
 	fi
-
 }
 
 pkg_preinst () {
@@ -137,32 +129,24 @@ pkg_preinst () {
 pkg_postinst () {
 
 	/sbin/depmod -ae
-	make -C ${S}/drivers device-file-check-emerge
+	make -C "${S}"/drivers device-file-check-emerge
 	module-rebuild add ${CATEGORY}/${PF}
 
-	einfo "You can load the driver module by typing"
-	einfo "	modprobe <driver name>"
-	einfo "See the documentation in /usr/share/linux-gpib/html to see"
-	einfo "which driver your board is supported by."
-	einfo ""
 	einfo "You need to run the 'gpib_config' utility to setup the driver before"
 	einfo "you can use it. In order to do it automatically you can add to your"
 	einfo "start script something like this (supposing the appropriate driver"
 	einfo "is loaded on the startup):"
 	einfo "		gpib_config --minor 0"
-	einfo ""
 	echo
 	einfo ""
 	einfo "To give a user access to the computer's gpib board you will have to add"
 	einfo "them to the group 'gpib' or, you could change the permissions on the device"
 	einfo "files /dev/gpib[0-15] to something you like better, using 'chmod'."
-	einfo ""
 	echo
 	einfo ""
 	einfo "Edit /etc/gpib.conf to match your interface board, and any devices you wish"
 	einfo "to open via ibfind().  See the documentation in /usr/share/linux-gpib/html for"
 	einfo "more information."
-	einfo ""
 
 	if use pcmcia ; then
 		echo

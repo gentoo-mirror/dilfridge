@@ -1,0 +1,8 @@
+# ChangeLog for sci-libs/linux-gpib
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  24 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  linux-gpib-3.2.11.ebuild:
+  Cleanup
+
