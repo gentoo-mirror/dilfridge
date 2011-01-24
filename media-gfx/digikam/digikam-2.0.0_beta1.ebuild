@@ -5,8 +5,9 @@
 EAPI=3
 
 if [ "${PV}" != "9999" ]; then
-	KDE_LINGUAS="be ca ca@valencia de el en_GB eo es et eu fi fr he hi hne hu is it km
-		ko lt lv nds nn pa pl pt pt_BR ro se sl sv th tr vi zh_CN zh_TW"
+	KDE_LINGUAS=""
+#	KDE_LINGUAS="be ca ca@valencia de el en_GB eo es et eu fi fr he hi hne hu is it km
+#		ko lt lv nds nn pa pl pt pt_BR ro se sl sv th tr vi zh_CN zh_TW"
 else
 	KMNAME="extragear/graphics"
 fi
@@ -68,18 +69,15 @@ DEPEND="${CDEPEND}
 	doc? ( app-doc/doxygen )
 "
 
-S="${WORKDIR}/${MY_P}"
+S="${WORKDIR}/${MY_P}/core"
 
-PATCHES=( "${FILESDIR}/${PN}"-1.7.0-docs.patch )
+PATCHES=( "${FILESDIR}/${PN}"-2.0.0_beta1-docs.patch )
 
 src_prepare() {
 	if use handbook; then
 		mv "${WORKDIR}/${PN}"-1.4.0/* "${S}/" || die
-	else
-		mkdir doc || die
-		echo > doc/CMakeLists.txt || die
+		echo "add_subdirectory( doc )" >> CMakeLists.txt || die
 	fi
-
 	kde4-base_src_prepare
 }
 
