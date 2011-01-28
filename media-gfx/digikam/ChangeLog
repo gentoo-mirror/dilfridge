@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-1.8.0.ebuild, +files/digikam-1.8.0-tests.patch:
+  Fix building of the tests
+
 *digikam-1.8.0 (28 Jan 2011)
 
   28 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>

@@ -64,7 +64,8 @@ DEPEND="${CDEPEND}
 
 S="${WORKDIR}/${MY_P}"
 
-PATCHES=( "${FILESDIR}/${PN}"-1.7.0-docs.patch )
+PATCHES=( "${FILESDIR}/${PN}"-1.7.0-docs.patch
+	"${FILESDIR}/${P}"-tests.patch )
 
 src_prepare() {
 	if use handbook; then
