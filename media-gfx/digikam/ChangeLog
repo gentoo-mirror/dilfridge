@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-1.6.0.ebuild, digikam-1.7.0.ebuild:
+  Resync with tree
+
   24 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   digikam-2.0.0_beta1.ebuild, +files/digikam-2.0.0_beta1-docs.patch:
   Updated docs patch
