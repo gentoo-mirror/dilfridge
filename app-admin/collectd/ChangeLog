@@ -4,6 +4,10 @@
 
   28 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   collectd-4.10.2-r2.ebuild:
+  Added hints about new configuration
+
+  28 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.2-r2.ebuild:
   Resync with treee
 
   25 Dec 2010; Andreas K. Huettel <dilfridge@gentoo.org>

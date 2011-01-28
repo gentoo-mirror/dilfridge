@@ -283,6 +283,9 @@ src_install() {
 
 	insinto /etc/logrotate.d
 	newins "${FILESDIR}/logrotate" collectd || die
+
+	sed -i -e 's:^.*LoadPlugin perl$:# The new, correct way to load the perl plugin -- \n# <LoadPlugin perl>\n#   Globals true\n# </LoadPlugin>:' "${D}"/etc/collectd.conf || die
+	sed -i -e 's:^.*LoadPlugin python$:# The new, correct way to load the python plugin -- \n# <LoadPlugin python>\n#   Globals true\n# </LoadPlugin>:' "${D}"/etc/collectd.conf || die
 }
 
 collectd_rdeps() {
