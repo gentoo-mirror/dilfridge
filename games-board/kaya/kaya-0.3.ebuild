@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/games-board/kaya/kaya-0.3.ebuild,v 1.1 2010/12/18 00:32:19 dilfridge Exp $
 
 EAPI="2"
 USE_RUBY="ruby18"
