@@ -123,6 +123,7 @@ src_install () {
 }
 
 pkg_preinst () {
+	linux-mod_pkg_preinst
 	enewgroup gpib
 }
 
