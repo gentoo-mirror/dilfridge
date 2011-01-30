@@ -30,7 +30,7 @@ SLOT="4"
 IUSE="doc semantic-desktop"
 
 CDEPEND="
-	media-libs/opencv
+	>=media-libs/opencv-2.1
 	media-libs/libface
 	x11-libs/qt-gui[qt3support]
 	|| ( x11-libs/qt-sql[mysql] x11-libs/qt-sql[sqlite] )
@@ -43,6 +43,8 @@ DEPEND="${CDEPEND}
 
 S="${WORKDIR}/${MY_P}/extra/${PN}"
 
+PATCHES=( "${FILESDIR}/${P}"-linktest.patch )
+
 src_configure() {
 	local backend
 
@@ -53,14 +55,7 @@ src_configure() {
 		-DWITH_LQR=ON
 		-DWITH_LENSFUN=ON
 		-DGWENVIEW_SEMANTICINFO_BACKEND=${backend}
-		$(cmake-utils_use_with addressbook KdepimLibs)
 		$(cmake-utils_use_build doc)
-		$(cmake-utils_use_with geolocation MarbleWidget)
-		$(cmake-utils_use_enable gphoto2 GPHOTO2)
-		$(cmake-utils_use_with gphoto2)
-		$(cmake-utils_use_with semantic-desktop Soprano)
-		$(cmake-utils_use_enable themedesigner)
-		$(cmake-utils_use_enable thumbnails THUMBS_DB)
 	)
 
 	kde4-base_src_configure
