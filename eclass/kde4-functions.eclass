@@ -36,6 +36,15 @@ elif [[ ${KMNAME-${PN}} = kdevelop ]]; then
 	KDEBASE=kdevelop
 fi
 
+# @ECLASS-VARIABLE: KDE_OVERRIDE_MINIMAL
+# @DESCRIPTION:
+# For use only in very few well-defined cases; normally it should be unset.
+# If this variable is set, all calls to add_kdebase_dep return a dependency on
+# at least this version, independent of the version of the package itself.
+# If you know exactly that one specific NEW KDE component builds and runs fine
+# with all the rest of KDE at an OLDER version, you can set this old version here.
+# Warning- may kill your pet targh.
+
 # @ECLASS-VARIABLE: KDE_SCM
 # @DESCRIPTION:
 # If this is a live package which scm does it use
@@ -371,7 +380,11 @@ add_kdebase_dep() {
 	if [[ -n ${3} ]]; then
 		ver=${3}
 	elif [[ ${KDEBASE} != kde-base ]]; then
-		ver=${KDE_MINIMAL}
+		if [[ -n ${KDE_OVERRIDE_MINIMAL} ]]; then
+			ver=${KDE_MINIMAL}
+		else
+			ver=${KDE_OVERRIDE_MINIMAL}
+		fi
 	# FIXME remove hack when kdepim-4.4.* is gone
 	elif [[ ( ${KMNAME} == kdepim || ${PN} == kdepim-runtime ) && ${PV} == 4.4.[6-8] && ${1} =~ ^kde(pim)?libs$ ]]; then
 		ver=4.4.5
