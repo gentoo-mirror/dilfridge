@@ -1,0 +1,10 @@
+# ChangeLog for kde-base/libkmap
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*libkmap-4.6.25 (30 Jan 2011)
+
+  30 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  +libkmap-4.6.25.ebuild:
+  First rough version
+
