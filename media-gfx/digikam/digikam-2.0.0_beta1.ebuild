@@ -76,9 +76,11 @@ PATCHES=( "${FILESDIR}/${PN}"-2.0.0_beta1-docs.patch )
 src_prepare() {
 	if use handbook; then
 		mv "${WORKDIR}/${PN}"-1.4.0/* "${S}/" || die
-		echo "add_subdirectory( doc )" >> CMakeLists.txt || die
 	fi
 	kde4-base_src_prepare
+	if use handbook; then
+		echo "add_subdirectory( doc )" >> CMakeLists.txt || die
+	fi
 }
 
 src_configure() {

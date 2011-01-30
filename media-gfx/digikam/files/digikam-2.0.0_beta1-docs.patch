@@ -1,6 +1,6 @@
-diff -ruN core.orig/CMakeLists.txt core/CMakeLists.txt
---- core.orig/CMakeLists.txt	2011-01-03 15:05:12.000000000 +0100
-+++ core/CMakeLists.txt	2011-01-10 21:46:11.000000000 +0100
+diff -ruN digikam-2.0.0-beta1.orig/core/CMakeLists.txt digikam-2.0.0-beta1/core/CMakeLists.txt
+--- digikam-2.0.0-beta1.orig/core/CMakeLists.txt	2011-01-03 15:05:12.000000000 +0100
++++ digikam-2.0.0-beta1/core/CMakeLists.txt	2011-01-30 17:39:44.000000000 +0100
 @@ -1488,8 +1488,15 @@
  # ==================================================================================================
  # API documentation generation
