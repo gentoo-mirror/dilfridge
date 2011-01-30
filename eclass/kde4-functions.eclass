@@ -381,9 +381,9 @@ add_kdebase_dep() {
 		ver=${3}
 	elif [[ ${KDEBASE} != kde-base ]]; then
 		if [[ -n ${KDE_OVERRIDE_MINIMAL} ]]; then
-			ver=${KDE_MINIMAL}
-		else
 			ver=${KDE_OVERRIDE_MINIMAL}
+		else
+			ver=${KDE_MINIMAL}
 		fi
 	# FIXME remove hack when kdepim-4.4.* is gone
 	elif [[ ( ${KMNAME} == kdepim || ${PN} == kdepim-runtime ) && ${PV} == 4.4.[6-8] && ${1} =~ ^kde(pim)?libs$ ]]; then
@@ -396,7 +396,11 @@ add_kdebase_dep() {
 	elif [[ ${PV} == *.9999 ]]; then
 		ver=${SLOT}
 	else
-		ver=${PV}
+		if [[ -n ${KDE_OVERRIDE_MINIMAL} ]]; then
+			ver=${KDE_OVERRIDE_MINIMAL}
+		else
+			ver=${PV}
+		fi
 	fi
 
 	[[ -z ${1} ]] && die "Missing parameter"
