@@ -31,7 +31,7 @@ IUSE="doc semantic-desktop"
 
 CDEPEND="
 	media-libs/opencv
-	media-gfx/libface
+	media-libs/libface
 	x11-libs/qt-gui[qt3support]
 	|| ( x11-libs/qt-sql[mysql] x11-libs/qt-sql[sqlite] )
 "
