@@ -21,6 +21,15 @@ case ${EAPI:-0} in
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 
+# @ECLASS-VARIABLE: KDE_OVERRIDE_MINIMAL
+# @DESCRIPTION:
+# For use only in very few well-defined cases; normally it should be unset.
+# If this variable is set, all calls to add_kdebase_dep return a dependency on
+# at least this version, independent of the version of the package itself.
+# If you know exactly that one specific NEW KDE component builds and runs fine
+# with all the rest of KDE at an OLDER version, you can set this old version here.
+# Warning- may lead to general instability and kill your pet targh.
+
 # @ECLASS-VARIABLE: KDEBASE
 # @DESCRIPTION:
 # This gets set to a non-zero value when a package is considered a kde or
@@ -35,15 +44,6 @@ elif [[ ${KMNAME-${PN}} = kdevelop ]]; then
 	debug-print "${ECLASS}: KDEVELOP ebuild recognized"
 	KDEBASE=kdevelop
 fi
-
-# @ECLASS-VARIABLE: KDE_OVERRIDE_MINIMAL
-# @DESCRIPTION:
-# For use only in very few well-defined cases; normally it should be unset.
-# If this variable is set, all calls to add_kdebase_dep return a dependency on
-# at least this version, independent of the version of the package itself.
-# If you know exactly that one specific NEW KDE component builds and runs fine
-# with all the rest of KDE at an OLDER version, you can set this old version here.
-# Warning- may kill your pet targh.
 
 # @ECLASS-VARIABLE: KDE_SCM
 # @DESCRIPTION:
@@ -379,12 +379,10 @@ add_kdebase_dep() {
 
 	if [[ -n ${3} ]]; then
 		ver=${3}
+	elif [[ -n ${KDE_MINIMAL_OVERRIDE} ]]; then
+		ver=${KDE_MINIMAL_OVERRIDE}
 	elif [[ ${KDEBASE} != kde-base ]]; then
-		if [[ -n ${KDE_OVERRIDE_MINIMAL} ]]; then
-			ver=${KDE_OVERRIDE_MINIMAL}
-		else
-			ver=${KDE_MINIMAL}
-		fi
+		ver=${KDE_MINIMAL}
 	# FIXME remove hack when kdepim-4.4.* is gone
 	elif [[ ( ${KMNAME} == kdepim || ${PN} == kdepim-runtime ) && ${PV} == 4.4.[6-8] && ${1} =~ ^kde(pim)?libs$ ]]; then
 		ver=4.4.5
@@ -396,11 +394,7 @@ add_kdebase_dep() {
 	elif [[ ${PV} == *.9999 ]]; then
 		ver=${SLOT}
 	else
-		if [[ -n ${KDE_OVERRIDE_MINIMAL} ]]; then
-			ver=${KDE_OVERRIDE_MINIMAL}
-		else
-			ver=${PV}
-		fi
+		ver=${PV}
 	fi
 
 	[[ -z ${1} ]] && die "Missing parameter"
