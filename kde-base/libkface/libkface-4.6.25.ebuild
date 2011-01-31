@@ -13,8 +13,7 @@ KDE_LINGUAS=""
 
 CMAKE_MIN_VERSION=2.8
 
-# needed for sufficiently new libkdcraw
-KDE_MINIMAL="4.5"
+KDE_OVERRIDE_MINIMAL="4.5.0"
 
 inherit kde4-base
 
