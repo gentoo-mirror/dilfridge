@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/linux-gpib/linux-gpib-3.2.15.ebuild,v 1.1 2011/01/31 22:29:39 dilfridge Exp $
 
 EAPI=3
 
@@ -71,7 +71,6 @@ src_compile() {
 	emake || die
 }
 
-
 src_install () {
 
 	FIRM_DIR=/usr/share/usb
@@ -129,9 +128,6 @@ pkg_preinst () {
 
 pkg_postinst () {
 	linux-mod_pkg_postinst
-
-	# WHAT IS THIS?!?!?!?
-	# make -C "${S}"/drivers device-file-check-emerge
 
 	einfo "You need to run the 'gpib_config' utility to setup the driver before"
 	einfo "you can use it. In order to do it automatically you can add to your"
