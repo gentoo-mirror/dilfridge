@@ -13,8 +13,7 @@ KDE_LINGUAS=""
 
 CMAKE_MIN_VERSION=2.8
 
-# needed for sufficiently new libkdcraw
-KDE_MINIMAL="4.5"
+KDE_OVERRIDE_MINIMAL="4.5.0"
 
 inherit kde4-base
 
@@ -31,7 +30,7 @@ IUSE="doc semantic-desktop"
 
 CDEPEND="
 	$(add_kdebase_dep libkexiv2)
-	$(add_kdebase_dep marble plasma)	
+	$(add_kdebase_dep marble plasma)
 	x11-libs/qt-gui[qt3support]
 	|| ( x11-libs/qt-sql[mysql] x11-libs/qt-sql[sqlite] )
 "
