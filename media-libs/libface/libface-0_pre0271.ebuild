@@ -4,16 +4,30 @@
 
 EAPI=3
 
-inherit cmake-utils subversion
+inherit cmake-utils
 
 DESCRIPTION="Face recognition library"
 HOMEPAGE="http://libface.sourceforge.net/"
-ESVN_REPO_URI="https://libface.svn.sourceforge.net/svnroot/libface/trunk@271"
+SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
 SLOT=0
-IUSE=""
+IUSE="doc examples"
 
 RDEPEND="media-libs/opencv"
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	doc? ( app-doc/doxygen )
+"
+
+S=${WORKDIR}/${PN}
+
+src_configure() {
+	mycmakeargs=(
+		-DBUILD_SHARED_LIBS=ON
+		$(cmake-utils_use_build doc DOCUMENTATION)
+		$(cmake-utils_use_build examples)
+		-DBUILD_EXAMPLES_GUI=OFF
+	)
+	cmake-utils_src_configure
+}
