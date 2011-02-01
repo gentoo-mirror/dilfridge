@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/kde-misc/kcollectd/kcollectd-0.9.ebuild,v 1.6 2011/01/29 21:15:46 dilfridge Exp $
 
-EAPI="2"
+EAPI=3
 
 KDE_LINGUAS="de"
 inherit fdo-mime kde4-base
