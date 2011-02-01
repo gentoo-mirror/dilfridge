@@ -2,6 +2,14 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  -libkmap-4.6.25.ebuild, libkmap-4.6.26.ebuild:
+  Cleanup
+
+  01 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  libkmap-4.6.26.ebuild:
+  Cleanup
+
   31 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   libkmap-4.6.26.ebuild:
   Seems to work
