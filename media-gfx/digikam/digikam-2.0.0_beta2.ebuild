@@ -39,7 +39,7 @@ CDEPEND="
 	>=kde-base/libkipi-${KDEGRAPHICS_MINIMAL}
 	>=kde-base/libkface-${KDEGRAPHICS_MINIMAL}
 	>=kde-base/libkmap-${KDEGRAPHICS_MINIMAL}
-	$(add_kdebase_dep libsolid)
+	$(add_kdebase_dep solid)
 	media-libs/jasper
 	virtual/jpeg
 	media-libs/lcms:0
