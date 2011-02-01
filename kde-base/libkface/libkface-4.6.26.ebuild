@@ -33,8 +33,6 @@ RDEPEND=${DEPEND}
 
 S=${WORKDIR}/${MY_P}/extra/${PN}
 
-PATCHES=( "${FILESDIR}/${PN}"-4.2.25-linktest.patch )
-
 src_configure() {
 	mycmakeargs=(
 		-DFORCED_UNBUNDLE=ON
