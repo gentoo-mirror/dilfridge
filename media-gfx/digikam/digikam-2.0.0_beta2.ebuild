@@ -5,16 +5,17 @@
 EAPI=3
 
 if [ "${PV}" != "9999" ]; then
-	KDE_LINGUAS="be ca ca@valencia de el en_GB eo es et eu fi fr he hi hne hu is it km
-		ko lt lv nds nn pa pl pt pt_BR ro se sl sv th tr vi zh_CN zh_TW"
+	KDE_LINGUAS=""
+#	KDE_LINGUAS="be ca ca@valencia de el en_GB eo es et eu fi fr he hi hne hu is it km
+#		ko lt lv nds nn pa pl pt pt_BR ro se sl sv th tr vi zh_CN zh_TW"
 else
 	KMNAME="extragear/graphics"
 fi
 
 CMAKE_MIN_VERSION=2.8
 
-# needed for sufficiently new libkdcraw
-KDE_MINIMAL="4.5"
+KDE_MINIMAL="4.6"
+KDEGRAPHICS_MINIMAL="4.6.26"
 
 inherit kde4-base
 
@@ -27,16 +28,18 @@ HOMEPAGE="http://www.digikam.org/"
 
 LICENSE="GPL-2
 	handbook? ( FDL-1.2 )"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 SLOT="4"
 IUSE="addressbook debug doc geolocation gphoto2 handbook semantic-desktop themedesigner +thumbnails video"
 
 CDEPEND="
-	>=kde-base/kdelibs-${KDE_MINIMAL}[semantic-desktop?]
-	>=kde-base/libkdcraw-${KDE_MINIMAL}
-	>=kde-base/libkexiv2-${KDE_MINIMAL}
-	>=kde-base/libkipi-${KDE_MINIMAL}
-	>=kde-base/solid-${KDE_MINIMAL}
+	$(add_kdebase_dep kdelibs semantic-desktop)
+	>=kde-base/libkdcraw-${KDEGRAPHICS_MINIMAL}
+	>=kde-base/libkexiv2-${KDEGRAPHICS_MINIMAL}
+	>=kde-base/libkipi-${KDEGRAPHICS_MINIMAL}
+	>=kde-base/libkface-${KDEGRAPHICS_MINIMAL}
+	>=kde-base/libkmap-${KDEGRAPHICS_MINIMAL}
+	$(add_kdebase_dep libsolid)
 	media-libs/jasper
 	virtual/jpeg
 	media-libs/lcms:0
@@ -68,19 +71,18 @@ DEPEND="${CDEPEND}
 	doc? ( app-doc/doxygen )
 "
 
-S="${WORKDIR}/${MY_P}"
+S="${WORKDIR}/${MY_P}/core"
 
-PATCHES=( "${FILESDIR}/${PN}"-1.7.0-docs.patch )
+PATCHES=( "${FILESDIR}/${PN}"-2.0.0_beta1-docs.patch )
 
 src_prepare() {
 	if use handbook; then
 		mv "${WORKDIR}/${PN}"-1.4.0/* "${S}/" || die
-	else
-		mkdir doc || die
-		echo > doc/CMakeLists.txt || die
 	fi
-
 	kde4-base_src_prepare
+	if use handbook; then
+		echo "add_subdirectory( doc )" >> CMakeLists.txt || die
+	fi
 }
 
 src_configure() {
