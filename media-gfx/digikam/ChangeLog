@@ -3,6 +3,10 @@
 # $Header: $
 
   02 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-2.0.0_beta2.ebuild, metadata.xml:
+  Useflag geolocation makes no sense anymore (forced on)
+
+  02 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   -digikam-2.0.0_beta1.ebuild:
   Cleanup
 

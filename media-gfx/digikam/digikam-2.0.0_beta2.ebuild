@@ -30,10 +30,11 @@ LICENSE="GPL-2
 	handbook? ( FDL-1.2 )"
 KEYWORDS="~amd64 ~x86"
 SLOT="4"
-IUSE="addressbook debug doc geolocation gphoto2 handbook semantic-desktop themedesigner +thumbnails video"
+IUSE="addressbook debug doc gphoto2 handbook semantic-desktop themedesigner +thumbnails video"
 
 CDEPEND="
 	$(add_kdebase_dep kdelibs semantic-desktop)
+	$(add_kdebase_dep marble plasma)
 	>=kde-base/libkdcraw-${KDEGRAPHICS_MINIMAL}
 	>=kde-base/libkexiv2-${KDEGRAPHICS_MINIMAL}
 	>=kde-base/libkipi-${KDEGRAPHICS_MINIMAL}
@@ -54,7 +55,6 @@ CDEPEND="
 	x11-libs/qt-gui[qt3support]
 	|| ( x11-libs/qt-sql[mysql] x11-libs/qt-sql[sqlite] )
 	addressbook? ( >=kde-base/kdepimlibs-${KDE_MINIMAL} )
-	geolocation? ( >=kde-base/marble-${KDE_MINIMAL}[plasma] )
 	gphoto2? ( media-libs/libgphoto2 )
 "
 RDEPEND="${CDEPEND}
@@ -97,7 +97,7 @@ src_configure() {
 		-DGWENVIEW_SEMANTICINFO_BACKEND=${backend}
 		$(cmake-utils_use_with addressbook KdepimLibs)
 		$(cmake-utils_use_build doc)
-		$(cmake-utils_use_with geolocation MarbleWidget)
+		-DWITH_MarbleWidget=ON
 		$(cmake-utils_use_enable gphoto2 GPHOTO2)
 		$(cmake-utils_use_with gphoto2)
 		$(cmake-utils_use_with semantic-desktop Soprano)
