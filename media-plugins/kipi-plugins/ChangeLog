@@ -4,6 +4,10 @@
 
   02 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   kipi-plugins-2.0.0_beta2.ebuild:
+  ... err kmap ...
+
+  02 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  kipi-plugins-2.0.0_beta2.ebuild:
   Added missing dependency on libkface
 
   01 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>

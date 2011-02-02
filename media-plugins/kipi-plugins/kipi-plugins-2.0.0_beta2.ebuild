@@ -31,7 +31,7 @@ DEPEND="
 	dev-libs/qjson
 	$(add_kdebase_dep libkdcraw)
 	$(add_kdebase_dep libkexiv2)
-	$(add_kdebase_dep libkface)
+	$(add_kdebase_dep libkmap)
 	$(add_kdebase_dep libkipi)
 	virtual/jpeg
 	media-libs/libpng
