@@ -6,7 +6,14 @@
 # does not work yet, I should really learn more about clapack vs lapack, cblas vs blas, c vs fortran
 =sci-libs/clapack-3.2.1-r4
 
-# digikam-2
+#
+# What follows here are digikam-2 and the libraries released together with it.
+# In order to build digikam-2, you will have to replace part of your kdegraphics
+# libraries with newer versions, which are effectively pre-releases of
+# kdegraphics-4.7. Feel free to experiment, but be aware that nobody might be 
+# able to help you (or even willing to help you) if problems result...
+#    dilfridge@gentoo.org, 1/2/2011
+#
 >=media-gfx/digikam-1.999
 >=kde-base/libkface-4.6.25:4.6
 >=kde-base/libkmap-4.6.25:4.6
