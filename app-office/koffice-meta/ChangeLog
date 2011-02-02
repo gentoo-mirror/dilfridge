@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  -koffice-meta-2.2.1.ebuild, -koffice-meta-2.2.2.ebuild:
+  Cleanup
+
   17 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   koffice-meta-2.3.1.ebuild:
   Port last-minute changes to 2.3.1
