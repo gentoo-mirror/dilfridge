@@ -28,3 +28,5 @@ DEPEND="
 RDEPEND=${DEPEND}
 
 S="${WORKDIR}/${MY_P}/extra/${PN}"
+
+PATCHES=( "${FILESDIR}/${P}"-header.patch )
