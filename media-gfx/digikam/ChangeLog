@@ -4,6 +4,10 @@
 
   03 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   digikam-2.0.0_beta2.ebuild:
+  New package locations
+
+  03 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-2.0.0_beta2.ebuild:
   More precise dependencies
 
   02 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>

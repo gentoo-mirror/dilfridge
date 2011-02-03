@@ -38,8 +38,8 @@ CDEPEND="
 	$(add_kdebase_dep libkipi)
 	$(add_kdebase_dep libkexiv2)
 	>=kde-base/libkdcraw-${KDEGRAPHICS_MINIMAL}
-	>=kde-base/libkface-${KDEGRAPHICS_MINIMAL}
-	>=kde-base/libkmap-${KDEGRAPHICS_MINIMAL}
+	>=media-libs/libkface-${PV}
+	>=media-libs/libkmap-${PV}
 	$(add_kdebase_dep solid)
 	media-libs/jasper
 	virtual/jpeg
