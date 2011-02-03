@@ -22,6 +22,7 @@ SRC_URI="mirror://sourceforge/${DIGIKAMPN}/${MY_P}.tar.bz2"
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
+SLOT=4
 
 DEPEND="
 	>=media-libs/opencv-2.1
