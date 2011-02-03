@@ -5,13 +5,12 @@
 EAPI=3
 
 DIGIKAMPN=digikam
-DIGIKAMPV=2.0.0_beta2
 
-KDE_OVERRIDE_MINIMAL="4.5.0"
+KDE_MINIMAL="4.5"
 
 inherit kde4-base
 
-MY_P="${DIGIKAMPN}-${DIGIKAMPV/_/-}"
+MY_P="${DIGIKAMPN}-${PV/_/-}"
 
 DESCRIPTION="Wrapper library for world map components as marble, openstreetmap and googlemap"
 HOMEPAGE="http://www.digikam.org/"
@@ -20,6 +19,7 @@ SRC_URI="mirror://sourceforge/${DIGIKAMPN}/${MY_P}.tar.bz2"
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
+SLOT=4
 
 DEPEND="
 	$(add_kdebase_dep libkexiv2)
