@@ -35,9 +35,9 @@ IUSE="addressbook debug doc gphoto2 handbook semantic-desktop themedesigner +thu
 CDEPEND="
 	$(add_kdebase_dep kdelibs semantic-desktop)
 	$(add_kdebase_dep marble plasma)
+	$(add_kdebase_dep libkipi)
+	$(add_kdebase_dep libkexiv2)
 	>=kde-base/libkdcraw-${KDEGRAPHICS_MINIMAL}
-	>=kde-base/libkexiv2-${KDEGRAPHICS_MINIMAL}
-	>=kde-base/libkipi-${KDEGRAPHICS_MINIMAL}
 	>=kde-base/libkface-${KDEGRAPHICS_MINIMAL}
 	>=kde-base/libkmap-${KDEGRAPHICS_MINIMAL}
 	$(add_kdebase_dep solid)
@@ -76,6 +76,9 @@ S="${WORKDIR}/${MY_P}/core"
 PATCHES=( "${FILESDIR}/${PN}"-2.0.0_beta1-docs.patch )
 
 src_prepare() {
+	# just to make absolutely sure
+	rm -rf "${WORKDIR}/${MY_P}/extra" || die
+
 	if use handbook; then
 		mv "${WORKDIR}/${PN}"-1.4.0/* "${S}/" || die
 	fi
