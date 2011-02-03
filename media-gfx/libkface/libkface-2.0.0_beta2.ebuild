@@ -1,21 +1,19 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/digikam/digikam-1.6.0.ebuild,v 1.1 2010/11/25 20:30:29 dilfridge Exp $
+# $Header: $
 
 EAPI=3
 
 DIGIKAMPN=digikam
-DIGIKAMPV=2.0.0_beta2
 
 KDE_LINGUAS=""
 
 CMAKE_MIN_VERSION=2.8
-
-KDE_OVERRIDE_MINIMAL="4.5.0"
+KDE_MINIMAL="4.5"
 
 inherit kde4-base
 
-MY_P="${DIGIKAMPN}-${DIGIKAMPV/_/-}"
+MY_P="${DIGIKAMPN}-${PV/_/-}"
 
 DESCRIPTION="Qt/C++ wrapper around LibFace to perform face recognition and detection"
 HOMEPAGE="http://www.digikam.org/"
