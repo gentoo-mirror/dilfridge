@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org> kword-2.3.1.ebuild:
+  There are broken ebuilds for sci-libs/dcmtk floating around. Make sure
+  they dont interfere with kword (bug 353746).
+
   02 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   -kword-2.2.1.ebuild, -kword-2.2.2.ebuild, -kword-2.2.84.ebuild,
   -kword-2.2.91.ebuild, -kword-9999.ebuild:
