@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org> kexi-2.3.1.ebuild:
+  Seems also to work with more recent library
+
   01 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org> -kexi-2.2.1.ebuild,
   -kexi-2.2.2.ebuild, -kexi-2.2.84.ebuild:
   Cleanup

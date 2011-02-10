@@ -17,7 +17,7 @@ DEPEND="
 	~app-office/kspread-${PV}:${SLOT}
 	freetds? ( dev-db/freetds )
 	mysql? ( virtual/mysql )
-	postgres? ( =dev-libs/libpqxx-2.6* )
+	postgres? ( dev-libs/libpqxx )
 	reports? ( ~app-office/koffice-libs-${PV}:${SLOT}[reports] )
 	xbase? ( dev-db/xbase )
 "
