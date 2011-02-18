@@ -28,10 +28,12 @@ src_unpack() {
 
 src_install() {
 	insinto ${TEXMF}/fonts/map/pdftex
-	doins *.map
+	doins *.map || die
 
 	insinto /etc/texmf/updmap.d
-	doins "${FILESDIR}/winfonts.conf"
+	doins "${FILESDIR}/winfonts.cfg" || die
+
+	dosym /usr/share/fonts/corefonts "${TEXMF}/fonts/truetype/corefonts" || die
 
 	latex-package_src_install
 }

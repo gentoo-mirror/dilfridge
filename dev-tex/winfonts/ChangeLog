@@ -3,6 +3,10 @@
 # $Header: $
 
   18 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  winfonts-20060122.ebuild, +files/winfonts.cfg, -files/winfonts.conf:
+  Add corefonts to tex system
+
+  18 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   winfonts-20060122.ebuild, +files/winfonts.conf:
   Still something missing
 
