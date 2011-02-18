@@ -16,12 +16,22 @@ IUSE=""
 
 KEYWORDS="~amd64 ~x86"
 DEPEND="app-arch/unzip"
-RDEPEND=""
+RDEPEND="media-fonts/corefonts"
 
-S="${WORKDIR}/${PN}"
+S=${WORKDIR}
 
 TEXMF=/usr/share/texmf-site
 
 src_unpack() {
 	unzip -o -j "${DISTDIR}/${A}" || die
+}
+
+src_install() {
+	insinto ${TEXMF}/fonts/map/pdftex
+	doins *.map
+
+	insinto /etc/texmf/updmap.d
+	doins "${FILESDIR}/winfonts.conf"
+
+	latex-package_src_install
 }
