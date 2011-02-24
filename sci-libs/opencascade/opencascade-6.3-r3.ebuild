@@ -1,16 +1,16 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI=4
 
 inherit autotools eutils check-reqs multilib
 
-DESCRIPTION="Software development platform for CAD/CAE, 3D surface/solid modeling and data exchange."
-HOMEPAGE="http://www.opencascade.org"
+DESCRIPTION="Software development platform for CAD/CAE, 3D surface/solid modeling and data exchange"
+HOMEPAGE="http://www.opencascade.org/"
 SRC_URI="http://files.opencascade.com/OCC_${PV}_release/OpenCASCADE_src.tgz -> ${P}.tgz"
 
-LICENSE="Open-CASCADE-Technology-Public-License"
+LICENSE="Open-CASCADE-Technology-Public-License-6.3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug doc examples java"
@@ -27,6 +27,8 @@ RDEPEND=${DEPEND}
 
 S=${WORKDIR}/OpenCASCADE${PV}.0/ros
 
+RESTRICT="bindist mirror"
+
 pkg_setup() {
 	# Determine itk, itcl, tix, tk and tcl versions
 	itk_version=$(grep ITK_VER /usr/include/itk.h | sed 's/^.*"\(.*\)".*/\1/')
@@ -37,12 +39,10 @@ pkg_setup() {
 
 	INSTALL_DIR=/usr/$(get_libdir)/${P}/ros
 
-	ewarn
 	ewarn " It is important to note that OpenCascade is a very large package. "
 	ewarn " Please note that building OpenCascade takes a lot of time and "
 	ewarn " hardware ressources: 3.5-4 GB free diskspace and 256 MB RAM are "
 	ewarn " the minimum requirements. "
-	ewarn
 
 	# Check if we have enough RAM and free diskspace to build this beast
 	CHECKREQS_MEMORY="256"
@@ -82,9 +82,7 @@ src_configure() {
 	local confargs="--prefix=${INSTALL_DIR}/lin --exec-prefix=${INSTALL_DIR}/lin --with-tcl=/usr/$(get_libdir) --with-tk=/usr/$(get_libdir)"
 
 	if use java ; then
-		local java_path
-		java_path=`java-config -O`
-		confargs="${confargs} --with-java-include=${java_path}/include"
+		confargs+=" --with-java-include=$(java-config -O)/include"
 	else
 		confargs+=" --without-java-include"
 	fi
@@ -98,10 +96,10 @@ src_install() {
 	emake DESTDIR="${D}" install || die
 
 	# Symlinks for keeping original OpenCascade folder structure and
-	# add a link lib to lib64  if we are on amd64
+	# add a link lib to $(get_libdir)  if we are e.g. on amd64 multilib
 
-	if use amd64 ; then
-		dosym lib64 ${INSTALL_DIR}/lin/lib
+	if [ "$(get_libdir)" -ne "lib" ]; then
+		dosym "$(get_libdir)" "${INSTALL_DIR}/lin/lib"
 	fi
 
 	# Tweak the environment variables script again with new destination
