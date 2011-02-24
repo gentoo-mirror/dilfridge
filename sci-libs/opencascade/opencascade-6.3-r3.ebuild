@@ -98,7 +98,7 @@ src_install() {
 	# Symlinks for keeping original OpenCascade folder structure and
 	# add a link lib to $(get_libdir)  if we are e.g. on amd64 multilib
 
-	if [ "$(get_libdir)" -ne "lib" ]; then
+	if [ "$(get_libdir)" != "lib" ]; then
 		dosym "$(get_libdir)" "${INSTALL_DIR}/lin/lib"
 	fi
 

@@ -4,6 +4,10 @@
 
   24 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   opencascade-6.3-r3.ebuild:
+  Fixed bash thinko
+
+  24 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  opencascade-6.3-r3.ebuild:
   Cleanups
 
   07 Nov 2010; Andreas K. Huettel <dilfridge@gentoo.org>
