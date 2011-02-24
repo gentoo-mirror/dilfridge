@@ -27,56 +27,40 @@ DEPEND="${RDEPEND}
 	media-gfx/imagemagick
 "
 
-PATCHES=( "${FILESDIR}/${P}"-{calc,bem-nmmtl,namespaces}.patch )
+PATCHES=( "${FILESDIR}/${P}"-{calc,bem-nmmtl,namespaces,f77,tkcon,docs,gui}.patch )
 
 src_prepare() {
 	base_src_prepare
 
-	# Update fortran compiler
-	sed -i 's/\"g77\"/\"$(tc-getF77)\"/' bem/configure.ac
-	sed -i 's/\"g77\"/\"$(tc-getF77)\"/' calcCAP/configure.ac
-	sed -i 's/\"g77\"/\"$(tc-getF77)\"/' calcRL/configure.ac
-	#block document installation
-	epatch "${FILESDIR}/${P}"-Makefile-am.patch
-	epatch "${FILESDIR}/${P}"-doc-Makefile-am.patch
-	epatch "${FILESDIR}/${P}"-tkcon.patch
 	#adjust new document location in gui
-	epatch "${FILESDIR}/${P}"-gui-splash.patch
 	sed -i "s/package_name/${PF}/" gui/splash.tcl
-	epatch "${FILESDIR}/${P}"-gui_help.patch
 	sed -i "s/package_name/${PF}/" gui/gui_help.tcl
-	# regenerate the configure and make files
-	rm aclocal.m4
-	eautoreconf --force
-}
 
-src_configure() {
-	econf || die "econf failed"
-}
-
-src_compile() {
-	emake || die "emake failed"
+	eautoreconf
 }
 
 src_install () {
 	emake DESTDIR="${D}" install || die "make install failed"
-	dodoc AUTHORS ChangeLog NEWS README THANKS || die "failed to install docs"
-	dohtml COPYING #tcl cannot handle the archives created by dodoc
+
+	dodoc AUTHORS ChangeLog NEWS README THANKS || die
+
+	# tcl cannot handle the archives created by dodoc
+	dohtml COPYING || die
 	if use doc; then
-				dodoc doc/*.pdf doc/*.png
-				dohtml doc/user-guide/*
+				dodoc doc/*.pdf doc/*.png || die
+				dohtml doc/user-guide/* || die
 	fi
-	#Install icon
+
+	# Install icon
 	convert gui/logo.gif gui/tnt.png
 	docinto "examples"
 	dodoc examples/* || die "failed to install exampels"
 	newicon gui/tnt.png tnt.png
-	make_desktop_entry ${PN} "Mttl" ${PN}
+	make_desktop_entry ${PN} "tnt" ${PN}
 }
 
 pkg_postinst() {
-		einfo "Warning: the sources are not under development anymore."
-		einfo "We made it compile, but users should check if the results make sense."
-		einfo "The GUI was written in an old version of TCL/TK."
-		einfo "Examples are in the /usr/share/doc/tnt-1.2.2 folder."
+		elog "Warning: the sources are not under development anymore."
+		elog "We made it compile, but users should check if the results make sense."
+		elog "Examples are in the /usr/share/doc/tnt-1.2.2 folder."
 }
