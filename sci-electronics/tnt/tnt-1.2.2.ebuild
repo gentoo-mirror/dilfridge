@@ -1,33 +1,31 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header:Exp $
+# $Header: $
 
-EAPI=2
-inherit autotools eutils toolchain-funcs
+EAPI=4
+inherit base autotools eutils toolchain-funcs
 
 DESCRIPTION="MoM 2.5 D stripline simulator"
 SRC_URI="mirror://sourceforge/mmtl/${P}.tar.gz"
-HOMEPAGE="http://mmtl.sourceforge.net"
+HOMEPAGE="http://mmtl.sourceforge.net/"
 LICENSE="BSD GPL-2"
-S="${WORKDIR}/${P}"
+KEYWORDS="~amd64 ~ppc ~x86"
 
 SLOT="0"
 IUSE="doc"
-KEYWORDS="amd64 ~ppc x86"
 
-DEPEND="sys-devel/gcc[fortran]
-	dev-texlive/texlive-latex
-	dev-tex/latex2html
-	media-gfx/imagemagick
+RDEPEND="
 	dev-lang/tcl
 	dev-tcltk/tcllib
 	dev-tcltk/itcl
-	dev-tcltk/bwidget"
-
-RDEPEND="dev-lang/tcl
-	dev-tcltk/tcllib
-	dev-tcltk/itcl
-	dev-tcltk/bwidget"
+	dev-tcltk/bwidget
+	sys-devel/gcc[fortran]
+"
+DEPEND="${RDEPEND}
+	dev-texlive/texlive-latex
+	dev-tex/latex2html
+	media-gfx/imagemagick
+"
 
 src_prepare() {
 	# Adapt this old source to the new C++ standards
@@ -73,7 +71,6 @@ src_prepare() {
 	eautoreconf --force
 }
 
-
 src_configure() {
 	econf || die "econf failed"
 }
@@ -84,7 +81,7 @@ src_compile() {
 
 src_install () {
 	emake DESTDIR="${D}" install || die "make install failed"
-	dodoc AUTHORS COPYING ChangeLog NEWS README THANKS || die "failed to install docs"
+	dodoc AUTHORS ChangeLog NEWS README THANKS || die "failed to install docs"
 	dohtml COPYING #tcl cannot handle the archives created by dodoc
 	if use doc; then
 				dodoc doc/*.pdf doc/*.png
@@ -98,11 +95,9 @@ src_install () {
 	make_desktop_entry ${PN} "Mttl" ${PN}
 }
 
-
-
 pkg_postinst() {
 		einfo "Warning: the sources are not under development anymore."
-		einfo "We made it compile, but users should check if the results make sens."
+		einfo "We made it compile, but users should check if the results make sense."
 		einfo "The GUI was written in an old version of TCL/TK."
 		einfo "Examples are in the /usr/share/doc/tnt-1.2.2 folder."
 }

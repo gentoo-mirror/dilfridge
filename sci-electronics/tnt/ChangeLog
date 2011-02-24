@@ -1,0 +1,7 @@
+# ChangeLog for sci-electronics/tnt
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  24 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org> tnt-1.2.2.ebuild:
+  Clean up keywords and dependencies
+
