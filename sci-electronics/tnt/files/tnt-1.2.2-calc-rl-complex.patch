@@ -1,0 +1,56 @@
+--- calcRL/src/complex.cpp.org	2011-02-18 02:26:46.000000000 -0800
++++ calcRL/src/complex.cpp	2011-02-18 01:11:15.000000000 -0800
+@@ -17,6 +17,53 @@
+ 
+ /*********************** members *********************************/
+ 
++double Complex::real(void) {
++ 
++  return(re);
++}
++
++double Complex::imag(void) {
++ 
++  return(im);
++}
++
++double Complex::arg(void) {
++
++  return((im == 0.0)&&(re == 0.0) ? 0 : atan2(im, re));
++}
++
++double Complex::cabs(void) {
++ 
++  double x, y, ans, temp;
++  x = fabs(re);
++  y = fabs(im);
++  if (x == 0.0)
++     ans = y;
++  else if (y == 0.0)    
++     ans = x;
++  else if (x > y) {
++     temp = y/x;
++     ans = x*sqrt(1.0+temp*temp);
++  } else {
++     temp = x/y;
++     ans = y*sqrt(1.0+temp*temp);
++  }
++  return ans;  
++}
++
++double Complex::cabsm(void) {
++ 
++  return(sqrt(re*re + im*im));
++}
++
++Complex Complex::conjg(void) {
++ 
++  Complex com;
++  com.re =  re;
++  com.im = -im;
++  return(com);
++}
++
+ /********************* friends *****************************/
+ 
+ Complex operator*(const double& r, const Complex& c) { 

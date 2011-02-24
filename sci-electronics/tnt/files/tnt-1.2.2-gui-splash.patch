@@ -1,0 +1,11 @@
+--- gui/splash.tcl.org	2011-02-19 18:30:20.000000000 -0800
++++ gui/splash.tcl	2011-02-19 18:40:53.000000000 -0800
+@@ -81,7 +81,7 @@
+     } else {
+ 	set filename COPYING
+     }
+-    set licenseFile [file join $::scriptDir .. $filename]
++    set licenseFile [file join /usr share doc package_name html $filename]
+     if { [file exists $licenseFile] } {
+ 	::gui::guiPopupFile $licenseFile
+     } else {

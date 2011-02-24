@@ -1,0 +1,27 @@
+--- Makefile.am.org	2011-02-19 00:22:25.000000000 -0800
++++ Makefile.am	2011-02-19 00:23:29.000000000 -0800
+@@ -51,14 +51,16 @@
+ #  a prefix.  If not, then I suppose README will go into
+ #  /usr.
+ #---------------------------------------------------------------
+-appdocsdir = $(prefix)
+-appdocs_DATA = \
+-	AUTHORS$(TXTEXT) \
+-	COPYING$(TXTEXT) \
+-	ChangeLog$(TXTEXT) \
+-	NEWS$(TXTEXT) \
+-	README$(TXTEXT) \
+-	THANKS$(TXTEXT)
++#
++# Portage takes care for this
++#appdocsdir = $(prefix)
++#appdocs_DATA = \
++#	AUTHORS$(TXTEXT) \
++#	COPYING$(TXTEXT) \
++#	ChangeLog$(TXTEXT) \
++#	NEWS$(TXTEXT) \
++#	README$(TXTEXT) \
++#	THANKS$(TXTEXT)
+ 
+ #---------------------------------------------------------------
+ #  Convert application documents to text files on Windows.
