@@ -27,32 +27,11 @@ DEPEND="${RDEPEND}
 	media-gfx/imagemagick
 "
 
+PATCHES=( "${FILESDIR}/${P}"-{calc,bem-nmmtl,namespaces}.patch )
+
 src_prepare() {
-	# Adapt this old source to the new C++ standards
-	# These patches fix a c++ scope issue, gcc was for some reason
-	# not able to discover friend function of class Complex.
-	# This has been solved by making this functions a member instead of a friend.
-	epatch "${FILESDIR}/${P}"-calc-cap-calcCAP.patch
-	epatch "${FILESDIR}/${P}"-calc-cap-cmplxmat.patch
-	epatch "${FILESDIR}/${P}"-calc-cap-cmplxvec.patch
-	epatch "${FILESDIR}/${P}"-calc-cap-complex-header.patch
-	epatch "${FILESDIR}/${P}"-calc-cap-complex-source.patch
-	epatch "${FILESDIR}/${P}"-calc-cap-data.patch
-	epatch "${FILESDIR}/${P}"-calc-rl-calcRL.patch
-	epatch "${FILESDIR}/${P}"-calc-rl-cmplxmat.patch
-	epatch "${FILESDIR}/${P}"-calc-rl-cmplxvec.patch
-	epatch "${FILESDIR}/${P}"-calc-rl-complex-header.patch
-	epatch "${FILESDIR}/${P}"-calc-rl-complex.patch
-	epatch "${FILESDIR}/${P}"-calc-rl-data.patch
-	epatch "${FILESDIR}/${P}"-calc-rl-kelvin.patch
-	epatch "${FILESDIR}/${P}"-calc-rl-hankel.patch
-	#fix a minor code error
-	epatch "${FILESDIR}/${P}"-bem-nmmtl.patch
-	# Update headers in remaining files
-	# The source code is from the pre-namespace era.
-	sed -i 's/<iostream.h>/\<iostream\>\nusing\ namespace\ std\;/' `grep -r -l iostream.h *`
-	sed -i 's/<iomanip.h>/\<iomanip\>\nusing\ namespace\ std\;/' `grep -r -l iomanip.h *`
-	sed -i 's/<fstream.h>/\<fstream\>\nusing\ namespace\ std\;/' `grep -r -l fstream.h *`
+	base_src_prepare
+
 	# Update fortran compiler
 	sed -i 's/\"g77\"/\"$(tc-getF77)\"/' bem/configure.ac
 	sed -i 's/\"g77\"/\"$(tc-getF77)\"/' calcCAP/configure.ac
