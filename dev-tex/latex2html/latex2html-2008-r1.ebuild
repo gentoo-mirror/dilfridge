@@ -24,7 +24,7 @@ DEPEND="app-text/ghostscript-gpl
 	png? ( media-libs/libpng )"
 RDEPEND="${DEPEND}"
 
-PATCHES=( "${FILESDIR}/${PN}"-{convert-length,perl_name,extract-major-version,destdir}.patch 
+PATCHES=( "${FILESDIR}/${PN}"-{convert-length,perl_name,extract-major-version-2,destdir}.patch 
 	"${DISTDIR}/${PN}"-match-multiline.patch.bz2 )
 
 src_prepare() {
