@@ -4,7 +4,7 @@
 
 EAPI=4
 
-inherit autotools eutils check-reqs multilib
+inherit autotools eutils check-reqs multilib java-pkg-opt-2
 
 DESCRIPTION="Software development platform for CAD/CAE, 3D surface/solid modeling and data exchange"
 HOMEPAGE="http://www.opencascade.org/"
@@ -15,14 +15,15 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug doc examples java"
 
-DEPEND="java? ( virtual/jdk )
+DEPEND="
 	virtual/opengl
 	x11-libs/libXmu
 	>=dev-lang/tcl-8.4
 	>=dev-lang/tk-8.4
 	>=dev-tcltk/itcl-3.2
 	>=dev-tcltk/itk-3.2
-	>=dev-tcltk/tix-8.4.2"
+	>=dev-tcltk/tix-8.4.2
+"
 RDEPEND=${DEPEND}
 
 S=${WORKDIR}/OpenCASCADE${PV}.0/ros
@@ -30,6 +31,8 @@ S=${WORKDIR}/OpenCASCADE${PV}.0/ros
 RESTRICT="bindist mirror"
 
 pkg_setup() {
+	java-pkg-opt-2_pkg_setup
+
 	# Determine itk, itcl, tix, tk and tcl versions
 	itk_version=$(grep ITK_VER /usr/include/itk.h | sed 's/^.*"\(.*\)".*/\1/')
 	itcl_version=$(grep ITCL_VER /usr/include/itcl.h | sed 's/^.*"\(.*\)".*/\1/')
@@ -39,7 +42,6 @@ pkg_setup() {
 
 	INSTALL_DIR=/usr/$(get_libdir)/${P}/ros
 
-	ewarn " It is important to note that OpenCascade is a very large package. "
 	ewarn " Please note that building OpenCascade takes a lot of time and "
 	ewarn " hardware ressources: 3.5-4 GB free diskspace and 256 MB RAM are "
 	ewarn " the minimum requirements. "
@@ -51,6 +53,8 @@ pkg_setup() {
 }
 
 src_prepare() {
+	java-pkg-opt-2_src_prepare
+
 	# Substitute with our ready-made env.ksh script
 	cp -f "${FILESDIR}"/env.ksh.template env.ksh || die
 
@@ -95,9 +99,11 @@ src_configure() {
 src_install() {
 	emake DESTDIR="${D}" install || die
 
+	# .la files kill cute little kittens
+	find "${D}" -name '*.la' -exec rm {} +
+
 	# Symlinks for keeping original OpenCascade folder structure and
 	# add a link lib to $(get_libdir)  if we are e.g. on amd64 multilib
-
 	if [ "$(get_libdir)" != "lib" ]; then
 		dosym "$(get_libdir)" "${INSTALL_DIR}/lin/lib"
 	fi
