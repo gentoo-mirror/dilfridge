@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/album
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/album/ChangeLog,v 1.35 2009/12/29 15:13:13 maekke Exp $
+
+*album-4.07 (27 Feb 2011)
+
+  27 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org> +album-4.07.ebuild:
+  Version bump
 
   29 Dec 2009; Markus Meier <maekke@gentoo.org> album-4.06.ebuild:
   make sure that all installed files are in ${S}, reported by flameeyes in
