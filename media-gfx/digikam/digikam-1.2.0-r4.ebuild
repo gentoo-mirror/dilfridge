@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/digikam/digikam-1.2.0-r4.ebuild,v 1.2 2011/01/28 19:15:45 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/digikam/digikam-1.2.0-r4.ebuild,v 1.6 2011/02/27 11:55:04 dilfridge Exp $
 
 EAPI=3
 
@@ -18,7 +18,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2
 
 LICENSE="GPL-2
 	handbook? ( FDL-1.2 )"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 ~ppc x86"
 SLOT="4"
 IUSE="addressbook debug doc geolocation gphoto2 handbook lensfun semantic-desktop +thumbnails video"
 
@@ -43,6 +43,7 @@ CDEPEND="
 	geolocation? ( >=kde-base/marble-${KDE_MINIMAL} )
 	gphoto2? ( media-libs/libgphoto2 )
 	lensfun? ( media-libs/lensfun )
+	<kde-base/kdelibs-4.6
 "
 RDEPEND="${CDEPEND}
 	>=kde-base/kreadconfig-${KDE_MINIMAL}
