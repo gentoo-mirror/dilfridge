@@ -23,6 +23,7 @@ RDEPEND="
 	dev-cpp/eigen
 	dev-libs/boost
 	dev-libs/xerces-c
+	dev-python/pivy
 	dev-python/PyQt4
 	media-libs/coin
 	media-libs/SoQt
