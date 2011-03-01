@@ -4,6 +4,10 @@
 
   01 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   freecad-0.11.3729.ebuild:
+  Remove la files
+
+  01 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  freecad-0.11.3729.ebuild:
   Add desktop entry, fix ode dependency
 
   01 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>

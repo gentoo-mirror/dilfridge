@@ -66,6 +66,8 @@ src_configure() {
 src_install() {
 	emake  DESTDIR="${D}" install || die "install failed"
 
+	find "${D}" -name "*.la" -exec rm {} +
+
 	dodoc README.Linux ChangeLog.txt || die
 
 	dodir /usr/share/apps/freecad || die
