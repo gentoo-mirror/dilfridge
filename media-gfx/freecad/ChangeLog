@@ -4,6 +4,10 @@
 
   01 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   freecad-0.11.3729.ebuild:
+  Added dependency ode
+
+  01 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  freecad-0.11.3729.ebuild:
   Added missing dependency pivy
 
 *freecad-0.11.3729 (01 Mar 2011)

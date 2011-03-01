@@ -27,6 +27,7 @@ RDEPEND="
 	dev-python/PyQt4
 	media-libs/coin
 	media-libs/SoQt
+	sci-libs/ode
 	>=sci-libs/opencascade-6.3-r3
 	sci-libs/gts
 	sys-devel/gcc[fortran]
