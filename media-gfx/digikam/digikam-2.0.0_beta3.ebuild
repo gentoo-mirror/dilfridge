@@ -28,7 +28,7 @@ HOMEPAGE="http://www.digikam.org/"
 
 LICENSE="GPL-2
 	handbook? ( FDL-1.2 )"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~ppc ~x86"
 SLOT="4"
 IUSE="addressbook debug doc gphoto2 handbook semantic-desktop themedesigner +thumbnails video"
 
