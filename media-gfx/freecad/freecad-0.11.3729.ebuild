@@ -5,7 +5,7 @@
 EAPI=3
 PYTHON_DEPEND=2
 
-inherit base multilib autotools python
+inherit base eutils multilib autotools python
 
 MY_P="freecad-${PV}"
 MY_PD="FreeCAD-${PV}"
@@ -21,13 +21,13 @@ IUSE=""
 
 RDEPEND="
 	dev-cpp/eigen
+	dev-games/ode
 	dev-libs/boost
 	dev-libs/xerces-c
 	dev-python/pivy
 	dev-python/PyQt4
 	media-libs/coin
 	media-libs/SoQt
-	sci-libs/ode
 	>=sci-libs/opencascade-6.3-r3
 	sci-libs/gts
 	sys-devel/gcc[fortran]
@@ -65,5 +65,11 @@ src_configure() {
 
 src_install() {
 	emake  DESTDIR="${D}" install || die "install failed"
+
 	dodoc README.Linux ChangeLog.txt || die
+
+	dodir /usr/share/apps/freecad || die
+	mv "${D}/usr/share/freecad.xpm" "${D}/usr/share/apps/freecad/" || die
+
+	make_desktop_entry FreeCAD FreeCAD /usr/share/apps/freecad/freecad.xpm
 }
