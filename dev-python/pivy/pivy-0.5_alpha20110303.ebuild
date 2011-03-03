@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pivy/pivy-0.5_alpha20110303.ebuild,v 1.1 2011/03/03 23:05:53 dilfridge Exp $
 
 EAPI="3"
 
@@ -18,9 +18,9 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="
-	media-libs/coin
+RDEPEND="media-libs/coin
 	>=media-libs/SoQt-1.4.2_alpha"
-RDEPEND="${DEPEND}"
+DEPEND="${RDEPEND}
+	dev-lang/swig"
 
 RESTRICT_PYTHON_ABIS="3.*"
