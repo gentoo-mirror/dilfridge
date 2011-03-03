@@ -29,6 +29,8 @@ RDEPEND=${DEPEND}
 S=${WORKDIR}/OpenCASCADE${PV}.0/ros
 
 RESTRICT="bindist mirror"
+# http://bugs.gentoo.org/show_bug.cgi?id=352435
+# http://www.gentoo.org/foundation/en/minutes/2011/20110220_trustees.meeting_log.txt
 
 pkg_setup() {
 	java-pkg-opt-2_pkg_setup
