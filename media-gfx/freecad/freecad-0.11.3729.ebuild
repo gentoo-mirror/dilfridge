@@ -43,6 +43,10 @@ DEPEND="${RDEPEND}
 
 PATCHES=( "${FILESDIR}/${P}-asneeded.patch" )
 
+RESTRICT="bindist mirror"
+# http://bugs.gentoo.org/show_bug.cgi?id=352435
+# http://www.gentoo.org/foundation/en/minutes/2011/20110220_trustees.meeting_log.txt
+
 S="${WORKDIR}/${MY_PD}"
 
 pkg_setup() {
