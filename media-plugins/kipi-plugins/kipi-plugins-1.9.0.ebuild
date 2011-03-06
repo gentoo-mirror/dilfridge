@@ -52,7 +52,8 @@ RDEPEND="${DEPEND}
 	mjpeg? 		( media-video/mjpegtools )
 "
 
-PATCHES=( "${FILESDIR}/${PN}-1.7.0-expoblending.patch" )
+PATCHES=( "${FILESDIR}/${PN}-1.7.0-expoblending.patch"
+	"${FILESDIR}/${PN}-1.9.0-tests.patch" )
 
 src_prepare() {
 	if use handbook; then
