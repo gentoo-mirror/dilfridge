@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/opencascade/opencascade-6.3-r3.ebuild,v 1.2 2011/03/07 22:51:38 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/opencascade/opencascade-6.3-r3.ebuild,v 1.1 2011/03/03 01:08:20 dilfridge Exp $
 
 EAPI=3
 
@@ -8,14 +8,15 @@ inherit autotools eutils check-reqs multilib java-pkg-opt-2
 
 DESCRIPTION="Software development platform for CAD/CAE, 3D surface/solid modeling and data exchange"
 HOMEPAGE="http://www.opencascade.org/"
-SRC_URI="http://files.opencascade.com/OCC_${PV}_release/OpenCASCADE_src.tgz -> ${P}.tgz"
+SRC_URI="http://files.opencascade.com/OCCT/OCC_${PV}_release/OpenCASCADE650.tar.gz"
 
-LICENSE="Open-CASCADE-Technology-Public-License-6.3"
+LICENSE="Open-CASCADE-Technology-Public-License-6.5"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug doc examples java"
+IUSE="debug doc examples gl2ps java"
 
 DEPEND="
+	media-libs/ftgl
 	virtual/opengl
 	x11-libs/libXmu
 	>=dev-lang/tcl-8.4
@@ -23,10 +24,11 @@ DEPEND="
 	>=dev-tcltk/itcl-3.2
 	>=dev-tcltk/itk-3.2
 	>=dev-tcltk/tix-8.4.2
+	gl2ps? ( x11-libs/gl2ps )
 "
 RDEPEND=${DEPEND}
 
-S=${WORKDIR}/OpenCASCADE${PV}.0/ros
+S=${WORKDIR}/ros
 
 RESTRICT="bindist mirror"
 # http://bugs.gentoo.org/show_bug.cgi?id=352435
@@ -57,15 +59,15 @@ pkg_setup() {
 src_prepare() {
 	java-pkg-opt-2_src_prepare
 
-	# Substitute with our ready-made env.ksh script
-	cp -f "${FILESDIR}"/env.ksh.template env.ksh || die
+	# Substitute with our ready-made env.sh script
+	cp -f "${FILESDIR}"/env.sh.template env.sh || die
 
 	# Feed environment variables used by Opencascade compilation
 	sed -i \
 		-e "s:VAR_CASROOT:${S}:g" \
 		-e 's:VAR_SYS_BIN:/usr/bin:g' \
-		-e "s:VAR_SYS_LIB:/usr/$(get_libdir):g" env.ksh \
-			|| die "Environment variables feed in env.ksh failed!"
+		-e "s:VAR_SYS_LIB:/usr/$(get_libdir):g" env.sh \
+			|| die "Environment variables feed in env.sh failed!"
 
 	# Tweak itk, itcl, tix, tk and tcl versions
 	sed -i \
@@ -73,19 +75,25 @@ src_prepare() {
 		-e "s:VAR_ITCL:itcl${itcl_version}:g" \
 		-e "s:VAR_TIX:tix${tix_version}:g" \
 		-e "s:VAR_TK:tk${tk_version}:g" \
-		-e "s:VAR_TCL:tcl${tcl_version}:g" env.ksh \
+		-e "s:VAR_TCL:tcl${tcl_version}:g" env.sh \
 			|| die "itk, itcl, tix, tk and tcl version tweaking failed!"
 
+	epatch "${FILESDIR}"/${P}-ftgl.patch
 	epatch "${FILESDIR}"/${P}-fixed-DESTDIR.patch
-	epatch "${FILESDIR}"/${P}-missing-mode.patch
+	rm Makefile.in || die
 
-	source env.ksh
+	source env.sh
 	eautoreconf
 }
 
 src_configure() {
 	# Add the configure options
 	local confargs="--prefix=${INSTALL_DIR}/lin --exec-prefix=${INSTALL_DIR}/lin --with-tcl=/usr/$(get_libdir) --with-tk=/usr/$(get_libdir)"
+
+	confargs+=" --with-freetype=/usr"
+	confargs+=" --with-ftgl=/usr"
+
+	use gl2ps && confargs+=" --with-gl2ps=/usr"
 
 	if use java ; then
 		confargs+=" --with-java-include=$(java-config -O)/include"
@@ -111,11 +119,11 @@ src_install() {
 	fi
 
 	# Tweak the environment variables script again with new destination
-	cp "${FILESDIR}"/env.ksh.template env.ksh
-	sed -i "s:VAR_CASROOT:${INSTALL_DIR}/lin:g" env.ksh
+	cp "${FILESDIR}"/env.sh.template env.sh
+	sed -i "s:VAR_CASROOT:${INSTALL_DIR}/lin:g" env.sh
 
 	# Build the env.d environment variables
-	cp "${FILESDIR}"/env.ksh.template 50${PN}
+	cp "${FILESDIR}"/env.sh.template 50${PN}
 	sed -i \
 		-e 's:export ::g' \
 		-e "s:VAR_CASROOT:${INSTALL_DIR}/lin:g" \
@@ -135,8 +143,8 @@ src_install() {
 		-e "s:VAR_ITCL:itcl${itcl_version}:g" \
 		-e "s:VAR_TIX:tix${tix_version}:g" \
 		-e "s:VAR_TK:tk${tk_version}:g" \
-		-e "s:VAR_TCL:tcl${tcl_version}:g" env.ksh 50${PN} \
-			|| die "Tweaking of the Tcl/Tk libraries location in env.ksh and 50opencascade failed!"
+		-e "s:VAR_TCL:tcl${tcl_version}:g" env.sh 50${PN} \
+			|| die "Tweaking of the Tcl/Tk libraries location in env.sh and 50opencascade failed!"
 
 	# Install the env.d variables file
 	doenvd 50${PN} || die
@@ -147,19 +155,16 @@ src_install() {
 		insinto /usr/share/doc/${PF}/examples
 		doins -r data || die
 
-		insinto /usr/share/doc/${PF}/examples/samples
-		doins -r samples/tutorial || die
-
-		if use java ; then
-			insinto /usr/share/doc/${PF}/examples/samples/standard
-			doins -r samples/standard/java || die
-		fi
+		insinto /usr/share/doc/${PF}/examples
+		doins -r samples || die
 	fi
+
+	cd "${S}"/../doc
+	dodoc *.pdf
 
 	# Install the documentation
 	if use doc; then
-		cd "${S}"/../doc
 		insinto /usr/share/doc/${PF}
-		doins -r {Overview,ReferenceDocumentation} || die
+		doins -r {overview,ReferenceDocumentation} || die
 	fi
 }
