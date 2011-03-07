@@ -80,7 +80,6 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${P}-ftgl.patch
 	epatch "${FILESDIR}"/${P}-fixed-DESTDIR.patch
-	rm Makefile.in || die
 
 	source env.sh
 	eautoreconf
@@ -159,8 +158,8 @@ src_install() {
 		doins -r samples || die
 	fi
 
-	cd "${S}"/../doc
-	dodoc *.pdf
+	cd "${S}"/../doc || die
+	dodoc *.pdf || die
 
 	# Install the documentation
 	if use doc; then
