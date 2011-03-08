@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/dhex/dhex-0.63.ebuild,v 1.1 2011/01/30 16:25:41 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/dhex/dhex-0.65.ebuild,v 1.1 2011/02/16 00:55:39 dilfridge Exp $
 
 EAPI="2"
 
@@ -23,7 +23,7 @@ RDEPEND="${DEPEND}"
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-Makefile.patch"
+	epatch "${FILESDIR}/${PN}-0.63-Makefile.patch"
 }
 
 src_compile() {
