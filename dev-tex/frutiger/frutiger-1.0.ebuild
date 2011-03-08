@@ -17,10 +17,13 @@ LICENSE="internal-use-only"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
+RDEPEND=""
 DEPEND="app-arch/unzip"
 IUSE=""
 
 S="${WORKDIR}/${MY_P}"
+
+RESTRICT="bindist mirror primaryuri"
 
 src_unpack() {
 	default
