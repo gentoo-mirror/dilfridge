@@ -26,6 +26,8 @@ RDEPEND="dev-python/pygame
 	app-text/pdftk
 	x11-misc/xdg-utils"
 
+S=${WORKDIR}/${MY_PN}-${PV}
+
 src_install() {
 	dobin impressive.py || die
 	doman impressive.1 || die
