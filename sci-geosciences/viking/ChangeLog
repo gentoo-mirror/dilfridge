@@ -3,6 +3,9 @@
 # $Header: /var/cvsroot/gentoo-x86/sci-geosciences/viking/ChangeLog,v 1.10 2011/03/06 09:31:24 jlec Exp $
 
   16 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org> viking-1.1.ebuild:
+  Added missing dependency app-text/rarian
+
+  16 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org> viking-1.1.ebuild:
   Added missing dependency app-text/gnome-doc-utils
 
 *viking-1.1 (16 Mar 2011)

@@ -25,6 +25,7 @@ RDEPEND="${COMMONDEPEND}
 	sci-geosciences/gpsbabel"
 DEPEND="${COMMONDEPEND}
 	app-text/gnome-doc-utils
+	app-text/rarian
 	dev-util/intltool
 	dev-util/pkgconfig"
 
