@@ -24,6 +24,7 @@ COMMONDEPEND="dev-libs/expat
 RDEPEND="${COMMONDEPEND}
 	sci-geosciences/gpsbabel"
 DEPEND="${COMMONDEPEND}
+	app-text/gnome-doc-utils
 	dev-util/intltool
 	dev-util/pkgconfig"
 
