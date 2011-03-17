@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-geosciences/viking/viking-0.9.9.ebuild,v 1.2 2011/03/06 09:31:24 jlec Exp $
 
-EAPI="4"
+EAPI=4
 
 DESCRIPTION="GPS data editor and analyzer"
 HOMEPAGE="http://viking.sourceforge.net/"
@@ -16,7 +16,6 @@ KEYWORDS="~amd64 ~ppc ~x86"
 COMMONDEPEND="dev-libs/expat
 	dev-libs/glib:2
 	net-misc/curl
-	sys-devel/gettext
 	x11-libs/gdk-pixbuf:2
 	x11-libs/gtk+:2
 	gps? ( sci-geosciences/gpsd )
@@ -27,7 +26,8 @@ DEPEND="${COMMONDEPEND}
 	app-text/gnome-doc-utils
 	app-text/rarian
 	dev-util/intltool
-	dev-util/pkgconfig"
+	dev-util/pkgconfig
+	sys-devel/gettext"
 
 src_configure() {
 	econf \
@@ -45,7 +45,6 @@ src_configure() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "Install failed"
-	dodoc README doc/GEOCODED-PHOTOS doc/GETTING-STARTED doc/GPSMAPPER \
-		|| die "Unable to install docs"
+	emake DESTDIR="${D}" install
+	dodoc README doc/GEOCODED-PHOTOS doc/GETTING-STARTED doc/GPSMAPPER
 }
