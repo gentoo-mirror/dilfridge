@@ -19,12 +19,14 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=""
-RDEPEND="dev-python/pygame
-	dev-python/pyopengl
+RDEPEND="app-text/pdftk
 	dev-python/imaging
+	dev-python/pygame
+	dev-python/pyopengl
+	x11-misc/xdg-utils
+	x11-apps/xrandr
 	|| ( app-text/xpdf app-text/ghostscript-gpl )
-	app-text/pdftk
-	x11-misc/xdg-utils"
+	|| ( media-fonts/dejavu media-fonts/ttf-bitstream-vera media-fonts/corefonts )"
 
 S=${WORKDIR}/${MY_PN}-${PV}
 
@@ -32,5 +34,6 @@ src_install() {
 	python_convert_shebangs 2 impressive.py
 	dobin impressive.py || die
 	doman impressive.1 || die
+	dohtml impressive.html || die
 	dodoc changelog.txt demo.pdf || die
 }
