@@ -3,7 +3,7 @@
 # $Header: $
 
 EAPI=3
-PYTHON_DEPEND="2"
+PYTHON_DEPEND=2
 
 inherit python
 
@@ -29,6 +29,7 @@ RDEPEND="dev-python/pygame
 S=${WORKDIR}/${MY_PN}-${PV}
 
 src_install() {
+	python_convert_shebangs 2 impressive.py
 	dobin impressive.py || die
 	doman impressive.1 || die
 	dodoc changelog.txt demo.pdf || die
