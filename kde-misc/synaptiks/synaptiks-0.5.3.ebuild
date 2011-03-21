@@ -20,8 +20,8 @@ RDEPEND=">=dev-python/PyQt4-4.7
 	kde-base/kdesdk-scripts
 	>=x11-libs/libXi-1.4
 	app-text/docbook-xsl-stylesheets
-	>=dev-python/pyudev-0.6
-	|| ( >=dev-lang/python-2.7 dev-python/argparse )
+	>=dev-python/pyudev-0.6[pyqt4]
+	|| ( ( >=dev-lang/python-2.7 <dev-lang/python-3 ) dev-python/argparse )
 	>=x11-drivers/xf86-input-synaptics-1.3"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
