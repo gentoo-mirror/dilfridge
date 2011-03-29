@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/media-plugins/kipi-plugins/ChangeLog,v 1.72 2010/09/18 14:20:09 dilfridge Exp $
 
+*kipi-plugins-2.0.0_beta4 (29 Mar 2011)
+
+  29 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  +kipi-plugins-2.0.0_beta4.ebuild:
+  Version bump
+
   06 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   kipi-plugins-1.9.0.ebuild, +files/kipi-plugins-1.9.0-tests.patch:
   Fix the (single) test
