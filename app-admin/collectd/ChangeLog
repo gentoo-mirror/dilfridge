@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*collectd-4.10.2-r3 (29 Mar 2011)
+
+  29 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  +collectd-4.10.2-r3.ebuild, +files/collectd-4.10.2-libnotify-0.7.patch,
+  +files/collectd-4.10.2-nohal.patch, files/collectd.initd:
+  Resync with tree
+
   28 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   collectd-4.10.2-r2.ebuild:
   Added hints about new configuration
