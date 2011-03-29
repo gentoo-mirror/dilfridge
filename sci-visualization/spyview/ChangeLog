@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org> metadata.xml:
+  Resync with tree
+
 *spyview-20100329-r1 (24 Mar 2011)
 
   24 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>
