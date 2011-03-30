@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.3.ebuild:
+  Works now, thanks to octo and bonbons on #collectd for the help!
+
 *collectd-4.10.3 (29 Mar 2011)
 
   29 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>

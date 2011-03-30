@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/collectd/collectd-4.10.2-r3.ebuild,v 1.1 2011/02/07 21:21:52 dilfridge Exp $
 
-EAPI="2"
+EAPI=3
 
 inherit eutils base linux-info perl-app autotools
 
@@ -191,6 +191,9 @@ src_prepare() {
 	# There's some strange prefix handling in the default config file, resulting in
 	# paths like "/usr/var/..."
 	sed -i -e "s:@prefix@/var:/var:g" src/collectd.conf.in || die
+
+	# the tarball of 4.10.3 was generated with a different set of autotools, leading to odd problems
+	_elibtoolize --ltdl
 
 	eautoreconf
 }
