@@ -3,6 +3,10 @@
 # $Header: $
 
   30 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.3.ebuild, metadata.xml:
+  Added support for sys-power/nut
+
+  30 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   collectd-4.10.3.ebuild:
   Works now, thanks to octo and bonbons on #collectd for the help!
 
