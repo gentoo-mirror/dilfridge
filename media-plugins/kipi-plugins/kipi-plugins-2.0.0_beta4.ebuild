@@ -30,7 +30,6 @@ DEPEND="
 	dev-libs/qjson
 	$(add_kdebase_dep libkdcraw)
 	>=kde-base/libkexiv2-4.6.28
-	>=kde-base/libksane-4.6.28
 	>=media-libs/libkmap-${PV}
 	>=media-libs/libmediawiki-${PV}
 	$(add_kdebase_dep libkipi)
@@ -45,7 +44,7 @@ DEPEND="
 			)
 	redeyes?	( media-libs/opencv )
 	scanner? 	(
-			  $(add_kdebase_dep libksane)
+			  >=kde-base/libksane-4.6.28
 			  media-gfx/sane-backends
 			)
 "
