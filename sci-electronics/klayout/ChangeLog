@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  klayout-0.20.2.ebuild:
+  Resync with tree
+
 *klayout-0.21.7 (30 Mar 2011)
 
   30 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>
