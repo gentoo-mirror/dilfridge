@@ -27,3 +27,7 @@
 #
 # masked for testing
 ~sci-libs/opencascade-6.5
+
+#
+# masked for testing
+>=app-admin/collectd-5
