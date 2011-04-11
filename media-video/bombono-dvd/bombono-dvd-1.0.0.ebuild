@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit base toolchain-funcs
+inherit base toolchain-funcs flag-o-matic
 
 DESCRIPTION="GUI DVD authoring program"
 HOMEPAGE="http://www.bombono.org/"
@@ -35,6 +35,8 @@ DEPEND=">=dev-util/scons-0.96.1
 	${RDEPEND}"
 
 src_compile() {
+	append-flags -DBOOST_FILESYSTEM_VERSION=2
+
 	# scons options differ from make options -> remove everything except "-jX" and "-j X"
 	local sconsopts=$(echo "${MAKEOPTS}" | sed -ne "/-j/ { s/.*\(-j[[:space:]]*[0-9]\+\).*/\1/; p }")
 
