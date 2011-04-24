@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*spyview-20110329-r1 (24 Apr 2011)
+
+  24 Apr 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  +spyview-20110329-r1.ebuild, +files/spyview-20110329-xsection_fn.patch:
+  Fix buffer overflow that the FORTIFY warning found
+
 *spyview-20110329 (29 Mar 2011)
 
   29 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>
