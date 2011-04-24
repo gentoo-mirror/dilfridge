@@ -3,6 +3,12 @@
 # $Header: $
 
   24 Apr 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.3-r1.ebuild, +files/collectd-4.10.3-werror.patch,
+  collectd-5.0.0-r1.ebuild:
+  Don't use -Werror else gcc-4.6 will drive us mad; move 4.10.3 to EAPI=4;
+  use wrappers for chown and chmod
+
+  24 Apr 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   collectd-4.10.3-r1.ebuild, collectd-5.0.0-r1.ebuild:
   Properly set no shell
 
