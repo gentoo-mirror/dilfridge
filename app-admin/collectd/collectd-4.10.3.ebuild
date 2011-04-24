@@ -102,6 +102,7 @@ RDEPEND="${COMMON_DEPEND}
 PATCHES=(
 	"${FILESDIR}/${PN}-4.10.1"-{libperl,libiptc,noowniptc}.patch
 	"${FILESDIR}/${PN}-4.10.2"-{libocci,libnotify-0.7,nohal}.patch
+	"${FILESDIR}/${PN}-4.10.3"-lt.patch
 	)
 
 # @FUNCTION: collectd_plugin_kernel_linux
@@ -193,8 +194,7 @@ src_prepare() {
 	# paths like "/usr/var/..."
 	sed -i -e "s:@prefix@/var:/var:g" src/collectd.conf.in || die
 
-	# the tarball of 4.10.3 was generated with a different set of autotools, leading to odd problems
-	_elibtoolize --ltdl
+	rm -r libltdl || die
 
 	eautoreconf
 }

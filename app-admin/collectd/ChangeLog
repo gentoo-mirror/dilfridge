@@ -3,6 +3,11 @@
 # $Header: $
 
   24 Apr 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-4.10.3.ebuild, +files/collectd-4.10.3-lt.patch,
+  collectd-5.0.0.ebuild:
+  Properly address libtool mess
+
+  24 Apr 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   collectd-5.0.0.ebuild:
   Cleanup and added ewarn
 
