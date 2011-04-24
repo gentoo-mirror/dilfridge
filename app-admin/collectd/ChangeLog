@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Apr 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  collectd-5.0.0.ebuild:
+  Cleanup and added ewarn
+
 *collectd-5.0.0 (30 Mar 2011)
 
   30 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>

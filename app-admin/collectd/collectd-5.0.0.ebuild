@@ -276,20 +276,20 @@ src_install() {
 
 	find "${D}/usr/" -name "*.la" -exec rm -f {} +
 
-	dodoc AUTHORS ChangeLog NEWS README TODO || die
+	dodoc AUTHORS ChangeLog NEWS README TODO
 
 	if use contrib ; then
 		insinto /usr/share/doc/${PF}
-		doins -r contrib || die
+		doins -r contrib
 	fi
 
-	keepdir /var/lib/${PN} || die
+	keepdir /var/lib/${PN}
 
-	newinitd "${FILESDIR}/${PN}.initd" ${PN} || die
-	newconfd "${FILESDIR}/${PN}.confd" ${PN} || die
+	newinitd "${FILESDIR}/${PN}.initd" ${PN}
+	newconfd "${FILESDIR}/${PN}.confd" ${PN}
 
 	insinto /etc/logrotate.d
-	newins "${FILESDIR}/logrotate" collectd || die
+	newins "${FILESDIR}/logrotate" collectd
 
 	sed -i -e 's:^.*LoadPlugin perl$:# The new, correct way to load the perl plugin -- \n# <LoadPlugin perl>\n#   Globals true\n# </LoadPlugin>:' "${D}"/etc/collectd.conf || die
 	sed -i -e 's:^.*LoadPlugin python$:# The new, correct way to load the python plugin -- \n# <LoadPlugin python>\n#   Globals true\n# </LoadPlugin>:' "${D}"/etc/collectd.conf || die
@@ -316,4 +316,9 @@ pkg_postinst() {
 		elog "The scripts in /usr/share/doc/${PF}/collection3 for generating graphs need dev-perl/HTML-Parser,"
 		elog "dev-perl/config-general, dev-perl/regexp-common, and net-analyzer/rrdtool[perl] to be installed."
 	fi
+	ewarn
+	ewarn "Version 5 of collectd uses a database format different from version 4. You will"
+	ewarn "have to migrate your database after the upgrade, following the guide at"
+	ewarn "   http://www.collectd.org/wiki/index.php/V4_to_v5_migration_guide"
+	ewarn
 }
