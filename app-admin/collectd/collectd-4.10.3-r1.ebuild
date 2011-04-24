@@ -186,7 +186,7 @@ pkg_setup() {
 	fi
 
 	enewgroup collectd
-	enewuser collectd -1 /bin/false /var/lib/collectd collectd
+	enewuser collectd -1 -1 /var/lib/collectd collectd
 }
 
 src_prepare() {
