@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/collectd/collectd-4.10.2-r3.ebuild,v 1.1 2011/02/07 21:21:52 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/collectd/collectd-5.0.0-r1.ebuild,v 1.1 2011/04/24 17:10:05 dilfridge Exp $
 
 EAPI=4
 
