@@ -2,6 +2,17 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*collectd-5.0.0-r1 (24 Apr 2011)
+*collectd-4.10.3-r1 (24 Apr 2011)
+
+  24 Apr 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  -collectd-4.10.2.ebuild, -collectd-4.10.2-r1.ebuild,
+  -collectd-4.10.2-r2.ebuild, -collectd-4.10.2-r3.ebuild,
+  +collectd-4.10.3-r1.ebuild, +collectd-5.0.0-r1.ebuild,
+  files/collectd.confd, files/collectd.initd:
+  Add useflag for perl bindings and static libs, run as unprivileged user;
+  bug 361723
+
   24 Apr 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   collectd-4.10.3.ebuild, +files/collectd-4.10.3-lt.patch,
   collectd-5.0.0.ebuild:
