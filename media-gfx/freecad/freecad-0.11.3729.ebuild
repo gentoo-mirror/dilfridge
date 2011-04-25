@@ -1,11 +1,11 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/freecad/freecad-0.11.3729.ebuild,v 1.3 2011/04/10 20:59:13 dilfridge Exp $
 
 EAPI=3
 PYTHON_DEPEND=2
 
-inherit base eutils multilib autotools python
+inherit base eutils multilib autotools flag-o-matic python
 
 MY_P="freecad-${PV}"
 MY_PD="FreeCAD-${PV}"
@@ -25,7 +25,7 @@ RDEPEND="
 	dev-libs/boost
 	dev-libs/xerces-c
 	dev-python/pivy
-	dev-python/PyQt4
+	dev-python/PyQt4[svg]
 	media-libs/coin
 	media-libs/SoQt
 	>=sci-libs/opencascade-6.3-r3
@@ -59,12 +59,22 @@ src_prepare() {
 }
 
 src_configure() {
-	 econf \
+	append-cflags "-DBOOST_FILESYSTEM_VERSION=2"
+	append-cppflags "-DBOOST_FILESYSTEM_VERSION=2"
+	append-cxxflags "-DBOOST_FILESYSTEM_VERSION=2"
+	econf \
 		--with-qt4-include="${EPREFIX}"/usr/include/qt4 \
 		--with-qt4-bin="${EPREFIX}"//usr/bin \
 		--with-qt4-lib="${EPREFIX}"//usr/$(get_libdir)/qt4 \
 		--with-occ-include=${CASROOT}/inc \
 		--with-occ-lib=${CASROOT}/lib
+}
+
+src_compile() {
+	# the build system is generating extremely odd errors on parallel build
+	# seem like moc is trying to process non-existing files, resulting in
+	# double namespace declarations Bla::Bla::Method in the moc_ files
+	MAKEOPTS="-j1" base_src_compile
 }
 
 src_install() {
