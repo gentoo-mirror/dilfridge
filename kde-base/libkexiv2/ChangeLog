@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libkexiv2-4.6.29 (05 May 2011)
+
+  05 May 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  +libkexiv2-4.6.29.ebuild:
+  Version bump
+
 *libkexiv2-4.6.28 (29 Mar 2011)
 
   29 Mar 2011; Andreas K. Huettel <dilfridge@gentoo.org>
