@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 May 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  -digikam-2.0.0_beta2.ebuild, -digikam-2.0.0_beta3.ebuild,
+  -digikam-2.0.0_beta4.ebuild, digikam-2.0.0_beta5.ebuild:
+  Remove old; drop ppc keyword
+
 *digikam-1.9.0-r1 (11 May 2011)
 
   11 May 2011; Andreas K. Huettel <dilfridge@gentoo.org> digikam-1.9.0.ebuild,
