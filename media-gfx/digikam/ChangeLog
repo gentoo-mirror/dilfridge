@@ -3,6 +3,10 @@
 # $Header: $
 
   11 May 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-2.0.0_beta5.ebuild:
+  QA cleanups
+
+  11 May 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   -digikam-2.0.0_beta2.ebuild, -digikam-2.0.0_beta3.ebuild,
   -digikam-2.0.0_beta4.ebuild, digikam-2.0.0_beta5.ebuild:
   Remove old; drop ppc keyword
