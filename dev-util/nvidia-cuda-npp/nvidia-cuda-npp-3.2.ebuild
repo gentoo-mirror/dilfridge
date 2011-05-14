@@ -9,7 +9,7 @@ inherit base eutils multilib
 DESCRIPTION="NVIDIA CUDA Performance Primitives (NPP) library"
 HOMEPAGE="http://developer.nvidia.com/cuda"
 
-RESTRICT="binchecks mirror"
+RESTRICT="binchecks bindist mirror"
 
 CUDA_V=${PV//_/-}
 DIR_V=${CUDA_V//./_}
