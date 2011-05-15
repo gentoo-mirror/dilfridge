@@ -4,12 +4,12 @@
 
 EAPI=4
 
-inherit base eutils multilib
+inherit base
 
 DESCRIPTION="NVIDIA CUDA Performance Primitives (NPP) library"
 HOMEPAGE="http://developer.nvidia.com/cuda"
 
-RESTRICT="binchecks bindist mirror"
+RESTRICT="binchecks bindist mirror primaryuri"
 
 CUDA_V=${PV//_/-}
 DIR_V=${CUDA_V//./_}
@@ -39,6 +39,14 @@ src_install() {
 	if use doc ; then
 		dodoc common/npp/doc/NPP_Library_*.pdf
 		dohtml common/npp/doc/html/*
+	fi
+
+	if use examples ; then
+		dodoc samples/binarySegmentation/binarySegmentation.cpp
+		dodoc samples/boxFilter/boxFilter.cpp
+		dodoc samples/freeImageInterop/freeImageInterop.cpp
+		dodoc samples/histEqualization/histEqualization.cpp
+		dodoc data/*
 	fi
 
 	local DEST=/opt/cuda
