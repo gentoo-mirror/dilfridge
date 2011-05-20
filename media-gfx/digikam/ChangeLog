@@ -3,6 +3,10 @@
 # $Header: $
 
   20 May 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-2.0.0_beta5.ebuild:
+  Backport build fix for libjpeg-turbo
+
+  20 May 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   digikam-1.9.0-r1.ebuild:
   Add upstream fix for libjpeg-turbo
 

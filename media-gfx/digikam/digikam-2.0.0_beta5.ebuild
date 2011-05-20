@@ -68,7 +68,10 @@ DEPEND="${CDEPEND}
 	doc? ( app-doc/doxygen )
 "
 
-PATCHES=( "${FILESDIR}/${PN}"-2.0.0_beta5-docs.patch )
+PATCHES=(
+	"${FILESDIR}/${PN}"-2.0.0_beta5-docs.patch
+	"${FILESDIR}/${PN}"-1.9.0-turbo.patch
+)
 
 S="${WORKDIR}/${MY_P}/core"
 
