@@ -68,6 +68,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}"-1.9.0-docs.patch
 	"${FILESDIR}/${PN}"-1.8.0-tests.patch
 	"${FILESDIR}/${PN}"-1.9.0-nomysql.patch
+	"${FILESDIR}/${PN}"-1.9.0-turbo.patch
 )
 
 src_prepare() {
