@@ -1,8 +1,8 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/karbon/karbon-2.3.3.ebuild,v 1.3 2011/05/09 23:12:04 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/karbon/karbon-2.2.2.ebuild,v 1.6 2011/03/13 08:13:04 dilfridge Exp $
 
-EAPI=3
+EAPI="3"
 KMNAME="koffice"
 KMMODULE="${PN}"
 
@@ -13,7 +13,7 @@ DESCRIPTION="KOffice vector drawing application."
 KEYWORDS="amd64 x86"
 IUSE="+pstoedit wpg"
 
-DEPEND="
+DEPEND="<kde-base/kdelibs-4.6
 	media-libs/libart_lgpl
 	pstoedit? ( media-gfx/pstoedit )
 	wpg? ( media-libs/libwpg )
@@ -22,7 +22,6 @@ RDEPEND="${DEPEND}"
 
 KMEXTRA="filters/${KMMODULE}"
 KMEXTRACTONLY="
-	KoConfig.h.cmake
 	libs/
 	plugins/
 	filters/
@@ -41,6 +40,5 @@ src_install() {
 	kde4-meta_src_install
 
 	# this is already installed by koffice-data
-	rm -f "${D}/usr/include/config-opengl.h"
-	rm -f "${D}/usr/include/KoConfig.h"
+	rm -f "${ED}/usr/include/config-opengl.h"
 }
