@@ -1,12 +1,12 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/app-office/libalkimia/libalkimia-4.3.0.ebuild,v 1.1 2011/04/21 22:19:14 dilfridge Exp $
 
-EAPI=3
+EAPI=4
 
 inherit kde4-base
 
-DESCRIPTION="Library with common classes and functionality used by finance applications for the KDE SC"
+DESCRIPTION="Library with common classes and functionality used by KDE finance applications"
 HOMEPAGE="http://kde-apps.org/content/show.php/libalkimia?content=137323"
 SRC_URI="http://kde-apps.org/CONTENT/content-files/137323-${P}.tar.bz2"
 
