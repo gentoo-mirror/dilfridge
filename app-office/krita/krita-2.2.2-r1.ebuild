@@ -1,8 +1,8 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/krita/krita-2.3.3.ebuild,v 1.3 2011/05/09 23:13:26 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/krita/krita-2.2.2-r1.ebuild,v 1.3 2011/03/13 08:29:22 dilfridge Exp $
 
-EAPI=3
+EAPI="3"
 
 KMNAME="koffice"
 KMMODULE="${PN}"
@@ -11,27 +11,24 @@ inherit kde4-meta
 
 DESCRIPTION="KOffice image manipulation program."
 
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="gmm +kdcraw openexr +pdf +tiff"
 
-DEPEND="
+DEPEND="<kde-base/kdelibs-4.6
 	>=app-office/koffice-libs-${PV}:${SLOT}[openexr=]
 	>=dev-cpp/eigen-2.0.3:2
 	>=media-libs/qimageblitz-0.0.4
 	>=media-gfx/exiv2-0.16
-	sci-libs/fftw:3.0
-	sys-devel/gcc[openmp]
 	gmm? ( sci-mathematics/gmm )
-	kdcraw? ( $(add_kdebase_dep libkdcraw) )
+	kdcraw? ( >=kde-base/libkdcraw-${KDE_MINIMAL} )
 	opengl? ( media-libs/glew )
 	pdf? ( >=app-text/poppler-0.12.3-r3[qt4] )
 "
 RDEPEND="${DEPEND}"
 
-KMEXTRACTONLY="
-	KoConfig.h.cmake
-	libs/
-"
+PATCHES=( "${FILESDIR}/${P}"-{xlibs,exiv2}.patch )
+
+KMEXTRACTONLY="libs/"
 
 KMLOADLIBS="koffice-libs"
 
@@ -39,7 +36,6 @@ src_configure() {
 	mycmakeargs=(
 		-DWITH_Eigen2=ON
 		-DWITH_Exiv2=ON
-		-DWITH_FFTW3=ON
 		-DWITH_JPEG=ON
 		$(cmake-utils_use_with openexr OpenEXR)
 		$(cmake-utils_use_with gmm)
@@ -57,6 +53,5 @@ src_install() {
 	kde4-meta_src_install
 
 	# this is already installed by koffice-data
-	rm -f "${D}/usr/include/config-opengl.h"
-	rm -f "${D}/usr/include/KoConfig.h"
+	rm -f "${ED}/usr/include/config-opengl.h"
 }
