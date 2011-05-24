@@ -1,8 +1,8 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/koffice-l10n/koffice-l10n-2.3.3.ebuild,v 1.3 2011/05/09 23:12:35 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/koffice-l10n/koffice-l10n-2.2.2.ebuild,v 1.5 2011/01/28 09:52:41 tampakrap Exp $
 
-EAPI=3
+EAPI="3"
 
 inherit kde4-base
 
@@ -13,21 +13,18 @@ LICENSE="GPL-2"
 DEPEND="sys-devel/gettext"
 RDEPEND=""
 
-KEYWORDS="amd64 ~ppc ~ppc64 x86"
+KEYWORDS="amd64 x86"
 IUSE="doc"
 
-MY_LANGS="ca ca@valencia da de el en_GB es et fr gl hu it ja kk nb nds nl pl pt pt_BR
+MY_LANGS="ca da de el en_GB es et fr gl it ja kk nb nds nl pl pt pt_BR
 	ru sv tr uk wa zh_CN zh_TW"
 URI_BASE="mirror://kde/stable/koffice-${PV}/${PN}/"
 SRC_URI=""
 SLOT="2"
 
-# special case for 2.3.3: l10n files are named 2.3.2, no change
-MY_PV="2.3.2"
-
 for MY_LANG in ${MY_LANGS} ; do
 	IUSE="${IUSE} linguas_${MY_LANG}"
-	SRC_URI="${SRC_URI} linguas_${MY_LANG}? ( ${URI_BASE}/${PN}-${MY_LANG}-${MY_PV}.tar.bz2 )"
+	SRC_URI="${SRC_URI} linguas_${MY_LANG}? ( ${URI_BASE}/${PN}-${MY_LANG}-${PV}.tar.bz2 )"
 done
 
 S="${WORKDIR}"
@@ -51,7 +48,7 @@ src_unpack() {
 	# add all linguas to cmake
 	if [[ -n ${A} ]]; then
 		for lng in ${MY_LANGS}; do
-			dir="${PN}-${lng}-${MY_PV}"
+			dir="${PN}-${lng}-${PV}"
 			if [[ -d "${dir}" ]] ; then
 				echo "add_subdirectory( ${dir} )" >> "${S}"/CMakeLists.txt
 			fi
