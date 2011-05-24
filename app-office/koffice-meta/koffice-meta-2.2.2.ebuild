@@ -1,10 +1,10 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/koffice-meta/koffice-meta-2.3.3.ebuild,v 1.3 2011/05/09 23:12:55 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/koffice-meta/koffice-meta-2.2.2.ebuild,v 1.5 2011/03/13 08:29:23 dilfridge Exp $
 
-EAPI=3
+EAPI=2
 
-DESCRIPTION="KOffice - merge this to pull in all KOffice-derived packages"
+DESCRIPTION="KOffice - merge this to pull in all KOffice-derived packages."
 HOMEPAGE="http://www.koffice.org/"
 LICENSE="GPL-2"
 
@@ -12,7 +12,7 @@ SLOT="2"
 KEYWORDS="amd64 x86"
 IUSE="nls reports"
 
-RDEPEND="
+RDEPEND="<kde-base/kdelibs-4.6
 	>=app-office/karbon-${PV}:${SLOT}
 	>=app-office/kexi-${PV}:${SLOT}
 	>=app-office/koffice-data-${PV}:${SLOT}
@@ -23,5 +23,4 @@ RDEPEND="
 	>=app-office/kword-${PV}:${SLOT}
 	nls? ( >=app-office/koffice-l10n-${PV}:${SLOT} )
 	reports? ( >=app-office/kplato-${PV}:${SLOT} )
-	!app-office/kchart
 "
