@@ -1,8 +1,8 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/koffice-libs/koffice-libs-2.3.3.ebuild,v 1.4 2011/05/09 23:12:48 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/koffice-libs/koffice-libs-2.2.2.ebuild,v 1.7 2011/03/13 08:29:22 dilfridge Exp $
 
-EAPI=3
+EAPI="3"
 
 KMNAME="koffice"
 KMMODULE="libs"
@@ -14,11 +14,12 @@ DESCRIPTION="Shared KOffice libraries."
 KEYWORDS="amd64 x86"
 IUSE="crypt openexr reports"
 
-RDEPEND="
+# the contents of kchart have been moved into koffice-libs in 2.2.0
+
+RDEPEND="<kde-base/kdelibs-4.6
 	>=app-office/koffice-data-${PV}:${SLOT}
 	dev-libs/libxml2
 	dev-libs/libxslt
-	dev-libs/soprano
 	>=kde-base/kdepimlibs-${KDE_MINIMAL}
 	media-libs/lcms:0
 	crypt? ( app-crypt/qca:2 )
@@ -28,6 +29,8 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}"
 #	doc? ( app-doc/doxygen )"
+
+PATCHES=( "${FILESDIR}/${P}-kspreadcommon.patch" )
 
 KMEXTRA="
 	doc/koffice/
@@ -39,15 +42,14 @@ KMEXTRA="
 	filters/kchart/
 	filters/kformula/
 	interfaces/
-	kchart/
-	kformula/
 	kounavail/
 	plugins/
 	tools/
+	kchart/
+	kformula/
 "
-
+#	doc/api/"
 KMEXTRACTONLY="
-	KoConfig.h.cmake
 	doc/koffice.desktop
 	filters/
 "
@@ -59,7 +61,6 @@ src_configure() {
 		$(cmake-utils_use_with crypt QCA2)
 		$(cmake-utils_use_with opengl OpenGL)
 		$(cmake-utils_use_with openexr OpenEXR)
-		-DWITH_Spnav=OFF
 		-DBUILD_kchart=ON
 		-DBUILD_kformula=ON
 		$(cmake-utils_use_build reports koreport)
@@ -76,6 +77,5 @@ src_install() {
 	kde4-meta_src_install
 
 	# this is already installed by koffice-data
-	rm -f "${D}/usr/include/config-opengl.h"
-	rm -f "${D}/usr/include/KoConfig.h"
+	rm -f "${ED}/usr/include/config-opengl.h"
 }
