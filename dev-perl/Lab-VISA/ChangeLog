@@ -1,0 +1,31 @@
+# ChangeLog for dev-perl/Lab-VISA
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*Lab-VISA-9999 (25 May 2011)
+*Lab-VISA-2.06 (25 May 2011)
+
+  25 May 2011; Andreas K. Huettel <dilfridge@gentoo.org> +Lab-VISA-2.06.ebuild,
+  +Lab-VISA-9999.ebuild, +metadata.xml:
+  Imported from lab repository
+
+  20 May 2010; Andreas K. Huettel (dilfridge) <mail@akhuettel.de>
+  +Lab-VISA-2.06.ebuild:
+  Version bump.
+
+  05 May 2010; Andreas K. Huettel (dilfridge) <mail@akhuettel.de>
+  +Lab-VISA-9999.ebuild:
+  Added live ebuild.
+
+  04 May 2010; Andreas K. Huettel (dilfridge) <mail@akhuettel.de>
+  -files/Lab-VISA-1.12-amd64.patch, -files/Lab-VISA-1.12-libdir.patch:
+  Removed unneeded patches.
+
+  04 May 2010; Andreas K. Huettel (dilfridge) <mail@akhuettel.de>
+  Lab-VISA-2.05.ebuild:
+  Some QA.
+
+  04 May 2010; Andreas K. Huettel (dilfridge) <mail@akhuettel.de>
+  -Lab-VISA-1.12.ebuild, +Lab-VISA-2.05.ebuild, +metadata.xml:
+  Version bump and cleanup.
+
