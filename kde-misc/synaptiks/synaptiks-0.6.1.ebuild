@@ -8,26 +8,28 @@ inherit distutils
 
 DESCRIPTION="Touchpad configuration and management tool for KDE"
 HOMEPAGE="http://synaptiks.lunaryorn.de/"
-SRC_URI="https://dev.gentoo.org/~dilfridge/distfiles/${P}.tar.gz"
+SRC_URI="https://github.com/lunaryorn/${PN}/tarball/${PV} -> ${P}.tar.gz"
 
 LICENSE="BSD-2"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug +handbook"
 
-RDEPEND=">=dev-python/PyQt4-4.7
+RDEPEND="|| ( >=dev-lang/python-2.7 dev-python/argparse )
+	>=dev-python/PyQt4-4.7
+	>=dev-python/pyudev-0.6[pyqt4]
 	>=kde-base/pykde4-4.5
 	kde-base/kdesdk-scripts
-	>=x11-libs/libXi-1.4
-	app-text/docbook-xsl-stylesheets
-	>=dev-python/pyudev-0.6[pyqt4]
-	|| ( ( >=dev-lang/python-2.7 <dev-lang/python-3 ) dev-python/argparse )
-	>=x11-drivers/xf86-input-synaptics-1.3"
+	>=x11-drivers/xf86-input-synaptics-1.3
+	>=x11-libs/libXi-1.4"
 DEPEND="${RDEPEND}
-	sys-devel/gettext
-"
+	app-text/docbook-xsl-stylesheets
+	sys-devel/gettext"
 
-S=${WORKDIR}/lunaryorn-synaptiks-2b7d696
+src_unpack() {
+	default
+	mv -v "${WORKDIR}"/lunaryorn-synaptiks-* "${S}" || die
+}
 
 src_install() {
 	distutils_src_install --single-version-externally-managed
