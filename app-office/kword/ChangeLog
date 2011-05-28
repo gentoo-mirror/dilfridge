@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*kword-2.3.3-r1 (24 May 2011)
+*kword-2.2.2 (24 May 2011)
+
+  24 May 2011; Andreas K. Huettel <dilfridge@gentoo.org> +kword-2.2.2.ebuild,
+  kword-2.3.3.ebuild, +kword-2.3.3-r1.ebuild:
+  Resync with tree
+
 *kword-2.3.3 (24 Feb 2011)
 
   24 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>

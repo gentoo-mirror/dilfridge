@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/kplato/kplato-2.3.0.ebuild,v 1.1 2011/01/14 20:38:15 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/kplato/kplato-2.3.3.ebuild,v 1.4 2011/05/09 23:13:06 hwoarang Exp $
 
 EAPI=3
 
@@ -10,8 +10,8 @@ inherit kde4-meta
 
 DESCRIPTION="KOffice project management application"
 
-KEYWORDS="~amd64 ~x86"
-IUSE=""
+KEYWORDS="amd64 x86"
+IUSE="python"
 
 DEPEND="~app-office/koffice-libs-${PV}:${SLOT}[reports]"
 RDEPEND="${DEPEND}"

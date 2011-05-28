@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*krita-2.2.2 (24 May 2011)
+
+  24 May 2011; Andreas K. Huettel <dilfridge@gentoo.org> +krita-2.2.2.ebuild,
+  +krita-2.2.2-r1.ebuild, krita-2.3.3.ebuild:
+  Resync with tree
+
 *krita-2.3.3 (23 Feb 2011)
 
   23 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>
