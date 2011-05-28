@@ -13,7 +13,7 @@ SRC_URI="https://github.com/lunaryorn/${PN}/tarball/${PV} -> ${P}.tar.gz"
 LICENSE="BSD-2"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug +handbook"
+IUSE="debug +handbook +upower"
 
 RDEPEND="|| ( >=dev-lang/python-2.7 dev-python/argparse )
 	>=dev-python/PyQt4-4.7
@@ -21,7 +21,9 @@ RDEPEND="|| ( >=dev-lang/python-2.7 dev-python/argparse )
 	>=kde-base/pykde4-4.5
 	kde-base/kdesdk-scripts
 	>=x11-drivers/xf86-input-synaptics-1.3
-	>=x11-libs/libXi-1.4"
+	>=x11-libs/libXi-1.4
+	x11-libs/libXtst
+	upower? ( dev-python/dbus-python sys-power/upower )"
 DEPEND="${RDEPEND}
 	app-text/docbook-xsl-stylesheets
 	sys-devel/gettext"
