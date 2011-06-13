@@ -8,7 +8,7 @@ inherit kde4-base waf-utils
 
 DESCRIPTION="Mindmapping-like tool for document generation."
 HOMEPAGE="http://freehackers.org/~tnagy/semantik.html"
-SRC_URI="http://freehackers.org/~tnagy/${P}.tar.bz2"
+SRC_URI="http://semantik.googlecode.com/files/semantik-snapshot.tar.bz2 -> ${P}.tar.bz2"
 
 LICENSE="QPL"
 SLOT="0"
@@ -26,12 +26,13 @@ RDEPEND="
 	dev-lang/python[xml]
 "
 
-PATCHES=( "${FILESDIR}/${P}"-wscript_ldconfig.patch )
-
+S="${WORKDIR}/semantik-0.7.4"
 WAF_BINARY="${S}/waf"
+
+PATCHES=( "${FILESDIR}/${P}"-wscript_ldconfig.patch )
 
 src_configure() {
 	CCFLAGS="${CFLAGS}" LINKFLAGS="${LDFLAGS}" "${WAF_BINARY}" \
-		"--prefix=${EPREFIX}/usr" --disable-rpath \
+		"--prefix=${EPREFIX}/usr" \
 		configure || die "configure failed"
 }
