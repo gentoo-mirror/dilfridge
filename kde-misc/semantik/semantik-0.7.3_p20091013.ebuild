@@ -30,7 +30,7 @@ RDEPEND="
 S="${WORKDIR}/semantik-0.7.4"
 WAF_BINARY="${S}/waf"
 
-PATCHES=( "${FILESDIR}/${P}"-{wscript_ldconfig,rpath}.patch )
+PATCHES=( "${FILESDIR}/${P}"-wscript_ldconfig.patch )
 
 src_prepare() {
 	cp "${DISTDIR}/waf-1.5.19" ${WAF_BINARY} || die
