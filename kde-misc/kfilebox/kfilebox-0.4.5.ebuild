@@ -16,10 +16,13 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
+for name in ${LANGS} ; do IUSE+="linguas_$name " ; done
+unset name
+
 DEPEND="kde-base/kdelibs"
 RDEPEND="${DEPEND}"
 
-PATCHES=( "${FILESDIR}/pro.patch" )
+PATCHES=( "${FILESDIR}/${P}-installroot.patch" )
 
 src_install() {
 	dobin bin/kfilebox

@@ -6,7 +6,7 @@
  transinstallar.extra = find . -name \"*.cpp\" -o -name \"*.h\"  | xargs xgettext -C --kde --keyword=tr --keyword=translate:2 -o $${OUT_PWD}/messages.po; \
 -    msgmerge locale/ar/kfilebox.po messages.po > tmp.po; mv -f tmp.po locale/ar/kfilebox.mo; \
 -    msgfmt -o $$DATADIR/locale/ar/LC_MESSAGES/kfilebox.mo locale/ar/kfilebox.po
-+    msgmerge locale/ar/kfilebox.po $${OUT_PWD}/messages.po > tmp.po; mv -f tmp.po locale/ar/kfilebox.mo; \
++    sed -e 's:CHARSET:us-ascii:g' -i $${OUT_PWD}/messages.po ; msgmerge locale/ar/kfilebox.po $${OUT_PWD}/messages.po > tmp.po; mv -f tmp.po locale/ar/kfilebox.mo; \
 +    msgfmt -o $(INSTALL_ROOT)/$$DATADIR/locale/ar/LC_MESSAGES/kfilebox.mo locale/ar/kfilebox.po
  transinstallar.path = $$DATADIR/locale/ar/LC_MESSAGES
  transinstallar.files = locale/ar/kfilebox.mo
