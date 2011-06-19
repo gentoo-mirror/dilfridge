@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/clapack/clapack-3.2.1-r4.ebuild,v 1.3 2011/05/09 23:11:47 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/clapack/clapack-3.2.1-r6.ebuild,v 1.1 2011/06/19 20:35:56 dilfridge Exp $
 
 EAPI=4
 
@@ -30,5 +30,5 @@ PATCHES=(
 
 src_configure() {
 	local mycmakeargs=( $(cmake-utils_use_enable test TESTS) )
-	VERBOSE=1 cmake-utils_src_configure
+	cmake-utils_src_configure
 }

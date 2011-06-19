@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-libs/clapack/ChangeLog,v 1.9 2010/09/18 22:44:41 dilfridge Exp $
 
+  19 Jun 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  clapack-3.2.1-r6.ebuild:
+  Resync with tree
+
 *clapack-3.2.1-r6 (19 Jun 2011)
 
   19 Jun 2011; Andreas K. Huettel <dilfridge@gentoo.org>
