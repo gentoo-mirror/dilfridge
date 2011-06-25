@@ -6,3 +6,8 @@
 #
 # masked for testing
 ~sci-libs/opencascade-6.5
+
+#
+# it's not ready yet
+>net-print/cups-1.4.9999
+
