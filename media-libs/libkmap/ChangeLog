@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libkmap-2.0.0_beta6 (02 Jul 2011)
+
+  02 Jul 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  libkmap-2.0.0_beta5.ebuild, +libkmap-2.0.0_beta6.ebuild,
+  libkmap-2.0.0_rc.ebuild:
+  Resync with kde overlay
+
 *libkmap-2.0.0_rc (30 Jun 2011)
 
   30 Jun 2011; Andreas K. Huettel <dilfridge@gentoo.org>
