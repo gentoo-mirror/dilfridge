@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libkipi-4.6.31 (02 Jul 2011)
+
+  02 Jul 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  +libkipi-4.6.31.ebuild:
+  Version bump
+
 *libkipi-4.6.29 (05 May 2011)
 
   05 May 2011; Andreas K. Huettel <dilfridge@gentoo.org>
