@@ -3,6 +3,10 @@
 # $Header: $
 
   05 Jul 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-2.0.0_rc.ebuild, +files/digikam-2.0.0_rc-officialpgf2.patch:
+  Additional compile fix for libpgf-6.11.24
+
+  05 Jul 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   -files/digikam-2.0.0_officialpgf.patch,
   +files/digikam-2.0.0_rc-officialpgf.patch:
   Include build fix for new but unbundled libpgf
