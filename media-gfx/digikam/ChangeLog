@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Jul 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  -files/digikam-2.0.0_officialpgf.patch,
+  +files/digikam-2.0.0_rc-officialpgf.patch:
+  Include build fix for new but unbundled libpgf
+
   04 Jul 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   digikam-2.0.0_rc.ebuild, +files/digikam-2.0.0_officialpgf.patch:
   Add build fix for offical new libpgf
