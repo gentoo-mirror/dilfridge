@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Jul 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-2.0.0_rc.ebuild:
+  Although not strictly required, it is probably safer to use libpgf-6.11.24
+
   05 Jul 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   digikam-2.0.0_rc.ebuild, +files/digikam-2.0.0_rc-officialpgf2.patch:
   Additional compile fix for libpgf-6.11.24
