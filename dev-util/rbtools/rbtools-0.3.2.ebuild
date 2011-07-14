@@ -6,14 +6,14 @@ EAPI=3
 PYTHON_DEPEND=2
 RESTRICT_PYTHON_ABIS="3.*"
 
-inherit distutils
+inherit versionator distutils
 
 MY_PN=RBTools
 MY_P=${MY_PN}-${PV}
 
 DESCRIPTION="Command line tools for use with Review Board"
 HOMEPAGE="http://www.reviewboard.org/"
-SRC_URI="http://downloads.reviewboard.org/releases/${MY_PN}/0.3/${MY_P}.tar.gz"
+SRC_URI="http://downloads.reviewboard.org/releases/${MY_PN}/$(get_version_component_range 1-2)/${MY_P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
