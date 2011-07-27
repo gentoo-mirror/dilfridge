@@ -9,11 +9,8 @@ KDE_LINGUAS=""
 #	ko lt lv nds nn pa pl pt pt_BR ro se sl sv th tr vi zh_CN zh_TW"
 
 KDE_HANDBOOK="optional"
-
-CMAKE_MIN_VERSION=2.8
-
-KDEGRAPHICS_MINIMAL="4.6.31"
-# please leave the weird number here for the moment
+CMAKE_MIN_VERSION="2.8"
+KDE_MINIMAL="4.7"
 
 inherit kde4-base
 
@@ -27,32 +24,32 @@ LICENSE="GPL-2
 	handbook? ( FDL-1.2 )"
 KEYWORDS="~amd64 ~x86"
 SLOT="4"
-IUSE="addressbook debug doc gphoto2 semantic-desktop themedesigner +thumbnails video"
+IUSE="addressbook debug doc gphoto2 mysql semantic-desktop themedesigner +thumbnails video"
 
 CDEPEND="
 	$(add_kdebase_dep kdelibs semantic-desktop)
-	$(add_kdebase_dep marble plasma)
-	$(add_kdebase_dep libkipi)
+	$(add_kdebase_dep libkdcraw)
 	$(add_kdebase_dep libkexiv2)
-	>=kde-base/libkdcraw-${KDEGRAPHICS_MINIMAL}
-	>=media-libs/libkface-${PV}
-	>=media-libs/libkmap-${PV}
+	$(add_kdebase_dep libkipi)
+	$(add_kdebase_dep marble plasma)
 	$(add_kdebase_dep solid)
 	media-libs/jasper
-	virtual/jpeg
 	media-libs/lcms:0
 	>=media-libs/lensfun-0.2.5
+	>=media-libs/libkface-${PV}
+	>=media-libs/libkmap-${PV}
 	media-libs/liblqr
+	>=media-libs/libpgf-6.11.24
 	media-libs/libpng
 	media-libs/tiff
-	>=media-libs/libpgf-6.11.24
-	>=media-plugins/kipi-plugins-1.2.0-r1
-	|| ( >=sci-libs/clapack-3.2.1-r6 sci-libs/lapack-atlas )
-	virtual/mysql
+	media-plugins/kipi-plugins
+	virtual/jpeg
 	x11-libs/qt-gui[qt3support]
+	|| ( >=sci-libs/clapack-3.2.1-r6 sci-libs/lapack-atlas )
 	|| ( x11-libs/qt-sql[mysql] x11-libs/qt-sql[sqlite] )
 	addressbook? ( $(add_kdebase_dep kdepimlibs) )
 	gphoto2? ( media-libs/libgphoto2 )
+	mysql? ( virtual/mysql )
 "
 RDEPEND="${CDEPEND}
 	$(add_kdebase_dep kreadconfig)
@@ -108,6 +105,7 @@ src_configure() {
 		$(cmake-utils_use_with semantic-desktop Soprano)
 		$(cmake-utils_use_enable themedesigner)
 		$(cmake-utils_use_enable thumbnails THUMBS_DB)
+		$(cmake-utils_use_enable mysql INTERNALMYSQL)
 		$(cmake-utils_use_enable debug DEBUG_MESSAGES)
 	)
 

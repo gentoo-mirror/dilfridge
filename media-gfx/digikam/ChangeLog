@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Jul 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  digikam-2.0.0_rc.ebuild:
+  Cleanup, re-add accidentally dropped useflag mysql, depend on kde-4.7
+
   06 Jul 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   digikam-2.0.0_rc.ebuild:
   Although not strictly required, it is probably safer to use libpgf-6.11.24
