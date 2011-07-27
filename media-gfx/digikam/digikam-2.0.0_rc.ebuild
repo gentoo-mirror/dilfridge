@@ -1,12 +1,13 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/digikam/digikam-2.0.0_rc.ebuild,v 1.1 2011/07/27 20:51:56 dilfridge Exp $
 
 EAPI=4
 
 KDE_LINGUAS=""
 #KDE_LINGUAS="be ca ca@valencia de el en_GB eo es et eu fi fr he hi hne hu is it km
 #	ko lt lv nds nn pa pl pt pt_BR ro se sl sv th tr vi zh_CN zh_TW"
+#the release candidate has no internationalization
 
 KDE_HANDBOOK="optional"
 CMAKE_MIN_VERSION="2.8"
@@ -16,7 +17,7 @@ inherit kde4-base
 
 MY_P="${PN}-${PV/_/-}"
 
-DESCRIPTION="A digital photo management application for KDE."
+DESCRIPTION="Digital photo management application for KDE"
 HOMEPAGE="http://www.digikam.org/"
 [[ ${PV} != *9999* ]] && SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2"
 

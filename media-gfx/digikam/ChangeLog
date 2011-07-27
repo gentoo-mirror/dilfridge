@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Jul 2011; Andreas K. Huettel <dilfridge@gentoo.org> digikam-1.9.0.ebuild,
+  digikam-1.9.0-r1.ebuild, +files/digikam-1.9.0-newpgf.patch,
+  digikam-2.0.0_rc.ebuild:
+  Resync with main tree
+
   27 Jul 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   digikam-2.0.0_rc.ebuild:
   Cleanup, re-add accidentally dropped useflag mysql, depend on kde-4.7
