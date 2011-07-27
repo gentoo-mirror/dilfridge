@@ -1,17 +1,17 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/kipi-plugins/kipi-plugins-2.0.0_rc.ebuild,v 1.1 2011/07/27 21:04:25 dilfridge Exp $
 
 EAPI=4
 
 OPENGL_REQUIRED="optional"
 # KDE_LINGUAS="ar ast be bg ca ca@valencia cs da de el en_GB eo es et eu fi fr ga gl he hi hne hr hu is it ja km ko
 # lt lv mai ms nb nds nl nn oc pa pl pt pt_BR ro ru se sk sv th tr uk zh_CN zh_TW"
+# the release candidate has no internationalization
+
+KDE_MINIMAL="4.7"
 
 inherit flag-o-matic kde4-base
-
-KDEGRAPHICS_MINIMAL="4.6.31"
-# please leave the weird number here for the moment
 
 MY_P="digikam-${PV/_/-}"
 
@@ -26,18 +26,18 @@ SLOT="4"
 IUSE="cdr calendar crypt debug expoblending handbook +imagemagick ipod mjpeg redeyes scanner"
 
 DEPEND="
-	>=dev-libs/expat-2.0.1
-	>=dev-libs/libxml2-2.7
-	>=dev-libs/libxslt-1.1
+	$(add_kdebase_dep libkipi)
+	$(add_kdebase_dep libkdcraw)
+	$(add_kdebase_dep libkexiv2)
+	dev-libs/expat
+	dev-libs/libxml2
+	dev-libs/libxslt
 	dev-libs/qjson
-	>=kde-base/libkdcraw-${KDEGRAPHICS_MINIMAL}
-	>=kde-base/libkexiv2-${KDEGRAPHICS_MINIMAL}
 	>=media-libs/libkmap-${PV}
 	>=media-libs/libmediawiki-${PV}
-	$(add_kdebase_dep libkipi)
-	virtual/jpeg
 	media-libs/libpng
 	media-libs/tiff
+	virtual/jpeg
 	calendar?	( $(add_kdebase_dep kdepimlibs) )
 	crypt?		( app-crypt/qca:2 )
 	ipod?		(
@@ -46,7 +46,7 @@ DEPEND="
 			)
 	redeyes?	( media-libs/opencv )
 	scanner? 	(
-			  >=kde-base/libksane-${KDEGRAPHICS_MINIMAL}
+			  $(add_kdebase_dep libksane)
 			  media-gfx/sane-backends
 			)
 "
