@@ -1,61 +1,59 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/digikam/digikam-1.6.0.ebuild,v 1.1 2010/11/25 20:30:29 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/digikam/digikam-2.0.0_rc.ebuild,v 1.1 2011/07/27 20:51:56 dilfridge Exp $
 
 EAPI=4
 
-KDE_LINGUAS=""
-#KDE_LINGUAS="be ca ca@valencia de el en_GB eo es et eu fi fr he hi hne hu is it km
-#	ko lt lv nds nn pa pl pt pt_BR ro se sl sv th tr vi zh_CN zh_TW"
+KDE_LINGUAS="ar az be bg bn br bs ca cs csb cy da de el en_GB eo es et eu fa fi fo fr fy ga 
+gl ha he hi hr hsb hu id is it ja ka kk km ko ku lb lo lt lv mi mk mn ms mt nb nds ne nl nn 
+nso oc pa pl pt pt_BR ro ru rw se sk sl sq sr ss sv ta te tg th tr tt uk uz ven vi wa xh 
+zh_CN zh_HK zh_TW zu"
 
 KDE_HANDBOOK="optional"
-
-CMAKE_MIN_VERSION=2.8
-
-KDE_MINIMAL="4.6"
-KDEGRAPHICS_MINIMAL="4.6.29"
+CMAKE_MIN_VERSION="2.8"
+KDE_MINIMAL="4.7"
 
 inherit kde4-base
 
 MY_P="${PN}-${PV/_/-}"
 
-DESCRIPTION="A digital photo management application for KDE."
+DESCRIPTION="Digital photo management application for KDE"
 HOMEPAGE="http://www.digikam.org/"
 [[ ${PV} != *9999* ]] && SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2
 	handbook? ( FDL-1.2 )"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 SLOT="4"
-IUSE="addressbook debug doc gphoto2 semantic-desktop themedesigner +thumbnails video"
+IUSE="addressbook debug doc gphoto2 mysql semantic-desktop themedesigner +thumbnails video"
 
 CDEPEND="
 	$(add_kdebase_dep kdelibs semantic-desktop)
-	$(add_kdebase_dep marble plasma)
-	$(add_kdebase_dep libkipi)
+	$(add_kdebase_dep libkdcraw)
 	$(add_kdebase_dep libkexiv2)
-	>=kde-base/libkdcraw-${KDEGRAPHICS_MINIMAL}
-	>=media-libs/libkface-${PV}
-	>=media-libs/libkmap-${PV}
+	$(add_kdebase_dep libkipi)
+	$(add_kdebase_dep marble plasma)
 	$(add_kdebase_dep solid)
 	media-libs/jasper
-	virtual/jpeg
 	media-libs/lcms:0
 	>=media-libs/lensfun-0.2.5
+	>=media-libs/libkface-${PV}
+	>=media-libs/libkgeomap-${PV}
 	media-libs/liblqr
+	>=media-libs/libpgf-6.11.28
 	media-libs/libpng
 	media-libs/tiff
-	media-libs/libpgf
-	>=media-plugins/kipi-plugins-1.2.0-r1
-	|| ( >=sci-libs/clapack-3.2.1-r3 sci-libs/lapack-atlas )
-	virtual/mysql
+	virtual/jpeg
 	x11-libs/qt-gui[qt3support]
+	|| ( >=sci-libs/clapack-3.2.1-r6 sci-libs/lapack-atlas )
 	|| ( x11-libs/qt-sql[mysql] x11-libs/qt-sql[sqlite] )
 	addressbook? ( $(add_kdebase_dep kdepimlibs) )
 	gphoto2? ( media-libs/libgphoto2 )
+	mysql? ( virtual/mysql )
 "
 RDEPEND="${CDEPEND}
 	$(add_kdebase_dep kreadconfig)
+	~media-plugins/kipi-plugins-${PV}
 	video? (
 		|| (
 			$(add_kdebase_dep mplayerthumbs)
@@ -68,20 +66,22 @@ DEPEND="${CDEPEND}
 	doc? ( app-doc/doxygen )
 "
 
-PATCHES=(
-	"${FILESDIR}/${PN}"-2.0.0_beta5-docs.patch
-	"${FILESDIR}/${PN}"-1.9.0-turbo.patch
-)
-
 S="${WORKDIR}/${MY_P}/core"
 
 src_prepare() {
 	# just to make absolutely sure
 	rm -rf "${WORKDIR}/${MY_P}/extra" || die
 
+	# prepare the handbook
 	mv "${WORKDIR}/${MY_P}/doc/${PN}" doc || die
 	echo "add_subdirectory( digikam )" > doc/CMakeLists.txt
 	echo "add_subdirectory( showfoto )" >> doc/CMakeLists.txt
+
+	# prepare the translations
+	mv "${WORKDIR}/${MY_P}/po" po || die
+	find po -name "kipiplugin_*.po" -exec rm {} +
+
+	echo "add_subdirectory( po )" >> CMakeLists.txt
 
 	kde4-base_src_prepare
 
@@ -101,16 +101,24 @@ src_configure() {
 		-DWITH_LENSFUN=ON
 		-DGWENVIEW_SEMANTICINFO_BACKEND=${backend}
 		$(cmake-utils_use_with addressbook KdepimLibs)
-		$(cmake-utils_use_build doc)
 		-DWITH_MarbleWidget=ON
 		$(cmake-utils_use_enable gphoto2 GPHOTO2)
 		$(cmake-utils_use_with gphoto2)
 		$(cmake-utils_use_with semantic-desktop Soprano)
 		$(cmake-utils_use_enable themedesigner)
 		$(cmake-utils_use_enable thumbnails THUMBS_DB)
+		$(cmake-utils_use_enable mysql INTERNALMYSQL)
+		$(cmake-utils_use_enable debug DEBUG_MESSAGES)
 	)
 
 	kde4-base_src_configure
+}
+
+src_compile() {
+	local mytargets="all"
+	use doc && mytargets+=" doc"
+
+	kde4-base_src_compile ${mytargets}
 }
 
 src_install() {
