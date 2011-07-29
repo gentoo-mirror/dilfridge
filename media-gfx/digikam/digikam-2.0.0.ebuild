@@ -4,9 +4,9 @@
 
 EAPI=4
 
-KDE_LINGUAS="ar az be bg bn br bs ca cs csb cy da de el en_GB eo es et eu fa fi fo fr fy ga 
-gl ha he hi hr hsb hu id is it ja ka kk km ko ku lb lo lt lv mi mk mn ms mt nb nds ne nl nn 
-nso oc pa pl pt pt_BR ro ru rw se sk sl sq sr ss sv ta te tg th tr tt uk uz ven vi wa xh 
+KDE_LINGUAS="ar az be bg bn br bs ca cs csb cy da de el en_GB eo es et eu fa fi fo fr fy ga
+gl ha he hi hr hsb hu id is it ja ka kk km ko ku lb lo lt lv mi mk mn ms mt nb nds ne nl nn
+nso oc pa pl pt pt_BR ro ru rw se sk sl sq sr ss sv ta te tg th tr tt uk uz ven vi wa xh
 zh_CN zh_HK zh_TW zu"
 
 KDE_HANDBOOK="optional"
@@ -23,7 +23,7 @@ HOMEPAGE="http://www.digikam.org/"
 
 LICENSE="GPL-2
 	handbook? ( FDL-1.2 )"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 SLOT="4"
 IUSE="addressbook debug doc gphoto2 mysql semantic-desktop themedesigner +thumbnails video"
 
@@ -53,7 +53,7 @@ CDEPEND="
 "
 RDEPEND="${CDEPEND}
 	$(add_kdebase_dep kreadconfig)
-	~media-plugins/kipi-plugins-${PV}
+	media-plugins/kipi-plugins
 	video? (
 		|| (
 			$(add_kdebase_dep mplayerthumbs)
