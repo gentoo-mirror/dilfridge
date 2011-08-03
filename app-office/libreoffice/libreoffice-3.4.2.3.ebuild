@@ -236,6 +236,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-translate-toolkit-parallel-solenv.patch"
 	"${FILESDIR}/${PN}-gbuild-use-cxxflags.patch"
 	"${FILESDIR}/${PN}-installed-files-permissions.patch"
+	"${FILESDIR}/${PN}-3.4.2.3-as-needed.patch"
 )
 
 # Uncoment me when updating to eapi4
