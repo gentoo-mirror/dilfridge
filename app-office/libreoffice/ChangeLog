@@ -1,0 +1,21 @@
+# ChangeLog for app-office/libreoffice
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*libreoffice-3.4.9999 (03 Aug 2011)
+*libreoffice-3.4.2.3 (03 Aug 2011)
+*libreoffice-3.3.3 (03 Aug 2011)
+*libreoffice-3.3.1 (03 Aug 2011)
+
+  03 Aug 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  +libreoffice-3.3.1.ebuild, +libreoffice-3.3.3.ebuild,
+  +libreoffice-3.4.2.3.ebuild, +libreoffice-3.4.9999.ebuild,
+  +files/libreoffice-as-needed-gtk.patch,
+  +files/libreoffice-fix-sandbox-install.patch,
+  +files/libreoffice-gbuild-use-cxxflags.patch,
+  +files/libreoffice-installed-files-permissions.patch,
+  +files/libreoffice-solenv-build-crash.patch, +files/libreoffice-svx.patch,
+  +files/libreoffice-translate-toolkit-parallel-solenv.patch,
+  +files/libreoffice-vbaobj-visibility-fix.patch:
+  Resync with main tree
+
