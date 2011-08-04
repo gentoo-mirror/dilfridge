@@ -2,6 +2,14 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libmediawiki-2.0.0 (28 Jul 2011)
+
+  28 Jul 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  -libmediawiki-2.0.0_beta4.ebuild, -libmediawiki-2.0.0_beta5.ebuild,
+  -libmediawiki-2.0.0_beta6.ebuild, libmediawiki-2.0.0_rc.ebuild,
+  +libmediawiki-2.0.0.ebuild:
+  Version bump; remove old
+
 *libmediawiki-2.0.0_beta6 (02 Jul 2011)
 
   02 Jul 2011; Andreas K. Huettel <dilfridge@gentoo.org>

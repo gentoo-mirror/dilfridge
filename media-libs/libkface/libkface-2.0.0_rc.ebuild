@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libkface/libkface-2.0.0_rc.ebuild,v 1.1 2011/07/27 19:53:57 dilfridge Exp $
 
 EAPI=4
 
