@@ -19,6 +19,7 @@ IUSE=""
 
 RDEPEND="
 	dev-lang/perl
+	dev-perl/Exception-Class
 	virtual/perl-Time-HiRes
 "
 DEPEND="

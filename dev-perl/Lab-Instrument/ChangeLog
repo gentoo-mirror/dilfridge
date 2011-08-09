@@ -4,6 +4,10 @@
 
   09 Aug 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   Lab-Instrument-9999.ebuild:
+  Add missing dep dev-perl/Exception-Class
+
+  09 Aug 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  Lab-Instrument-9999.ebuild:
   Adapted to new package structure
 
 *Lab-Instrument-9999 (04 Aug 2011)
