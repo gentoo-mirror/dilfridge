@@ -19,9 +19,6 @@ IUSE=""
 
 RDEPEND="
 	dev-lang/perl
-	dev-perl/Lab-Bus
-	dev-perl/Lab-Connection
-	dev-perl/Lab-Exception
 	virtual/perl-Time-HiRes
 "
 DEPEND="
@@ -30,3 +27,10 @@ DEPEND="
 "
 
 S=${WORKDIR}/${P}/Instrument
+
+pkg_postinst() {
+	elog "You may want to install one or more backend driver modules. Supported are"
+	elog "    sci-libs/linuxgpib    Open-source GPIB hardware driver"
+	elog "    dev-perl/Lab-VISA     Bindings for the NI proprietary VISA driver"
+	elog "                          stack (dilfridge overlay)"
+}
