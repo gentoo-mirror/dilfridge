@@ -3,7 +3,6 @@
 # $Header: /var/cvsroot/gentoo-x86/sci-libs/linux-gpib/linux-gpib-3.2.16.ebuild,v 1.1 2011/05/14 17:05:08 dilfridge Exp $
 
 EAPI=4
-
 PERL_EXPORT_PHASE_FUNCTIONS=no
 
 inherit base linux-mod autotools perl-module
@@ -32,7 +31,10 @@ DEPEND="${RDEPEND}
 	doc? ( app-text/docbook-sgml-utils )
 "
 
-PATCHES=( "${FILESDIR}/${PN}-3.2.15-build.patch" )
+PATCHES=(
+	"${FILESDIR}/${PN}-3.2.15-build.patch"
+	"${FILESDIR}/${PN}-3.2.16-perl.patch"
+)
 
 pkg_setup () {
 	perl-module_pkg_setup
@@ -66,31 +68,36 @@ src_configure() {
 		$(use_enable python python-binding) \
 		$(use_enable tcl tcl-binding) \
 		$(use_enable doc documentation) \
-		--with-linux-srcdir=${KV_DIR} \
-		|| die
+		--with-linux-srcdir=${KV_DIR}
 }
 
 src_compile() {
-	emake
-}
-
-src_install () {
 	set_arch_to_kernel
-
 	FIRM_DIR=/usr/share/usb
-
-	# Here I changed the sbindir in order to install the gpib_config to /sbin,
-	# not /usr/sbin. This is done to enable running gpib_config from
-	# the modprobe.conf file: if /usr is not in the root file system,
-	# but a mounted partition then gpib_congig cannot be found in the moment when
-	# modprobe is run.
-	make \
+	emake \
 		DESTDIR=${D} \
 		INSTALL_MOD_PATH=${D} \
 		HOTPLUG_USB_CONF_DIR=${D}/etc/hotplug/usb \
 		USB_FIRMWARE_DIR=${D}${FIRM_DIR} \
-		docdir=/usr/share/doc/${PF}/html \
-		install || die "install problem"
+		docdir=/usr/share/doc/${PF}/html
+}
+
+src_install () {
+	set_arch_to_kernel
+	FIRM_DIR=/usr/share/usb
+	emake \
+		DESTDIR=${D} \
+		INSTALL_MOD_PATH=${D} \
+		HOTPLUG_USB_CONF_DIR=${D}/etc/hotplug/usb \
+		USB_FIRMWARE_DIR=${D}${FIRM_DIR} \
+		docdir=/usr/share/doc/${PF}/html install
+
+	if use perl; then
+		einfo "Installing perl module"
+		cd ${S}/language/perl
+		DESTDIR=${D} perl-module_src_install
+		cd ${S}
+	fi
 
 	echo "KERNEL==\"gpib[0-9]*\",	MODE=\"0660\", GROUP=\"gpib\"" >> 99-gpib.rules
 	insinto /etc/udev/rules.d/
@@ -109,7 +116,6 @@ src_install () {
 	fi
 
 	if use firmware ; then
-
 		insinto "${FIRM_DIR}/agilent_8237a"
 		doins "${WORKDIR}"/gpib_firmware-2006-11-12/agilent_8237a/*
 
@@ -118,17 +124,18 @@ src_install () {
 
 		insinto "/usr/share/linux-gpib/hp_82341"
 		doins "${WORKDIR}"/gpib_firmware-2006-11-12/hp_82341/*
-
 	fi
 }
 
 pkg_preinst () {
 	linux-mod_pkg_preinst
+	perl-module_pkg_preinst
 	enewgroup gpib
 }
 
 pkg_postinst () {
 	linux-mod_pkg_postinst
+	perl-module_pkg_postinst
 
 	einfo "You need to run the 'gpib_config' utility to setup the driver before"
 	einfo "you can use it. In order to do it automatically you can add to your"
