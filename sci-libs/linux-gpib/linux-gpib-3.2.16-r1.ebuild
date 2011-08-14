@@ -14,10 +14,10 @@ SRC_URI="mirror://sourceforge/linux-gpib/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="pcmcia static debug guile perl php python tcl doc firmware"
 
-RDEPEND="
+COMMONDEPEND="
 	tcl? ( dev-lang/tcl )
 	guile? ( dev-scheme/guile )
 	perl? ( dev-lang/perl )
@@ -25,10 +25,11 @@ RDEPEND="
 	python? ( dev-lang/python )
 	firmware? ( sys-apps/fxload )
 "
-
-DEPEND="${RDEPEND}
+RDEPEND="${COMMONDEPEND}"
+DEPEND="${COMMONDEPEND}
 	sys-kernel/module-rebuild
 	doc? ( app-text/docbook-sgml-utils )
+	perl? ( virtual/perl-ExtUtils-MakeMaker )
 "
 
 PATCHES=(
@@ -94,9 +95,9 @@ src_install () {
 
 	if use perl; then
 		einfo "Installing perl module"
-		cd ${S}/language/perl
+		cd "${S}/language/perl" || die
 		DESTDIR=${D} perl-module_src_install
-		cd ${S}
+		cd "${S}" || die
 	fi
 
 	echo "KERNEL==\"gpib[0-9]*\",	MODE=\"0660\", GROUP=\"gpib\"" >> 99-gpib.rules
