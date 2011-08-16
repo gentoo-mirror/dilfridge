@@ -117,8 +117,8 @@ src_install () {
 	fi
 
 	if use firmware ; then
-		insinto "${FIRM_DIR}/agilent_8237a"
-		doins "${WORKDIR}"/gpib_firmware-2006-11-12/agilent_8237a/*
+		insinto "${FIRM_DIR}/agilent_82357a"
+		doins "${WORKDIR}"/gpib_firmware-2006-11-12/agilent_82357a/*
 
 		insinto "${FIRM_DIR}/ni_gpib_usb_b"
 		doins "${WORKDIR}"/gpib_firmware-2006-11-12/ni_gpib_usb_b/*

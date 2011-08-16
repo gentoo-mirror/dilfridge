@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Aug 2011; <dilfridge@gentoo.org> linux-gpib-3.2.16-r1.ebuild:
+  Fix typo in firmware directory name
+
   14 Aug 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   linux-gpib-3.2.16-r1.ebuild:
   Minor fixes, re-add keywords
