@@ -28,10 +28,20 @@ RESTRICT="bindist mirror primaryuri"
 src_unpack() {
 	default
 	cd "${S}" || die
+
+	# flatten the directory structure
+	mv -v afm/* . || die
+	rmdir afm || die
+	mv -v pfb/* . || die
+	rmdir pfb || die
+
 	unzip -o -j lf9.zip || die
 	rm -f "UR_Anleitung zur Installation der Hausschrift unter LaTeX.pdf"
 }
 
 src_install() {
 	latex-package_src_install
+
+	rm -f manual/lf9.zip
+	dohtml -r manual/*
 }
