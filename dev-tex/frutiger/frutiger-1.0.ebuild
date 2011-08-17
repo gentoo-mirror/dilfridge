@@ -27,8 +27,9 @@ RESTRICT="bindist mirror primaryuri"
 
 src_unpack() {
 	default
-	cd "${S}"
-	unzip -o -j lf9.zip
+	cd "${S}" || die
+	unzip -o -j lf9.zip || die
+	rm -f "UR_Anleitung zur Installation der Hausschrift unter LaTeX.pdf"
 }
 
 src_install() {

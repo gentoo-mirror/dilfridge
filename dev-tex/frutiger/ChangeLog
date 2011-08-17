@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Aug 2011; <dilfridge@gentoo.org> frutiger-1.0.ebuild:
+  Do not fail at filename with spaces, workaround for bug 379571
+
   25 Jan 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   frutiger-1.0.ebuild:
   Work in progress
