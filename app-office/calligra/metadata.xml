@@ -5,6 +5,7 @@
 		<email>dilfridge@gentoo.org</email>
 	</maintainer>
 	<herd>kde</herd>
+	<herd>openoffice</herd>
 	<use>
 		<flag name="boost">Enable <pkg>dev-libs/boost</pkg> templating support</flag>
 		<flag name="eigen">Enable <pkg>dev-cpp/eigen</pkg> mathematical templates support</flag>
