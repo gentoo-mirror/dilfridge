@@ -14,10 +14,12 @@
 		<flag name="gsf">Enable support for ODT structures extraction via <pkg>gnome-extra/libgsf</pkg></flag>
 		<flag name="kdcraw">Enable support for KDE image manipulating interface via <pkg>kde-base/libkdcraw</pkg></flag>
 		<flag name="kdepim">Enable support for KDEPIM resources integration</flag>
+		<flag name="marble">Enable displaying of maps using Marble</flag>
 		<flag name="mso">Enable support for various MS Office TM file formats</flag>
 		<flag name="okular">Enable bindings for <pkg>kde-base/okular</pkg></flag>
 		<flag name="openctl">Enable support for transformation algorithms via <pkg>media-libs/opengtl</pkg></flag>
 		<flag name="word-perfect">Enable support for various WordPerfect file formats</flag>
+		<flag name="xbase">Enable support for xbase compatible database formats</flag>
 		<flag name="xslt">Enable xslt and exslt support format support</flag>
 	</use>
 </pkgmetadata>
