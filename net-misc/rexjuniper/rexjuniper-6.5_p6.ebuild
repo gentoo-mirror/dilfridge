@@ -22,7 +22,7 @@ DEPEND="${COMMON_DEPEND}
 	app-arch/deb2targz"
 RDEPEND="${COMMON_DEPEND}"
 
-RESTRICT="fetch bindist primaryuri"
+RESTRICT="fetch bindist primaryuri mirror"
 
 S=${WORKDIR}
 
