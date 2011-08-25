@@ -21,6 +21,7 @@ RDEPEND="
 	dev-lang/perl
 	dev-perl/Exception-Class
 	virtual/perl-Time-HiRes
+	dev-perl/Term-ReadKey
 	dev-perl/XML-Generator
 	dev-perl/XML-DOM
 	dev-perl/XML-Twig
