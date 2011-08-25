@@ -1,9 +1,0 @@
-# ChangeLog for dev-perl/Term-ReadKey
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
-
-*Term-ReadKey-2.14 (25 Aug 2011)
-
-  25 Aug 2011; <dilfridge@gentoo.org> +Term-ReadKey-2.14.ebuild, +metadata.xml:
-  New package
-
