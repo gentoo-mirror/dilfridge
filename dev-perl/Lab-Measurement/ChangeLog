@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Aug 2011; <huettel@gentoo.org> Lab-Measurement-9999.ebuild:
+  Add missing dependency
+
   25 Aug 2011; <huettel@gentoo.org> Lab-Measurement-9999.ebuild:
   Fix dependency
 

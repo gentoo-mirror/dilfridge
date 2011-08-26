@@ -26,6 +26,7 @@ RDEPEND="
 	dev-perl/XML-DOM
 	dev-perl/XML-Twig
 	dev-perl/encoding-warnings
+	perl-core/Switch
 	sci-visualization/gnuplot
 	!dev-perl/Lab-Instrument
 	!dev-perl/Lab-Tools
