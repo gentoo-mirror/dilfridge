@@ -1,0 +1,19 @@
+# ChangeLog for media-video/zoneminder
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*zoneminder-9999 (31 Aug 2011)
+*zoneminder-1.24.4 (31 Aug 2011)
+
+  31 Aug 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  +files/1.24.4/Makefile.am.patch,
+  +files/1.24.4/db_upgrade_script_location.patch,
+  +files/1.24.4/zm_remote_camera_http.patch, +files/10_zoneminder.conf,
+  +files/9999/Makefile.am.patch, +files/9999/cvisionlab-plugins.patch,
+  +files/9999/db_upgrade_script_location.patch,
+  +files/9999/zm_remote_camera_http.patch,
+  +files/9999/zoneminder-facedetector-plugin.tar.bz2,
+  +zoneminder-1.24.4.ebuild, +zoneminder-9999.ebuild, +files/conf.d,
+  +files/init.d:
+  Imported without changes from zugagina overlay
+
