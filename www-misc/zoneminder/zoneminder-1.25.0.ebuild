@@ -2,21 +2,19 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-misc/zoneminder/Attic/zoneminder-1.24.2.ebuild,v 1.6 2011/04/04 12:11:35 scarabeus Exp $
 
-inherit eutils autotools depend.php depend.apache multilib
+EAPI=4
 
-MY_PV=${PV/_/-}
+inherit eutils base autotools depend.php depend.apache multilib
+
 MY_PN="ZoneMinder"
-
-PATCH_PV="1.24.2"
 
 DESCRIPTION="ZoneMinder allows you to capture, analyse, record and monitor any cameras attached to your system."
 HOMEPAGE="http://www.zoneminder.com/"
-SRC_URI="http://www.zoneminder.com/downloads/${MY_PN}-${MY_PV}.tar.gz"
+SRC_URI="http://www.zoneminder.com/downloads/${MY_PN}-${PV}.tar.gz"
 
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS=""
 IUSE="debug ffmpeg"
-#IUSE="debug ffmpeg mmap"
 SLOT="0"
 
 DEPEND="app-admin/sudo
@@ -49,27 +47,27 @@ RDEPEND="dev-perl/DBD-mysql
 need_apache
 need_php_httpd
 
-S=${WORKDIR}/${MY_PN}-${MY_PV}
+S=${WORKDIR}/${MY_PN}-${PV}
+
+PATCHES=(
+	"${FILESDIR}"/1.25.0/Makefile.am.patch
+	"${FILESDIR}"/1.24.2/zm_create.sql.in.patch
+	"${FILESDIR}"/1.24.2/zm_remote_camera_http.patch
+	"${FILESDIR}"/1.24.2/db_upgrade_script_location.patch
+	"${FILESDIR}"/1.24.2/zm_jpeg.patch
+	"${FILESDIR}"/1.24.2/zm_build_fix.patch
+)
 
 pkg_setup() {
 	require_php_with_use mysql sockets apache2
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	epatch "${FILESDIR}"/${PATCH_PV}/Makefile.am.patch
-	epatch "${FILESDIR}"/${PATCH_PV}/zm_create.sql.in.patch
-	epatch "${FILESDIR}"/${PATCH_PV}/zm_remote_camera_http.patch
-	epatch "${FILESDIR}"/${PATCH_PV}/db_upgrade_script_location.patch
-	epatch "${FILESDIR}"/${PATCH_PV}/zm_jpeg.patch
-	epatch "${FILESDIR}"/${PATCH_PV}/zm_build_fix.patch
-
+src_prepare() {
+	base_src_prepare
 	eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	local myconf
 
 # To enable mmap support we need a dependancy of Sys::Mmap
@@ -94,14 +92,16 @@ src_compile() {
 		--with-webuser=apache \
 		--with-webgroup=apache \
 		${myconf}
+}
 
+src_compile() {
 	einfo "${PN} does not parallel build... using forcing make -j1..."
-	emake -j1 || die "emake failed"
+	emake -j1
 }
 
 src_install() {
 	keepdir /var/run/zm
-	emake -j1 DESTDIR="${D}" install || die "emake install failed"
+	emake -j1 DESTDIR="${D}" install
 
 	fperms 0640 /etc/zm.conf
 
