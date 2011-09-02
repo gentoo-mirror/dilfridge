@@ -16,7 +16,7 @@ SRC_URI="mirror://sourceforge/${PN}library/${MY_P}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 IUSE="cuda doc eigen examples ffmpeg gstreamer gtk ieee1394 ipp jpeg jpeg2k openexr opengl png python qt4 sse sse2 sse3 ssse3 test tiff v4l xine"
 
 # all tests fail, needs further investigation, bug 296681 - dilfridge
@@ -26,14 +26,9 @@ RDEPEND="
 	app-arch/bzip2
 	dev-libs/libf2c
 	sys-libs/zlib
-	>=sci-libs/clapack-3.2.1-r4
 	sci-libs/flann
-	virtual/lapack
 	virtual/fortran
-	cuda? (
-		>=dev-util/nvidia-cuda-toolkit-3.2
-		>=dev-util/nvidia-cuda-npp-3.2
-	)
+	cuda? ( >=dev-util/nvidia-cuda-toolkit-4 )
 	eigen? ( dev-cpp/eigen:2 )
 	ffmpeg? ( virtual/ffmpeg )
 	gstreamer? (
@@ -72,10 +67,6 @@ PATCHES=(
 #	"${FILESDIR}/${PN}-2.2.0-ffmpeg01.patch"			ffmpeg-related code has been completely restructured
 #	"${FILESDIR}/${PN}-2.2.0-ffmpeg02.patch"			but it looks like it still does not support new interface
 	"${FILESDIR}/${PN}-2.3.0-numpy.patch"
-	"${FILESDIR}/${PN}-2.2.0-use_system_libs.patch"
-	"${FILESDIR}/${PN}-2.2.0-v4l_2.6.38.patch"
-	"${FILESDIR}/${PN}-2.2.0-findnpp.patch"
-	"${FILESDIR}/${PN}-2.2.0-findblas.patch"
 )
 
 CMAKE_BUILD_TYPE="Release"

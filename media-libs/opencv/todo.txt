@@ -1,0 +1,17 @@
+TODO
+----
+
+* complete the set-to-option conversion and send it upstream
+
+* try to unbundle flann again cleanly
+
+* check if we still need the cmake fortran test
+
+* check if we still need to patch for newer ffmpeg versions
+
+* test building against new cuda
+
+* reckeck all cmake options in ebuild
+
+:|
+
