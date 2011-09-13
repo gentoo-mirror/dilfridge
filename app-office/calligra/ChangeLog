@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-office/calligra/ChangeLog,v 1.1 2011/07/22 15:10:36 dilfridge Exp $
 
+*calligra-2.3.81 (13 Sep 2011)
+
+  13 Sep 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  +calligra-2.3.81.ebuild, calligra-9999.ebuild:
+  Version bump, untested so far
+
   26 Aug 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   -calligra-2.3.73.ebuild, calligra-2.3.74.ebuild, calligra-9999.ebuild:
   Resync with main tree
