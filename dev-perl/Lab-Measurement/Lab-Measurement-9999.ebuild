@@ -19,8 +19,8 @@ IUSE=""
 
 RDEPEND="
 	dev-lang/perl
+	dev-perl/Clone
 	dev-perl/Exception-Class
-	virtual/perl-Time-HiRes
 	dev-perl/TermReadKey
 	dev-perl/XML-Generator
 	dev-perl/XML-DOM
@@ -28,6 +28,7 @@ RDEPEND="
 	dev-perl/encoding-warnings
 	perl-core/Switch
 	sci-visualization/gnuplot
+	virtual/perl-Time-HiRes
 	!dev-perl/Lab-Instrument
 	!dev-perl/Lab-Tools
 "
