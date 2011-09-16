@@ -51,11 +51,7 @@ S=${WORKDIR}/${MY_PN}-${PV}
 
 PATCHES=(
 	"${FILESDIR}"/1.25.0/Makefile.am.patch
-	"${FILESDIR}"/1.24.2/zm_create.sql.in.patch
-	"${FILESDIR}"/1.24.2/zm_remote_camera_http.patch
 	"${FILESDIR}"/1.24.2/db_upgrade_script_location.patch
-	"${FILESDIR}"/1.24.2/zm_jpeg.patch
-	"${FILESDIR}"/1.24.2/zm_build_fix.patch
 )
 
 pkg_setup() {

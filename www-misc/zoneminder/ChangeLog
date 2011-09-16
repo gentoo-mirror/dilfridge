@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/www-misc/zoneminder/Attic/ChangeLog,v 1.41 2011/04/04 12:11:35 scarabeus Exp $
 
+  16 Sep 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  zoneminder-1.25.0.ebuild:
+  Sort out patches
+
 *zoneminder-1.25.0 (01 Sep 2011)
 
   01 Sep 2011; Andreas K. Huettel <dilfridge@gentoo.org>
