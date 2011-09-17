@@ -3,6 +3,11 @@
 # $Header: /var/cvsroot/gentoo-x86/www-misc/zoneminder/Attic/ChangeLog,v 1.41 2011/04/04 12:11:35 scarabeus Exp $
 
   17 Sep 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  +files/1.25.0/Makefile.am.2.patch, files/1.25.0/Makefile.am.patch,
+  zoneminder-1.25.0.ebuild:
+  Patched all chown out of makefiles
+
+  17 Sep 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   zoneminder-1.25.0.ebuild:
   Build against openssl because of bug 285151
 

@@ -54,6 +54,7 @@ S=${WORKDIR}/${MY_PN}-${PV}
 
 PATCHES=(
 	"${FILESDIR}"/1.25.0/Makefile.am.patch
+	"${FILESDIR}"/1.25.0/Makefile.am.2.patch
 	"${FILESDIR}"/1.24.2/db_upgrade_script_location.patch
 )
 
