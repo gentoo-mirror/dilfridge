@@ -20,8 +20,8 @@ SLOT="0"
 DEPEND="app-admin/sudo
 	dev-libs/libpcre
 	virtual/jpeg
-	>=media-video/ffmpeg-0.8
-	net-libs/gnutls
+	>=media-video/ffmpeg-0.7
+	dev-libs/openssl
 	>=dev-lang/perl-5.6.0
 	virtual/perl-Archive-Tar
 	dev-perl/Archive-Zip
@@ -83,7 +83,7 @@ src_configure() {
 		myconf="${myconf} --enable-debug=no --enable-crashtrace=no"
 	fi
 
-	econf   --with-libarch=$(get_libdir) \
+	ZM_SSL_LIB=openssl econf --with-libarch=$(get_libdir) \
 		--with-mysql=/usr \
 		$(use_with ffmpeg) \
 		--with-webdir="${ROOT}var/www/zoneminder/htdocs" \

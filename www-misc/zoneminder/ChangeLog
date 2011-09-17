@@ -4,6 +4,10 @@
 
   17 Sep 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   zoneminder-1.25.0.ebuild:
+  Build against openssl because of bug 285151
+
+  17 Sep 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  zoneminder-1.25.0.ebuild:
   Builds but does not install yet
 
   16 Sep 2011; Andreas K. Huettel <dilfridge@gentoo.org>
