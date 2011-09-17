@@ -4,7 +4,7 @@
 
 EAPI=4
 
-inherit eutils base autotools depend.php depend.apache multilib
+inherit eutils base autotools depend.php depend.apache multilib flag-o-matic
 
 MY_PN="ZoneMinder"
 
@@ -14,12 +14,13 @@ SRC_URI="http://www.zoneminder.com/downloads/${MY_PN}-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 KEYWORDS=""
-IUSE="debug ffmpeg"
+IUSE="debug ffmpeg mmap"
 SLOT="0"
 
 DEPEND="app-admin/sudo
 	dev-libs/libpcre
 	virtual/jpeg
+	>=media-video/ffmpeg-0.8
 	net-libs/gnutls
 	>=dev-lang/perl-5.6.0
 	virtual/perl-Archive-Tar
@@ -36,7 +37,9 @@ DEPEND="app-admin/sudo
 	virtual/perl-libnet
 	virtual/perl-Module-Load
 	virtual/perl-Sys-Syslog
-	virtual/perl-Time-HiRes"
+	virtual/perl-Time-HiRes
+	mmap? ( dev-perl/Sys-Mmap )
+"
 
 RDEPEND="dev-perl/DBD-mysql
 	ffmpeg? ( virtual/ffmpeg )
@@ -64,15 +67,15 @@ src_prepare() {
 }
 
 src_configure() {
+	append-cxxflags -D__STDC_CONSTANT_MACROS
+
 	local myconf
 
-# To enable mmap support we need a dependancy of Sys::Mmap
-# It installs fine via g-cpan, but there's no ebuild currently in portage.
-#	if use mmap; then
-#		myconf="${myconf} --enable-mmap=yes"
-#	else
-#		myconf="${myconf} --enable-mmap=no"
-#	fi
+	if use mmap; then
+		myconf="${myconf} --enable-mmap=yes"
+	else
+		myconf="${myconf} --enable-mmap=no"
+	fi
 
 	if use debug; then
 		myconf="${myconf} --enable-debug=yes --enable-crashtrace=yes"
