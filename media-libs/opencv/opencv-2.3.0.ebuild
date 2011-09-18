@@ -24,10 +24,8 @@ RESTRICT=test
 
 RDEPEND="
 	app-arch/bzip2
-	dev-libs/libf2c
 	sys-libs/zlib
 	sci-libs/flann
-	virtual/fortran
 	cuda? ( >=dev-util/nvidia-cuda-toolkit-4 )
 	eigen? ( dev-cpp/eigen:2 )
 	ffmpeg? ( virtual/ffmpeg )
@@ -63,7 +61,6 @@ DEPEND="${RDEPEND}
 
 PATCHES=(
 	"${FILESDIR}/${PN}-2.3.0-convert_sets_to_options.patch"
-#	"${FILESDIR}/${PN}-2.2.0-fortran.patch"				disabled for testing but should still be needed
 #	"${FILESDIR}/${PN}-2.2.0-ffmpeg01.patch"			ffmpeg-related code has been completely restructured
 #	"${FILESDIR}/${PN}-2.2.0-ffmpeg02.patch"			but it looks like it still does not support new interface
 	"${FILESDIR}/${PN}-2.3.0-numpy.patch"

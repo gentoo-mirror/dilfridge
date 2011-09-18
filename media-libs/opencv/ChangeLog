@@ -4,6 +4,10 @@
 
   18 Sep 2011; Andreas K. Huettel <dilfridge@gentoo.org> opencv-2.3.0.ebuild,
   todo.txt:
+  Fortran should not be needed anymore as (c)lapack is not used anymore
+
+  18 Sep 2011; Andreas K. Huettel <dilfridge@gentoo.org> opencv-2.3.0.ebuild,
+  todo.txt:
   Rechecked all cmake options
 
   18 Sep 2011; Andreas K. Huettel <dilfridge@gentoo.org> opencv-2.3.0.ebuild,

@@ -5,8 +5,6 @@ TODO
 
 * try to unbundle flann again cleanly
 
-* check if we still need the cmake fortran test
-
 * check if we still need to patch for newer ffmpeg versions
 
 * test building against new cuda
