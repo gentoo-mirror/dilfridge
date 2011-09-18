@@ -17,13 +17,11 @@ KEYWORDS=""
 IUSE="debug ffmpeg mmap"
 SLOT="0"
 
-DEPEND="app-admin/sudo
+DEPEND="
+	app-admin/sudo
+	dev-lang/perl
 	dev-libs/libpcre
-	virtual/jpeg
-	>=media-video/ffmpeg-0.7
 	dev-libs/openssl
-	>=dev-lang/perl-5.6.0
-	virtual/perl-Archive-Tar
 	dev-perl/Archive-Zip
 	dev-perl/DateManip
 	dev-perl/DBD-mysql
@@ -33,6 +31,9 @@ DEPEND="app-admin/sudo
 	dev-perl/MIME-Lite
 	dev-perl/MIME-tools
 	dev-perl/PHP-Serialization
+	media-video/ffmpeg
+	virtual/jpeg
+	virtual/perl-Archive-Tar
 	virtual/perl-Getopt-Long
 	virtual/perl-libnet
 	virtual/perl-Module-Load
@@ -41,9 +42,12 @@ DEPEND="app-admin/sudo
 	mmap? ( dev-perl/Sys-Mmap )
 "
 
-RDEPEND="dev-perl/DBD-mysql
+RDEPEND="
+	dev-perl/DBD-mysql
 	ffmpeg? ( virtual/ffmpeg )
-	media-libs/netpbm"
+	media-libs/netpbm
+"
+# ^ huh? not include DEPEND???
 
 # we cannot use need_httpd_cgi here, since we need to setup permissions for the
 # webserver in global scope (/etc/zm.conf etc), so we hardcode apache here.
@@ -101,12 +105,13 @@ src_compile() {
 
 src_install() {
 	keepdir /var/run/zm
+	keepdir /var/log/zm
+
 	emake -j1 DESTDIR="${D}" install
 
 	fperms 0640 /etc/zm.conf
 
-	keepdir /var/log/${PN}
-	fowners apache:apache /var/log/${PN}
+	fowners apache:apache /var/log/zm
 	fowners apache:apache /var/run/zm
 
 	newinitd "${FILESDIR}"/init.d zoneminder
@@ -137,14 +142,11 @@ pkg_postinst() {
 	elog "1.  Set your database settings in /etc/zm.conf"
 	elog ""
 	elog "2.  Start the ${PN} daemon:"
-	elog ""
 	elog "  /etc/init.d/${PN} start"
 	elog ""
 	elog "3. Finally point your browser to http://localhost/${PN}"
 	elog ""
-	elog ""
 	elog "If you are upgrading, you will need to run the zmupdate.pl script:"
-	elog ""
 	elog " /usr/bin/zmupdate.pl version=<from version> [--user=<my_database_user> --pass=<my_database_pass>]"
 	elog ""
 }
