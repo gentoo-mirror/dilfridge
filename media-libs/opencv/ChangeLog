@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/opencv/ChangeLog,v 1.34 2011/05/11 20:10:16 dilfridge Exp $
 
+  18 Sep 2011; Andreas K. Huettel <dilfridge@gentoo.org> opencv-2.3.0.ebuild,
+  files/opencv-2.3.0-convert_sets_to_options.patch,
+  +files/opencv-2.3.0-symlink.patch, +files.txt, todo.txt:
+  Completed Sets2Options, fixed sandbox violation
+
   02 Sep 2011; Andreas K. Huettel <dilfridge@gentoo.org> opencv-2.3.0.ebuild,
   +todo.txt:
   Builds but is still far from finished or presentable; sandbox violation

@@ -1,7 +1,7 @@
 TODO
 ----
 
-* complete the set-to-option conversion and send it upstream
+* send the set-to-option conversion upstream
 
 * try to unbundle flann again cleanly
 

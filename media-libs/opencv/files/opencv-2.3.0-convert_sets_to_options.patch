@@ -1,6 +1,6 @@
-diff -ruN OpenCV-2.3.0-0-vanilla/CMakeLists.txt OpenCV-2.3.0-1-ol1/CMakeLists.txt
+diff -ruN OpenCV-2.3.0-0-vanilla/CMakeLists.txt OpenCV-2.3.0/CMakeLists.txt
 --- OpenCV-2.3.0-0-vanilla/CMakeLists.txt	2011-07-04 06:21:50.000000000 +0200
-+++ OpenCV-2.3.0-1-ol1/CMakeLists.txt	2011-08-28 14:53:46.000000000 +0200
++++ OpenCV-2.3.0/CMakeLists.txt	2011-09-18 19:32:20.000000000 +0200
 @@ -14,7 +14,7 @@
  # Add these standard paths to the search paths for FIND_LIBRARY
  # to find libraries from these locations first
@@ -10,7 +10,7 @@ diff -ruN OpenCV-2.3.0-0-vanilla/CMakeLists.txt OpenCV-2.3.0-1-ol1/CMakeLists.tx
  endif()
  
  
-@@ -77,7 +77,7 @@
+@@ -77,13 +77,13 @@
  # Build static or dynamic libs?
  # Default: dynamic libraries
  # ----------------------------------------------------------------------------
@@ -19,7 +19,14 @@ diff -ruN OpenCV-2.3.0-0-vanilla/CMakeLists.txt OpenCV-2.3.0-1-ol1/CMakeLists.tx
  
  # ----------------------------------------------------------------------------
  # Include debug info into debug libs?
-@@ -285,13 +285,13 @@
+ # Default: yes
+ # ----------------------------------------------------------------------------
+-set(BUILD_WITH_DEBUG_INFO ON CACHE BOOL "Include debug info into debug libs")
++OPTION(BUILD_WITH_DEBUG_INFO "Include debug info into debug libs" ON)
+ 
+ # ----------------------------------------------------------------------------
+ #  Current version number:
+@@ -285,20 +285,20 @@
  
  # Build/install (or not) some apps:
  # ===================================================
@@ -37,6 +44,15 @@ diff -ruN OpenCV-2.3.0-0-vanilla/CMakeLists.txt OpenCV-2.3.0-1-ol1/CMakeLists.tx
  
  # Build 3rdparty libraries under unix
  # ===================================================
+ if(WIN32)
+-    set(OPENCV_BUILD_3RDPARTY_LIBS TRUE  CACHE BOOL "Build 3rd party libraries")
++    option(OPENCV_BUILD_3RDPARTY_LIBS "Build 3rd party libraries" TRUE)
+ else()
+-    set(OPENCV_BUILD_3RDPARTY_LIBS FALSE CACHE BOOL "Build 3rd party libraries")
++    option(OPENCV_BUILD_3RDPARTY_LIBS "Build 3rd party libraries" FALSE)
+ endif()
+ 
+ include(OpenCVPCHSupport.cmake REQUIRED)
 @@ -324,8 +324,8 @@
  #set(ENABLE_OPENMP ${DEFAULT_ENABLE_OPENMP} CACHE BOOL "")
  
@@ -48,7 +64,7 @@ diff -ruN OpenCV-2.3.0-0-vanilla/CMakeLists.txt OpenCV-2.3.0-1-ol1/CMakeLists.tx
  
      if(${CMAKE_SYSTEM_PROCESSOR} MATCHES amd64*|x86_64*)
          set(X86_64 1)
-@@ -341,13 +341,13 @@
+@@ -341,58 +341,58 @@
  
      if(X86 OR X86_64)
          # enable everything, since the available set of instructions is checked at runtime
@@ -69,7 +85,19 @@ diff -ruN OpenCV-2.3.0-0-vanilla/CMakeLists.txt OpenCV-2.3.0-1-ol1/CMakeLists.tx
      endif()
  endif()
  
-@@ -363,34 +363,34 @@
+ if(MSVC)
+-    set(ENABLE_SSE ON CACHE BOOL "Enable SSE instructions for MSVC")
+-    set(ENABLE_SSE2 ON CACHE BOOL "Enable SSE2 instructions for MSVC")
++    option(ENABLE_SSE "Enable SSE instructions for MSVC" ON)
++    option(ENABLE_SSE2 "Enable SSE2 instructions for MSVC" ON)
+     if(CMAKE_C_COMPILER MATCHES "icc")
+-        set(ENABLE_SSE3 OFF CACHE BOOL "Enable SSE3 instructions for ICC")
+-        set(ENABLE_SSE4_1 OFF CACHE BOOL "Enable SSE4.1 instructions for ICC")
++        option(ENABLE_SSE3 "Enable SSE3 instructions for ICC" OFF)
++        option(ENABLE_SSE4_1 "Enable SSE4.1 instructions for ICC" OFF)
+     endif()
+ endif()
+ 
  # allow fine grained control over which libraries not to link, even if
  # they are available on the system
  # ====================================================================
@@ -121,9 +149,19 @@ diff -ruN OpenCV-2.3.0-0-vanilla/CMakeLists.txt OpenCV-2.3.0-1-ol1/CMakeLists.tx
 +option(WITH_EIGEN "Include Eigen2/Eigen3 support" ON)
 +option(WITH_CUDA "Include NVidia Cuda Runtime support" ON)
  
- set(WITH_OPENNI OFF CACHE BOOL "Include OpenNI support")
+-set(WITH_OPENNI OFF CACHE BOOL "Include OpenNI support")
++option(WITH_OPENNI "Include OpenNI support" OFF)
  
-@@ -592,7 +592,7 @@
+ # ===================================================
+ # Macros that checks if module have been installed.
+@@ -586,13 +586,13 @@
+     include(OpenCVFindOpenEXR.cmake)
+ endif()
+ 
+-set(BUILD_DOCS ON CACHE BOOL "Build OpenCV Documentation")
++option(BUILD_DOCS "Build OpenCV Documentation" ON)
+ 
+ if(BUILD_DOCS)
    include(OpenCVFindLATEX.cmake REQUIRED)
  endif()
  
@@ -221,9 +259,9 @@ diff -ruN OpenCV-2.3.0-0-vanilla/CMakeLists.txt OpenCV-2.3.0-1-ol1/CMakeLists.tx
  
  if(BUILD_PACKAGE)
  
-diff -ruN OpenCV-2.3.0-0-vanilla/OpenCVModule.cmake OpenCV-2.3.0-1-ol1/OpenCVModule.cmake
+diff -ruN OpenCV-2.3.0-0-vanilla/OpenCVModule.cmake OpenCV-2.3.0/OpenCVModule.cmake
 --- OpenCV-2.3.0-0-vanilla/OpenCVModule.cmake	2011-07-04 06:21:59.000000000 +0200
-+++ OpenCV-2.3.0-1-ol1/OpenCVModule.cmake	2011-08-28 14:57:10.000000000 +0200
++++ OpenCV-2.3.0/OpenCVModule.cmake	2011-09-18 19:32:20.000000000 +0200
 @@ -63,7 +63,7 @@
          DEBUG_POSTFIX "${OPENCV_DEBUG_POSTFIX}"
          ARCHIVE_OUTPUT_DIRECTORY ${LIBRARY_OUTPUT_PATH}
@@ -244,9 +282,9 @@ diff -ruN OpenCV-2.3.0-0-vanilla/OpenCVModule.cmake OpenCV-2.3.0-1-ol1/OpenCVMod
  
      install(FILES ${lib_hdrs}
          DESTINATION include/opencv2/${name}
-diff -ruN OpenCV-2.3.0-0-vanilla/modules/gpu/CMakeLists.txt OpenCV-2.3.0-1-ol1/modules/gpu/CMakeLists.txt
+diff -ruN OpenCV-2.3.0-0-vanilla/modules/gpu/CMakeLists.txt OpenCV-2.3.0/modules/gpu/CMakeLists.txt
 --- OpenCV-2.3.0-0-vanilla/modules/gpu/CMakeLists.txt	2011-07-04 06:21:58.000000000 +0200
-+++ OpenCV-2.3.0-1-ol1/modules/gpu/CMakeLists.txt	2011-08-28 15:02:11.000000000 +0200
++++ OpenCV-2.3.0/modules/gpu/CMakeLists.txt	2011-09-18 19:32:20.000000000 +0200
 @@ -121,7 +121,7 @@
  	DEBUG_POSTFIX "${OPENCV_DEBUG_POSTFIX}"
      ARCHIVE_OUTPUT_DIRECTORY ${LIBRARY_OUTPUT_PATH}
@@ -267,9 +305,9 @@ diff -ruN OpenCV-2.3.0-0-vanilla/modules/gpu/CMakeLists.txt OpenCV-2.3.0-1-ol1/m
  
  install(FILES ${lib_hdrs}
  	DESTINATION include/opencv2/${name}
-diff -ruN OpenCV-2.3.0-0-vanilla/modules/highgui/CMakeLists.txt OpenCV-2.3.0-1-ol1/modules/highgui/CMakeLists.txt
+diff -ruN OpenCV-2.3.0-0-vanilla/modules/highgui/CMakeLists.txt OpenCV-2.3.0/modules/highgui/CMakeLists.txt
 --- OpenCV-2.3.0-0-vanilla/modules/highgui/CMakeLists.txt	2011-07-04 06:21:58.000000000 +0200
-+++ OpenCV-2.3.0-1-ol1/modules/highgui/CMakeLists.txt	2011-08-28 15:04:53.000000000 +0200
++++ OpenCV-2.3.0/modules/highgui/CMakeLists.txt	2011-09-18 19:32:20.000000000 +0200
 @@ -295,7 +295,7 @@
      DEBUG_POSTFIX "${OPENCV_DEBUG_POSTFIX}"
      ARCHIVE_OUTPUT_DIRECTORY ${LIBRARY_OUTPUT_PATH}
