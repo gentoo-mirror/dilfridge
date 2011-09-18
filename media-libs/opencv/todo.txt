@@ -3,8 +3,6 @@ TODO
 
 * send the set-to-option conversion upstream
 
-* try to unbundle flann again cleanly
-
 * test building against new cuda
 
 :|

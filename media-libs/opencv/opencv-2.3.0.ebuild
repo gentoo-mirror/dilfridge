@@ -25,7 +25,6 @@ RESTRICT=test
 RDEPEND="
 	app-arch/bzip2
 	sys-libs/zlib
-	sci-libs/flann
 	cuda? ( >=dev-util/nvidia-cuda-toolkit-4 )
 	eigen? ( dev-cpp/eigen:2 )
 	ffmpeg? ( virtual/ffmpeg )
