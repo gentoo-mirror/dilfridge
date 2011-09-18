@@ -11,7 +11,5 @@ TODO
 
 * test building against new cuda
 
-* reckeck all cmake options in ebuild
-
 :|
 

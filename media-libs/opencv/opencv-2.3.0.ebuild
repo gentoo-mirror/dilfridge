@@ -55,7 +55,7 @@ RDEPEND="
 	xine? ( media-libs/xine-lib )
 "
 DEPEND="${RDEPEND}
-	doc? ( app-doc/doxygen[-nodot] )
+	doc? ( virtual/latex-base )
 	dev-util/pkgconfig
 "
 
@@ -94,7 +94,7 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_build doc DOXYGEN_DOCS)
+		$(cmake-utils_use_build doc DOCS)
 		$(cmake-utils_use_build examples)
 		$(cmake-utils_use examples INSTALL_C_EXAMPLES)
 		$(cmake-utils_use_build python NEW_PYTHON_SUPPORT)
@@ -103,13 +103,14 @@ src_configure() {
 		$(cmake-utils_use_enable sse2 SSE2)
 		$(cmake-utils_use_enable sse3 SSE3)
 		$(cmake-utils_use_enable ssse3 SSSE3)
-		$(cmake-utils_use_use ipp)
+		$(cmake-utils_use_with ipp)
 		$(cmake-utils_use_with ieee1394 1394)
 		$(cmake-utils_use_with cuda)
 		$(cmake-utils_use_with eigen)
 		$(cmake-utils_use_with ffmpeg)
 		$(cmake-utils_use_with gstreamer)
 		$(cmake-utils_use_with gtk)
+		$(cmake-utils_use_with jpeg)
 		$(cmake-utils_use_with jpeg2k JASPER)
 		$(cmake-utils_use_with openexr)
 		$(cmake-utils_use_with png)
@@ -127,7 +128,8 @@ src_configure() {
 	fi
 
 	# things we want to be hard off or not yet figured out
-	#    UNICAP: http://bugs.gentoo.org/show_bug.cgi?id=175881
+	# unicap: https://bugs.gentoo.org/show_bug.cgi?id=175881
+	# openni: ???
 	mycmakeargs+=(
 		"-DUSE_OMIT_FRAME_POINTER=OFF"
 		"-DOPENCV_BUILD_3RDPARTY_LIBS=OFF"
@@ -144,9 +146,10 @@ src_configure() {
 		"-DWITH_PVAPI=OFF"
 		"-DWITH_UNICAP=OFF"
 		"-DWITH_TBB=OFF"
+		"-DWITH_OPENNI=OFF"
 	)
 
-	# things we want to be hardly enabled not worth useflag
+	# things we want to be hard enabled not worth useflag
 	mycmakeargs+=(
 		"-DCMAKE_SKIP_RPATH=ON"
 		"-DBUILD_SHARED_LIBS=ON"
