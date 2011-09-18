@@ -61,8 +61,7 @@ DEPEND="${RDEPEND}
 
 PATCHES=(
 	"${FILESDIR}/${PN}-2.3.0-convert_sets_to_options.patch"
-#	"${FILESDIR}/${PN}-2.2.0-ffmpeg01.patch"			ffmpeg-related code has been completely restructured
-#	"${FILESDIR}/${PN}-2.2.0-ffmpeg02.patch"			but it looks like it still does not support new interface
+	"${FILESDIR}/${PN}-2.3.0-ffmpeg.patch"
 	"${FILESDIR}/${PN}-2.3.0-numpy.patch"
 	"${FILESDIR}/${PN}-2.3.0-symlink.patch"
 )
