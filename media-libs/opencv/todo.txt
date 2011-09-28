@@ -1,9 +1,0 @@
-TODO
-----
-
-* send the set-to-option conversion upstream
-
-* test building against new cuda
-
-:|
-

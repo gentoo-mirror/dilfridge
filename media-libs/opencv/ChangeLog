@@ -7,6 +7,9 @@
   +files/opencv-2.3.0-libpng15.patch:
   Resync with main tree
 
+  18 Sep 2011; Andreas K. Huettel <dilfridge@gentoo.org> -files.txt, -todo.txt:
+  Cleanup
+
   18 Sep 2011; Andreas K. Huettel <dilfridge@gentoo.org> opencv-2.3.0.ebuild,
   todo.txt:
   Flann is more and more integrated, not worth patching it out imho
