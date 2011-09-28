@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/opencv/opencv-2.2.0-r10.ebuild,v 1.6 2011/07/13 20:03:06 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/opencv/opencv-2.3.0.ebuild,v 1.4 2011/09/26 22:38:16 dilfridge Exp $
 
 EAPI=3
 
@@ -16,15 +16,13 @@ SRC_URI="mirror://sourceforge/${PN}library/${MY_P}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS=""
-IUSE="cuda doc eigen examples ffmpeg gstreamer gtk ieee1394 ipp jpeg jpeg2k openexr opengl png python qt4 sse sse2 sse3 ssse3 test tiff v4l xine"
-
-# all tests fail, needs further investigation, bug 296681 - dilfridge
-RESTRICT=test
+KEYWORDS="~amd64 ~ppc ~x86"
+IUSE="cuda doc eigen examples ffmpeg gstreamer gtk ieee1394 ipp jpeg jpeg2k openexr opengl png python qt4 sse sse2 sse3 ssse3 tiff v4l xine"
 
 RDEPEND="
 	app-arch/bzip2
 	sys-libs/zlib
+	sci-libs/flann
 	cuda? ( >=dev-util/nvidia-cuda-toolkit-4 )
 	eigen? ( dev-cpp/eigen:2 )
 	ffmpeg? ( virtual/ffmpeg )
@@ -79,6 +77,8 @@ pkg_setup() {
 
 src_prepare() {
 	base_src_prepare
+	# include missing zlib.h for libpng>1.5. Bug #383571
+	epatch "${FILESDIR}"/${P}-libpng15.patch
 
 	# remove bundled stuff
 	rm -rf 3rdparty
@@ -93,14 +93,12 @@ src_configure() {
 		$(cmake-utils_use_build examples)
 		$(cmake-utils_use examples INSTALL_C_EXAMPLES)
 		$(cmake-utils_use_build python NEW_PYTHON_SUPPORT)
-		$(cmake-utils_use_build test TESTS)
 		$(cmake-utils_use_enable sse SSE)
 		$(cmake-utils_use_enable sse2 SSE2)
 		$(cmake-utils_use_enable sse3 SSE3)
 		$(cmake-utils_use_enable ssse3 SSSE3)
 		$(cmake-utils_use_with ipp)
 		$(cmake-utils_use_with ieee1394 1394)
-		$(cmake-utils_use_with cuda)
 		$(cmake-utils_use_with eigen)
 		$(cmake-utils_use_with ffmpeg)
 		$(cmake-utils_use_with gstreamer)
@@ -115,6 +113,17 @@ src_configure() {
 		$(cmake-utils_use_with v4l V4L)
 		$(cmake-utils_use_with xine)
 	)
+
+	if use cuda; then
+		if [ "$(gcc-version)" > "4.4" ]; then
+			ewarn "CUDA and >=sys-devel/gcc-4.5 do not play well together. Disabling CUDA support."
+			mycmakeargs+=( "-DWITH_CUDA=OFF" )
+		else
+			mycmakeargs+=( "-DWITH_CUDA=ON" )
+		fi
+	else
+		mycmakeargs+=( "-DWITH_CUDA=OFF" )
+	fi
 
 	if use python && use examples; then
 		mycmakeargs+=( "-DINSTALL_PYTHON_EXAMPLES=ON" )
@@ -157,9 +166,4 @@ src_configure() {
 	)
 
 	cmake-utils_src_configure
-}
-
-src_test() {
-	export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${CMAKE_BUILD_DIR}/lib"
-	cmake-utils_src_test
 }
