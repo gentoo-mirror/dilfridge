@@ -8,14 +8,14 @@ inherit kde4-base
 
 DESCRIPTION="Crossword playing game and editor for KDE 4"
 HOMEPAGE="http://kde-apps.org/content/show.php/KrossWordPuzzle?content=111726"
-SRC_URI="http://kde-apps.org/CONTENT/content-files/111726-${P}.tar.gz"
+SRC_URI="http://dev.gentoo.org/~dilfridge/distfiles/${P}.tar.xz"
 
-LICENSE="GPL-3"
+LICENSE="GPL-2"
 SLOT="4"
-KEYWORDS=""
+KEYWORDS="~amd64"
 IUSE="debug"
 
-RDEPEND=""
+RDEPEND="
+	$(add_kdebase_dep libkdegames)
+"
 DEPEND="${RDEPEND}"
-
-S=${WORKDIR}/${P}/${PN}
