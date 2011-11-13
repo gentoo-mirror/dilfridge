@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-libs/opencascade/opencascade-6.3-r3.ebuild,v 1.1 2011/03/03 01:08:20 dilfridge Exp $
 
-EAPI=3
+EAPI=4
 
 inherit autotools eutils check-reqs multilib java-pkg-opt-2
 
@@ -106,7 +106,7 @@ src_configure() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install
 
 	# .la files kill cute little kittens
 	find "${D}" -name '*.la' -exec rm {} +
@@ -119,10 +119,10 @@ src_install() {
 
 	# Tweak the environment variables script again with new destination
 	cp "${FILESDIR}"/env.sh.template env.sh
-	sed -i "s:VAR_CASROOT:${INSTALL_DIR}/lin:g" env.sh
+	sed -i "s:VAR_CASROOT:${INSTALL_DIR}/lin:g" env.sh || die
 
 	# Build the env.d environment variables
-	cp "${FILESDIR}"/env.sh.template 50${PN}
+	cp "${FILESDIR}"/env.sh.template 50${PN} || die
 	sed -i \
 		-e 's:export ::g' \
 		-e "s:VAR_CASROOT:${INSTALL_DIR}/lin:g" \
@@ -146,24 +146,24 @@ src_install() {
 			|| die "Tweaking of the Tcl/Tk libraries location in env.sh and 50opencascade failed!"
 
 	# Install the env.d variables file
-	doenvd 50${PN} || die
+	doenvd 50${PN}
 
 	cd "${S}"/../ || die
 
 	if use examples; then
 		insinto /usr/share/doc/${PF}/examples
-		doins -r data || die
+		doins -r data
 
 		insinto /usr/share/doc/${PF}/examples
-		doins -r samples || die
+		doins -r samples
 	fi
 
 	cd "${S}"/../doc || die
-	dodoc *.pdf || die
+	dodoc *.pdf
 
 	# Install the documentation
 	if use doc; then
 		insinto /usr/share/doc/${PF}
-		doins -r {overview,ReferenceDocumentation} || die
+		doins -r {overview,ReferenceDocumentation}
 	fi
 }
