@@ -4,6 +4,10 @@
 
   13 Nov 2011; Andreas K. Huettel <dilfridge@gentoo.org>
   opencascade-6.5.ebuild:
+  Make g++ permissive :|
+
+  13 Nov 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  opencascade-6.5.ebuild:
   Correct check_reqs usage
 
   13 Nov 2011; Andreas K. Huettel <dilfridge@gentoo.org>

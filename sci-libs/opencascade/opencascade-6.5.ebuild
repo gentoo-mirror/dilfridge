@@ -4,7 +4,7 @@
 
 EAPI=4
 
-inherit autotools eutils check-reqs multilib java-pkg-opt-2
+inherit autotools eutils check-reqs multilib java-pkg-opt-2 flag-o-matic
 
 DESCRIPTION="Software development platform for CAD/CAE, 3D surface/solid modeling and data exchange"
 HOMEPAGE="http://www.opencascade.org/"
@@ -81,6 +81,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-fixed-DESTDIR.patch
 
 	source env.sh
+
+	append-cxxflags "-fpermissive"
+
 	eautoreconf
 }
 
