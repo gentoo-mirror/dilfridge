@@ -58,7 +58,9 @@ DEPEND="${RDEPEND}
 
 PATCHES=(
 	"${FILESDIR}/${PN}-2.3.0-numpy.patch"
-	"${FILESDIR}/${PN}-${PV}-convert_sets_to_options.patch"
+	"${FILESDIR}/${P}-convert_sets_to_options.patch"
+	"${FILESDIR}/${P}-libsuffix.patch"
+	"${FILESDIR}/${P}-nocaps.patch"
 )
 
 CMAKE_BUILD_TYPE="Release"
