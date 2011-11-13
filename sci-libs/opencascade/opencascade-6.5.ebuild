@@ -34,8 +34,8 @@ RESTRICT="bindist mirror"
 # http://bugs.gentoo.org/show_bug.cgi?id=352435
 # http://www.gentoo.org/foundation/en/minutes/2011/20110220_trustees.meeting_log.txt
 
-CHECKREQS_MEMORY="256"
-CHECKREQS_DISK_BUILD="3584"
+CHECKREQS_MEMORY="256M"
+CHECKREQS_DISK_BUILD="3584M"
 
 pkg_setup() {
 	check_reqs_pkg_setup
@@ -168,4 +168,12 @@ src_install() {
 		insinto /usr/share/doc/${PF}
 		doins -r {overview,ReferenceDocumentation}
 	fi
+}
+
+pkg_postinst() {
+	einfo
+	elog "After upgrading OpenCASCADE you may have to rebuild packages depending on it."
+	elog "You get a list by running \"equery depends sci-libs/opencascade\""
+	elog "revdep-rebuild does NOT suffice."
+	einfo
 }
