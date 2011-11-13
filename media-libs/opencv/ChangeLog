@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/opencv/ChangeLog,v 1.34 2011/05/11 20:10:16 dilfridge Exp $
 
+*opencv-2.3.1a (13 Nov 2011)
+
+  13 Nov 2011; Andreas K. Huettel <dilfridge@gentoo.org> +opencv-2.3.1a.ebuild,
+  +files/opencv-2.3.1a-convert_sets_to_options.patch:
+  Added files from Andreas Sturmlechner with minor modifications
+
 *opencv-2.3.0-r1 (13 Nov 2011)
 
   13 Nov 2011; Andreas K. Huettel <dilfridge@gentoo.org> opencv-2.3.0.ebuild,
