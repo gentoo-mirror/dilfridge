@@ -2,6 +2,14 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/ChangeLog,v 1.157 2011/07/17 10:24:43 xarthisius Exp $
 
+*swig-2.0.4-r1 (13 Nov 2011)
+
+  13 Nov 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  -swig-1.3.40-r1.ebuild, -swig-2.0.0.ebuild, -swig-2.0.1.ebuild,
+  -swig-2.0.2.ebuild, -swig-2.0.3.ebuild, -swig-2.0.4_pre12643.ebuild,
+  +swig-2.0.4-r1.ebuild, +files/swig-2.0.4-typedef.patch:
+  Cleanup; add typemap patch from upstream for bug 357483
+
   17 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> swig-2.0.2.ebuild:
   ppc/ppc64 stable wrt #365315
 
