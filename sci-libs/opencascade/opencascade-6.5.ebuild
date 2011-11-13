@@ -34,7 +34,11 @@ RESTRICT="bindist mirror"
 # http://bugs.gentoo.org/show_bug.cgi?id=352435
 # http://www.gentoo.org/foundation/en/minutes/2011/20110220_trustees.meeting_log.txt
 
+CHECKREQS_MEMORY="256"
+CHECKREQS_DISK_BUILD="3584"
+
 pkg_setup() {
+	check_reqs_pkg_setup
 	java-pkg-opt-2_pkg_setup
 
 	# Determine itk, itcl, tix, tk and tcl versions
@@ -49,11 +53,6 @@ pkg_setup() {
 	ewarn " Please note that building OpenCascade takes a lot of time and "
 	ewarn " hardware ressources: 3.5-4 GB free diskspace and 256 MB RAM are "
 	ewarn " the minimum requirements. "
-
-	# Check if we have enough RAM and free diskspace to build this beast
-	CHECKREQS_MEMORY="256"
-	CHECKREQS_DISK_BUILD="3584"
-	check_reqs
 }
 
 src_prepare() {
