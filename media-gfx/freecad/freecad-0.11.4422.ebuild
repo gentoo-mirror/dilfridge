@@ -55,6 +55,7 @@ pkg_setup() {
 
 src_prepare() {
 	base_src_prepare
+	append-cxxflags -fpermissive
 	eautoreconf
 }
 
