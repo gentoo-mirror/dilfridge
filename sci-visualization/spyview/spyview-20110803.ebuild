@@ -1,8 +1,8 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/spyview/spyview-20100810.ebuild,v 1.5 2011/03/20 19:57:59 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/spyview/spyview-20110803.ebuild,v 1.1 2011/08/20 22:45:01 dilfridge Exp $
 
-EAPI=2
+EAPI=4
 
 inherit base flag-o-matic eutils multilib
 
@@ -12,13 +12,17 @@ SRC_URI="http://kavli.nano.tudelft.nl/~gsteele/${PN}/versions/${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-COMMON_DEPEND=">=dev-libs/boost-1.39
+COMMON_DEPEND="
+	>=dev-libs/boost-1.42
 	media-libs/netpbm
+	media-libs/libpng:1.2
 	x11-libs/fltk:1
-	app-text/ghostscript-gpl"
+	app-text/ghostscript-gpl
+	virtual/glu
+"
 
 DEPEND="${COMMON_DEPEND}
 	sys-apps/groff"
@@ -26,7 +30,7 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 	sci-visualization/gnuplot"
 
-S=${WORKDIR}/spyview-2010-08-10-22_14
+S=${WORKDIR}/spyview-2011-08-03-15_33
 
 src_prepare() {
 	append-cflags $(fltk-config --cflags)
@@ -36,6 +40,8 @@ src_prepare() {
 	# this one leads to an insane amount of warnings
 
 	append-ldflags -L$(dirname $(fltk-config --libs))
+
+	base_src_prepare
 }
 
 src_configure() {
