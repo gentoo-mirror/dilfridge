@@ -52,6 +52,7 @@ S="${WORKDIR}/${MY_PD}"
 PATCHES=(
 	"${FILESDIR}/${P}-gcc46.patch"
 	"${FILESDIR}/${P}-removeoldswig.patch"
+	"${FILESDIR}/${P}-glu.patch"
 )
 
 pkg_setup() {
