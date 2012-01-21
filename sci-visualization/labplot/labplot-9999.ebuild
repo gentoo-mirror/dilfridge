@@ -31,3 +31,6 @@ RDEPEND="$DEPEND"
 S=${WORKDIR}/${PN}
 
 PATCHES=( "${FILESDIR}/${P}-liborigin2.patch" )
+
+# this is partly hardwired in the build system :(
+CMAKE_BUILD_DIR=${S}/build
