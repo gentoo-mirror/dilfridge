@@ -12,13 +12,12 @@ DESCRIPTION="Qt based clone of the Origin plotting package"
 HOMEPAGE="http://soft.proindependent.com/qtiplot.html
 	http://www.staff.science.uu.nl/~zeven101/qtiplot.html"
 SRC_URI="http://dev.gentoo.org/~dilfridge/distfiles/${P}.tar.bz2
-	origin? ( http://dev.gentoo.org/~dilfridge/distfiles/${P}-origin.patch.bz2 )
-"
+	http://dev.gentoo.org/~dilfridge/distfiles/${P}-origin.patch.bz2"
 
 LICENSE="GPL-2 GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="bindist doc mono latex origin python"
+IUSE="bindist doc mono latex python"
 
 LANGS="cn cz de es fr ja ro ru sv"
 for l in ${LANGS}; do
@@ -30,6 +29,7 @@ done
 # qwtplot3d much modified from original upstream
 # >=x11-libs/qwt-5.3 they are using trunk checkouts
 CDEPEND="
+	media-libs/libemf
 	x11-libs/qt-assistant
 	x11-libs/qt-gui
 	x11-libs/qt-opengl:4
@@ -44,11 +44,8 @@ CDEPEND="
 	sci-libs/gsl
 	sci-libs/tamu_anova
 	latex? ( dev-tex/qtexengine )
-	mono? ( dev-dotnet/libgdiplus )
-	origin? ( media-libs/libemf sci-libs/liborigin:2 )
-"
+	mono? ( dev-dotnet/libgdiplus )"
 DEPEND="${CDEPEND}
-	app-arch/p7zip
 	dev-util/pkgconfig
 	python? ( >=dev-python/sip-4.9 )
 	doc? (
@@ -59,6 +56,8 @@ RDEPEND="${CDEPEND}
 	python? ( dev-python/PyQt4[X] )"
 
 PATCHES=(
+	"${DISTDIR}/${P}-origin.patch.bz2"
+	"${FILESDIR}/${P}-origin-2.patch"
 	"${FILESDIR}/${PN}-0.9.8.8-system-gl2ps.patch"
 	"${FILESDIR}/${PN}-0.9.7.10-dont-install-qwt.patch"
 	"${FILESDIR}/${PN}-0.9.8.6-gold.patch"
@@ -71,11 +70,6 @@ pkg_setup() {
 
 src_prepare() {
 	local mylibs
-
-	use origin && (
-		epatch "${DISTDIR}/${P}-origin.patch.bz2"
-		epatch "${FILESDIR}/${P}-origin-2.patch"
-	)
 
 	qt4-r2_src_prepare
 
