@@ -1,0 +1,54 @@
+From 5f01e06f1fc7904a03e02b68c829aa25c2085baa Mon Sep 17 00:00:00 2001
+From: Sergei Trofimovich <slyfox@gentoo.org>
+Date: Tue, 31 Jan 2012 22:03:58 +0300
+Subject: [PATCH] ./configure: add link check for nss-smartcard
+
+Current './configure --static && make' fails for me:
+
+    LINK  qemu-nbd
+    /usr/lib/gcc/x86_64-pc-linux-gnu/4.5.3/../../../../x86_64-pc-linux-gnu/bin/ld: cannot find -lssl3
+    /usr/lib/gcc/x86_64-pc-linux-gnu/4.5.3/../../../../x86_64-pc-linux-gnu/bin/ld: cannot find -lsmime3
+    /usr/lib/gcc/x86_64-pc-linux-gnu/4.5.3/../../../../x86_64-pc-linux-gnu/bin/ld: cannot find -lnssutil3
+    /usr/lib/gcc/x86_64-pc-linux-gnu/4.5.3/../../../../x86_64-pc-linux-gnu/bin/ld: cannot find -lnss3
+    /usr/lib/gcc/x86_64-pc-linux-gnu/4.5.3/../../../../x86_64-pc-linux-gnu/bin/ld: cannot find -lplds4
+    /usr/lib/gcc/x86_64-pc-linux-gnu/4.5.3/../../../../x86_64-pc-linux-gnu/bin/ld: cannot find -lplc4
+    /usr/lib/gcc/x86_64-pc-linux-gnu/4.5.3/../../../../x86_64-pc-linux-gnu/bin/ld: cannot find -lnspr4
+
+My system does not provide static libraries for nss, so
+fix autoconfiguration by link checking.
+
+Signed-off-by: Sergei Trofimovich <slyfox@gentoo.org>
+CC: qemu-trivial <qemu-trivial@nongnu.org>
+Signed-off-by: Anthony Liguori <aliguori@us.ibm.com>
+---
+ configure |   13 +++++++++----
+ 1 files changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/configure b/configure
+index 8fd5404..3b0b300 100755
+--- a/configure
++++ b/configure
+@@ -2528,11 +2528,16 @@ if test "$smartcard" != "no" ; then
+     smartcard_cflags=""
+     # TODO - what's the minimal nss version we support?
+     if test "$smartcard_nss" != "no"; then
+-        if $pkg_config --atleast-version=3.12.8 nss >/dev/null 2>&1 ; then
++      cat > $TMPC << EOF
++#include <pk11pub.h>
++int main(void) { PK11_FreeSlot(0); return 0; }
++EOF
++        smartcard_cflags="-I\$(SRC_PATH)/libcacard"
++        libcacard_libs=$($pkg_config --libs nss 2>/dev/null)
++        libcacard_cflags=$($pkg_config --cflags nss 2>/dev/null)
++        if $pkg_config --atleast-version=3.12.8 nss >/dev/null 2>&1 && \
++          compile_prog "$smartcard_cflags $libcacard_cflags" "$libcacard_libs"; then
+             smartcard_nss="yes"
+-            smartcard_cflags="-I\$(SRC_PATH)/libcacard"
+-            libcacard_libs=$($pkg_config --libs nss 2>/dev/null)
+-            libcacard_cflags=$($pkg_config --cflags nss 2>/dev/null)
+             QEMU_CFLAGS="$QEMU_CFLAGS $smartcard_cflags $libcacard_cflags"
+             LIBS="$libcacard_libs $LIBS"
+         else
+-- 
+1.7.0.4
+

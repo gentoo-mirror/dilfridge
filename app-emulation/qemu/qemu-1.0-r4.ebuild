@@ -49,15 +49,24 @@ RDEPEND="${RDEPEND}
 	sys-apps/pciutils
 	>=sys-apps/util-linux-2.16.0
 	sys-libs/zlib
-	aio? ( dev-libs/libaio )
+	aio? (
+		static? ( dev-libs/libaio[static-libs] )
+		!static? ( dev-libs/libaio )
+	)
 	alsa? ( >=media-libs/alsa-lib-1.0.13 )
 	bluetooth? ( net-wireless/bluez )
 	brltty? ( app-accessibility/brltty )
-	curl? ( net-misc/curl )
+	curl? (
+		static? ( net-misc/curl[static-libs] )
+		!static? ( net-misc/curl )
+	)
 	esd? ( media-sound/esound )
 	fdt? ( >=sys-apps/dtc-1.2.0 )
 	jpeg? ( virtual/jpeg )
-	ncurses? ( sys-libs/ncurses )
+	ncurses? (
+		static? ( sys-libs/ncurses[static-libs] )
+		!static? ( sys-libs/ncurses )
+	)
 	nss? ( dev-libs/nss )
 	opengl? (
 		virtual/opengl
@@ -71,12 +80,22 @@ RDEPEND="${RDEPEND}
 	)
 	rbd? ( sys-cluster/ceph )
 	sasl? ( dev-libs/cyrus-sasl )
-	sdl? ( >=media-libs/libsdl-1.2.11[X] )
+	sdl? (
+		static? ( >=media-libs/libsdl-1.2.11[X,static-libs] )
+		!static? ( >=media-libs/libsdl-1.2.11[X] )
+	)
 	spice? (
 		>=app-emulation/spice-0.9.0
 		>=app-emulation/spice-protocol-0.8.1
 	)
-	ssl? ( net-libs/gnutls )
+	ssl? (
+		static? ( net-libs/gnutls[static-libs(+)] )
+		!static? ( net-libs/gnutls )
+	)
+	static? (
+		>=sys-apps/util-linux-2.16.0[static-libs]
+		sys-libs/zlib[static-libs]
+	)
 	usbredir? ( sys-apps/usbredir )
 	vde? ( net-misc/vde )
 	xattr? ( sys-apps/attr )
@@ -128,6 +147,9 @@ pkg_setup() {
 }
 
 src_prepare() {
+	# fixing static support
+	epatch "${FILESDIR}"/${P}-static-*.patch
+
 	# bug #400595 / CVE-2012-0029
 	epatch "${FILESDIR}"/qemu-kvm-1.0-e1000-bounds-packet-size-against-buffer-size.patch
 
