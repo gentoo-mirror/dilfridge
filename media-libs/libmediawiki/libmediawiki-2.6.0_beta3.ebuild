@@ -20,7 +20,7 @@ HOMEPAGE="http://www.digikam.org/"
 SRC_URI="mirror://sourceforge/${DIGIKAMPN}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 IUSE=""
 SLOT=4
 
