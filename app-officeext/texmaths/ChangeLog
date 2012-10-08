@@ -1,9 +1,0 @@
-# ChangeLog for office-extensions/texmaths
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
-
-*texmaths-0.34 (07 May 2012)
-
-  07 May 2012; Andreas K. Huettel <dilfridge@gentoo.org> +texmaths-0.34.ebuild:
-  New ebuild
-
