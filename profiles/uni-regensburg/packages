@@ -1,0 +1,7 @@
+app-editors/nano
+dev-vcs/git
+dev-vcs/subversion
+sci-visualization/gnuplot
+sci-visualization/gwyddion
+sci-visualization/qtiplot
+sci-visualization/spyview
