@@ -1,4 +1,5 @@
 app-editors/nano
+app-text/texlive
 dev-tex/frutiger
 dev-vcs/git
 dev-vcs/subversion
