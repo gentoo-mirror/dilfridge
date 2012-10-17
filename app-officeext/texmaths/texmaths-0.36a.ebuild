@@ -14,11 +14,11 @@ inherit office-ext
 
 DESCRIPTION="LaTeX Equation Editor for LibreOffice"
 HOMEPAGE="http://roland65.free.fr/texmaths/"
-SRC_URI="mirror://sourceforge/${PN}/${MY_P}.oxt"
+SRC_URI="https://data.nanotube-research.de/group/${MY_P}.oxt"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=""
