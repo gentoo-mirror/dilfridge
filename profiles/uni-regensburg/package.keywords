@@ -1,0 +1,2 @@
+# nobody should have to run revdep-rebuild. ever.
+=sys-apps/portage-2* **
