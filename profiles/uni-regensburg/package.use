@@ -1,1 +1,3 @@
 app-text/texlive publishers science png truetype xml
+dev-vcs/subversion -dso
+sys-libs/zlib minizip
