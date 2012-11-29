@@ -9,7 +9,7 @@ VIDEO_CARDS="nvidia fglrx intel"
 INPUT_DEVICES="evdev"
 
 # use flags
-USE+=" crypt git perl ssl subversion"
+USE="${USE} crypt git perl ssl subversion"
 
 # portage settings
 FEATURES="sandbox strict userfetch userpriv usersandbox compress-build-logs"
