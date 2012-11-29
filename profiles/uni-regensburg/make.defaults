@@ -5,7 +5,7 @@ FCFLAGS="${CFLAGS}"
 
 # Defaults for X11
 # warning: use_expand does not mix well with profiles
-USE="-video_cards_* -input_devices_* video_cards_nvidia video_cards_fglrx video_cards_intel input_devices_evdev"
+USE="-video_cards_* -input_devices_* video_cards_nvidia video_cards_fglrx video_cards_intel video_cards_vmware input_devices_evdev"
 
 # use flags
 USE="${USE} crypt git perl ssl subversion"
