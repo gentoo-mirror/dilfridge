@@ -4,11 +4,12 @@ FFLAGS="${CFLAGS}"
 FCFLAGS="${CFLAGS}"
 
 # Defaults for X11
+USE="-video_cards_* -input_devices_*"
 VIDEO_CARDS="nvidia fglrx intel"
 INPUT_DEVICES="evdev"
 
 # use flags
-USE="crypt git perl ssl subversion"
+USE+=" crypt git perl ssl subversion"
 
 # portage settings
 FEATURES="sandbox strict userfetch userpriv usersandbox compress-build-logs"

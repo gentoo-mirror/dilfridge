@@ -3,7 +3,3 @@
 # a failed attempt at updating, resulting in even more breakage
 =dev-texlive/texlive-context-2009b
 
-#
-# it's not ready yet
->net-print/cups-1.4.9999
-

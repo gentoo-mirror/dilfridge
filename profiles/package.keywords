@@ -1,2 +1,2 @@
 # nobody should have to run revdep-rebuild. ever.
-=sys-apps/portage-2*::gentoo **
+=sys-apps/portage-2* **
