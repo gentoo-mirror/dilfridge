@@ -1,2 +1,7 @@
 # nobody should have to run revdep-rebuild. ever.
 =sys-apps/portage-2* **
+
+# for measurement control
+=sci-libs/linux-gpib-3.2.16-r3
+=dev-perl/Lab-Measurement-3.10
+
