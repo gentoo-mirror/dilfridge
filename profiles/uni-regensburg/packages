@@ -30,3 +30,4 @@
 *sys-process/vixie-cron
 *x11-apps/xdm
 *x11-base/xorg-server
+*x11-misc/x11vnc
