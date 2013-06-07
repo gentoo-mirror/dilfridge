@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-NOVELL_BUILDID="_XAeStjRFu8~"
-NOVELL_FILE32="patchfiles/gw802_hp3_full_linux_multi.tar.gz"
 RESTRICT="fetch mirror strip"
 
 inherit eutils rpm5 multilib versionator
@@ -12,8 +10,8 @@ MY_PV=$(replace_version_separator 3 '-')
 MY_P="${P/_p/-}"
 
 DESCRIPTION="Novell Groupwise 8 Client for Linux"
-HOMEPAGE="http://www.novell.com/en/gropwise/"
-SRC_URI="http://${NOVELL_ACCOUNT_USERNAME}:${NOVELL_ACCOUNT_PASSWORD}@cdn.novell.com/prot/${NOVELL_BUILDID}/${NOVELL_FILE32}"
+HOMEPAGE="http://www.novell.com/products/gropwise/"
+SRC_URI="gw802_hp3_client_linux_multi.tar.gz"
 
 LICENSE="Novell-GW-8"
 SLOT="0"
@@ -35,7 +33,7 @@ src_unpack() {
 	unpack ${A}
 	mkdir -p "${WORKDIR}"/${PN}-${MY_PV}
 	cd ${PN}-${MY_PV}
-	rpm5_unpack ./../gw${MY_PV}_full_linux_multi/client/linux/${PN}-${MY_PV}.i586.rpm
+	rpm5_unpack ./../gw${MY_PV}_client_linux_multi/${PN}-${MY_PV}.i586.rpm
 }
 
 src_compile() { :; }
@@ -70,9 +68,6 @@ src_install() {
 }
 
 pkg_nofetch() {
-	einfo "This files require you to register at ${HOMEPAGE} (free account)"
-	einfo "Please download following file:"
-	einfo " - ${NOVELL_FILE32}"
-	einfo "from http://download.novell.com/Download?buildid=${NOVELL_BUILDID}"
-	einfo "and place it in ${DISTDIR}"
+	einfo "You can obtain an evaluation version of the Groupwise client at ${HOMEPAGE} - please"
+	einfo "download ${SRC_URI} and place it in ${DISTDIR}"
 }
