@@ -1,4 +1,5 @@
 *app-admin/logrotate
+*app-admin/sudo
 *app-admin/syslog-ng
 *app-crypt/gnupg
 *app-editors/kile
@@ -13,7 +14,6 @@
 *dev-tex/frutiger
 *dev-tex/latex-beamer
 *dev-tex/revtex
-*dev-util/lafilefixer
 *dev-vcs/git
 *dev-vcs/kdesvn
 *dev-vcs/subversion
