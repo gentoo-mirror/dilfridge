@@ -8,3 +8,5 @@
 =perl-core/Switch-2.160.0
 =sci-libs/linux-gpib-3.2.16-r3
 
+# only in overlay
+mail-client/novell-groupwise-client
