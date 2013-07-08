@@ -6,6 +6,7 @@ dev-qt/qthelp compat
 dev-vcs/subversion -dso
 media-libs/freetype kpathsea
 media-libs/mesa xa
+net-print/cups -usb
 sys-libs/zlib minizip
 x11-libs/libdrm libkms
 x11-libs/qt-assistant compat
