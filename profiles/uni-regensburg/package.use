@@ -1,6 +1,8 @@
 app-text/texlive publishers science png truetype xml
 dev-lang/perl ithreads
+dev-lang/python sqlite
 dev-perl/Lab-Measurement debug
+dev-qt/qthelp compat
 dev-vcs/subversion -dso
 media-libs/freetype kpathsea
 media-libs/mesa xa
