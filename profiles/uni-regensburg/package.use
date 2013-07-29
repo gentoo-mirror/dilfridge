@@ -1,4 +1,5 @@
-app-text/texlive publishers science png truetype xml
+app-text/texlive extra publishers science png truetype xml
+app-text/xournal vanilla
 dev-lang/perl ithreads
 dev-lang/python sqlite
 dev-perl/Lab-Measurement debug
@@ -6,6 +7,7 @@ dev-qt/qthelp compat
 dev-vcs/subversion -dso
 media-libs/freetype kpathsea
 media-libs/mesa xa
+net-irc/quassel X -crypt dbus phonon -server ssl webkit
 net-print/cups -usb
 sys-libs/zlib minizip
 x11-libs/libdrm libkms
