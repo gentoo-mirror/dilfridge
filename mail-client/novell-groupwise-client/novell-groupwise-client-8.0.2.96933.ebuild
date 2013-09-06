@@ -1,15 +1,15 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 RESTRICT="binchecks fetch mirror strip"
 
-inherit eutils rpm5 multilib versionator
+inherit eutils rpm multilib versionator
 
 MY_PV=$(replace_version_separator 3 '-')
 MY_P="${P/_p/-}"
 
-DESCRIPTION="Novell Groupwise 8 Client for Linux"
+DESCRIPTION="Novell Groupwise Client for Linux"
 HOMEPAGE="http://www.novell.com/products/groupwise/"
 SRC_URI="gw802_hp3_client_linux_multi.tar.gz"
 
@@ -18,9 +18,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="novell-jre multilib"
 DEPEND=""
-RDEPEND="sys-libs/glibc
-	sys-libs/libstdc++-v3
-	sys-devel/gcc
+RDEPEND="sys-libs/libstdc++-v3
 	!novell-jre? (
 		|| ( virtual/jdk
 		virtual/jre )
@@ -33,7 +31,7 @@ src_unpack() {
 	unpack ${A}
 	mkdir -p "${WORKDIR}"/${PN}-${MY_PV}
 	cd ${PN}-${MY_PV}
-	rpm5_unpack ./../gw${MY_PV}_client_linux_multi/${PN}-${MY_PV}.i586.rpm
+	rpm_unpack ./../gw${MY_PV}_client_linux_multi/${PN}-${MY_PV}.i586.rpm
 }
 
 src_compile() { :; }
@@ -44,17 +42,17 @@ src_install() {
 	if use novell-jre; then
 		# Undo Sun's funny-business with packed .jar's
 		for i in $JRE_DIR/lib/*.pack; do
-		i_b=`echo $i | sed 's/\.pack$//'`;
-		einfo "Unpacking `basename $i` -> `basename $i_b.jar`";
-		$JRE_DIR/bin/unpack200 $i $i_b.jar || die "Unpack failed";
+			i_b=`echo $i | sed 's/\.pack$//'`;
+			einfo "Unpacking `basename $i` -> `basename $i_b.jar`";
+			$JRE_DIR/bin/unpack200 $i $i_b.jar || die "Unpack failed";
 		done;
 	else
 		if use multilib; then
-		rm -rf "${WORKDIR}"/${PN}-${MY_PV}/opt/novell/groupwise/client/java
-		sed -i 's%/opt/novell/groupwise/client/java/lib/i386%`java-config --select-vm=emul-linux-x86-java --jre-home`/lib/i386/client:`java-config --select-vm=emul-linux-x86-java --jre-home`/lib/i386/server:`java-config --select-vm=emul-linux-x86-java --jre-home`/lib/i386%' "${WORKDIR}"/${PN}-${MY_PV}/opt/novell/groupwise/client/bin/groupwise
+			rm -rf "${WORKDIR}"/${PN}-${MY_PV}/opt/novell/groupwise/client/java
+			sed -i 's%/opt/novell/groupwise/client/java/lib/i386%`java-config --select-vm=emul-linux-x86-java --jre-home`/lib/i386/client:`java-config --select-vm=emul-linux-x86-java --jre-home`/lib/i386/server:`java-config --select-vm=emul-linux-x86-java --jre-home`/lib/i386%' "${WORKDIR}"/${PN}-${MY_PV}/opt/novell/groupwise/client/bin/groupwise
 		else
-		rm -rf "${WORKDIR}"/${PN}-${MY_PV}/opt/novell/groupwise/client/java
-		sed -i 's%/opt/novell/groupwise/client/java/lib/i386%`java-config --jre-home`/jre/lib/i386/client:`java-config --jre-home`/jre/lib/i386/server:`java-config --jre-home`/jre/lib/i386%' "${WORKDIR}"/${PN}-${MY_PV}/opt/novell/groupwise/client/bin/groupwise
+			rm -rf "${WORKDIR}"/${PN}-${MY_PV}/opt/novell/groupwise/client/java
+			sed -i 's%/opt/novell/groupwise/client/java/lib/i386%`java-config --jre-home`/jre/lib/i386/client:`java-config --jre-home`/jre/lib/i386/server:`java-config --jre-home`/jre/lib/i386%' "${WORKDIR}"/${PN}-${MY_PV}/opt/novell/groupwise/client/bin/groupwise
 		fi
 	fi
 
