@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
-<pkgmetadata>
-<herd>sci</herd>
-<maintainer><email>dilfridge@gentoo.org</email></maintainer>
-<use>
-	<flag name="gl2ps">Use the gl2ps OpenGL to PostScript library for printing</flag>
-</use>
-</pkgmetadata>
