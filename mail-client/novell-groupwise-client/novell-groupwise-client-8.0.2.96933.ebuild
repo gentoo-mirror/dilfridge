@@ -10,10 +10,10 @@ MY_PV=$(replace_version_separator 3 '-')
 MY_P="${P/_p/-}"
 
 DESCRIPTION="Novell Groupwise 8 Client for Linux"
-HOMEPAGE="http://www.novell.com/products/gropwise/"
+HOMEPAGE="http://www.novell.com/products/groupwise/"
 SRC_URI="gw802_hp3_client_linux_multi.tar.gz"
 
-LICENSE="Novell-GW-8"
+LICENSE="all-rights-reserved"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="novell-jre multilib"
@@ -68,6 +68,9 @@ src_install() {
 }
 
 pkg_nofetch() {
-	einfo "You can obtain an evaluation version of the Groupwise client at ${HOMEPAGE} - please"
-	einfo "download ${SRC_URI} and place it in ${DISTDIR}"
+	einfo "You can obtain an evaluation version of the Groupwise client at"
+	einfo "${HOMEPAGE} - please download ${SRC_URI}"
+	einfo "and place it in ${DISTDIR}. Alternatively request the file"
+	einfo "from the Groupwise server provider of your organization."
+	einfo "Note that the client is useless without a server account."
 }
