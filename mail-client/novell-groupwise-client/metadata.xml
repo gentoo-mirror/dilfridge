@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
-<pkgmetadata>
-	<maintainer><email>dilfridge@gentoo.org</email></maintainer>
-	<use>
-		<flag name='multilib'>pull in the required packages on amd64 systems</flag>
-		<flag name='novell-jre'>Use the from novell provided jre</flag>
-	</use>
-</pkgmetadata>
