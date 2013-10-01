@@ -1,5 +1,7 @@
 # nobody should have to run revdep-rebuild. ever.
 =sys-apps/portage-2* **
+app-portage/ufed
+app-portage/eix
 
 # for measurement control
 dev-perl/Lab-Measurement **
