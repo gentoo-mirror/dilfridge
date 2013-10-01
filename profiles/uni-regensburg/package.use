@@ -9,6 +9,7 @@ media-libs/freetype kpathsea
 media-libs/mesa xa
 net-irc/quassel X -crypt dbus phonon -server ssl webkit
 net-print/cups -usb
+sys-libs/talloc python
 sys-libs/zlib minizip
 x11-libs/libdrm libkms
 x11-libs/qt-assistant compat
