@@ -7,6 +7,10 @@ depend() {
 	use mysql
 }
 
+start_pre() {
+	checkpath -d -m 0775 -o apache:apache /var/run/zm
+}
+
 start() {
 	ebegin "Starting zoneminder"
 	${CMD_START}
