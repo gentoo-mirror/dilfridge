@@ -2,6 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+# TO DO:
+# permissions on /tmp/zm, or use alternate directory
+
 EAPI=5
 
 inherit eutils base cmake-utils depend.php depend.apache multilib flag-o-matic
@@ -14,41 +17,14 @@ SRC_URI="https://github.com/${MY_PN}/${MY_PN}/archive/v${PV}.tar.gz -> ${P}.tar.
 
 LICENSE="GPL-2"
 KEYWORDS=""
-IUSE="gcrypt gnutls x10 openssl pcre zlib debug ffmpeg mmap"
+IUSE="gcrypt gnutls +openssl debug ffmpeg mmap vlc"
 SLOT="0"
 
+REQUIRED_USE="
+	|| ( openssl gnutls )
+"
+
 DEPEND="
-	app-admin/sudo
-	dev-lang/perl
-	dev-libs/libpcre
-	dev-libs/openssl
-	dev-perl/Archive-Zip
-	dev-perl/DateManip
-	dev-perl/DBD-mysql
-	dev-perl/DBI
-	dev-perl/Device-SerialPort
-	dev-perl/libwww-perl
-	dev-perl/MIME-Lite
-	dev-perl/MIME-tools
-	dev-perl/PHP-Serialization
-	media-video/ffmpeg
-	virtual/jpeg
-	virtual/perl-Archive-Tar
-	virtual/perl-Getopt-Long
-	virtual/perl-libnet
-	virtual/perl-Module-Load
-	virtual/perl-Sys-Syslog
-	virtual/perl-Time-HiRes
-	mmap? ( dev-perl/Sys-Mmap )
-	zlib? ( sys-libs/zlib )
-	virtual/jpeg
-	openssl? ( dev-libs/openssl )
-	dev-lang/perl
-	pcre? ( dev-libs/libpcre )
-	virtual/mysql
-	gcrypt? ( dev-libs/libgcrypt )
-	gnutls? ( net-libs/gnutls )
-	ffmpeg? ( virtual/ffmpeg )
 	virtual/perl-Sys-Syslog
 	dev-perl/DBI
 	dev-perl/DBD-mysql
@@ -57,14 +33,31 @@ DEPEND="
 	dev-perl/DateManip
 	dev-perl/libwww-perl
 	virtual/perl-ExtUtils-MakeMaker
+	virtual/mysql
+	dev-lang/perl
+	dev-libs/libpcre
+	sys-libs/zlib
+	virtual/jpeg
+	gcrypt? ( dev-libs/libgcrypt )
+	gnutls? ( net-libs/gnutls )
+	openssl? ( dev-libs/openssl )
+	ffmpeg? ( virtual/ffmpeg )
 	mmap? ( dev-perl/Sys-Mmap )
+	vlc? ( media-video/vlc )
 "
 
-RDEPEND="
-	${DEPEND}
-	dev-perl/DBD-mysql
-	media-libs/netpbm
-"
+RDEPEND="${DEPEND}"
+
+# dependencies of unknown status:
+# 	app-admin/sudo
+# 	dev-perl/Archive-Zip
+# 	dev-perl/Device-SerialPort
+# 	dev-perl/MIME-Lite
+# 	dev-perl/MIME-tools
+# 	dev-perl/PHP-Serialization
+# 	virtual/perl-Archive-Tar
+# 	virtual/perl-libnet
+# 	virtual/perl-Module-Load
 
 # we cannot use need_httpd_cgi here, since we need to setup permissions for the
 # webserver in global scope (/etc/zm.conf etc), so we hardcode apache here.
@@ -72,7 +65,6 @@ need_apache
 need_php_httpd
 
 S=${WORKDIR}/${MY_PN}-${PV}
-CMAKE_IN_SOURCE_BUILD="ON"
 
 PATCHES=(
 	"${FILESDIR}"/1.24.2/db_upgrade_script_location.patch
@@ -86,13 +78,15 @@ src_configure() {
 	append-cxxflags -D__STDC_CONSTANT_MACROS
 
 	mycmakeargs=(
-		-DZM_WEBDIR=/var/www/zoneminder/htdocs
-		-DZM_CGIDIR=/var/www/zoneminder/cgi-bin
+		-DZM_WEBDIR=/var/www/zm/htdocs
+		-DZM_CGIDIR=/var/www/zm/cgi-bin
+		-DZM_CONTENTDIR=/var/lib/zm
 		-DZM_WEB_USER=apache
 		-DZM_WEB_GROUP=apache
 		$(cmake-utils_useno mmap ZM_NO_MMAP)
-		$(cmake-utils_useno x10 ZM_NO_X10)
+		-DZM_NO_X10=OFF
 		$(cmake-utils_useno ffmpeg ZM_NO_FFMPEG)
+		$(cmake-utils_useno vlc ZM_NO_VLC)
 	)
 
 	cmake-utils_src_configure
