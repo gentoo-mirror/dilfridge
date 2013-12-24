@@ -1,3 +1,4 @@
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -9,14 +10,36 @@ MY_PN="ZoneMinder"
 
 DESCRIPTION="ZoneMinder allows you to capture, analyse, record and monitor any cameras attached to your system."
 HOMEPAGE="http://www.zoneminder.com/"
-SRC_URI="https://github.com/${MY_PN}/${MY_PN}/archive/v${PV}.tar.gz"
+SRC_URI="https://github.com/${MY_PN}/${MY_PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 KEYWORDS=""
-IUSE="gcrypt gnutls no-ffmpeg no-mmap no-x10 openssl pcre zlib"
+IUSE="gcrypt gnutls x10 openssl pcre zlib debug ffmpeg mmap"
 SLOT="0"
 
 DEPEND="
+	app-admin/sudo
+	dev-lang/perl
+	dev-libs/libpcre
+	dev-libs/openssl
+	dev-perl/Archive-Zip
+	dev-perl/DateManip
+	dev-perl/DBD-mysql
+	dev-perl/DBI
+	dev-perl/Device-SerialPort
+	dev-perl/libwww-perl
+	dev-perl/MIME-Lite
+	dev-perl/MIME-tools
+	dev-perl/PHP-Serialization
+	media-video/ffmpeg
+	virtual/jpeg
+	virtual/perl-Archive-Tar
+	virtual/perl-Getopt-Long
+	virtual/perl-libnet
+	virtual/perl-Module-Load
+	virtual/perl-Sys-Syslog
+	virtual/perl-Time-HiRes
+	mmap? ( dev-perl/Sys-Mmap )
 	zlib? ( sys-libs/zlib )
 	virtual/jpeg
 	openssl? ( dev-libs/openssl )
@@ -25,7 +48,7 @@ DEPEND="
 	virtual/mysql
 	gcrypt? ( dev-libs/libgcrypt )
 	gnutls? ( net-libs/gnutls )
-	!no-ffmpeg? ( virtual/ffmpeg )
+	ffmpeg? ( virtual/ffmpeg )
 	virtual/perl-Sys-Syslog
 	dev-perl/DBI
 	dev-perl/DBD-mysql
@@ -34,13 +57,26 @@ DEPEND="
 	dev-perl/DateManip
 	dev-perl/libwww-perl
 	virtual/perl-ExtUtils-MakeMaker
-	!no-mmap? ( dev-perl/Sys-Mmap )
+	mmap? ( dev-perl/Sys-Mmap )
 "
+
+RDEPEND="
+	${DEPEND}
+	dev-perl/DBD-mysql
+	media-libs/netpbm
+"
+
+# we cannot use need_httpd_cgi here, since we need to setup permissions for the
+# webserver in global scope (/etc/zm.conf etc), so we hardcode apache here.
+need_apache
+need_php_httpd
+
 S=${WORKDIR}/${MY_PN}-${PV}
 CMAKE_IN_SOURCE_BUILD="ON"
 
-need_apache
-need_php_httpd
+PATCHES=(
+	"${FILESDIR}"/1.24.2/db_upgrade_script_location.patch
+)
 
 pkg_setup() {
 	require_php_with_use mysql sockets apache2
@@ -49,27 +85,17 @@ pkg_setup() {
 src_configure() {
 	append-cxxflags -D__STDC_CONSTANT_MACROS
 
-	mycmakeargs="
+	mycmakeargs=(
 		-DZM_WEBDIR=/var/www/zoneminder/htdocs
 		-DZM_CGIDIR=/var/www/zoneminder/cgi-bin
 		-DZM_WEB_USER=apache
 		-DZM_WEB_GROUP=apache
-	"
-	if use no-mmap; then
-		mycmakeargs="${mycmakeargs} -DZM_NO_MMAP=ON"
-	fi
-	if use no-x10; then
-		mycmakeargs="${mycmakeargs} -DZM_NO_X10=ON"
-	fi
-	if use no-ffmpeg; then
-		mycmakeargs="${mycmakeargs} -DZM_NO_FFMPEG=ON"
-	fi
-	cmake-utils_src_configure
-}
+		$(cmake-utils_useno mmap ZM_NO_MMAP)
+		$(cmake-utils_useno x10 ZM_NO_X10)
+		$(cmake-utils_useno ffmpeg ZM_NO_FFMPEG)
+	)
 
-src_compile() {
-	einfo "${PN} does not parallel build... using forcing make -j1..."
-	cmake-utils_src_make
+	cmake-utils_src_configure
 }
 
 src_install() {
@@ -84,7 +110,7 @@ src_install() {
 	newinitd "${FILESDIR}"/init.d zoneminder
 	newconfd "${FILESDIR}"/conf.d zoneminder
 
-	dodoc AUTHORS BUGS COPYING ChangeLog INSTALL LICENSE NEWS README.md TODO
+	dodoc AUTHORS BUGS ChangeLog INSTALL NEWS README.md TODO
 
 	insinto /usr/share/${PN}/db
 	doins db/zm_u* db/zm_create.sql
