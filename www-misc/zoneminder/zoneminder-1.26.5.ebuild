@@ -7,7 +7,7 @@
 
 EAPI=5
 
-inherit eutils base cmake-utils depend.php depend.apache multilib flag-o-matic
+inherit readme.gentoo eutils base cmake-utils depend.php depend.apache multilib flag-o-matic
 
 MY_PN="ZoneMinder"
 
@@ -66,9 +66,8 @@ need_php_httpd
 
 S=${WORKDIR}/${MY_PN}-${PV}
 
-PATCHES=(
-	"${FILESDIR}"/1.24.2/db_upgrade_script_location.patch
-)
+#PATCHES=(
+#)
 
 pkg_setup() {
 	require_php_with_use mysql sockets apache2
@@ -106,36 +105,36 @@ src_install() {
 
 	dodoc AUTHORS BUGS ChangeLog INSTALL NEWS README.md TODO
 
-	insinto /usr/share/${PN}/db
-	doins db/zm_u* db/zm_create.sql
-
-	#insinto /etc/apache2/vhosts.d
-	#doins "${FILESDIR}"/10_zoneminder.conf
+	insinto /etc/apache2/vhosts.d
+	doins "${FILESDIR}"/10_zoneminder.conf
 
 	for DIR in events images sound; do
 	    dodir /var/www/zoneminder/htdocs/${DIR}
 	done
-}
 
-pkg_postinst() {
-	elog ""
-	elog "0. If this is a new installation, you will need to create a MySQL database"
-	elog "   for ${PN} to use. (see http://www.gentoo.org/doc/en/mysql-howto.xml)."
-	elog "   Once you completed that you should execute the following:"
-	elog " cd /usr/share/${PN}"
-	elog " mysql -u  -p  < db/zm_create.sql"
-	elog ""
-	elog "1.  Set your database settings in /etc/zm.conf"
-	elog ""
-	elog "2.  Enable PHP in your webserver configuration, enable short_open_tags in php.ini,"
-	elog "    set the time zone in php.ini, and restart/reload the webserver"
-	elog ""
-	elog "3.  Start the ${PN} daemon:"
-	elog "  /etc/init.d/${PN} start"
-	elog ""
-	elog "4. Finally point your browser to http://localhost/${PN}"
-	elog ""
-	elog "If you are upgrading, you will need to run the zmupdate.pl script:"
-	elog " /usr/bin/zmupdate.pl version= [--user= --pass=]"
-	elog ""
+	DOC_CONTENTS="
+0. If this is a new installation, you will need to create a MySQL\n
+   database for ${PN} to use\n
+   (see http://www.gentoo.org/doc/en/mysql-howto.xml).\n
+   Once you completed that you should execute the following:\n
+ cd /usr/share/${PN}\n
+ mysql -u  -p  < db/zm_create.sql\n
+\n
+1.  Set your database settings in /etc/zm.conf\n
+\n
+2.  Enable PHP in your webserver configuration, \n
+    enable short_open_tags in php.ini,\n
+    set the time zone in php.ini, \n
+    and restart/reload the webserver.\n
+\n
+3.  Start the ${PN} daemon:\n
+  /etc/init.d/${PN} start\n
+\n
+4. Finally point your browser to http://localhost/${PN}\n
+\n
+If you are upgrading, you will need to run the zmupdate.pl script:\n
+ /usr/bin/zmupdate.pl version= [--user= --pass=]\n
+"
+
+	readme.gentoo_src_install
 }

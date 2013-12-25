@@ -7,7 +7,7 @@
 	</maintainer>
 	<use>
 		<flag name="gcrypt">...</flag>
-		<flag name="x10">...</flag>
+		<flag name="vlc">...</flag>
 		<flag name="openssl">...</flag>
 	</use>
 </pkgmetadata>
