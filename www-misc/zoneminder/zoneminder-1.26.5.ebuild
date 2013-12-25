@@ -101,6 +101,7 @@ src_install() {
 	cmake-utils_src_install
 
 	fperms 0640 /etc/zm.conf
+	fowners root:apache /etc/zm.conf
 
 	fowners apache:apache /var/log/zm
 
@@ -119,10 +120,13 @@ src_install() {
 	DOC_CONTENTS="
 1. If this is a new installation, you will need to create a MySQL\n
    database for ${PN} to use\n
-   (see http://www.gentoo.org/doc/en/mysql-howto.xml).\n
+   (see https://wiki.gentoo.org/wiki/MySQL/Startup_Guide).\n
+   E.g., when logged into mysql as root,\n
+     mysql> CREATE DATABASE 'zm';\n
+     mysql> GRANT ALL ON zm.* TO 'zmuser'@'localhost' IDENTIFIED BY 'topsecretpassword';\n
    Once you completed that you should execute the following:\n
- cd /usr/share/${PN}\n
- mysql -u -p < db/zm_create.sql\n
+     cd /usr/share/${PN}\n
+     mysql -u zmuser -p < db/zm_create.sql\n
 \n
 2.  Set your database settings in /etc/zm.conf\n
 \n

@@ -4,7 +4,8 @@
 # $Header: /var/cvsroot/gentoo-x86/www-misc/zoneminder/files/Attic/init.d,v 1.3 2009/01/01 16:47:24 gentoofan23 Exp $
 
 depend() {
-	use mysql
+	need mysql
+	need apache2
 }
 
 start_pre() {
