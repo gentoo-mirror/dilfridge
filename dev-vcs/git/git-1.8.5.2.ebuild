@@ -223,8 +223,12 @@ src_prepare() {
 	# bug #350330 - automagic CVS when we don't want it is bad.
 	epatch "${FILESDIR}"/git-1.8.5-optional-cvs.patch
 
-	# honor and correctly quote DISTDIR (from git master)
+	# honor and correctly quote DISTDIR (from upstream git master)
 	epatch "${FILESDIR}"/git-1.8.5-mw-destdir.patch
+
+	# install mediawiki perl modules also in vendor_dir
+	# hack, needs better upstream solution
+	epatch "${FILESDIR}"/git-1.8.5-mw-vendor.patch
 
 	sed -i \
 		-e 's:^\(CFLAGS[[:space:]]*=\).*$:\1 $(OPTCFLAGS) -Wall:' \
