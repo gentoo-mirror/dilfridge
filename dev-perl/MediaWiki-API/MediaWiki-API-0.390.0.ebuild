@@ -15,4 +15,9 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="dev-perl/JSON"
+RDEPEND="
+	dev-perl/JSON
+	dev-perl/libwww-perl
+	virtual/perl-Encode
+	virtual/perl-Test-Simple
+"
