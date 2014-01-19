@@ -6,7 +6,9 @@ dev-perl/Lab-Measurement debug
 dev-qt/qthelp compat
 dev-vcs/subversion -dso
 media-libs/freetype kpathsea
+media-libs/harfbuzz icu
 media-libs/mesa xa
+net-fs/samba -server
 net-irc/quassel X -crypt dbus phonon -server ssl webkit
 net-print/cups -usb
 sys-libs/talloc python
