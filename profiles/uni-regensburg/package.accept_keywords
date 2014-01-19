@@ -5,10 +5,9 @@ app-portage/eix
 
 # for measurement control
 dev-perl/Lab-Measurement **
-=dev-perl/encoding-warnings-0.110.0
-=dev-perl/TeX-Encode-1.3
-=perl-core/Switch-2.160.0
+dev-perl/encoding-warnings
+dev-perl/TeX-Encode
+perl-core/Switch
 
-# only in overlay
+# working environment
 mail-client/novell-groupwise-client
-app-arch/rpm5offset
