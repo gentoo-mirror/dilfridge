@@ -8,11 +8,11 @@
 #
 
 VERSION=${1:-4.1.0}
-BASE_SRC_URI="http://download.documentfoundation.org/libreoffice/testing/${VERSION}/rpm/x86"
+BASE_SRC_URI="http://download.documentfoundation.org/libreoffice/stable/${VERSION}/rpm/x86"
 
 # needs lxml
 print_available_tarballs() {
-	python << EOL
+	python2 << EOL
 import sys, urllib
 from xml.dom.minidom import parseString
 from BeautifulSoup import BeautifulSoup
