@@ -76,10 +76,9 @@ pkg_setup() {
 src_configure() {
 	append-cxxflags -D__STDC_CONSTANT_MACROS
 
+
+
 	mycmakeargs=(
-		-DZM_WEBDIR=/var/www/zm/htdocs
-		-DZM_CGIDIR=/var/www/zm/cgi-bin
-		-DZM_CONTENTDIR=/var/lib/zm
 		-DZM_TMPDIR=/var/tmp/zm
 		-DZM_WEB_USER=apache
 		-DZM_WEB_GROUP=apache
@@ -110,12 +109,12 @@ src_install() {
 
 	dodoc AUTHORS BUGS ChangeLog INSTALL NEWS README.md TODO
 
-	insinto /etc/apache2/vhosts.d
-	doins "${FILESDIR}"/10_zoneminder.conf
-
-	for DIR in events images sound; do
-	    dodir /var/www/zoneminder/htdocs/${DIR}
-	done
+#	insinto /etc/apache2/vhosts.d
+#	doins "${FILESDIR}"/10_zoneminder.conf
+#
+#	for DIR in events images sound; do
+#	    dodir /var/www/zoneminder/htdocs/${DIR}
+#	done
 
 	DOC_CONTENTS="
 1. If this is a new installation, you will need to create a MySQL\n
