@@ -15,6 +15,9 @@
 # 	virtual/perl-Archive-Tar
 # 	virtual/perl-libnet
 # 	virtual/perl-Module-Load
+# * apache integration
+# * installation of files into real webdir
+# * the perl modules go into weird places atm
 
 EAPI=5
 
@@ -36,7 +39,7 @@ REQUIRED_USE="
 "
 
 DEPEND="
-	dev-lang/perl
+	dev-lang/perl:=
 	dev-libs/libpcre
 	dev-perl/DateManip
 	dev-perl/DBD-mysql
@@ -121,13 +124,13 @@ src_install() {
    database for ${PN} to use\n
    (see https://wiki.gentoo.org/wiki/MySQL/Startup_Guide).\n
    E.g., when logged into mysql as root,\n
-     mysql> CREATE DATABASE 'zm';\n
+     mysql> CREATE DATABASE \`zm\`;\n
      mysql> GRANT ALL ON zm.* TO 'zmuser'@'localhost' IDENTIFIED BY 'topsecretpassword';\n
    Once you completed that you should execute the following:\n
      cd /usr/share/${PN}\n
      mysql -u zmuser -p < db/zm_create.sql\n
 \n
-2.  Set your database settings in /etc/zm.conf\n
+2.  Set your database settings in /etc/zm.conf, including above topsecretpassword\n
 \n
 3. Check /etc/apache2/vhosts.d/10_zoneminder.conf\n
 \n
