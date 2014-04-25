@@ -21,7 +21,9 @@
 
 EAPI=5
 
-inherit readme.gentoo eutils base cmake-utils depend.php depend.apache multilib flag-o-matic
+PERL_EXPORT_PHASE_FUNCTIONS=no
+
+inherit perl-module readme.gentoo eutils base cmake-utils depend.php depend.apache multilib flag-o-matic
 
 MY_PN="ZoneMinder"
 
@@ -78,10 +80,10 @@ pkg_setup() {
 
 src_configure() {
 	append-cxxflags -D__STDC_CONSTANT_MACROS
-
-
+	perl_set_version
 
 	mycmakeargs=(
+		-DZM_PERL_SUBPREFIX=${VENDOR_LIB}
 		-DZM_TMPDIR=/var/tmp/zm
 		-DZM_WEB_USER=apache
 		-DZM_WEB_GROUP=apache
@@ -118,35 +120,6 @@ src_install() {
 #	for DIR in events images sound; do
 #	    dodir /var/www/zoneminder/htdocs/${DIR}
 #	done
-
-	DOC_CONTENTS="
-1. If this is a new installation, you will need to create a MySQL\n
-   database for ${PN} to use\n
-   (see https://wiki.gentoo.org/wiki/MySQL/Startup_Guide).\n
-   E.g., when logged into mysql as root,\n
-     mysql> CREATE DATABASE \`zm\`;\n
-     mysql> GRANT ALL ON zm.* TO 'zmuser'@'localhost' IDENTIFIED BY 'topsecretpassword';\n
-   Once you completed that you should execute the following:\n
-     cd /usr/share/${PN}\n
-     mysql -u zmuser -p < db/zm_create.sql\n
-\n
-2.  Set your database settings in /etc/zm.conf, including above topsecretpassword\n
-\n
-3. Check /etc/apache2/vhosts.d/10_zoneminder.conf\n
-\n
-4.  Enable PHP in your webserver configuration, \n
-    enable short_open_tags in php.ini,\n
-    set the time zone in php.ini, \n
-    and restart/reload the webserver.\n
-\n
-5.  Start the ${PN} daemon:\n
-  /etc/init.d/${PN} start\n
-\n
-6. Finally point your browser to http://localhost/${PN}\n
-\n
-If you are upgrading, you will need to run the zmupdate.pl script:\n
- /usr/bin/zmupdate.pl version= [--user= --pass=]\n
-"
 
 	readme.gentoo_src_install
 }
