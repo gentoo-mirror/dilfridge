@@ -6,7 +6,6 @@
 # * ffmpeg support can be disabled in CMakeLists.txt but it does not build then 
 #		$(cmake-utils_useno ffmpeg ZM_NO_FFMPEG)
 # * dependencies of unknown status:
-# 	app-admin/sudo
 # 	dev-perl/Archive-Zip
 # 	dev-perl/Device-SerialPort
 # 	dev-perl/MIME-Lite
@@ -15,9 +14,6 @@
 # 	virtual/perl-Archive-Tar
 # 	virtual/perl-libnet
 # 	virtual/perl-Module-Load
-# * apache integration
-# * installation of files into real webdir
-# * the perl modules go into weird places atm
 
 EAPI=5
 
@@ -74,6 +70,8 @@ PATCHES=(
 	"${FILESDIR}/${PN}-1.26.5"-automagic.patch
 )
 
+MY_ZM_WEBDIR=/usr/share/zoneminder/www
+
 pkg_setup() {
 	require_php_with_use mysql sockets apache2
 }
@@ -87,6 +85,7 @@ src_configure() {
 		-DZM_TMPDIR=/var/tmp/zm
 		-DZM_WEB_USER=apache
 		-DZM_WEB_GROUP=apache
+		-DZM_WEBDIR=${MY_ZM_WEBDIR}
 		$(cmake-utils_useno mmap ZM_NO_MMAP)
 		-DZM_NO_X10=OFF
 		-DZM_NO_FFMPEG=OFF
@@ -100,26 +99,31 @@ src_configure() {
 }
 
 src_install() {
-	keepdir /var/log/zm
-
 	cmake-utils_src_install
 
+	# the log directory
+	keepdir /var/log/zm
+	fowners apache:apache /var/log/zm
+
+	# now we duplicate the work of zmlinkcontent.sh
+	dodir /var/lib/zoneminder /var/lib/zoneminder/images /var/lib/zoneminder/events
+	fperms -R 0775 /var/lib/zoneminder
+	fowners -R apache:apache /var/lib/zoneminder
+	dosym /var/lib/zoneminder/images ${MY_ZM_WEBDIR}/images
+	dosym /var/lib/zoneminder/events ${MY_ZM_WEBDIR}/events
+
+	# the configuration file
 	fperms 0640 /etc/zm.conf
 	fowners root:apache /etc/zm.conf
 
-	fowners apache:apache /var/log/zm
-
+	# init scripts etc
 	newinitd "${FILESDIR}"/init.d zoneminder
 	newconfd "${FILESDIR}"/conf.d zoneminder
 
-	dodoc AUTHORS BUGS ChangeLog INSTALL NEWS README.md TODO
+	cp "${FILESDIR}"/10_zoneminder.conf "${T}"/10_zoneminder.conf
+	sed -i "${T}"/10_zoneminder.conf -e "s:%ZM_WEBDIR%:${MY_ZM_WEBDIR}:g"
 
-#	insinto /etc/apache2/vhosts.d
-#	doins "${FILESDIR}"/10_zoneminder.conf
-#
-#	for DIR in events images sound; do
-#	    dodir /var/www/zoneminder/htdocs/${DIR}
-#	done
+	dodoc AUTHORS BUGS ChangeLog INSTALL NEWS README.md TODO "${T}"/10_zoneminder.conf
 
 	readme.gentoo_src_install
 }
