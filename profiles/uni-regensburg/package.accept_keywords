@@ -4,7 +4,8 @@ app-portage/ufed
 app-portage/eix
 
 # for measurement control
-dev-perl/Lab-Measurement **
+dev-perl/Lab-Measurement
+=dev-perl/Lab-Measurement-9999 **
 dev-perl/encoding-warnings
 dev-perl/TeX-Encode
 perl-core/Switch

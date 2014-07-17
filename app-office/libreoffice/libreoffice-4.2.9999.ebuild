@@ -239,7 +239,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-3.7-system-pyuno.patch"
 
 	# staged for git master
-	"${FILESDIR}/${PN}-9999-curl-config.patch"
+	"${FILESDIR}/${PN}-4.2.0.4-curl-config.patch"
 )
 
 REQUIRED_USE="
