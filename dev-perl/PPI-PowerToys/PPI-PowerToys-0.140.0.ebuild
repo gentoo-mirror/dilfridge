@@ -18,7 +18,7 @@ IUSE=""
 
 DEPEND="
 	>=dev-perl/File-Find-Rule-0.32
-	>=perl-gcpan/File-Find-Rule-Perl-1.10
+	>=dev-perl/File-Find-Rule-Perl-1.10
 	>=dev-perl/Test-Script-1.70.0
 	>=dev-perl/Probe-Perl-0.01
 	dev-perl/PPI
