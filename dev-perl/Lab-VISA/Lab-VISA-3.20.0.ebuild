@@ -5,7 +5,7 @@
 EAPI=5
 
 if [[ "${PV}" != "9999" ]]; then
-	MODULE_VERSION=9999 # change this
+	MODULE_VERSION=3.02
 	MODULE_AUTHOR=AKHUETTEL
 	KEYWORDS=""
 	inherit perl-module
