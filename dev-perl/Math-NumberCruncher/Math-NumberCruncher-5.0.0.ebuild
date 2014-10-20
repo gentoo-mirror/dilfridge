@@ -2,18 +2,22 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI=5
+
+MODULE_VERSION=5.00
+MODULE_AUTHOR=SIFUKURT
 inherit perl-module
 
 DESCRIPTION="Collection of useful math-related functions"
-HOMEPAGE="http://search.cpan.org/~sifukurt/"
-SRC_URI="mirror://cpan/authors/id/S/SI/SIFUKURT/${P}.tar.gz"
-
-# this is perl's license, whatever it means
 LICENSE="|| ( Artistic GPL-2 )"
 
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
 
-DEPEND="dev-lang/perl"
-RDEPEND=${DEPEND}
+RDEPEND="
+	>=virtual/perl-Math-BigInt-1.470.0
+"
+DEPEND="${RDEPEND}
+	virtual/perl-ExtUtils-MakeMaker
+"
