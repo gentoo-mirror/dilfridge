@@ -6,11 +6,9 @@ EAPI=5
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit unpacker python-single-r1
-
 DESCRIPTION="Qt based clone of the Origin plotting package, commercial binary"
 HOMEPAGE="http://www.qtiplot.com/"
-SRC_URI="290414_qtiplot_0.9.9-rc11_x86_64_ubuntu14_04.deb"
+SRC_URI="180814_qtiplot-0.9.9-rc12-64bit-static.tar.bz2"
 
 LICENSE="all-rights-reserved"
 SLOT="0"
@@ -23,18 +21,10 @@ QA_PREBUILT="*"
 S=${WORKDIR}
 
 RDEPEND="
-media-libs/glu
-dev-libs/glib:2
-media-video/ffmpeg
 !sci-visualization/qtiplot
 "
 
-REQUIRED_USE=" ${PYTHON_REQUIRED_USE} "
-
-src_unpack() {
-	unpack_deb ${A}
-}
-
 src_install() {
-	cp -av "${S}"/* "${D}/"
+	dodir /opt
+	cp -av "${S}"/qtiplot-* "${D}/opt/qtiplot"
 }
