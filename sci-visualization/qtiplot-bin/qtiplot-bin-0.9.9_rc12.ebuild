@@ -11,7 +11,7 @@ SRC_URI="180814_qtiplot-0.9.9-rc12-64bit-static.tar.bz2"
 LICENSE="all-rights-reserved"
 SLOT="0"
 KEYWORDS="-* ~amd64"
-RESTRICT="mirror splitdebug"
+RESTRICT="fetch mirror splitdebug"
 IUSE=""
 
 QA_PREBUILT="*"
