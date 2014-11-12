@@ -43,6 +43,6 @@ src_install() {
 	mv "${D}/opt/qtiplot/qtiplot" "${D}/opt/qtiplot/qtiplot.bin" || die
 
 	dodir /opt/bin
-	echo -e "#!/bin/bash\nLD_LIBRARY_PATH=/opt/qtiplot/lib /opt/qtiplot/qtiplot.bin" > "${D}/opt/bin/qtiplot" || die
+	echo -e "#!/bin/bash\nLD_LIBRARY_PATH=/opt/qtiplot/lib /opt/qtiplot/qtiplot.bin \$@" > "${D}/opt/bin/qtiplot" || die
 	fperms +x /opt/bin/qtiplot
 }
