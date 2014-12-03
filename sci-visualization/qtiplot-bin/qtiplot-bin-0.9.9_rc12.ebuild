@@ -20,7 +20,7 @@ S=${WORKDIR}
 
 RDEPEND="
 	dev-db/sqlite:0
-	|| ( =dev-db/mysql-5.5* =dev-db/mysql-5.6* )
+	=dev-db/mysql-5.5*
 	dev-libs/glib
 	media-libs/fontconfig
 	media-libs/freetype
