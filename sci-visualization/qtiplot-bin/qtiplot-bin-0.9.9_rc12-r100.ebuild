@@ -22,7 +22,7 @@ RDEPEND="
 	|| (
 		(
 			dev-db/sqlite:0[abi_x86_32(-)]
-			=dev-db/mysql-5.5*[abi_x86_32(-)]
+			=virtual/mysql-5.5*[abi_x86_32(-)]
 		)
 		amd64? (
 			app-emulation/emul-linux-x86-db[-abi_x86_32(-)]
