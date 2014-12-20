@@ -10,5 +10,8 @@ dev-perl/encoding-warnings
 dev-perl/TeX-Encode
 perl-core/Switch
 
+# not stable yet
+net-misc/tlsdate
+
 # working environment
 mail-client/novell-groupwise-client

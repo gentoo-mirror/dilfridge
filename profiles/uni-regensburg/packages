@@ -36,7 +36,7 @@
 *media-fonts/terminus-font
 *media-fonts/ttf-bitstream-vera
 *net-misc/dhcpcd
-*net-misc/ntp
+*net-misc/tlsdate
 *net-irc/quassel
 *sci-libs/linux-gpib
 *sci-visualization/gnuplot
