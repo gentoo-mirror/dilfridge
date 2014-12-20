@@ -1,8 +1,10 @@
+app-office/akonadi-server soprano
 app-text/texlive extra publishers science png truetype xml
 app-text/xournal vanilla
 dev-lang/perl ithreads
 dev-lang/python sqlite
 dev-perl/Lab-Measurement debug
+dev-python/numpy lapack
 dev-qt/qthelp compat
 dev-vcs/subversion -dso
 media-libs/freetype kpathsea
@@ -11,7 +13,9 @@ media-libs/mesa xa
 net-fs/samba -server
 net-irc/quassel X -crypt dbus phonon -server ssl webkit
 net-print/cups -usb
+sci-libs/scipy sparse
 sys-libs/talloc python
 sys-libs/zlib minizip
+x11-base/xorg-server xvfb
 x11-libs/libdrm libkms
 x11-libs/qt-assistant compat

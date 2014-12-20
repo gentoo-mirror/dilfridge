@@ -1,5 +1,5 @@
 # nobody should have to run revdep-rebuild. ever.
-=sys-apps/portage-2* **
+sys-apps/portage
 app-portage/ufed
 app-portage/eix
 
@@ -8,7 +8,6 @@ dev-perl/Lab-Measurement
 =dev-perl/Lab-Measurement-9999 **
 dev-perl/encoding-warnings
 dev-perl/TeX-Encode
-perl-core/Switch
 
 # not stable yet
 net-misc/tlsdate
