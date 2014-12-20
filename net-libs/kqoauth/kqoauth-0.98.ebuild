@@ -15,7 +15,10 @@ KEYWORDS=""
 
 IUSE=""
 
-DEPEND="dev-qt/qtcore:4"
+DEPEND="
+	dev-qt/qtcore:4
+	dev-qt/qtgui:4
+"
 RDEPEND="${DEPEND}"
 
 src_unpack() {
