@@ -10,7 +10,7 @@ inherit distutils-r1 git-r3
 DESCRIPTION="Plotting and stuff"
 HOMEPAGE="https://gitorious.org/colorview2d/colorview2d/"
 # SRC_URI="mirror://pypi/r/${PN}/${P}.tar.gz"
-EGIT_REPO_URI="git://gitorious.org/colorview2d/akhuettels-colorview2d.git"
+EGIT_REPO_URI="git://gitorious.org/colorview2d/colorview2d.git"
 
 LICENSE="as-is"
 SLOT="0"
