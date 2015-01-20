@@ -18,9 +18,10 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	dev-python/numpy[${PYTHON_USEDEP}]
 	dev-python/wxpython[${PYTHON_USEDEP}]
-	sci-libs/scikits_image[${PYTHON_USEDEP}]
+	dev-python/matplotlib[${PYTHON_USEDEP}]
 	sci-libs/scipy[${PYTHON_USEDEP}]
+	dev-python/numpy[${PYTHON_USEDEP}]
+	dev-python/pyyaml[${PYTHON_USEDEP}]
 "
 RDEPEND="${DEPEND}"
