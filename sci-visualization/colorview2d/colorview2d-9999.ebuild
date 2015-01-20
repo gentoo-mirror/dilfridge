@@ -24,5 +24,3 @@ DEPEND="
 	sci-libs/scipy[${PYTHON_USEDEP}]
 "
 RDEPEND="${DEPEND}"
-
-S=${WORKDIR}/${P}/${PN}
