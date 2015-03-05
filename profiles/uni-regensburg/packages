@@ -1,4 +1,5 @@
 *app-admin/logrotate
+*app-admin/puppet
 *app-admin/sudo
 *app-admin/syslog-ng
 *app-crypt/gnupg
