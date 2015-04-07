@@ -9,6 +9,7 @@ dev-perl/Lab-Measurement
 =dev-perl/Lab-Measurement-9999 **
 dev-perl/encoding-warnings
 dev-perl/TeX-Encode
+=sci-libs/linux-gpib-3.2.21-r1
 
 # not stable yet
 net-misc/tlsdate
