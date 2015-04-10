@@ -24,5 +24,6 @@ DEPEND="
 	dev-python/numpy[${PYTHON_USEDEP}]
 	dev-python/lmfit[${PYTHON_USEDEP}]
 	dev-python/pyyaml[${PYTHON_USEDEP}]
+	dev-python/yapsy[${PYTHON_USEDEP}]
 "
 RDEPEND="${DEPEND}"
