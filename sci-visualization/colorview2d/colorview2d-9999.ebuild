@@ -18,11 +18,12 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	dev-python/wxpython[${PYTHON_USEDEP}]
+	dev-python/wxpython:*[${PYTHON_USEDEP}]
 	dev-python/matplotlib[${PYTHON_USEDEP}]
 	sci-libs/scipy[${PYTHON_USEDEP}]
 	dev-python/numpy[${PYTHON_USEDEP}]
 	dev-python/lmfit[${PYTHON_USEDEP}]
+	dev-python/pydispatcher[${PYTHON_USEDEP}]
 	dev-python/pyyaml[${PYTHON_USEDEP}]
 	dev-python/yapsy[${PYTHON_USEDEP}]
 "
