@@ -6,7 +6,6 @@ EAPI=5
 
 EGIT_REPO_URI="/home/user/Lab-Measurement"
 EGIT_BRANCH="master"
-EGIT_SOURCEDIR=${S}
 KEYWORDS=""
 S=${WORKDIR}/${P}/Measurement
 inherit perl-module git-2
