@@ -14,6 +14,7 @@ media-libs/mesa xa
 net-fs/samba -server
 net-irc/quassel X -crypt dbus phonon -server ssl webkit
 net-print/cups -usb
+sci-libs/armadillo arpack blas lapack tbb
 sci-libs/scipy sparse
 sys-libs/talloc python
 sys-libs/zlib minizip
