@@ -1,0 +1,45 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 5570147..777b9e1 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -65,6 +65,13 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -lgomp")
+ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+ set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
+ 
++set(LIB_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX}/)
++set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/include/OpenTLD/)
++
++set(INSTALL_TARGETS_DEFAULT_ARGS  RUNTIME DESTINATION "${BIN_INSTALL_DIR}"
++                                  LIBRARY DESTINATION "${LIB_INSTALL_DIR}"
++                                  ARCHIVE DESTINATION "${LIB_INSTALL_DIR}" COMPONENT Devel )
++
+ #-------------------------------------------------------------------------------
+ #add subdirectories
+ add_subdirectory(src/3rdparty/cvblobs)
+diff --git a/src/libopentld/CMakeLists.txt b/src/libopentld/CMakeLists.txt
+index 740c07d..9b20bd3 100644
+--- a/src/libopentld/CMakeLists.txt
++++ b/src/libopentld/CMakeLists.txt
+@@ -6,7 +6,7 @@ include_directories(imacq
+     ${OpenCV_INCLUDE_DIRS})
+ link_directories(${OpenCV_LIB_DIR})
+ 
+-add_library(libopentld
++add_library(libopentld SHARED
+     imacq/ImAcq.cpp
+     mftracker/BB.cpp
+     mftracker/BBPredict.cpp
+@@ -43,6 +43,12 @@ add_library(libopentld
+     tld/VarianceFilter.h)
+ 
+ target_link_libraries(libopentld ${OpenCV_LIBS})
+-
+ set_target_properties(libopentld PROPERTIES OUTPUT_NAME opentld)
+ 
++install(TARGETS libopentld ${INSTALL_TARGETS_DEFAULT_ARGS})
++
++install(FILES tld/Clustering.h tld/DetectorCascade.h tld/ForegroundDetector.h 
++    tld/MedianFlowTracker.h tld/NormalizedPatch.h tld/TLDUtil.h
++    tld/DetectionResult.h tld/EnsembleClassifier.h tld/IntegralImage.h
++    tld/NNClassifier.h tld/TLD.h tld/VarianceFilter.h 
++    DESTINATION ${INCLUDE_INSTALL_DIR} )

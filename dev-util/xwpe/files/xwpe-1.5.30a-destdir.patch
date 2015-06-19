@@ -1,0 +1,60 @@
+diff -r -u xwpe-1.5.30a.orig/Makefile.in xwpe-1.5.30a/Makefile.in
+--- xwpe-1.5.30a.orig/Makefile.in	2005-07-07 03:53:09.000000000 +0200
++++ xwpe-1.5.30a/Makefile.in	2010-09-26 00:58:13.866436406 +0200
+@@ -2,6 +2,7 @@
+ CC=		@CC@
+ CFLAGS=		@CFLAGS@ @X_CFLAGS@
+ #CFLAGS=		@CFLAGS@ @EXTRA_CFLAGS@ @X_CFLAGS@
++LDFLAGS=@LDFLAGS@
+ 
+ #Source Directory:
+ srcdir=		@srcdir@
+@@ -9,10 +10,10 @@
+ #Destination Directory
+ prefix=@prefix@
+ exec_prefix=@exec_prefix@
+-DESTDIR=@bindir@
+-LIBDIR=@libdir@
+-XWPELIBDIR=	$(LIBDIR)/xwpe
+-MANDIR=@mandir@
++BINDIR=$(DESTDIR)/@bindir@
++LIBDIR=$(DESTDIR)/@libdir@
++XWPELIBDIR=$(LIBDIR)/xwpe
++MANDIR=$(DESTDIR)/@mandir@
+ 
+ LIBS=@LIBS@
+ XLIBS=@X_LIBS@ @X_PRE_LIBS@ @X_EXTRA_LIBS@
+@@ -90,9 +91,8 @@
+ 		Xwpe.h WeString.h WeXterm.h WeProg.h WeExpArr.h
+ 
+ xwpe:	$(OFILES) $(X_OFILES) $(T_OFILES)
+-	$(CC) $(CFLAGS) $(DEFS) $(OFILES) $(X_OFILES) $(T_OFILES) \
+-	  $(LIBS) $(XLIBS) -o xwpe
+-#	$(CC) -Wl,-E $(CFLAGS) $(DEFS) $(OFILES) $(LIBS) -o xwpe
++	$(CC) $(CFLAGS) $(LDFLAGS) -o xwpe $(DEFS) $(OFILES) $(X_OFILES) $(T_OFILES) \
++	  $(LIBS) $(XLIBS)
+ 
+ libxwpe-x11.so:	$(X_OFILES)
+ 	$(CC) -shared $(X_OFILES) $(XLIBS) -o libxwpe-x11.so
+@@ -115,14 +115,14 @@
+ # Bug Note: Currently xwpe and xwe are installed even if X windows versions
+ # are not compiled.  (They will function as wpe and we respectively.)
+ install_fst:	xwpe
+-	if test ! -d $(DESTDIR); then mkdir -p $(DESTDIR); fi
++	if test ! -d $(BINDIR); then mkdir -p $(BINDIR); fi
+ 	if test ! -d $(XWPELIBDIR); then mkdir -p $(XWPELIBDIR); fi
+-	rm -f $(DESTDIR)/wpe $(DESTDIR)/xwpe $(DESTDIR)/we $(DESTDIR)/xwe
+-	$(INSTALL) xwpe $(DESTDIR)/we
+-	chmod ugo+x $(DESTDIR)/we
+-	(cd $(DESTDIR) && $(LN_S) we xwe)
+-	(cd $(DESTDIR) && $(LN_S) we xwpe)
+-	(cd $(DESTDIR) && $(LN_S) we wpe)
++	rm -f $(BINDIR)/wpe $(BINDIR)/xwpe $(BINDIR)/we $(BINDIR)/xwe
++	$(INSTALL) xwpe $(BINDIR)/we
++	chmod ugo+x $(BINDIR)/we
++	(cd $(BINDIR) && $(LN_S) we xwe)
++	(cd $(BINDIR) && $(LN_S) we xwpe)
++	(cd $(BINDIR) && $(LN_S) we wpe)
+ 	rm -f $(XWPELIBDIR)/help.xwpe
+ 	if test ! -f $(XWPELIBDIR)/syntax_def; then  \
+ 	  $(INSTALL) syntax_def $(XWPELIBDIR)/syntax_def; \
