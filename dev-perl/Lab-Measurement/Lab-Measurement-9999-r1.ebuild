@@ -1,29 +1,34 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Lab-Measurement/Lab-Measurement-9999.ebuild,v 1.11 2014/03/07 12:04:07 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Lab-Measurement/Lab-Measurement-9999.ebuild,v 1.19 2015/06/13 22:38:43 dilfridge Exp $
 
 EAPI=5
 
-EGIT_REPO_URI="/home/user/Lab-Measurement"
-EGIT_BRANCH="master"
-KEYWORDS=""
-S=${WORKDIR}/${P}/Measurement
-inherit perl-module git-2
+if [[ "${PV}" != "9999" ]]; then
+	MODULE_VERSION=9999 # change this!!!
+	MODULE_AUTHOR="AKHUETTEL"
+	KEYWORDS="~amd64 ~x86"
+	inherit perl-module
+else
+	EGIT_REPO_URI="/home/user/Lab-Measurement"
+	EGIT_BRANCH="master"
+	S=${WORKDIR}/${P}/Measurement
+	inherit perl-module git-r3
+fi
 
 DESCRIPTION="Measurement control and automation with Perl"
 HOMEPAGE="http://www.labmeasurement.de/"
-
-# this is perl's license, whatever it means
-LICENSE="|| ( Artistic GPL-2 )"
 
 SLOT="0"
 IUSE="debug +xpression"
 
 RDEPEND="
+	dev-perl/Class-ISA
 	dev-perl/Clone
 	dev-perl/Exception-Class
 	dev-perl/Hook-LexWrap
 	dev-perl/List-MoreUtils
+	dev-perl/Term-ANSIScreen
 	dev-perl/TermReadKey
 	dev-perl/TeX-Encode
 	dev-perl/XML-Generator
@@ -31,11 +36,10 @@ RDEPEND="
 	dev-perl/XML-Twig
 	dev-perl/encoding-warnings
 	dev-perl/yaml
+	dev-perl/Switch
 	sci-visualization/gnuplot
-	virtual/perl-Class-ISA
 	virtual/perl-Data-Dumper
 	virtual/perl-Encode
-	virtual/perl-Switch
 	virtual/perl-Time-HiRes
 	!dev-perl/Lab-Instrument
 	!dev-perl/Lab-Tools
@@ -49,7 +53,7 @@ RDEPEND="
 "
 DEPEND="
 	${RDEPEND}
-	virtual/perl-Module-Build
+	dev-perl/Module-Build
 "
 
 pkg_postinst() {
