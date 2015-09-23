@@ -27,6 +27,6 @@ src_compile() {
 src_install() {
 	dobin bin/fasthenry
 	dobin bin/zbuf
-	dodoc doc/*
-	dodoc examples
+	dodoc -r doc/*
+	dodoc -r examples
 }
