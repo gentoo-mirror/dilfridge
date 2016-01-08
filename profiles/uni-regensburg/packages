@@ -27,7 +27,7 @@
 *kde-apps/kdebase-meta
 *kde-apps/kde4-l10n
 *kde-apps/okular
-*kde-base/kdepim-meta
+*kde-apps/kdepim-meta
 *kde-base/kdm
 *mail-client/novell-groupwise-client
 *media-fonts/corefonts
