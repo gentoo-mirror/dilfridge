@@ -40,6 +40,7 @@
 *net-misc/tlsdate
 *net-irc/quassel
 *sci-libs/linux-gpib
+*sci-visualization/colorview2d
 *sci-visualization/gnuplot
 *sci-visualization/gwyddion
 *sci-visualization/qtiplot

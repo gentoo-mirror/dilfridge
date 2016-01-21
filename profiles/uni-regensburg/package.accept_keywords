@@ -16,3 +16,6 @@ net-misc/tlsdate
 
 # working environment
 mail-client/novell-groupwise-client
+
+# this is a live ebuild
+=sci-visualization/colorview2d-9999 **
