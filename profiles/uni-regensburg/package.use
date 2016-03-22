@@ -134,3 +134,4 @@ x11-libs/qt-assistant compat
 >=dev-libs/libxml2-2.9.2-r1 abi_x86_32
 >=x11-proto/compositeproto-0.4.2-r1 abi_x86_32
 >=sys-apps/attr-2.4.47-r2 abi_x86_32
+>=sys-libs/libcap-2.24-r2 abi_x86_32
