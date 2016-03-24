@@ -22,3 +22,5 @@ mail-client/novell-groupwise-client
 dev-python/pydispatcher
 dev-python/lmfit
 
+# temporarily until the mirrors have it
+=dev-perl/Wx-0.992.700-r1
