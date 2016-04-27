@@ -29,3 +29,6 @@ dev-python/lmfit
 =dev-libs/liborcus-0.9.2-r1
 =app-text/poppler-0.42.0
 =dev-libs/icu-57.1
+
+# we want to have nice numerics.
+sci-libs/armadillo
