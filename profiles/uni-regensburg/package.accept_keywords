@@ -21,3 +21,11 @@ mail-client/novell-groupwise-client
 =sci-visualization/colorview2d-9999 **
 dev-python/pydispatcher
 dev-python/lmfit
+
+# libreoffice-bin is in a weird intermediate state right now
+# remove once this is all stable, bug 580672
+=app-office/libreoffice-bin-5.1.2.2-r1
+=app-office/libreoffice-l10n-5.1.2.2
+=dev-libs/liborcus-0.9.2-r1
+=app-text/poppler-0.42.0
+=dev-libs/icu-57.1
