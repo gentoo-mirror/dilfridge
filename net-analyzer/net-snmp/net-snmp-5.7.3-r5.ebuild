@@ -78,6 +78,7 @@ src_prepare() {
 	# snmpconf generates config files with proper selinux context
 	use selinux && epatch "${FILESDIR}"/${PN}-5.1.2-snmpconf-selinux.patch
 	epatch "${FILESDIR}"/${P}-perl524.patch
+	epatch "${FILESDIR}"/${P}-perl524-2.patch
 
 	epatch "${WORKDIR}"/patches/*.patch
 
