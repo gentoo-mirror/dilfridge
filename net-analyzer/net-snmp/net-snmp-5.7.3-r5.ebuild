@@ -17,6 +17,8 @@ HOMEPAGE="http://net-snmp.sourceforge.net/"
 SRC_URI="
 	mirror://sourceforge/project/${PN}/${PN}/${PV}/${P}.tar.gz
 	https://dev.gentoo.org/~jer/${PN}-5.7.3-patches-${PATCHSET}.tar.xz
+	https://dev.gentoo.org/~dilfridge/distfiles/${P}-perl524.patch.gz
+	https://dev.gentoo.org/~dilfridge/distfiles/${P}-perl524-2.patch.gz
 "
 
 S=${WORKDIR}/${P/_/.}
@@ -77,8 +79,9 @@ pkg_setup() {
 src_prepare() {
 	# snmpconf generates config files with proper selinux context
 	use selinux && epatch "${FILESDIR}"/${PN}-5.1.2-snmpconf-selinux.patch
-	epatch "${FILESDIR}"/${P}-perl524.patch
-	epatch "${FILESDIR}"/${P}-perl524-2.patch
+
+	epatch "${WORKDIR}"/${P}-perl524.patch
+	epatch "${WORKDIR}"/${P}-perl524-2.patch
 
 	epatch "${WORKDIR}"/patches/*.patch
 
