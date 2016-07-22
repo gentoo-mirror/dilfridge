@@ -20,7 +20,6 @@ EGIT_REPO_URI=http://github.com/akhuettel/kdepim-noakonadi.git
 DEPEND="
 	$(add_kdebase_dep kdelibs '' 4.13.1)
 	$(add_kdeapps_dep kdepimlibs '' 4.13.1)
-	$(add_kdeapps_dep libkdepim '' 4.4.11.1-r1)
 	$(add_kdeapps_dep libkleo '' 4.4.2015)
 	$(add_kdeapps_dep libkpgp '' 4.4.2015)
 "
@@ -36,6 +35,7 @@ KMEXTRACTONLY="
 KMEXTRA="
 	kmailcvt/
 	ksendemail/
+	libkdepim/
 	libksieve/
 	messagecore/
 	messagelist/
@@ -43,7 +43,6 @@ KMEXTRA="
 	mimelib/
 	plugins/kmail/
 "
-KMLOADLIBS="libkdepim"
 
 src_configure() {
 	mycmakeargs=(
