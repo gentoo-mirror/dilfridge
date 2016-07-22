@@ -24,6 +24,7 @@ DEPEND="
 	$(add_kdeapps_dep libkpgp '' 4.4.2015)
 "
 RDEPEND="${DEPEND}
+	!kde-apps/libkdepim
 	!>=kde-apps/kdepimlibs-4.14.11_pre20160211
 "
 
