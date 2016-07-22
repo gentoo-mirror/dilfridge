@@ -11,7 +11,7 @@ inherit flag-o-matic kde4-meta
 
 DESCRIPTION="Email component of Kontact (noakonadi branch)"
 HOMEPAGE="https://launchpad.net/~pali/+archive/ubuntu/kdepim-noakonadi"
-KEYWORDS="~amd64"
+KEYWORDS=""
 IUSE="debug"
 
 EGIT_BRANCH=trim
