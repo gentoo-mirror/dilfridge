@@ -20,23 +20,26 @@ EGIT_REPO_URI=http://github.com/akhuettel/kdepim-noakonadi.git
 DEPEND="
 	$(add_kdebase_dep kdelibs '' 4.13.1)
 	$(add_kdeapps_dep kdepimlibs '' 4.13.1)
-	$(add_kdeapps_dep libkleo '' 4.4.2015)
-	$(add_kdeapps_dep libkpgp '' 4.4.2015)
+	app-crypt/gpgme
 "
 RDEPEND="${DEPEND}
-	!kde-apps/libkdepim
+	app-crypt/gnupg
+	!kde-apps/libkdepim:4
+	!kde-apps/libkleo:4
+	!kde-apps/libkpgp:4
+	!kde-apps/kdepim-common-libs:4
 	!>=kde-apps/kdepimlibs-4.14.11_pre20160211
 "
 
 KMEXTRACTONLY="
 	korganizer/org.kde.Korganizer.Calendar.xml
-	libkleo/
-	libkpgp/
 "
 KMEXTRA="
 	kmailcvt/
 	ksendemail/
 	libkdepim/
+	libkleo/
+	libkpgp/
 	libksieve/
 	messagecore/
 	messagelist/
