@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI=5
 
 inherit depend.apache apache-module perl-module eutils
 
@@ -13,23 +13,40 @@ SRC_URI="mirror://apache/perl/${P/_rc1/-rc1}.tar.gz"
 LICENSE="GPL-2"
 SLOT="1"
 #KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
-IUSE="debug"
+IUSE="debug test apache2_mpms_event apache2_mpms_worker apache2_mpms_prefork"
 
-# The "solutions" for the following bugs have been removed here to simplify
-# the ebuild. Needs checking if the problem still occurs.
-#
-# bug 373943: precise threading conditions
+S=${WORKDIR}/${P/_rc1/-rc1}
 
+SRC_TEST=do
 
-DEPEND="
-    >=dev-perl/Apache-Reload-0.11
-	>=dev-perl/Apache-SizeLimit-0.95
-	>=dev-perl/Apache-Test-1.360
-	>=dev-perl/CGI-3.08
-	dev-lang/perl[ithreads]
-	www-servers/apache
+# We only support mod_perl as dynamic module.
+
+# Apache::Reload, Apache::SizeLimit, and Apache::Test are force-unbundled.
+# The minimum versions requested here are the bundled versions.
+
+# The test dependencies are from CPAN (Bundle::Apache2); the list
+# is not complete yet as not all are packaged.
+
+# When all MPMs are disabled via useflags, the apache ebuild selects a
+# default one, which will likely need threading...
+
+RDEPEND="
+	>=dev-perl/Apache-Reload-0.130.0
+	>=dev-perl/Apache-SizeLimit-0.970.0
+	>=dev-perl/Apache-Test-1.400.0
+	>=www-servers/apache-2.0.47
+	apache2_mpms_event? ( dev-lang/perl[ithreads] )
+	apache2_mpms_worker? ( dev-lang/perl[ithreads] )
+	!apache2_mpms_event? ( !apache2_mpms_worker? ( !apache2_mpms_prefork? ( dev-lang/perl[ithreads] ) ) )
 "
-RDEPEND="${DEPEND}
+DEPEND="${RDEPEND}
+	dev-perl/Module-Build
+	test? (
+		>=dev-perl/CGI-3.110.0
+		dev-perl/Devel-Symdump
+		dev-perl/libwww-perl
+		www-servers/apache[apache2_modules_version,-apache2_modules_unique_id]
+	)
 "
 
 APACHE2_MOD_FILE="${S}/src/modules/perl/mod_perl.so"
@@ -38,33 +55,30 @@ APACHE2_MOD_DEFINE="PERL"
 
 need_apache2
 
+PATCHES=(
+	"${FILESDIR}/${PN}"-2.0.1-sneak-tmpdir.patch  # seems to fix the make test problem
+	"${FILESDIR}/${PN}"-2.0.4-inline.patch        # 550244
+	"${FILESDIR}/${PN}"-2.0.10_rc1-bundled-Apache-Test.patch # 352724
+)
+
 src_prepare() {
 	perl-module_src_prepare
 
-	# rendhalver - this got redone for 2.0.1 and seems to fix the make test problems
-	epatch "${FILESDIR}"/${PN}-2.0.1-sneak-tmpdir.patch
-	epatch "${FILESDIR}"/${PN}-2.0.4-inline.patch #550244
-
-	# bug 352724
-	epatch "${FILESDIR}/${P}-bundled-Apache-Test.patch"
+	# some chainsaw unbundling
 	rm -rf Apache-{Test,Reload,SizeLimit}/ lib/Bundle/
-
-	# 410453
-	epatch "${FILESDIR}/use-client_ip-client_add-instead-of-remote_ip-remote.patch"
-	epatch "${FILESDIR}/use-log.level-instead-of-loglevel.patch"
 }
 
 src_configure() {
 	local debug=$(usex debug 1 0)
-	perl Makefile.PL \
-		PREFIX="${EPREFIX}"/usr \
-		INSTALLDIRS=vendor \
-		MP_USE_DSO=1 \
-		MP_APXS=${APXS} \
-		MP_APR_CONFIG=/usr/bin/apr-1-config \
-		MP_TRACE=${debug} \
-		MP_DEBUG=${debug} \
-		|| die
+	myconf=(
+		MP_USE_DSO=1
+		MP_APXS=${APXS}
+		MP_APR_CONFIG=/usr/bin/apr-1-config
+		MP_TRACE=${debug}
+		MP_DEBUG=${debug}
+	)
+
+	perl-module_src_configure
 }
 
 src_test() {
@@ -77,8 +91,6 @@ src_test() {
 		chown nobody:nobody "${WORKDIR}" "${T}"
 	fi
 
-	# this does not || die because of bug 21325. kudos to smark for
-	# the idea of setting HOME.
 	TMPDIR="${T}" HOME="${T}/" perl-module_src_test
 }
 
@@ -86,14 +98,8 @@ src_install() {
 	apache-module_src_install
 
 	default
-#emake DESTDIR="${D}" install || die
 
-	# TODO: add some stuff from docs/ back?
-
-	# rendhalver - fix the perllocal.pod that gets installed
-	# it seems to me that this has been getting installed for ages
 	perl_delete_localpod
-	# Remove empty .bs files as well
 	perl_delete_packlist
 
 	insinto "${APACHE_MODULES_CONFDIR}"
@@ -105,8 +111,7 @@ src_install() {
 	# just go with a clean slate.  should be much easier to see what's
 	# happening and revert if problematic.
 
-	# Sorry for this evil hack...
-	perl_set_version # just to be sure...
+	perl_set_version
 	sed -i \
 		-e "s,-I${S}/[^[:space:]\"\']\+[[:space:]]\?,,g" \
 		-e "s,-typemap[[:space:]]${S}/[^[:space:]\"\']\+[[:space:]]\?,,g" \
@@ -117,7 +122,7 @@ src_install() {
 		grep -q "\(${D}\|${S}\)" "${fname}" && ewarn "QA: File contains a temporary path ${fname}"
 		sed -i -e "s:\(${D}\|${S}\):/:g" ${fname}
 	done
-	# All the rest
+
 	perl_remove_temppath
 }
 
