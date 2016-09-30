@@ -8,8 +8,7 @@ inherit depend.apache apache-module perl-module eutils
 
 DESCRIPTION="An embedded Perl interpreter for Apache2"
 HOMEPAGE="https://perl.apache.org/"
-#SRC_URI="mirror://apache/perl/${P}.tar.gz"
-SRC_URI="http://dev.gentoo.org/~dilfridge/distfiles/${P}.tar.gz"
+SRC_URI="mirror://apache/perl/${P/_rc1/-rc1}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="1"
