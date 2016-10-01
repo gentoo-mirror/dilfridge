@@ -24,8 +24,7 @@ SRC_TEST=do
 # Apache::Reload, Apache::SizeLimit, and Apache::Test are force-unbundled.
 # The minimum versions requested here are the bundled versions.
 
-# The test dependencies are from CPAN (Bundle::Apache2); the list
-# is not complete yet as not all are packaged.
+# The test dependencies are from CPAN (Bundle::Apache2).
 
 # When all MPMs are disabled via useflags, the apache ebuild selects a
 # default one, which will likely need threading...
@@ -43,7 +42,10 @@ DEPEND="${RDEPEND}
 	dev-perl/Module-Build
 	test? (
 		>=dev-perl/CGI-3.110.0
+		dev-perl/Chatbot-Eliza
 		dev-perl/Devel-Symdump
+		dev-perl/HTML-Parser
+		dev-perl/IPC-Run3
 		dev-perl/libwww-perl
 		www-servers/apache[apache2_modules_version,-apache2_modules_unique_id]
 	)
@@ -59,12 +61,13 @@ PATCHES=(
 	"${FILESDIR}/${PN}"-2.0.1-sneak-tmpdir.patch  # seems to fix the make test problem
 	"${FILESDIR}/${PN}"-2.0.4-inline.patch        # 550244
 	"${FILESDIR}/${PN}"-2.0.10_rc1-bundled-Apache-Test.patch # 352724
+	"${FILESDIR}/${PN}"-2.0.10_rc1-Gentoo-not-Unix.patch
 )
 
 src_prepare() {
 	perl-module_src_prepare
 
-	# some chainsaw unbundling
+	# chainsaw unbundling
 	rm -rf Apache-{Test,Reload,SizeLimit}/ lib/Bundle/
 }
 
@@ -91,7 +94,8 @@ src_test() {
 		chown nobody:nobody "${WORKDIR}" "${T}"
 	fi
 
-	TMPDIR="${T}" HOME="${T}/" perl-module_src_test
+	MAKEOPTS+=" -j1"
+	TMPDIR="${T}" HOME="${T}/" TEST_VERBOSE=1 perl-module_src_test
 }
 
 src_install() {
