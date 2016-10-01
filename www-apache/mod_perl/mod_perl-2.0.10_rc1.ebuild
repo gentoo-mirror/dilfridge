@@ -43,7 +43,10 @@ DEPEND="${RDEPEND}
 	dev-perl/Module-Build
 	test? (
 		>=dev-perl/CGI-3.110.0
+		dev-perl/Chatbot-Eliza
 		dev-perl/Devel-Symdump
+		dev-perl/HTML-Parser
+		dev-perl/IPC-Run3
 		dev-perl/libwww-perl
 		www-servers/apache[apache2_modules_version,-apache2_modules_unique_id]
 	)
