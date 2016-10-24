@@ -1,12 +1,16 @@
 app-office/akonadi-server soprano
-app-office/texstudio -qt5
+app-office/texstudio qt5
 app-portage/layman sync-plugin-portage
 app-text/texlive extra publishers science png truetype xml
+app-text/texlive-core xetex
 app-text/xournal vanilla
 dev-lang/perl ithreads
 dev-lang/python sqlite
+dev-libs/libpcre pcre16
 dev-perl/Lab-Measurement debug
 dev-python/numpy lapack
+dev-qt/designer -phonon
+dev-qt/qtcore icu
 dev-qt/qthelp compat
 dev-vcs/subversion -dso
 media-libs/freetype kpathsea
@@ -15,6 +19,7 @@ media-libs/mesa xa
 net-fs/samba -server
 net-irc/quassel X -crypt dbus phonon -server ssl webkit
 net-print/cups -usb
+sys-devel/gcc gcj
 sci-libs/armadillo arpack blas lapack tbb
 sci-libs/scipy sparse
 sys-libs/talloc python
@@ -135,3 +140,6 @@ x11-libs/qt-assistant compat
 >=x11-proto/compositeproto-0.4.2-r1 abi_x86_32
 >=sys-apps/attr-2.4.47-r2 abi_x86_32
 >=sys-libs/libcap-2.24-r2 abi_x86_32
+>=dev-libs/wayland-1.9.0 abi_x86_32
+>=dev-libs/libpcre-8.38-r1 abi_x86_32
+>=sys-libs/binutils-libs-2.25.1-r2 abi_x86_32

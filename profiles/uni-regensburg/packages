@@ -5,11 +5,13 @@
 *app-crypt/gnupg
 *app-editors/kile
 *app-editors/nano
+*app-office/libreoffice-bin
 *app-office/texstudio
 *app-portage/eix
 *app-portage/gentoolkit
 *app-portage/layman
 *app-portage/ufed
+*app-text/pdftk
 *app-text/texlive
 *app-text/wgetpaste
 *app-text/xournal
@@ -28,8 +30,10 @@
 *kde-apps/kde4-l10n
 *kde-apps/okular
 *kde-apps/kdepim-meta
-*kde-base/kdm
+*kde-plasma/sddm-kcm
+*kde-plasma/plasma-meta
 *mail-client/novell-groupwise-client
+*media-gfx/gimp
 *media-fonts/corefonts
 *media-fonts/font-bh-ttf
 *media-fonts/font-bh-type1
@@ -37,8 +41,10 @@
 *media-fonts/terminus-font
 *media-fonts/ttf-bitstream-vera
 *net-misc/dhcpcd
+*net-misc/ntp
 *net-misc/tlsdate
 *net-irc/quassel
+*sci-libs/armadillo
 *sci-libs/linux-gpib
 *sci-visualization/colorview2d
 *sci-visualization/gnuplot
@@ -51,4 +57,5 @@
 *www-client/firefox
 *x11-apps/xdm
 *x11-base/xorg-server
+*x11-misc/sddm
 *x11-misc/x11vnc

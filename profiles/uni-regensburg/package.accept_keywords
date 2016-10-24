@@ -3,11 +3,14 @@ sys-apps/portage
 app-portage/ufed
 app-portage/eix
 app-portage/layman
+dev-python/ssl-fetch
 
 # for measurement control
 dev-perl/Lab-Measurement
 =dev-perl/Lab-Measurement-9999 **
+dev-perl/Class-Method-Modifiers
 dev-perl/encoding-warnings
+dev-perl/MooseX-Params-Validate
 dev-perl/TeX-Encode
 =sci-libs/linux-gpib-3.2.21-r1
 
@@ -22,5 +25,5 @@ mail-client/novell-groupwise-client
 dev-python/pydispatcher
 dev-python/lmfit
 
-# temporarily until the mirrors have it
-=dev-perl/Wx-0.992.700-r1
+# we want to have nice numerics.
+sci-libs/armadillo
