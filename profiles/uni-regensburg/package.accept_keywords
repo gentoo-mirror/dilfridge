@@ -8,9 +8,11 @@ dev-python/ssl-fetch
 # for measurement control
 dev-perl/Lab-Measurement
 =dev-perl/Lab-Measurement-9999 **
+dev-perl/aliased
 dev-perl/Class-Method-Modifiers
 dev-perl/encoding-warnings
 dev-perl/MooseX-Params-Validate
+dev-perl/Test-Files
 dev-perl/TeX-Encode
 =sci-libs/linux-gpib-3.2.21-r1
 
@@ -24,6 +26,8 @@ mail-client/novell-groupwise-client
 =sci-visualization/colorview2d-9999 **
 dev-python/pydispatcher
 dev-python/lmfit
+sci-libs/scikits_image
+dev-python/cython
 
 # we want to have nice numerics.
 sci-libs/armadillo

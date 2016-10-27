@@ -16,13 +16,16 @@ dev-vcs/subversion -dso
 media-libs/freetype kpathsea
 media-libs/harfbuzz icu
 media-libs/mesa xa
-net-fs/samba -server
+net-fs/samba -server client
 net-irc/quassel X -crypt dbus phonon -server ssl webkit
 net-print/cups -usb
 sys-devel/gcc gcj
-sci-libs/armadillo arpack blas lapack tbb
+sci-libs/armadillo arpack atlas blas hdf5 lapack tbb
 sci-libs/scipy sparse
+sys-libs/ntdb python
 sys-libs/talloc python
+sys-libs/tdb python
+sys-libs/tevent python
 sys-libs/zlib minizip
 x11-base/xorg-server xvfb
 x11-libs/libdrm libkms
