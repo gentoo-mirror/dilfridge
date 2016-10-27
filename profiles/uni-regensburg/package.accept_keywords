@@ -27,6 +27,7 @@ mail-client/novell-groupwise-client
 dev-python/pydispatcher
 dev-python/lmfit
 sci-libs/scikits_image
+dev-python/cython
 
 # we want to have nice numerics.
 sci-libs/armadillo
