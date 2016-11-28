@@ -10,3 +10,7 @@ net-analyzer/net-snmp:pci - Use libpci (from sys-apps/pciutils) to look up netwo
 net-analyzer/net-snmp:rpm - Enable monitoring of app-arch/rpm. This flag requires the bzip2 and zlib flags to be enabled as well.
 net-analyzer/net-snmp:smux - Enable support for the legacy smux protocol (superseded by agentx)
 net-analyzer/net-snmp:ucd-compat - Build UCD compatibility library. Increases significantly the install size.
+www-misc/zoneminder:curl - Enable using net-misc/curl for streaming from cameras
+www-misc/zoneminder:gcrypt - ...
+www-misc/zoneminder:openssl - ...
+www-misc/zoneminder:vlc - Enable using media-libs/vlc for streaming from cameras
