@@ -22,7 +22,7 @@ inherit perl-module readme.gentoo eutils base cmake-utils depend.apache multilib
 
 MY_PN="ZoneMinder"
 
-DESCRIPTION="ZoneMinder allows you to capture, analyse, record and monitor any cameras attached to your system"
+DESCRIPTION="Capture, analyse, record and monitor any cameras attached to your system"
 HOMEPAGE="http://www.zoneminder.com/"
 # SRC_URI="https://github.com/${MY_PN}/${MY_PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 EGIT_REPO_URI="https://github.com/ZoneMinder/ZoneMinder.git"
@@ -40,7 +40,7 @@ REQUIRED_USE="
 DEPEND="
 	app-eselect/eselect-php[apache2]
 	dev-lang/perl:=
-	dev-lang/php[apache2,cgi,curl,gd,inifile,pdo,mysql,mysqli,sockets]
+	dev-lang/php:*[apache2,cgi,curl,gd,inifile,pdo,mysql,mysqli,sockets]
 	dev-libs/libpcre
 	dev-perl/Archive-Zip
 	dev-perl/Class-Std-Fast
@@ -58,8 +58,8 @@ DEPEND="
 	sys-auth/polkit
 	sys-libs/zlib
 	virtual/ffmpeg
-	virtual/httpd-php
-	virtual/jpeg
+	virtual/httpd-php:*
+	virtual/jpeg:0
 	virtual/mysql
 	virtual/perl-ExtUtils-MakeMaker
 	virtual/perl-Getopt-Long
@@ -67,11 +67,11 @@ DEPEND="
 	virtual/perl-Time-HiRes
 	www-servers/apache
 	curl? ( net-misc/curl )
-	gcrypt? ( dev-libs/libgcrypt )
+	gcrypt? ( dev-libs/libgcrypt:0= )
 	gnutls? ( net-libs/gnutls )
 	mmap? ( dev-perl/Sys-Mmap )
-	ssl? ( 
-	    !libressl? ( dev-libs/openssl:0= )
+	ssl? (
+		!libressl? ( dev-libs/openssl:0= )
 		libressl? ( dev-libs/libressl:0= )
 	)
 	vlc? ( media-video/vlc[live] )
