@@ -6,8 +6,7 @@
 # * ffmpeg support can be disabled in CMakeLists.txt but it does not build then
 #		$(cmake-utils_useno ffmpeg ZM_NO_FFMPEG)
 # * dependencies of unknown status:
-# 	dev-perl/Archive-Zip
-# 	dev-perl/Device-SerialPort
+#	dev-perl/Device-SerialPort
 # 	dev-perl/MIME-Lite
 # 	dev-perl/MIME-tools
 # 	dev-perl/PHP-Serialization
@@ -19,39 +18,48 @@ EAPI=5
 
 PERL_EXPORT_PHASE_FUNCTIONS=no
 
-inherit perl-module readme.gentoo eutils base cmake-utils depend.apache multilib flag-o-matic
+inherit perl-module readme.gentoo eutils base cmake-utils depend.apache multilib flag-o-matic systemd git-r3
 
 MY_PN="ZoneMinder"
 
-DESCRIPTION="ZoneMinder allows you to capture, analyse, record and monitor any cameras attached to your system"
+DESCRIPTION="Capture, analyse, record and monitor any cameras attached to your system"
 HOMEPAGE="http://www.zoneminder.com/"
-SRC_URI="https://github.com/${MY_PN}/${MY_PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+# SRC_URI="https://github.com/${MY_PN}/${MY_PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+EGIT_REPO_URI="https://github.com/ZoneMinder/ZoneMinder.git"
+EGIT_COMMIT="refs/tags/v${PV}"
 
 LICENSE="GPL-2"
 KEYWORDS="~amd64"
-IUSE="curl gcrypt gnutls +mmap +openssl vlc"
+IUSE="curl ffmpeg gcrypt gnutls logrotate +mmap +ssl libressl vlc"
 SLOT="0"
 
 REQUIRED_USE="
-	|| ( openssl gnutls )
+	|| ( ssl gnutls )
 "
 
 DEPEND="
 	app-eselect/eselect-php[apache2]
 	dev-lang/perl:=
-	dev-lang/php[apache2,cgi,curl,inifile,pdo,mysql,mysqli,sockets]
+	dev-lang/php:*[apache2,cgi,curl,gd,inifile,pdo,mysql,mysqli,sockets]
 	dev-libs/libpcre
 	dev-perl/Archive-Zip
+	dev-perl/Class-Std-Fast
+	dev-perl/Data-Dump
 	dev-perl/Date-Manip
+	dev-perl/Data-UUID
 	dev-perl/DBD-mysql
 	dev-perl/DBI
+	dev-perl/IO-Socket-Multicast
+	dev-perl/SOAP-WSDL
+	dev-perl/Sys-CPU
+	dev-perl/Sys-MemInfo
 	dev-perl/URI-Encode
 	dev-perl/libwww-perl
 	sys-auth/polkit
 	sys-libs/zlib
 	virtual/ffmpeg
-	virtual/httpd-php
-	virtual/jpeg
+	virtual/httpd-php:*
+	virtual/jpeg:0
 	virtual/mysql
 	virtual/perl-ExtUtils-MakeMaker
 	virtual/perl-Getopt-Long
@@ -59,10 +67,13 @@ DEPEND="
 	virtual/perl-Time-HiRes
 	www-servers/apache
 	curl? ( net-misc/curl )
-	gcrypt? ( dev-libs/libgcrypt )
+	gcrypt? ( dev-libs/libgcrypt:0= )
 	gnutls? ( net-libs/gnutls )
 	mmap? ( dev-perl/Sys-Mmap )
-	openssl? ( dev-libs/openssl )
+	ssl? (
+		!libressl? ( dev-libs/openssl:0= )
+		libressl? ( dev-libs/libressl:0= )
+	)
 	vlc? ( media-video/vlc[live] )
 "
 RDEPEND="${DEPEND}"
@@ -71,16 +82,17 @@ RDEPEND="${DEPEND}"
 # webserver in global scope (/etc/zm.conf etc), so we hardcode apache here.
 need_apache
 
-S=${WORKDIR}/${MY_PN}-${PV}
+# S=${WORKDIR}/${MY_PN}-${PV}
 
 PATCHES=(
 	"${FILESDIR}/${PN}-1.26.5"-automagic.patch
+	"${FILESDIR}/${PN}-1.28.1"-mysql_include_path.patch
 )
 
 MY_ZM_WEBDIR=/usr/share/zoneminder/www
 
 pkg_setup() {
-	:
+	require_php_with_use mysql sockets apache2
 }
 
 src_configure() {
@@ -96,10 +108,10 @@ src_configure() {
 		-DZM_WEBDIR=${MY_ZM_WEBDIR}
 		$(cmake-utils_useno mmap ZM_NO_MMAP)
 		-DZM_NO_X10=OFF
-		-DZM_NO_FFMPEG=OFF
+		$(cmake-utils_useno ffmpeg ZM_NO_FFMPEG)
 		$(cmake-utils_useno curl ZM_NO_CURL)
 		$(cmake-utils_useno vlc ZM_NO_LIBVLC)
-		$(cmake-utils_useno openssl CMAKE_DISABLE_FIND_PACKAGE_OpenSSL)
+		$(cmake-utils_useno ssl CMAKE_DISABLE_FIND_PACKAGE_OpenSSL)
 		$(cmake-utils_use_has gnutls)
 		$(cmake-utils_use_has gcrypt)
 	)
@@ -114,12 +126,19 @@ src_install() {
 	keepdir /var/log/zm
 	fowners apache:apache /var/log/zm
 
+	# optional logrotate script
+	if use logrotate ; then
+		insinto /etc/logrotate.d
+		newins distros/ubuntu1204/zoneminder.logrotate zoneminder
+	fi
+
 	# now we duplicate the work of zmlinkcontent.sh
-	dodir /var/lib/zoneminder /var/lib/zoneminder/images /var/lib/zoneminder/events
+	keepdir /var/lib/zoneminder /var/lib/zoneminder/images /var/lib/zoneminder/events /var/lib/zoneminder/api_tmp
 	fperms -R 0775 /var/lib/zoneminder
 	fowners -R apache:apache /var/lib/zoneminder
 	dosym /var/lib/zoneminder/images ${MY_ZM_WEBDIR}/images
 	dosym /var/lib/zoneminder/events ${MY_ZM_WEBDIR}/events
+	dosym /var/lib/zoneminder/api_tmp ${MY_ZM_WEBDIR}/api/app/tmp
 
 	# bug 523058
 	keepdir ${MY_ZM_WEBDIR}/temp
@@ -133,6 +152,9 @@ src_install() {
 	newinitd "${FILESDIR}"/init.d zoneminder
 	newconfd "${FILESDIR}"/conf.d zoneminder
 
+	# systemd unit file
+	systemd_dounit "${FILESDIR}"/zoneminder.service
+
 	cp "${FILESDIR}"/10_zoneminder.conf "${T}"/10_zoneminder.conf
 	sed -i "${T}"/10_zoneminder.conf -e "s:%ZM_WEBDIR%:${MY_ZM_WEBDIR}:g"
 
@@ -145,5 +167,5 @@ src_install() {
 
 pkg_postinst() {
 	local myold=${REPLACING_VERSIONS}
-	[ "${myold}" = ${PV} ] || elog "You have upgraded zoneminder and may have to upgrade your database now."
+	[ "${myold}" = ${PV} ] || elog "You have upgraded zoneminder and may have to upgrade your database now using the 'zmupdate.pl' script."
 }
