@@ -3,8 +3,6 @@
 # $Id$
 
 # TO DO:
-# * ffmpeg support can be disabled in CMakeLists.txt but it does not build then
-#		$(cmake-utils_useno ffmpeg ZM_NO_FFMPEG)
 # * dependencies of unknown status:
 #	dev-perl/Device-SerialPort
 # 	dev-perl/MIME-Lite
@@ -14,11 +12,9 @@
 # 	virtual/perl-libnet
 # 	virtual/perl-Module-Load
 
-EAPI=5
+EAPI=6
 
-PERL_EXPORT_PHASE_FUNCTIONS=no
-
-inherit perl-module readme.gentoo eutils base cmake-utils depend.apache multilib flag-o-matic systemd git-r3
+inherit perl-functions readme.gentoo-r1 cmake-utils depend.apache flag-o-matic systemd git-r3
 
 MY_PN="ZoneMinder"
 
@@ -162,10 +158,12 @@ src_install() {
 
 	perl_delete_packlist
 
-	readme.gentoo_src_install
+	readme.gentoo_create_doc
 }
 
 pkg_postinst() {
+	readme.gentoo_print_elog
+
 	local myold=${REPLACING_VERSIONS}
 	[ "${myold}" = ${PV} ] || elog "You have upgraded zoneminder and may have to upgrade your database now using the 'zmupdate.pl' script."
 }
