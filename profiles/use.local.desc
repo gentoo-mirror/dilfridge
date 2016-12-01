@@ -12,5 +12,5 @@ net-analyzer/net-snmp:smux - Enable support for the legacy smux protocol (supers
 net-analyzer/net-snmp:ucd-compat - Build UCD compatibility library. Increases significantly the install size.
 www-misc/zoneminder:curl - Enable using net-misc/curl for streaming from cameras
 www-misc/zoneminder:gcrypt - ...
-www-misc/zoneminder:openssl - ...
+www-misc/zoneminder:logrotate - Install logrotate control files
 www-misc/zoneminder:vlc - Enable using media-libs/vlc for streaming from cameras

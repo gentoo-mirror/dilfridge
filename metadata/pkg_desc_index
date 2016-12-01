@@ -1,3 +1,4 @@
+dev-perl/IO-Socket-Multicast 1.120.0: Send and receive multicast messages
 dev-perl/Lab-Measurement 9999-r1: Measurement control and automation with Perl
 dev-perl/Lab-VISA 3.20.0 9999: Perl interface to National Instrument's VISA library
 dev-python/lmfit 0.8.3: Non-Linear Least-Square Minimization and Curve-Fitting
@@ -16,4 +17,4 @@ sci-libs/ni-visa 0: Placeholder for an NI-VISA library ebuild
 sci-visualization/colorview2d 9999: Plotting and stuff
 sci-visualization/qtiplot-bin 0.9.9_rc15: Qt based clone of the Origin plotting package, commercial binary
 sys-devel/gcc-config 1.7.3-r1: utility to manage compilers
-www-misc/zoneminder 1.28.1 1.28.1-r1 1.28.1-r2: ZoneMinder allows you to capture, analyse, record and monitor any cameras attached to your system
+www-misc/zoneminder 1.30.0: Capture, analyse, record and monitor any cameras attached to your system
