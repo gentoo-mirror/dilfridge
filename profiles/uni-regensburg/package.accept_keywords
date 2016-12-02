@@ -31,3 +31,7 @@ dev-python/cython
 
 # we want to have nice numerics.
 sci-libs/armadillo
+
+# we always want to run the newest stable series kernel
+=sys-kernel/gentoo-sources-4.4*
+
