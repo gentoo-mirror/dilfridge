@@ -26,7 +26,7 @@ EGIT_COMMIT="refs/tags/v${PV}"
 
 LICENSE="GPL-2"
 KEYWORDS="~amd64"
-IUSE="curl ffmpeg gcrypt gnutls logrotate +mmap +ssl libressl vlc"
+IUSE="curl ffmpeg gcrypt gnutls +mmap +ssl libressl vlc"
 SLOT="0"
 
 REQUIRED_USE="
@@ -102,11 +102,11 @@ src_configure() {
 		-DZM_WEB_USER=apache
 		-DZM_WEB_GROUP=apache
 		-DZM_WEBDIR=${MY_ZM_WEBDIR}
-		$(cmake-utils_useno mmap ZM_NO_MMAP)
+		-DZM_NO_MMAP="$(usex mmap OFF ON)"
 		-DZM_NO_X10=OFF
-		$(cmake-utils_useno ffmpeg ZM_NO_FFMPEG)
-		$(cmake-utils_useno curl ZM_NO_CURL)
-		$(cmake-utils_useno vlc ZM_NO_LIBVLC)
+		-DZM_NO_FFMPEG="$(usex ffmpeg OFF ON)"
+		-DZM_NO_CURL="$(usex curl OFF ON)"
+		-DZM_NO_LIBVLC="$(usex vlc OFF ON)"
 		$(cmake-utils_useno ssl CMAKE_DISABLE_FIND_PACKAGE_OpenSSL)
 		$(cmake-utils_use_has gnutls)
 		$(cmake-utils_use_has gcrypt)
@@ -122,11 +122,9 @@ src_install() {
 	keepdir /var/log/zm
 	fowners apache:apache /var/log/zm
 
-	# optional logrotate script
-	if use logrotate ; then
-		insinto /etc/logrotate.d
-		newins distros/ubuntu1204/zoneminder.logrotate zoneminder
-	fi
+	# the logrotate script
+	insinto /etc/logrotate.d
+	newins distros/ubuntu1204/zoneminder.logrotate zoneminder
 
 	# now we duplicate the work of zmlinkcontent.sh
 	keepdir /var/lib/zoneminder /var/lib/zoneminder/images /var/lib/zoneminder/events /var/lib/zoneminder/api_tmp
