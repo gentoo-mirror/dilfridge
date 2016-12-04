@@ -7,7 +7,8 @@ EAPI=5
 KMNAME="kdepim"
 KDE_HANDBOOK=optional
 VIRTUALX_REQUIRED=test
-inherit flag-o-matic kde4-meta
+#inherit flag-o-matic kde4-meta
+inherit flag-o-matic kde4-base
 
 DESCRIPTION="Email component of Kontact (noakonadi branch)"
 HOMEPAGE="https://launchpad.net/~pali/+archive/ubuntu/kdepim-noakonadi"
@@ -31,9 +32,6 @@ RDEPEND="${DEPEND}
 	!>=kde-apps/kdepimlibs-4.14.11_pre20160211
 "
 
-KMEXTRACTONLY="
-	korganizer/org.kde.Korganizer.Calendar.xml
-"
 KMEXTRA="
 	kmailcvt/
 	ksendemail/
@@ -53,25 +51,10 @@ src_configure() {
 		-DWITH_IndicateQt=OFF
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 src_compile() {
-	kde4-meta_src_compile kmail_xml
-	kde4-meta_src_compile
-}
-
-pkg_postinst() {
-	kde4-meta_pkg_postinst
-
-	if ! has_version kde-apps/kdepim-kresources:${SLOT}; then
-		echo
-		elog "For groupware functionality, please install kde-apps/kdepim-kresources:${SLOT}"
-		echo
-	fi
-	if ! has_version kde-apps/kleopatra:${SLOT}; then
-		echo
-		elog "For certificate management and the gnupg log viewer, please install kde-apps/kleopatra:${SLOT}"
-		echo
-	fi
+	kde4-base_src_compile kmail_xml
+	kde4-base_src_compile
 }
