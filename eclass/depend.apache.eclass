@@ -290,7 +290,7 @@ has_apache() {
 has_apache_threads() {
 	debug-print-function $FUNCNAME $*
 
-	if ! built_with_use www-servers/apache threads; then
+	if ! has_version 'www-servers/apache[threads]'; then
 		return
 	fi
 
@@ -313,14 +313,14 @@ has_apache_threads() {
 has_apache_threads_in() {
 	debug-print-function $FUNCNAME $*
 
-	if ! built_with_use www-servers/apache threads; then
+	if ! has_version 'www-servers/apache[threads]'; then
 		return
 	fi
 
 	local myforeign="$1"
 	local myflag="${2:-threads}"
 
-	if ! built_with_use ${myforeign} ${myflag}; then
+	if ! has_version "${myforeign}[${myflag}]"; then
 		echo
 		eerror "You need to enable USE flag '${myflag}' in ${myforeign} to"
 		eerror "build a thread-safe version of ${CATEGORY}/${PN} for use"
