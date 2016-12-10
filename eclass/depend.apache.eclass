@@ -327,6 +327,12 @@ has_apache() {
 has_apache_threads() {
 	debug-print-function $FUNCNAME $*
 
+	case ${EAPI:-0} in
+		0|1)
+			die "depend.apache.eclass: has_apache_threads is not supported for EAPI=${EAPI:-0}"
+			;;
+	esac
+
 	if ! has_version 'www-servers/apache[threads]'; then
 		return
 	fi
@@ -349,6 +355,12 @@ has_apache_threads() {
 # is not given it defaults to threads.
 has_apache_threads_in() {
 	debug-print-function $FUNCNAME $*
+
+	case ${EAPI:-0} in
+		0|1)
+			die "depend.apache.eclass: has_apache_threads_in is not supported for EAPI=${EAPI:-0}"
+			;;
+	esac
 
 	if ! has_version 'www-servers/apache[threads]'; then
 		return
