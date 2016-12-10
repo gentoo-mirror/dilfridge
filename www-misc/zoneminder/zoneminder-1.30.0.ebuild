@@ -14,15 +14,18 @@
 
 EAPI=6
 
-inherit perl-functions readme.gentoo-r1 cmake-utils depend.apache flag-o-matic systemd git-r3
+inherit perl-functions readme.gentoo-r1 cmake-utils depend.apache flag-o-matic systemd
 
 MY_PN="ZoneMinder"
 
+MY_CRUD_VERSION="3.0.10"
+
 DESCRIPTION="Capture, analyse, record and monitor any cameras attached to your system"
 HOMEPAGE="http://www.zoneminder.com/"
-# SRC_URI="https://github.com/${MY_PN}/${MY_PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-EGIT_REPO_URI="https://github.com/ZoneMinder/ZoneMinder.git"
-EGIT_COMMIT="refs/tags/v${PV}"
+SRC_URI="
+	https://github.com/${MY_PN}/${MY_PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz
+	https://github.com/FriendsOfCake/crud/archive/v${MY_CRUD_VERSION}.tar.gz -> Crud-${MY_CRUD_VERSION}.tar.gz
+"
 
 LICENSE="GPL-2"
 KEYWORDS="~amd64"
@@ -78,7 +81,7 @@ RDEPEND="${DEPEND}"
 # webserver in global scope (/etc/zm.conf etc), so we hardcode apache here.
 need_apache
 
-# S=${WORKDIR}/${MY_PN}-${PV}
+S=${WORKDIR}/${MY_PN}-${PV}
 
 PATCHES=(
 	"${FILESDIR}/${PN}-1.26.5"-automagic.patch
@@ -86,6 +89,13 @@ PATCHES=(
 )
 
 MY_ZM_WEBDIR=/usr/share/zoneminder/www
+
+src_prepare() {
+	cmake-utils_src_prepare
+
+	rmdir "${S}/web/api/app/Plugin/Crud" || die
+	mv "${WORKDIR}/crud-${MY_CRUD_VERSION}" "${S}/web/api/app/Plugin/Crud" || die
+}
 
 src_configure() {
 	append-cxxflags -D__STDC_CONSTANT_MACROS
