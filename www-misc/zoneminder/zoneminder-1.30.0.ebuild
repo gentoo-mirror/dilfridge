@@ -87,10 +87,6 @@ PATCHES=(
 
 MY_ZM_WEBDIR=/usr/share/zoneminder/www
 
-pkg_setup() {
-	require_php_with_use mysql sockets apache2
-}
-
 src_configure() {
 	append-cxxflags -D__STDC_CONSTANT_MACROS
 	perl_set_version
