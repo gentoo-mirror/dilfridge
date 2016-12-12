@@ -16,4 +16,3 @@ sci-libs/ni-visa 0: Placeholder for an NI-VISA library ebuild
 sci-visualization/colorview2d 9999: Plotting and stuff
 sci-visualization/qtiplot-bin 0.9.9_rc15: Qt based clone of the Origin plotting package, commercial binary
 sys-devel/gcc-config 1.7.3-r1: utility to manage compilers
-www-misc/zoneminder 1.30.0: Capture, analyse, record and monitor any cameras attached to your system
