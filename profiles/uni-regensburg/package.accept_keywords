@@ -4,6 +4,7 @@ app-portage/ufed
 app-portage/eix
 app-portage/layman
 dev-python/ssl-fetch
+app-shells/quoter
 
 # for measurement control
 dev-perl/Lab-Measurement
