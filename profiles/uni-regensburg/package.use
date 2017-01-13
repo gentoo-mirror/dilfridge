@@ -17,6 +17,7 @@ dev-vcs/subversion -dso
 media-libs/freetype kpathsea
 media-libs/harfbuzz icu
 media-libs/mesa xa
+media-video/vlc -samba
 net-fs/samba -server client
 net-irc/quassel X -crypt dbus phonon -server ssl webkit
 net-print/cups -usb
