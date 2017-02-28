@@ -148,3 +148,4 @@ x11-libs/qt-assistant compat
 >=dev-libs/wayland-1.9.0 abi_x86_32
 >=dev-libs/libpcre-8.38-r1 abi_x86_32
 >=sys-libs/binutils-libs-2.25.1-r2 abi_x86_32
+>=sys-devel/gettext-0.19.7 abi_x86_32
