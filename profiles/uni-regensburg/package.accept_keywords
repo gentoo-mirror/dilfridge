@@ -35,6 +35,7 @@ sci-libs/armadillo
 
 # we always want to run the newest stable series kernel
 =sys-kernel/gentoo-sources-4.4*
+=sys-kernel/gentoo-sources-4.9*
 
 # needed by texstudio, effectively (this version can provide both qt4 and qt5)
 =dev-libs/quazip-0.7.2
