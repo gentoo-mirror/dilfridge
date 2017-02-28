@@ -1,3 +1,6 @@
 
 # this is only for use in Regensburg, only on specific boxes
 =dev-perl/Lab-Measurement-9999-r1
+
+# sadly we still need it
+app-text/acroread
