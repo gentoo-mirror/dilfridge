@@ -16,6 +16,9 @@ dev-perl/encoding-warnings
 dev-perl/MooseX-Params-Validate
 dev-perl/Test-Files
 dev-perl/TeX-Encode
+dev-perl/IO-Socket-Timeout
+dev-perl/PerlIO-via-Timeout
+dev-perl/Test-File
 =sci-libs/linux-gpib-3.2.21-r1
 
 # not stable yet
@@ -30,6 +33,9 @@ dev-python/pydispatcher
 dev-python/lmfit
 sci-libs/scikits_image
 dev-python/cython
+
+# measurement
+sci-visualization/spyview
 
 # we want to have nice numerics.
 sci-libs/armadillo
