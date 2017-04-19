@@ -22,6 +22,7 @@ net-fs/samba -server client
 net-irc/quassel X -crypt dbus phonon -server ssl webkit
 net-print/cups -usb
 sys-devel/gcc gcj
+sci-electronics/labone minimal
 sci-libs/armadillo arpack atlas blas hdf5 lapack tbb
 sci-libs/scipy sparse
 sys-libs/ntdb python
