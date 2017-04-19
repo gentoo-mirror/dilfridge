@@ -25,19 +25,20 @@ src_install() {
 
 	if ! use minimal ; then
 
-		insinto ${instPath}/${instrDir}
+		dodir ${instPath}/${instrDir}
 		for dir in API DataServer Documentation WebServer release_notes_16.12.txt ; do
-			doins -r $dir
+			cp -a "$dir" "${D}${instPath}/${instrDir}/" || die
 		done
 
 		dosym ../..${instPath}/${instrDir}/DataServer/ziServer /opt/bin/ziServer
 		dosym ../..${instPath}/${instrDir}/DataServer/ziDataServer /opt/bin/ziDataServer
 
 		echo "#!/bin/bash" > "${T}/startWebServer" || die
-		echo "${instPath}/${instrDir}/WebServer/ziWebServer -r ${instPath}/${instrDir}/WebServer/html --server-port 8004" >> "${T}/startWebServer" || die
+		echo "${instPath}/${instrDir}/WebServer/ziWebServer -r ${instPath}/${instrDir}/WebServer/html --ip 127.0.0.1 --server-port 8004" >> "${T}/startWebServer" || die
 		chmod 755 "${T}/startWebServer" || die
 		exeinto /opt/bin
 		doexe "${T}/startWebServer"
+		elog For security reasons the startWebServer script listens on the localhost interface only.
 	else
 
 		insinto "${instPath}/${instrDir}/API/C/lib"
