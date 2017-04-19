@@ -1,7 +1,6 @@
 app-text/pdftk 2.02: A tool for manipulating PDF documents
 dev-perl/Lab-Measurement 9999-r1: Measurement control and automation with Perl
 dev-perl/Lab-VISA 3.20.0 9999: Perl interface to National Instrument's VISA library
-dev-perl/Lab-Zhinst 9999: Perl bindings to the LabOne API of Zurich Instruments
 dev-python/lmfit 0.8.3: Non-Linear Least-Square Minimization and Curve-Fitting
 dev-tex/frutiger 1.0-r1: LaTeX2e macros for the Uni Regensburg Corporate Design
 dev-tex/winfonts 20060122: LaTeX package to use the basic Windows truetype fonts
