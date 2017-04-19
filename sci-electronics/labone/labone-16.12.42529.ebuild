@@ -11,7 +11,7 @@ LICENSE="zi-labone"
 SLOT="0"
 KEYWORDS="-* ~amd64"
 RESTRICT="mirror bindist"
-IUSE="minimal udev"
+IUSE="minimal"
 
 QA_PREBUILT="*"
 
@@ -51,19 +51,19 @@ src_install() {
 	dosym "../..${instPath}/${instrDir}/API/C/include/ziAPI.h" "usr/include/ziAPI.h"
 	dosym "../..${instPath}/${instrDir}/API/C/lib/libziAPI-linux64.so" "usr/$(get_libdir)/libziAPI-linux64.so"
 
-	if use udev ; then
-		sed -e 's:/usr/bin/ziServer:/opt/bin/ziServer:g' -i Installer/udev/config || die
-		insinto /etc/ziService
-		doins Installer/udev/config
-		sed -e 's:/usr/bin/ziServer:/opt/bin/ziServer:g' -i Installer/udev/55-zhinst.rules || die
-		insinto /lib/udev/rules.d
-		doins Installer/udev/55-zhinst.rules
-		exeinto /opt/bin
-		doexe Installer/udev/ziService
+	# the udev integration
 
-		# just to make sure
-		dosym ../../opt/bin/ziService usr/bin/ziService
-	fi
+	sed -e 's:/usr/bin/ziServer:/opt/bin/ziServer:g' -i Installer/udev/config || die
+	insinto /etc/ziService
+	doins Installer/udev/config
+	sed -e 's:/usr/bin/ziServer:/opt/bin/ziServer:g' -i Installer/udev/55-zhinst.rules || die
+	insinto /lib/udev/rules.d
+	doins Installer/udev/55-zhinst.rules
+	exeinto /opt/bin
+	doexe Installer/udev/ziService
+
+	# just to make sure
+	dosym ../../opt/bin/ziService usr/bin/ziService
 }
 
 pkg_prerm() {
