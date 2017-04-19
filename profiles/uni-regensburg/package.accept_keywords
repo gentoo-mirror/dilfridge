@@ -20,6 +20,8 @@ dev-perl/IO-Socket-Timeout
 dev-perl/PerlIO-via-Timeout
 dev-perl/Test-File
 =sci-libs/linux-gpib-3.2.21-r1
+dev-perl/Lab-Zhinst
+sci-electronics/labone
 
 # not stable yet
 net-misc/tlsdate
