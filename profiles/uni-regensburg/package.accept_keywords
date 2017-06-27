@@ -10,16 +10,26 @@ app-shells/quoter
 # for measurement control
 dev-perl/Lab-Measurement
 =dev-perl/Lab-Measurement-9999 **
+dev-perl/Alien-Gnuplot
 dev-perl/aliased
 dev-perl/Class-Method-Modifiers
-dev-perl/encoding-warnings
+dev-perl/Dist-Zilla-Plugin-Config-Git
+dev-perl/Dist-Zilla-Plugin-Git
+dev-perl/Git-Wrapper
+dev-perl/MooseX-Has-Sugar
 dev-perl/MooseX-Params-Validate
+dev-perl/MooseX-Types-Path-Tiny
+dev-perl/MooseX-Types-Stringlike
+dev-perl/PDL-Graphics-Gnuplot
+dev-perl/PDL-Transform-Color
+dev-perl/Safe-Isa
 dev-perl/Test-Files
 dev-perl/TeX-Encode
 dev-perl/IO-Socket-Timeout
 dev-perl/PerlIO-via-Timeout
 dev-perl/Test-File
-=sci-libs/linux-gpib-3.2.21-r1
+dev-perl/Version-Next
+=sci-libs/linux-gpib-4.0.4_rc2
 dev-perl/Lab-Zhinst
 sci-electronics/labone
 
@@ -35,6 +45,7 @@ dev-python/pydispatcher
 dev-python/lmfit
 sci-libs/scikits_image
 dev-python/cython
+dev-python/pywavelets
 
 # measurement
 sci-visualization/spyview
