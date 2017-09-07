@@ -7,5 +7,4 @@ LICENSE=ni-visa
 RESTRICT=fetch
 SLOT=0
 SRC_URI=NI-VISA-0.0.1.iso
-_eclass_exported_funcs=src_install:-
 _md5_=57000a8e2938ef87f28df598642c6b54

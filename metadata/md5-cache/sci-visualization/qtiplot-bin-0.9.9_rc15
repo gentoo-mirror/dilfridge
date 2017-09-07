@@ -8,5 +8,4 @@ RDEPEND=dev-libs/glib[abi_x86_32(-)] media-libs/fontconfig[abi_x86_32(-)] media-
 RESTRICT=fetch mirror splitdebug
 SLOT=0
 SRC_URI=050415_qtiplot-0.9.9-rc15-32bit-static.tar.bz2
-_eclass_exported_funcs=src_install:-
 _md5_=901ea4e5d0c018043793ba8d209de16b
