@@ -1,0 +1,4 @@
+libtirpc - Use net-libs/libtirpc as RPC implementation
+ntirpc - Use net-libs/ntirpc as RPC implementation
+rpc - Provide optional support for RPC
+sunrpc - Use SunRPC (sys-libs/glibc[rpc]) as RPC implementation
