@@ -8,6 +8,7 @@ dev-tex/winfonts 20060122: LaTeX package to use the basic Windows truetype fonts
 dev-util/xwpe 1.5.30a: Simple programming environment mimicking ancient Borland C and Pascal
 kde-apps/kmail 4.4.2016.9999: Email component of Kontact (noakonadi branch)
 media-libs/opentld 1.4.0: Library for tracking objects in video streams
+net-analyzer/dsniff 2.4_beta1-r10: A collection of tools for network auditing and penetration testing
 net-analyzer/net-snmp 5.7.3-r5: Software for generating and retrieving SNMP data
 net-libs/kqoauth 0.98: Library written in C++ for Qt that implements the OAuth 1.0 authentication specification
 net-libs/qtsoap 0_pre20141221: Qt library for basic web service support with version 1.1 of the SOAP protocol
