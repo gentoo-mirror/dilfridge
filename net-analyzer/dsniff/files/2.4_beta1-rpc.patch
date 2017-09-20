@@ -23,7 +23,7 @@
 +
 +AS_CASE("x$with_rpc",
 +	"xno",		AC_MSG_ERROR([A RPC library is required.]),
-+	"xntirpc",	[PKG_CHECK_MODULES([NTIRPC], [ntirpc], [
++	"xntirpc",	[PKG_CHECK_MODULES([NTIRPC], [libntirpc], [
 +					RPC_CFLAGS=$NTIRPC_CFLAGS;
 +					RPC_LIBS=$NTIRPC_LIBS;
 +				],
