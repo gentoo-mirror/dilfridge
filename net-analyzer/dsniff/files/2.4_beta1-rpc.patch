@@ -18,7 +18,7 @@
  AC_SUBST(SSLLIB)
  
 +AC_ARG_WITH([rpc],
-+	AS_HELP_STRING([--with-rpc=x], [Use RPC library x, options are sunrpc (default), libtirpc, ntirpc])
++	AS_HELP_STRING([--with-rpc=x], [Use RPC library x, options are sunrpc (default), libtirpc, ntirpc]),
 +	[], [ with_rpc=sunrpc ])
 +
 +AS_CASE("x$with_rpc",
