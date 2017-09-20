@@ -13,7 +13,7 @@ SRC_URI="
 LICENSE="BSD"
 
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="libressl X"
 
 DEPEND="net-libs/libpcap
@@ -60,11 +60,8 @@ src_prepare() {
 }
 
 src_configure() {
-	local rpclib="--with-rpc=sunrpc"
-	use rpc_lib_libtirpc && rpclib="--with-rpc=libtirpc"
-	use rpc_lib_ntirpc && rpclib="--with-rpc=ntirpc"
 	econf \
-		${RPC_CONFIGURE} \
+		$(rpc_configure) \
 		$(use_with X x) \
 		|| die "econf failed"
 }
