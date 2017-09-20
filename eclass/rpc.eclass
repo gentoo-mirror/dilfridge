@@ -51,13 +51,13 @@ for i in ${RPC_COMPAT[@]}; do
 			IUSE+="sunrpc "
 			;;
 		libtirpc)
-			_rpc_depend+="libtirpc? ( net-libs/libtirpc virtual/pkgconfig ) "
+			_rpc_depend+="libtirpc? ( net-libs/libtirpc virtual/pkgconfig net-libs/rpcsvc-proto ) "
 			_rpc_rdepend+="libtirpc? ( net-libs/libtirpc ) "
 			IUSE+="libtirpc "
 
 			;;
 		ntirpc)
-			_rpc_depend+="ntirpc? ( net-libs/ntirpc virtual/pkgconfig ) "
+			_rpc_depend+="ntirpc? ( net-libs/ntirpc virtual/pkgconfig net-libs/rpcsvc-proto ) "
 			_rpc_rdepend+="ntirpc? ( net-libs/ntirpc ) "
 			IUSE+="ntirpc "
 			;;
