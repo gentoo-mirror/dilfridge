@@ -1,0 +1,46 @@
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -37,8 +37,8 @@
+ X11INC	= @X_CFLAGS@
+ X11LIB	= @X_LIBS@ @X_PRE_LIBS@ -lXmu -lX11 @X_EXTRA_LIBS@
+ 
+-INCS	= -I. $(X11INC) -I$(srcdir)/missing 
+-LIBS	= @LIBS@ -L$(srcdir) -lmissing
++INCS	= -I. $(X11INC) -I$(srcdir)/missing @RPC_CFLAGS@
++LIBS	= @LIBS@ -L$(srcdir) -lmissing @RPC_LIBS@
+ 
+ INSTALL	= @INSTALL@
+ INSTALL_PROGRAM = @INSTALL_PROGRAM@
+--- a/configure.in
++++ b/configure.in
+@@ -337,4 +337,30 @@
+ AC_SUBST(SSLINC)
+ AC_SUBST(SSLLIB)
+ 
++AC_ARG_WITH([rpc],
++	AS_HELP_STRING([--with-rpc=x], [Use RPC library x, options are sunrpc (default), libtirpc, ntirpc])
++	[], [ with_rpc=sunrpc ])
++
++AS_CASE("x$with_rpc",
++	"xno",		AC_MSG_ERROR([A RPC library is required.]),
++	"xntirpc",	[PKG_CHECK_MODULES([NTIRPC], [ntirpc], [
++					RPC_CFLAGS=$NTIRPC_CFLAGS;
++					RPC_LIBS=$NTIRPC_LIBS;
++				],
++				[AC_MSG_ERROR([ntirpc requested, but library not found.])])],
++	"xlibtirpc",	[PKG_CHECK_MODULES([TIRPC], [libtirpc], [
++					RPC_CFLAGS=$TIRPC_CFLAGS;
++					RPC_LIBS=$TIRPC_LIBS;
++				],
++				[AC_MSG_ERROR([libtirpc requested, but library not found.])])],
++	[AC_CHECK_HEADER(rpc/rpc.h, [
++			RPC_CFLAGS="";
++			RPC_LIBS="";
++		],
++		[AC_MSG_ERROR([sunrpc requested, but headers are not present.])])]
++      )
++
++AC_SUBST(RPC_CFLAGS)
++AC_SUBST(RPC_LIBS)
++
+ AC_OUTPUT(Makefile)
