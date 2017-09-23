@@ -11,31 +11,28 @@
  
  INSTALL	= @INSTALL@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
-diff -ruN dsniff-2.4.orig/configure.in dsniff-2.4/configure.in
 --- a/configure.in
 +++ b/configure.in
-@@ -337,4 +337,25 @@
+@@ -337,4 +337,23 @@
  AC_SUBST(SSLINC)
  AC_SUBST(SSLLIB)
  
 +AC_ARG_WITH([libtirpc],
-+	AS_HELP_STRING([--with-libtirpc], [Use libtirpc as RPC implementation (instead of sunrpc)])
-+	[], [ with_libtirpc=no ])
++	    AS_HELP_STRING([--with-libtirpc], [Use libtirpc as RPC implementation (instead of sunrpc)]),
++	    [], [ with_libtirpc=no ])
 +
-+AS_IF([test "x$with_libtirpc" != xno], [
-+	PKG_CHECK_MODULES([TIRPC], [libtirpc], [
-+		RPC_CFLAGS=$TIRPC_CFLAGS;
-+		RPC_LIBS=$TIRPC_LIBS;
-+		],
-+		[AC_MSG_ERROR([libtirpc requested, but library not found.])]
-+	)], [
-+	AC_CHECK_HEADER(rpc/rpc.h, [
-+		RPC_CFLAGS="";
-+		RPC_LIBS="";
-+		],
-+		[AC_MSG_ERROR([sunrpc requested, but headers are not present.])]
-+	)]
++AS_IF([test "x$with_libtirpc" != xno], 
++      [PKG_CHECK_MODULES([TIRPC], 
++                         [libtirpc], 
++                         [RPC_CFLAGS=$TIRPC_CFLAGS; RPC_LIBS=$TIRPC_LIBS;],
++			 [AC_MSG_ERROR([libtirpc requested, but library not found.])]
++	                )], 
++      [AC_CHECK_HEADER(rpc/rpc.h, 
++		       [RPC_CFLAGS=""; RPC_LIBS="";],
++		       [AC_MSG_ERROR([sunrpc requested, but headers are not present.])]
++	              )]
 +)
++
 +AC_SUBST(RPC_CFLAGS)
 +AC_SUBST(RPC_LIBS)
 +
