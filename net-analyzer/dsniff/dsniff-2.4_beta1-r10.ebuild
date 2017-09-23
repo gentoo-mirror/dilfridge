@@ -14,7 +14,7 @@ LICENSE="BSD"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="libressl X"
+IUSE="libressl libtirpc X"
 
 DEPEND="net-libs/libpcap
 	>=net-libs/libnet-1.1.2.1-r1
