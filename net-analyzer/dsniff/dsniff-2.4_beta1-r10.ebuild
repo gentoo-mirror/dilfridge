@@ -23,7 +23,7 @@ DEPEND="net-libs/libpcap
 	libressl? ( dev-libs/libressl:0= )
 	>=sys-libs/db-4:*
 	!libtirpc? ( sys-libs/glibc[rpc(-)] )
-	libtirpc? ( net-libs/libtirpc )
+	libtirpc? ( net-libs/rpcsvc-proto net-libs/libtirpc )
 	|| ( net-libs/libnsl <sys-libs/glibc-2.26 )
 	X? ( x11-libs/libXmu )"
 RDEPEND="${DEPEND}"
