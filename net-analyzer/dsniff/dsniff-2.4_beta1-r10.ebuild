@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
-inherit autotools eutils flag-o-matic toolchain-funcs rpc
+inherit autotools eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="A collection of tools for network auditing and penetration testing"
 HOMEPAGE="http://monkey.org/~dugsong/dsniff/"
@@ -22,6 +22,8 @@ DEPEND="net-libs/libpcap
 	!libressl? ( dev-libs/openssl:0= )
 	libressl? ( dev-libs/libressl:0= )
 	>=sys-libs/db-4:*
+	!libtirpc? ( sys-libs/glibc[rpc(-)] )
+	libtirpc? ( net-libs/libtirpc )
 	|| ( net-libs/libnsl <sys-libs/glibc-2.26 )
 	X? ( x11-libs/libXmu )"
 RDEPEND="${DEPEND}"
@@ -61,7 +63,7 @@ src_prepare() {
 
 src_configure() {
 	econf \
-		$(rpc_configure) \
+		$(use_with libtirpc) \
 		$(use_with X x) \
 		|| die "econf failed"
 }
