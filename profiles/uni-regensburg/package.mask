@@ -1,1 +1,3 @@
-# nothing
+
+# let's stay with the LTS kernels
+=sys-kernel/gentoo-sources-4.12*
