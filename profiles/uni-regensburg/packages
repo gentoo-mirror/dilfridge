@@ -59,3 +59,6 @@
 *x11-base/xorg-server
 *x11-misc/sddm
 *x11-misc/x11vnc
+*x11-terms/xfce4-terminal
+*xfce-base/xfce4-meta
+*xfce-extra/xfce4-xkb-plugin
