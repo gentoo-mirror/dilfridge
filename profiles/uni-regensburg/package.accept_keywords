@@ -49,6 +49,7 @@ dev-python/pywavelets
 
 # measurement
 sci-visualization/spyview
+sci-visualization/qtiplot-bin
 
 # we want to have nice numerics.
 sci-libs/armadillo

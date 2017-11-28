@@ -49,7 +49,7 @@
 *sci-visualization/colorview2d
 *sci-visualization/gnuplot
 *sci-visualization/gwyddion
-*sci-visualization/qtiplot
+*sci-visualization/qtiplot-bin
 *sci-visualization/spyview
 *sys-boot/grub-static
 *sys-kernel/gentoo-sources
