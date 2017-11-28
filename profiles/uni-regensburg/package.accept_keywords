@@ -51,24 +51,15 @@ dev-perl/Lab-Measurement
 ~virtual/perl-version-0.991.700
 
 # dependencies of Lab-Measurement
-dev-perl/Alien-Gnuplot
-dev-perl/aliased
 dev-perl/Class-Method-Modifiers
 dev-perl/Dist-Zilla-Plugin-Config-Git
 dev-perl/Dist-Zilla-Plugin-Git
 dev-perl/Git-Wrapper
 dev-perl/MooseX-Has-Sugar
-dev-perl/MooseX-Params-Validate
 dev-perl/MooseX-Types-Path-Tiny
 dev-perl/MooseX-Types-Stringlike
-dev-perl/PDL-Graphics-Gnuplot
-dev-perl/PDL-Transform-Color
-dev-perl/Safe-Isa
 dev-perl/Test-Files
 dev-perl/TeX-Encode
-dev-perl/IO-Socket-Timeout
-dev-perl/PerlIO-via-Timeout
-dev-perl/Test-File
 dev-perl/Version-Next
 =dev-perl/App-Cmd-0.331.0
 =dev-perl/Archive-Tar-Wrapper-0.230.0
