@@ -10,6 +10,47 @@ app-shells/quoter
 # for measurement control
 dev-perl/Lab-Measurement
 =dev-perl/Lab-Measurement-9999 **
+
+# unfortunately for DZIL we have to use Perl 5.26
+=dev-lang/perl-5.26*
+~virtual/perl-Archive-Tar-2.240.0
+~virtual/perl-CPAN-Meta-2.150.10
+~virtual/perl-Carp-1.420.0
+~virtual/perl-Compress-Raw-Bzip2-2.74.0
+~virtual/perl-Compress-Raw-Zlib-2.74.0
+~virtual/perl-Data-Dumper-2.167.0
+~virtual/perl-Digest-MD5-2.550.0
+~virtual/perl-Digest-SHA-5.960.0
+~virtual/perl-Encode-2.880.0
+~virtual/perl-ExtUtils-MakeMaker-7.240.0
+~virtual/perl-ExtUtils-ParseXS-3.340.0
+~virtual/perl-File-Spec-3.670.0
+~virtual/perl-Filter-Simple-0.930.0
+~virtual/perl-Getopt-Long-2.490.0
+~virtual/perl-HTTP-Tiny-0.70.0
+~virtual/perl-IO-1.380.0
+~virtual/perl-IO-Compress-2.74.0
+~virtual/perl-IPC-Cmd-0.960.0
+~virtual/perl-JSON-PP-2.274.0.200_rc
+~virtual/perl-Locale-Maketext-1.280.0
+~virtual/perl-Math-Complex-1.590.100
+~virtual/perl-Module-Metadata-1.0.33
+~virtual/perl-Parse-CPAN-Meta-2.150.10
+~virtual/perl-Perl-OSType-1.10.0
+~virtual/perl-Scalar-List-Utils-1.460.200_rc
+~virtual/perl-Storable-2.620.0
+~virtual/perl-Sys-Syslog-0.350.0
+~virtual/perl-Term-ReadLine-1.160.0
+~virtual/perl-Test-Harness-3.380.0
+~virtual/perl-Test-Simple-1.302.96
+~virtual/perl-Thread-Semaphore-2.130.0
+~virtual/perl-XSLoader-0.270.0
+~virtual/perl-libnet-3.100.0
+~virtual/perl-parent-0.236.0
+~virtual/perl-podlators-4.90.0
+~virtual/perl-version-0.991.700
+
+# dependencies of Lab-Measurement
 dev-perl/Alien-Gnuplot
 dev-perl/aliased
 dev-perl/Class-Method-Modifiers
@@ -29,6 +70,54 @@ dev-perl/IO-Socket-Timeout
 dev-perl/PerlIO-via-Timeout
 dev-perl/Test-File
 dev-perl/Version-Next
+=dev-perl/App-Cmd-0.331.0
+=dev-perl/Archive-Tar-Wrapper-0.230.0
+=dev-perl/CPAN-Uploader-0.103.13
+=dev-perl/Config-INI-0.25.0
+=dev-perl/Config-MVP-2.200.10
+=dev-perl/Config-MVP-Reader-INI-2.101.463
+=dev-perl/Data-Section-0.200.7
+=dev-perl/Dist-Zilla-6.10.0-r2
+=dev-perl/Dist-Zilla-Plugin-AuthorsFromGit-0.6.0
+=dev-perl/Dist-Zilla-Plugin-PodWeaver-4.8.0
+=dev-perl/Dist-Zilla-Plugin-RPM-0.15.0
+=dev-perl/Dist-Zilla-Plugin-SurgicalPodWeaver-0.2.300
+=dev-perl/IO-TieCombine-1.5.0
+=dev-perl/Log-Dispatchouli-2.15.0
+=dev-perl/Log-Message-0.80.0
+=dev-perl/Log-Message-Simple-0.100.0
+=dev-perl/Mixin-Linewise-0.108.0
+=dev-perl/Module-Path-0.190.0
+=dev-perl/Moose-Autobox-0.160.0
+=dev-perl/MooseX-Getopt-0.710.0
+=dev-perl/MooseX-LazyRequire-0.110.0
+=dev-perl/MooseX-OneArgNew-0.5.0
+=dev-perl/MooseX-Role-Parameterized-1.100.0
+=dev-perl/MooseX-SetOnce-0.200.2
+=dev-perl/MooseX-Types-Perl-0.101.343
+=dev-perl/Perl-PrereqScanner-1.23.0
+=dev-perl/PerlIO-utf8_strict-0.7.0
+=dev-perl/Pod-Elemental-0.103.4
+=dev-perl/Pod-Elemental-PerlMunger-0.200.6
+=dev-perl/Pod-Eventual-0.94.1
+=dev-perl/Pod-Weaver-4.15.0
+=dev-perl/PPI-1.224.0
+=dev-perl/Role-HasMessage-0.6.0
+=dev-perl/Role-Identifiable-0.7.0
+=dev-perl/Software-License-0.103.12
+=dev-perl/String-Errf-0.8.0
+=dev-perl/String-Flogger-1.101.245
+=dev-perl/String-Formatter-0.102.84
+=dev-perl/String-RewritePrefix-0.7.0
+=dev-perl/String-Truncate-1.100.602
+=dev-perl/Sub-Exporter-GlobExporter-0.5.0
+=dev-perl/Syntax-Keyword-Junction-0.3.8
+=dev-perl/Term-Encoding-0.20.0
+=dev-perl/Term-UI-0.460.0
+=dev-perl/Time-Monotonic-0.9.8
+=dev-perl/syntax-0.4.0
+
+# hardware backends
 =sci-libs/linux-gpib-4.0.4_rc2
 dev-perl/Lab-Zhinst
 sci-electronics/labone
@@ -63,3 +152,9 @@ sci-libs/armadillo
 
 # this is required by xorg-drivers-1.19
 =x11-drivers/xf86-video-vmware-13.2.1
+
+# temporary stuff to avoid downgrades
+=sci-libs/gsl-2.4 ~amd64
+=dev-python/cycler-0.10.0 ~amd64
+=dev-python/versioneer-0.16 ~amd64
+=dev-python/matplotlib-1.5.3-r2 ~amd64
