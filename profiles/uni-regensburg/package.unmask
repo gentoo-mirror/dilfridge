@@ -1,3 +1,7 @@
 
 # this is only for use in Regensburg, only on specific boxes
 =dev-perl/Lab-Measurement-9999-r1
+
+# for pdftk only
+sys-devel/gcc:5.4.0
+app-text/pdftk
