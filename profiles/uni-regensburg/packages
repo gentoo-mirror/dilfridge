@@ -40,8 +40,8 @@
 *media-fonts/mathematica-fonts
 *media-fonts/terminus-font
 *media-fonts/ttf-bitstream-vera
+*net-misc/chrony
 *net-misc/dhcpcd
-*net-misc/ntp
 *net-misc/tlsdate
 *net-irc/quassel
 *sci-libs/armadillo
