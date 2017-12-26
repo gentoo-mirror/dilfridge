@@ -1,30 +1,38 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/rarfile/rarfile-2.6.ebuild,v 1.2 2013/09/05 18:47:11 mgorny Exp $
 
-EAPI=5
+EAPI=6
 
-PYTHON_COMPAT=( python{2_6,2_7} )
-inherit distutils-r1 git-r3
+PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} )
+inherit distutils-r1
+
+if [[ ${PV} == 9999 ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/Loisel/colorview2d.git"
+else
+	SRC_URI="mirror://pypi/r/${PN}/${P}.tar.gz"
+	KEYWORDS="~amd64"
+fi
 
 DESCRIPTION="Plotting and stuff"
-HOMEPAGE="https://gitorious.org/colorview2d/colorview2d/"
-# SRC_URI="mirror://pypi/r/${PN}/${P}.tar.gz"
-EGIT_REPO_URI="git://git.code.sf.net/p/colorview2d/code"
+HOMEPAGE="https://loisel.github.io/colorview2d/"
 
-LICENSE="as-is"
+LICENSE="BSD-2"
 SLOT="0"
-KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	dev-python/wxpython:*[${PYTHON_USEDEP}]
-	dev-python/matplotlib[${PYTHON_USEDEP}]
-	sci-libs/scipy[${PYTHON_USEDEP}]
-	dev-python/numpy[${PYTHON_USEDEP}]
-	dev-python/lmfit[${PYTHON_USEDEP}]
-	dev-python/pydispatcher[${PYTHON_USEDEP}]
 	dev-python/pyyaml[${PYTHON_USEDEP}]
-	dev-python/yapsy[${PYTHON_USEDEP}]
+	sci-libs/scikits_image[${PYTHON_USEDEP}]
+	dev-python/matplotlib[${PYTHON_USEDEP}]
+	dev-python/numpy[${PYTHON_USEDEP}]
+
 "
 RDEPEND="${DEPEND}"
+
+# likely not needed anymore:
+#	dev-python/wxpython:*[${PYTHON_USEDEP}]
+#	sci-libs/scipy[${PYTHON_USEDEP}]
+#	dev-python/lmfit[${PYTHON_USEDEP}]
+#	dev-python/pydispatcher[${PYTHON_USEDEP}]
+#	dev-python/yapsy[${PYTHON_USEDEP}]
