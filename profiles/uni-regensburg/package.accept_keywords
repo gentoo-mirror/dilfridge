@@ -6,6 +6,8 @@ app-shells/push
 app-portage/layman
 dev-python/ssl-fetch
 app-shells/quoter
+app-portage/gemato
+dev-python/bz2file
 
 # for measurement control
 dev-perl/Lab-Measurement
