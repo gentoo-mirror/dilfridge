@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -16,6 +16,7 @@ IUSE=""
 RESTRICT="fetch mirror"
 
 RDEPEND="
+	net-print/cups
 "
 DEPEND="${RDEPEND}
 "
@@ -27,4 +28,16 @@ src_install() {
 
 	mv -v "${D}/usr/lib" "${D}/usr/lib32" || die
 	mv -v "${D}/opt/novell/lib" "${D}/opt/novell/lib32" || die
+
+	rm -rf "${D}/etc/init.d" || die
+	rm -rf "${D}/usr/sbin" || die
+	doinitd "${FILESDIR}/novell-iprint-listener"
+	doinitd "${FILESDIR}/novell-iprint-listener-gui"
+
+	sed -e 's:/lib$:/lib32:g' -i "${D}/etc/ld.so.conf.d/novell-iprint-xclient" || die
+
+	mkdir -p "${D}/usr/lib32/nsbrowser" || die
+	mkdir -p "${D}/usr/lib64/nsbrowser" || die
+	mv -v "${D}/usr/lib/browser-plugins" "${D}/usr/lib32/nsbrowser/plugins" || die
+	mv -v "${D}/usr/lib64/browser-plugins" "${D}/usr/lib64/nsbrowser/plugins" || die
 }
