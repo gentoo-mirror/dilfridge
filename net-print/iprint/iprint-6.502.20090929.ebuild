@@ -33,8 +33,6 @@ src_install() {
 
 	rm -rf "${D}/etc/init.d" || die
 	rm -rf "${D}/usr/sbin" || die
-	doinitd "${FILESDIR}/novell-iprint-listener"
-	doinitd "${FILESDIR}/novell-iprint-listener-gui"
 
 	sed -e 's:/lib$:/lib32:g' -i "${D}/etc/ld.so.conf.d/novell-iprint-xclient" || die
 
