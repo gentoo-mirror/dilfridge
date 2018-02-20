@@ -45,6 +45,7 @@ dev-perl/Lab-Measurement
 ~virtual/perl-Term-ReadLine-1.160.0
 ~virtual/perl-Test-Harness-3.380.0
 ~virtual/perl-Test-Simple-1.302.96
+~perl-core/Test-Simple-1.302.96
 ~virtual/perl-Thread-Semaphore-2.130.0
 ~virtual/perl-XSLoader-0.270.0
 ~virtual/perl-libnet-3.100.0
