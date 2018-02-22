@@ -61,6 +61,7 @@ dev-perl/Git-Wrapper
 dev-perl/MooseX-Has-Sugar
 dev-perl/MooseX-Types-Path-Tiny
 dev-perl/MooseX-Types-Stringlike
+dev-perl/MooseX-StrictConstructor
 dev-perl/Test-Files
 dev-perl/TeX-Encode
 dev-perl/Version-Next
