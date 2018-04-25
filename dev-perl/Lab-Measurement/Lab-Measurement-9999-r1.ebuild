@@ -46,6 +46,7 @@ RDEPEND="
 	>=virtual/perl-Module-Load-0.260.0
 	>=dev-perl/Moose-2.121.300
 	>=dev-perl/MooseX-Params-Validate-0.180.0
+	dev-perl/MooseX-StrictConstructor
 	>=dev-perl/PDL-2.7.0
 	dev-perl/PDL-Graphics-Gnuplot
 	>=dev-perl/Role-Tiny-1.3.4
@@ -62,6 +63,8 @@ RDEPEND="
 	>=dev-perl/namespace-autoclean-0.200.0
 	virtual/perl-parent
 	sci-visualization/gnuplot
+	dev-perl/Lab-VXI11
+	dev-perl/USB-TMC
 "
 DEPEND="
 	${RDEPEND}
