@@ -12,6 +12,9 @@ dev-python/bz2file
 # for measurement control
 dev-perl/Lab-Measurement
 =dev-perl/Lab-Measurement-9999 **
+dev-perl/Lab-VXI11
+dev-perl/USB-TMC
+dev-perl/USB-LibUSB
 
 # unfortunately for DZIL we have to use Perl 5.26
 =dev-lang/perl-5.26*
