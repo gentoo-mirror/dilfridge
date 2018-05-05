@@ -1,4 +1,4 @@
-DEFINED_PHASES=install
+DEFINED_PHASES=install nofetch
 DESCRIPTION=Placeholder for an NI-VISA library ebuild
 EAPI=0
 HOMEPAGE=http://www.ni.com/
