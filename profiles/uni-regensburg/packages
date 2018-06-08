@@ -26,7 +26,6 @@
 *kde-apps/kate
 *kde-apps/kcalc
 *kde-apps/kdebase-meta
-*kde-apps/kde4-l10n
 *kde-apps/kompare
 *kde-apps/okular
 *kde-apps/kdepim-meta
@@ -42,7 +41,6 @@
 *media-fonts/ttf-bitstream-vera
 *net-misc/chrony
 *net-misc/dhcpcd
-*net-misc/tlsdate
 *net-irc/quassel
 *sci-libs/armadillo
 *sci-libs/linux-gpib
