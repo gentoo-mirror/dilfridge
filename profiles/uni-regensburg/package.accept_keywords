@@ -159,3 +159,4 @@ sci-libs/armadillo
 =dev-python/matplotlib-1.5.3-r2
 =app-office/libreoffice-bin-5.4.2.2-r1
 =app-office/libreoffice-bin-debug-5.4.2.2-r1
+=app-text/texlive-core-2017-r4
