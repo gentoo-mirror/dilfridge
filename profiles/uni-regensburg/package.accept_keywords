@@ -125,6 +125,7 @@ net-misc/tlsdate
 
 # working environment
 mail-client/novell-groupwise-client
+dev-util/patchelf
 
 # this is a live ebuild with some ~arch deps
 =sci-visualization/colorview2d-9999 **
