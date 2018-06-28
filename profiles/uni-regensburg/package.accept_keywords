@@ -59,6 +59,7 @@ dev-perl/USB-LibUSB
 ~virtual/perl-parent-0.236.0
 ~virtual/perl-podlators-4.90.0
 ~virtual/perl-version-0.991.700
+~dev-tex/latexdiff-1.2.1
 
 # dependencies of Lab-Measurement
 dev-perl/Class-Method-Modifiers
