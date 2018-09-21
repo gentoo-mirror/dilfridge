@@ -162,6 +162,6 @@ sci-libs/armadillo
 =dev-python/cycler-0.10.0
 =dev-python/versioneer-0.16
 =dev-python/matplotlib-1.5.3-r2
-=app-office/libreoffice-bin-5.4.2.2-r1
-=app-office/libreoffice-bin-debug-5.4.2.2-r1
+=app-office/libreoffice-bin-6.0.6*
+=app-office/libreoffice-bin-debug-6.0.6*
 =app-text/texlive-core-2017-r4
