@@ -35,10 +35,13 @@ dev-perl/USB-LibUSB
 ~virtual/perl-HTTP-Tiny-0.70.0
 ~virtual/perl-IO-1.380.0
 ~virtual/perl-IO-Compress-2.74.0
+~virtual/perl-IO-Socket-IP-0.380.0
 ~virtual/perl-IPC-Cmd-0.960.0
 ~virtual/perl-JSON-PP-2.274.0.200_rc
 ~virtual/perl-Locale-Maketext-1.280.0
 ~virtual/perl-Math-Complex-1.590.100
+~virtual/perl-Module-CoreList-5.201.806.260
+~perl-core/Module-CoreList-5.201.806.260
 ~virtual/perl-Module-Metadata-1.0.33
 ~virtual/perl-Parse-CPAN-Meta-2.150.10
 ~virtual/perl-Perl-OSType-1.10.0
@@ -46,6 +49,7 @@ dev-perl/USB-LibUSB
 ~virtual/perl-Storable-2.620.0
 ~virtual/perl-Sys-Syslog-0.350.0
 ~virtual/perl-Term-ReadLine-1.160.0
+~virtual/perl-Term-ReadLine-1.170.0
 ~virtual/perl-Test-Harness-3.380.0
 ~virtual/perl-Test-Simple-1.302.96
 ~perl-core/Test-Simple-1.302.96
