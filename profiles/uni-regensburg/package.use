@@ -32,6 +32,7 @@ sys-libs/talloc python
 sys-libs/tdb python
 sys-libs/tevent python
 sys-libs/zlib minizip
+virtual/libudev static-libs
 x11-base/xorg-server xvfb
 x11-libs/libdrm libkms
 x11-libs/qt-assistant compat
