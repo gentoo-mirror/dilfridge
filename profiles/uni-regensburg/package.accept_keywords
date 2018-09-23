@@ -169,3 +169,4 @@ sci-libs/armadillo
 
 # use new pdftk
 ~app-text/pdftk-3.0.0
+~dev-java/commons-lang-3.6
