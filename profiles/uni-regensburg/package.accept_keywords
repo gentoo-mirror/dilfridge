@@ -166,3 +166,6 @@ sci-libs/armadillo
 =app-office/libreoffice-bin-6.0.6*
 =app-office/libreoffice-bin-debug-6.0.6*
 =app-text/texlive-core-2017-r4
+
+# use new pdftk
+~app-text/pdftk-3.0.0
