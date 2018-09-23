@@ -128,6 +128,7 @@ sci-electronics/labone
 net-misc/tlsdate
 
 # working environment
+app-text/xournal
 mail-client/novell-groupwise-client
 dev-util/patchelf
 
