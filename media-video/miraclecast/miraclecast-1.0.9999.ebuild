@@ -45,3 +45,10 @@ src_configure() {
 
 	cmake-utils_src_configure
 }
+
+src_install() {
+	cmake-utils_src_install
+
+	insinto /etc/dbus-1/system.d
+	doins res/org.freedesktop.miracle.conf
+}
