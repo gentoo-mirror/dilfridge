@@ -72,19 +72,19 @@ src_install() {
 
 	# fix some embedded paths and install desktop files
 	insinto /usr/share/applications
-	for filename in $(find "${D}/opt/Wolfram/Mathematica/10.3/SystemFiles/Installation" -name "*.desktop") ; do
+	for filename in $(find "${D}/opt/Wolfram/Mathematica/10.3/SystemFiles/Installation" -name "wolfram-mathematica.desktop") ; do
 		echo Fixing "${filename}"
 		sed -e "s:${S}::g" -e 's:^\t\t::g' -i "${filename}"
-		echo "Categories=Mathematics;Physics;Science;Engineering;2DGraphics;Graphics;" >> "${filename}"
+		echo "Categories=Physics;Science;Engineering;2DGraphics;Graphics;" >> "${filename}"
 		doins "${filename}"
 	done
 
-	# install a wrapper
-	for name in ${M_BINARIES} ; do
-		echo '#!/bin/sh' >> "${T}/${name}"
-		echo "LD_PRELOAD=/usr/$(get_libdir)/libfreetype.so.6:/lib/libz.so.1 /opt/Wolfram/${MPN}/${MPV}/Executables/${name} \$*" \
-			 >> "${T}/${name}"
-		dobin "${T}/${name}"
+	# install mime types
+	insinto /usr/share/mime/application
+	for filename in $(find "${D}/opt/Wolfram/Mathematica/10.3/SystemFiles/Installation" -name "application-*.xml"); do
+		basefilename=$(basename "${filename}")
+		mv "${filename}" "${T}/${basefilename#application-}"
+		doins "${T}/${basefilename#application-}"
 	done
 }
 
