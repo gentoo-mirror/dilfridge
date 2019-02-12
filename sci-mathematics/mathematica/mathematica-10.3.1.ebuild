@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit multilib versionator
+inherit multilib versionator xdg
 
 DESCRIPTION="Wolfram Mathematica"
 SRC_URI="Mathematica_${PV}_LINUX.sh"
