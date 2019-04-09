@@ -35,13 +35,10 @@ src_install() {
 	rm -r "${D}"/usr/lib{64,}/mozilla
 	rm -r "${D}/opt/novell/iprint/plugin"
 
-	# We dont need the rc-scripts
+	# We dont need the rc-scripts since this is not a system
+	# service. Whoever wrote the package misunderstood something.
 	rm "${D}"/usr/sbin/rcnovell-iprint-listener*
-
-	# We install our own init scripts
 	rm "${D}"/etc/init.d/novell-iprint-listener*
-	doinitd "${FILESDIR}/novell-iprint-listener"
-	doinitd "${FILESDIR}/novell-iprint-listener-gui"
 
 	# The log dir
 	keepdir /var/opt/novell/log/iprint/client
