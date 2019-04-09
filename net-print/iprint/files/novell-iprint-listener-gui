@@ -1,0 +1,13 @@
+#!/sbin/openrc-run
+# Copyright 2019 Gentoo Authors
+
+description="iprint-listener-gui daemon providing network printing"
+command="/opt/novell/iprint/bin/iprint-listener-gui"
+command_args=""
+
+depend() {
+	use net
+	need cups
+	before nfs
+	after logger
+}
