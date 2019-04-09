@@ -7,7 +7,7 @@ command_args=""
 
 depend() {
 	use net
-	need cups
+	need cupsd
 	before nfs
 	after logger
 }
