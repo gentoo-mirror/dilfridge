@@ -125,9 +125,6 @@ dev-perl/Version-Next
 dev-perl/Lab-Zhinst
 sci-electronics/labone
 
-# not stable yet
-net-misc/tlsdate
-
 # working environment
 app-text/xournal
 mail-client/novell-groupwise-client
@@ -153,24 +150,11 @@ sci-libs/armadillo
 =sys-kernel/gentoo-sources-4.9*
 =sys-kernel/gentoo-sources-4.14*
 
-# needed by texstudio, effectively (this version can provide both qt4 and qt5)
-=dev-libs/quazip-0.7.2
-
 # this is required by xorg-drivers-1.19
 =x11-drivers/xf86-video-vmware-13.2.1
 
 # temporary stuff to avoid downgrades
 =sci-libs/gsl-2.4
-=dev-python/cycler-0.10.0
-=dev-python/versioneer-0.16
-=dev-python/matplotlib-1.5.3-r2
-=app-office/libreoffice-bin-6.0.6*
-=app-office/libreoffice-bin-debug-6.0.6*
-=app-text/texlive-core-2017-r4
-
-# use new pdftk
-~app-text/pdftk-3.0.0
-~dev-java/commons-lang-3.6
 
 # use new revtex
 dev-tex/revtex
