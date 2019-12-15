@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=0
@@ -8,7 +8,7 @@ EAPI=0
 #      we never updated any of the source code (it still all wants menu.lst),
 #      and there is no indication that upstream is making the transition.
 
-inherit eutils mount-boot toolchain-funcs linux-info
+inherit eutils toolchain-funcs linux-info
 
 PATCHVER="1.14" # Not used, just for tracking with main grub
 
@@ -146,27 +146,15 @@ setup_boot_dir() {
 }
 
 pkg_postinst() {
-	mount-boot_mount_boot_partition
-
-	if [[ -n ${DONT_MOUNT_BOOT} ]]; then
-		elog "WARNING: you have DONT_MOUNT_BOOT in effect, so you must apply"
-		elog "the following instructions for your /boot!"
-		elog "Neglecting to do so may cause your system to fail to boot!"
-		elog
-	else
-		setup_boot_dir "${ROOT}"/boot
-		# Trailing output because if this is run from pkg_postinst, it gets mixed into
-		# the other output.
-		einfo ""
-	fi
+	setup_boot_dir "${ROOT}"/boot
+	# Trailing output because if this is run from pkg_postinst, it gets mixed into
+	# the other output.
+	einfo ""
 	elog "To interactively install grub files to another device such as a USB"
 	elog "stick, just run the following and specify the directory as prompted:"
 	elog "   emerge --config =${PF}"
 	elog "Alternately, you can export GRUB_ALT_INSTALLDIR=/path/to/use to tell"
 	elog "grub where to install in a non-interactive way."
-
-	# needs to be after we call setup_boot_dir
-	mount-boot_pkg_postinst
 }
 
 pkg_config() {
