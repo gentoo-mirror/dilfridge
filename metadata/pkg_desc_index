@@ -5,6 +5,7 @@ dev-python/lmfit 0.8.3: Non-Linear Least-Square Minimization and Curve-Fitting
 dev-tex/frutiger 1.0-r1: LaTeX2e macros for the Uni Regensburg Corporate Design
 dev-tex/winfonts 20060122: LaTeX package to use the basic Windows truetype fonts
 dev-util/xwpe 1.5.30a: Simple programming environment mimicking ancient Borland C and Pascal
+media-gfx/iscan 3.61.0: EPSON Image Scan v3 for Linux
 media-libs/opentld 1.4.0: Library for tracking objects in video streams
 media-video/miraclecast 1.0.9999: Wifi-Display/Miracast Implementation
 net-analyzer/net-snmp 5.7.3-r5: Software for generating and retrieving SNMP data
