@@ -2,8 +2,6 @@ dev-perl/Lab-Measurement 9999-r1: Measurement control and automation with Perl
 dev-perl/Lab-Measurement-DocWriter 1.000: Documentation formatting for Lab::Measurement
 dev-perl/Lab-VISA 3.20.0 9999: Perl interface to National Instrument's VISA library
 dev-python/lmfit 0.8.3: Non-Linear Least-Square Minimization and Curve-Fitting
-dev-tex/frutiger 1.0-r1: LaTeX2e macros for the Uni Regensburg Corporate Design
-dev-tex/winfonts 20060122: LaTeX package to use the basic Windows truetype fonts
 dev-util/xwpe 1.5.30a: Simple programming environment mimicking ancient Borland C and Pascal
 media-gfx/iscan 3.61.0: EPSON Image Scan v3 for Linux
 media-libs/opentld 1.4.0: Library for tracking objects in video streams
