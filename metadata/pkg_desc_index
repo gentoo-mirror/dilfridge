@@ -3,11 +3,7 @@ dev-perl/Lab-Measurement-DocWriter 1.000: Documentation formatting for Lab::Meas
 dev-perl/Lab-VISA 3.20.0 9999: Perl interface to National Instrument's VISA library
 dev-python/lmfit 0.8.3: Non-Linear Least-Square Minimization and Curve-Fitting
 dev-util/xwpe 1.5.30a: Simple programming environment mimicking ancient Borland C and Pascal
-media-gfx/iscan 3.61.0: EPSON Image Scan v3 for Linux
-media-libs/opentld 1.4.0: Library for tracking objects in video streams
 media-video/miraclecast 1.0.9999: Wifi-Display/Miracast Implementation
-net-analyzer/net-snmp 5.7.3-r5: Software for generating and retrieving SNMP data
-net-libs/qtsoap 0_pre20141221: Qt library for basic web service support with version 1.1 of the SOAP protocol
 net-misc/rexjuniper 6.5_p6: Regensbug University Juniper VPN client
 net-p2p/twister 9999: Fully decentralized P2P microblogging platform
 net-print/iprint 6.503.20111114.6.5: Micro Focus iPrint client
