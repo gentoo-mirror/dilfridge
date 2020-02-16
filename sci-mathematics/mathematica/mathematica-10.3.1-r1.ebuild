@@ -51,7 +51,7 @@ src_install() {
 	for name in ${M_BINARIES} ; do
 		einfo "Generating wrapper for ${name}"
 		echo '#!/bin/sh' >> "${T}/${name}"
-		echo "LD_PRELOAD=/usr/$(get_libdir)/libfreetype.so.6:/lib/libz.so.1 /opt/Wolfram/${MPN}/${MPV}/Executables/${name} \$*" \
+		echo "LD_PRELOAD=/usr/$(get_libdir)/libfreetype.so.6:/$(get_libdir)/libz.so.1 /opt/Wolfram/${MPN}/${MPV}/Executables/${name} \$*" \
 			>> "${T}/${name}"
 		dobin "${T}/${name}"
 	done
