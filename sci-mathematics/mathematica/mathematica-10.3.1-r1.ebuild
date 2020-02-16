@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -18,29 +18,9 @@ RESTRICT="strip mirror bindist fetch"
 
 DEPEND=""
 
-# this list comes from lsof output
-# probably there are still some libraries missing
+# Mathematica comes with a lot of bundled stuff. We should place here only what we
+# explicitly override with LD_PRELOAD.
 RDEPEND="
-	x11-libs/libICE
-	x11-libs/libSM
-	x11-libs/libX11
-	x11-libs/libXau
-	x11-libs/libXcursor
-	x11-libs/libXdmcp
-	x11-libs/libXext
-	x11-libs/libXfixes
-	x11-libs/libXi
-	x11-libs/libXmu
-	x11-libs/libXrandr
-	x11-libs/libXrender
-	x11-libs/libXt
-	media-libs/alsa-lib
-	dev-libs/expat
-	media-libs/fontconfig
-	dev-libs/icu
-	x11-libs/libxcb
-	dev-libs/libxml2
-	sys-libs/ncurses:5/5
 	media-libs/freetype
 "
 
