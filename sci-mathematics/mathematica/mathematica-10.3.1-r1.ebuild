@@ -54,9 +54,8 @@ src_install() {
 			>> "${T}/${name}"
 		dobin "${T}/${name}"
 	done
-	insinto /opt/bin
 	for name in ${M_BINARIES} ; do
-		dosym ${name} ../../usr/bin/${name}
+		dosym /opt/bin/${name} ../../usr/bin/${name}
 	done
 
 	# fix some embedded paths and install desktop files
