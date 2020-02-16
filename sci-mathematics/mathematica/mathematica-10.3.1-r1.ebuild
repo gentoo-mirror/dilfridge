@@ -49,13 +49,15 @@ src_install() {
 
 	# install wrappers instead
 	for name in ${M_BINARIES} ; do
+		einfo "Generating wrapper for ${name}"
 		echo '#!/bin/sh' >> "${T}/${name}"
 		echo "LD_PRELOAD=/usr/$(get_libdir)/libfreetype.so.6:/lib/libz.so.1 /opt/Wolfram/${MPN}/${MPV}/Executables/${name} \$*" \
 			>> "${T}/${name}"
 		dobin "${T}/${name}"
 	done
 	for name in ${M_BINARIES} ; do
-		dosym /opt/bin/${name} ../../usr/bin/${name}
+		einfo "Symlinking ${name} to /opt/bin"
+		dosym ../../usr/bin/${name} /opt/bin/${name}
 	done
 
 	# fix some embedded paths and install desktop files
