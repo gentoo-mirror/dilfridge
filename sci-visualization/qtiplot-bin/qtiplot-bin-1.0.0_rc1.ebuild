@@ -1,11 +1,11 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 DESCRIPTION="Qt based clone of the Origin plotting package, commercial binary"
 HOMEPAGE="http://www.qtiplot.com/"
-SRC_URI="050415_qtiplot-0.9.9-rc15-32bit-static.tar.bz2"
+SRC_URI="020518_qtiplot-1.0.0-rc1-32bit-static.tar.bz2"
 
 LICENSE="all-rights-reserved"
 SLOT="0"
