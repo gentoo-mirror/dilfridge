@@ -1,10 +1,7 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
-EAPI=2
-
-inherit base
+EAPI=7
 
 DESCRIPTION="Simple programming environment mimicking ancient Borland C and Pascal"
 HOMEPAGE="http://www.identicalsoftware.com/xwpe/"
@@ -19,7 +16,6 @@ DEPEND="sys-libs/ncurses
 	sys-libs/gpm
 	sys-libs/zlib
 	X? ( x11-libs/libX11 )"
-
 RDEPEND="${DEPEND}"
 
 PATCHES=( "${FILESDIR}/${P}-destdir.patch" )
