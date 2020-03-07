@@ -1,8 +1,7 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/rarfile/rarfile-2.6.ebuild,v 1.2 2013/09/05 18:47:11 mgorny Exp $
 
-EAPI=5
+EAPI=7
 
 PYTHON_COMPAT=( python2_7 )
 inherit distutils-r1
