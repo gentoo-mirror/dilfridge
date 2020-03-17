@@ -5,7 +5,6 @@ dev-python/lmfit 0.8.3: Non-Linear Least-Square Minimization and Curve-Fitting
 dev-tex/frutiger 1.0-r1: LaTeX2e macros for the Uni Regensburg Corporate Design
 dev-util/xwpe 1.5.30a: Simple programming environment mimicking ancient Borland C and Pascal
 media-video/miraclecast 1.0.9999: Wifi-Display/Miracast Implementation
-net-im/teams 1.3.00.958: Microsoft Teams, an Office 365 multimedia collaboration client
 net-print/iprint 6.503.20111114.6.5: Micro Focus iPrint client
 sci-libs/ni-visa 0: Placeholder for an NI-VISA library ebuild
 sci-mathematics/mathematica 10.3.1-r1: Wolfram Mathematica
