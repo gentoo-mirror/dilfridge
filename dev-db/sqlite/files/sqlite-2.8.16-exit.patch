@@ -1,7 +1,7 @@
 temp.c:4:1: warning: incompatible implicit declaration of built-in function ‘exit’
 
---- Makefile.in
-+++ Makefile.in
+--- a/Makefile.in
++++ b/Makefile.in
 @@ -269,6 +269,7 @@
  #
  config.h:	
