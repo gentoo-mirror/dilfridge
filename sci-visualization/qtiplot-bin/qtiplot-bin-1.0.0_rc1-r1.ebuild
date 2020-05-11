@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -18,6 +18,7 @@ QA_PREBUILT="*"
 S=${WORKDIR}
 
 RDEPEND="
+	=dev-db/sqlite-2*
 	dev-libs/glib
 	media-libs/fontconfig
 	media-libs/freetype
