@@ -8,7 +8,6 @@ dev-util/xwpe 1.5.30a: Simple programming environment mimicking ancient Borland 
 media-video/miraclecast 1.0.9999: Wifi-Display/Miracast Implementation
 net-print/iprint 6.503.20111114.6.5: Micro Focus iPrint client
 sci-libs/ni-visa 0: Placeholder for an NI-VISA library ebuild
-sci-mathematics/mathematica 10.3.1-r1 12.1.1: Wolfram Mathematica
 sci-visualization/colorview2d 0.6.5 9999: Plotting and stuff
 sci-visualization/qtiplot-bin 1.0.0_rc1-r1: Qt based clone of the Origin plotting package, commercial binary
 sys-boot/grub-static 0.97-r12: GNU GRUB Legacy boot loader (static build)
