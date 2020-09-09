@@ -1,3 +1,4 @@
+app-admin/chr 9999: Set of chroot scripts, handled as OpenRC services
 dev-db/sqlite 2.8.16-r100: SQLite: an SQL Database Engine in a C Library
 dev-perl/Lab-Measurement 9999-r1: Measurement control and automation with Perl
 dev-perl/Lab-Measurement-DocWriter 1.000: Documentation formatting for Lab::Measurement
