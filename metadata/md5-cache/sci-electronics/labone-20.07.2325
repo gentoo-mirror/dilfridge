@@ -1,0 +1,10 @@
+DEFINED_PHASES=install prerm
+DESCRIPTION=Platform independent instrument control for Zurich Instruments devices
+EAPI=6
+HOMEPAGE=https://www.zhinst.com/labone
+IUSE=minimal
+LICENSE=zi-labone
+RESTRICT=mirror bindist
+SLOT=0
+SRC_URI=https://www.zhinst.com/sites/default/files/media/release_file/2020-09/LabOneLinux64-20.07.2325.tar.gz
+_md5_=bc04d67470597369f34e45c66732f42f
