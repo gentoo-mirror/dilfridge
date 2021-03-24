@@ -22,4 +22,5 @@ GENTOO_MIRRORS="http://ftp.uni-erlangen.de/pub/mirrors/gentoo ftp://ftp.uni-erla
 
 # since we use LabOne we also need to accept its license
 # bh-luxi: fonts may not be modified, otherwise OK
-ACCEPT_LICENSE="${ACCEPT_LICENSE} bh-luxi zi-labone"
+# Perl-DL: mostly harmless
+ACCEPT_LICENSE="${ACCEPT_LICENSE} bh-luxi PerlDL zi-labone"
