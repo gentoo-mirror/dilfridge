@@ -37,7 +37,6 @@
 *media-fonts/corefonts
 *media-fonts/font-bh-ttf
 *media-fonts/font-bh-type1
-*media-fonts/mathematica-fonts
 *media-fonts/terminus-font
 *media-fonts/ttf-bitstream-vera
 *net-misc/chrony
@@ -50,7 +49,7 @@
 *sci-visualization/spyview
 *sys-boot/grub-static
 *sys-kernel/gentoo-sources
-*sys-process/vixie-cron
+*sys-process/cronie
 *www-client/firefox
 *x11-apps/xdm
 *x11-base/xorg-server
