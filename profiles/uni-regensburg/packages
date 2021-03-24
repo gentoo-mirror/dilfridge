@@ -50,7 +50,7 @@
 *sci-visualization/spyview
 *sys-boot/grub-static
 *sys-kernel/gentoo-sources
-*sys-process/vixie-cron
+*sys-process/cronie
 *www-client/firefox
 *x11-apps/xdm
 *x11-base/xorg-server
