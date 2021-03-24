@@ -73,6 +73,7 @@ dev-perl/Version-Next
 =dev-perl/Term-Encoding-0.20.0
 =dev-perl/Term-UI-0.460.0
 =dev-perl/Time-Monotonic-0.9.8
+=dev-perl/Types-Path-Tiny-0.6.0
 =dev-perl/syntax-0.4.0
 
 # hardware backends
