@@ -17,7 +17,6 @@
 *dev-perl/Lab-Measurement
 *dev-perl/Lab-Zhinst
 *dev-perl/TimeDate
-*dev-tex/frutiger
 *dev-tex/latex-beamer
 *dev-tex/revtex
 *dev-vcs/git
@@ -31,7 +30,6 @@
 *kde-apps/kdepim-meta
 *kde-plasma/sddm-kcm
 *kde-plasma/plasma-meta
-*mail-client/novell-groupwise-client
 *media-gfx/gimp
 *media-gfx/inkscape
 *media-fonts/corefonts
