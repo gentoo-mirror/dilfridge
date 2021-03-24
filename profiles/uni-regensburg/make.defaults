@@ -5,7 +5,7 @@ FCFLAGS="${CFLAGS}"
 
 # Defaults for X11
 # warning: use_expand does not mix well with profiles
-USE="-video_cards_* -input_devices_* video_cards_nvidia video_cards_intel video_cards_vmware input_devices_evdev"
+USE="-video_cards_* -input_devices_* video_cards_nvidia video_cards_intel video_cards_vmware input_devices_libinput"
 
 # use flags
 USE="${USE} crypt git perl ssl subversion"
@@ -23,4 +23,4 @@ GENTOO_MIRRORS="http://ftp.uni-erlangen.de/pub/mirrors/gentoo ftp://ftp.uni-erla
 # since we use LabOne we also need to accept its license
 # bh-luxi: fonts may not be modified, otherwise OK
 # Perl-DL: mostly harmless
-ACCEPT_LICENSE="${ACCEPT_LICENSE} bh-luxi PerlDL zi-labone"
+ACCEPT_LICENSE="${ACCEPT_LICENSE} bh-luxi MSttfEULA linux-firmware PerlDL zi-labone"

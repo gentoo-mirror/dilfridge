@@ -25,7 +25,7 @@
 *dev-vcs/subversion
 *kde-apps/kate
 *kde-apps/kcalc
-*kde-apps/kdebase-meta
+*kde-apps/kdecore-meta
 *kde-apps/kompare
 *kde-apps/okular
 *kde-apps/kdepim-meta
