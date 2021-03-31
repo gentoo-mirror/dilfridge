@@ -1,3 +1,9 @@
+# we always want to run the newest stable series kernel
+=sys-kernel/gentoo-sources-4.4*
+=sys-kernel/gentoo-sources-4.9*
+=sys-kernel/gentoo-sources-4.14*
+=sys-kernel/gentoo-sources-5.10*
+
 # nobody should have to run revdep-rebuild. ever.
 sys-apps/portage
 app-portage/ufed
@@ -100,11 +106,6 @@ sci-visualization/qtiplot-bin
 
 # we want to have nice numerics.
 sci-libs/armadillo
-
-# we always want to run the newest stable series kernel
-=sys-kernel/gentoo-sources-4.4*
-=sys-kernel/gentoo-sources-4.9*
-=sys-kernel/gentoo-sources-4.14*
 
 # this is required by xorg-drivers-1.19
 =x11-drivers/xf86-video-vmware-13.2.1
