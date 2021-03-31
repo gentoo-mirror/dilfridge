@@ -4,6 +4,7 @@ DEPEND=virtual/latex-base >=sys-apps/texinfo-4.2-r5
 DESCRIPTION=LaTeX2e macros for the Uni Regensburg Corporate Design
 EAPI=7
 HOMEPAGE=http://www.physik.uni-regensburg.de/service/
+INHERIT=latex-package
 KEYWORDS=amd64 x86
 LICENSE=all-rights-reserved
 RDEPEND=virtual/latex-base
