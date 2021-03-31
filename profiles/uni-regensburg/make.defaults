@@ -8,7 +8,7 @@ FCFLAGS="${CFLAGS}"
 USE="-video_cards_* -input_devices_* video_cards_nvidia video_cards_intel video_cards_vmware input_devices_libinput"
 
 # use flags
-USE="${USE} crypt git perl ssl subversion"
+USE="${USE} -bluetooth crypt git -modemmanager -networkmanager perl ssl subversion -telepathy -wifi -wireless"
 
 # portage settings
 FEATURES="sandbox strict userfetch userpriv usersandbox compress-build-logs"
