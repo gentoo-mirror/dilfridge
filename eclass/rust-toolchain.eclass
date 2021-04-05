@@ -49,6 +49,7 @@ rust_abi() {
 		mipsel*)	  echo mipsel-unknown-linux-gnu;;
 		mips*)		  echo mips-unknown-linux-gnu;;
 		powerpc*)	  echo powerpc-unknown-linux-gnu;;
+		riscv64*)         echo riscv64gc-unknown-linux-gnu;;
 		s390x*)		  echo s390x-unknown-linux-gnu;;
 		*)			  echo ${CTARGET};;
   esac
@@ -117,6 +118,7 @@ rust_all_arch_uris()
   uris+="ppc?        ( $(rust_arch_uri powerpc-unknown-linux-gnu      "$@") ) "
   uris+="ppc64?      ( $(rust_arch_uri powerpc64-unknown-linux-gnu    "$@")
                        $(rust_arch_uri powerpc64le-unknown-linux-gnu  "$@") ) "
+  uris+="riscv?      ( $(rust_arch_uri riscv64gc-unknown-linux-gnu      "$@") ) "
   uris+="s390?       ( $(rust_arch_uri s390x-unknown-linux-gnu        "$@") ) "
   uris+="abi_x86_32? ( $(rust_arch_uri i686-unknown-linux-gnu         "$@") ) "
   echo "${uris}"
