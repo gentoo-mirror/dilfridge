@@ -1,15 +1,14 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=7
 
 inherit autotools eutils pam systemd
 
 DESCRIPTION="An open source Remote Desktop Protocol server"
 HOMEPAGE="http://www.xrdp.org/"
-# mirrored from https://github.com/neutrinolabs/xrdp/releases
-SRC_URI="https://dev.gentoo.org/~mgorny/dist/${P}.tar.xz"
+SRC_URI="https://github.com/neutrinolabs/xrdp/releases/download/v${PV}/${P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
@@ -23,10 +22,9 @@ RDEPEND="dev-libs/openssl:0=
 	fuse? ( sys-fs/fuse:0= )
 	jpeg? ( virtual/jpeg:0= )
 	kerberos? ( virtual/krb5:0= )
-	pam? ( virtual/pam:0= )
+	pam? ( sys-libs/pam:0= )
 	pulseaudio? ( media-sound/pulseaudio:0= )"
-DEPEND="${RDEPEND}
-	app-arch/xz-utils"
+BDEPEND=${RDEPEND}
 RDEPEND="${RDEPEND}
 	|| (
 		net-misc/tigervnc:0[server,xorgmodule]
@@ -39,17 +37,12 @@ RDEPEND="${RDEPEND}
 #	xrdpvr? ( virtual/ffmpeg:0= )
 
 src_prepare() {
-	epatch_user
-
-	# #540630: crypt() unchecked for NULL return
-	epatch "${FILESDIR}"/${P}-crypt-null-return.patch
+	default
 
 	# don't let USE=debug adjust CFLAGS
 	sed -i -e 's:-g -O0::' configure.ac || die
 	# disallow root login by default
-	sed -i -e '/^AllowRootLogin/s/1/0/' sesman/sesman.ini || die
-	# Fedora files, not included here
-	sed -i -e '/EnvironmentFile=/d' instfiles/*.service || die
+	sed -i -e '/^AllowRootLogin/s/true/false/' sesman/sesman.ini || die
 	# reorder so that X11rdp comes last again since it's not supported
 	sed -i -e '/^\[xrdp1\]$/,/^$/{wxrdp.ini.tmp
 		;d}' xrdp/xrdp.ini || die
