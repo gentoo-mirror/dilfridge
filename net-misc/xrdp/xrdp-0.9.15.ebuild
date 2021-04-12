@@ -1,6 +1,5 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=7
 
@@ -39,21 +38,10 @@ RDEPEND="${RDEPEND}
 src_prepare() {
 	default
 
-	# don't let USE=debug adjust CFLAGS
-	sed -i -e 's:-g -O0::' configure.ac || die
 	# disallow root login by default
 	sed -i -e '/^AllowRootLogin/s/true/false/' sesman/sesman.ini || die
-	# reorder so that X11rdp comes last again since it's not supported
-	sed -i -e '/^\[xrdp1\]$/,/^$/{wxrdp.ini.tmp
-		;d}' xrdp/xrdp.ini || die
-	# move newline to the beginning
-	sed -i -e 'x' xrdp.ini.tmp || die
-	cat xrdp.ini.tmp >> xrdp/xrdp.ini || die
-	rm -f xrdp.ini.tmp || die
 
 	eautoreconf
-	# part of ./bootstrap
-	ln -s ../config.c sesman/tools/config.c || die
 }
 
 src_configure() {
@@ -61,16 +49,15 @@ src_configure() {
 		&& ewarn "Both kerberos & pam auth enabled, kerberos will take precedence."
 
 	local myconf=(
-		# warning: configure.ac is completed flawed
-
 		--localstatedir="${EPREFIX}"/var
 
 		# -- authentication backends --
 		# kerberos is inside !SESMAN_NOPAM conditional for no reason
 		$(use pam || use kerberos || echo --enable-nopam)
 		$(usex kerberos --enable-kerberos '')
+
 		# pam_userpass is not in Gentoo at the moment
-		#--disable-pamuserpass
+		--disable-pamuserpass
 
 		# -- jpeg support --
 		$(usex jpeg --enable-jpeg '')
@@ -87,7 +74,7 @@ src_configure() {
 		# $(usex neutrinordp --enable-neutrinordp '')
 		# $(usex xrdpvr --enable-xrdpvr '')
 
-		"$(systemd_with_unitdir)"
+		--with-systemdsystemunitdir="$(systemd_get_systemunitdir)"
 	)
 
 	econf "${myconf[@]}"
@@ -95,7 +82,8 @@ src_configure() {
 
 src_install() {
 	default
-	prune_libtool_files --all
+
+	find "${ED}" -name '*.la' -delete || die
 
 	# use our pam.d file since upstream's incompatible with Gentoo
 	use pam && newpamd "${FILESDIR}"/xrdp-sesman.pamd xrdp-sesman
@@ -103,15 +91,11 @@ src_install() {
 	exeinto /etc/xrdp
 	doexe "${FILESDIR}"/startwm.sh
 
-	# Fedora stuff
-	rm -r "${ED}"/etc/default || die
-
 	# own /etc/xrdp/rsakeys.ini
 	: > rsakeys.ini
 	insinto /etc/xrdp
 	doins rsakeys.ini
 
-	# contributed by Jan Psota <jasiupsota@gmail.com>
 	newinitd "${FILESDIR}/${PN}-initd" ${PN}
 }
 
@@ -141,5 +125,5 @@ pkg_postinst() {
 
 	elog "Various session types require different backend implementations:"
 	elog "- sesman-Xvnc requires net-misc/tigervnc[server,xorgmodule]"
-	elog "- sesman-X11rdp requires net-misc/x11rdp"
+	elog "- sesman-Xorgrdp requires net-misc/xorgxrdp"
 }
