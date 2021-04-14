@@ -102,11 +102,11 @@ src_install() {
 pkg_preinst() {
 	# either copy existing keys over to avoid CONFIG_PROTECT whining
 	# or generate new keys (but don't include them in binpkg!)
-	if [[ -f ${EROOT}/etc/xrdp/rsakeys.ini ]]; then
+	if [[ -f "${EROOT}"/etc/xrdp/rsakeys.ini ]]; then
 		cp {"${EROOT}","${ED}"}/etc/xrdp/rsakeys.ini || die
 	else
 		einfo "Running xrdp-keygen to generate new rsakeys.ini ..."
-		"${ED}"/usr/bin/xrdp-keygen xrdp "${ED}"/etc/xrdp/rsakeys.ini \
+		LD_LIBRARY_PATH="${ED}"/usr/lib64/xrdp "${ED}"/usr/bin/xrdp-keygen xrdp "${ED}"/etc/xrdp/rsakeys.ini \
 			|| die "xrdp-keygen failed to generate RSA keys"
 	fi
 }
