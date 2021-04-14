@@ -23,11 +23,11 @@ RDEPEND="dev-libs/openssl:0=
 	kerberos? ( virtual/krb5:0= )
 	pam? ( sys-libs/pam:0= )
 	pulseaudio? ( media-sound/pulseaudio:0= )"
-BDEPEND=${RDEPEND}
-RDEPEND="${RDEPEND}
+DEPEND=${RDEPEND}
+PDEPEND="
 	|| (
-		net-misc/tigervnc:0[server,xorgmodule]
-		net-misc/x11rdp:0
+		net-misc/tigervnc[server,xorgmodule]
+		net-misc/xorgxrdp
 	)"
 
 # does not work with gentoo version of freerdp
