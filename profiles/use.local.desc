@@ -15,3 +15,4 @@ dev-lang/rust-bin:clippy - Install clippy, Rust code linter
 dev-lang/rust-bin:rls - Install rls, Rust Language Server (used with IDEs supporting RLS protocol)
 dev-lang/rust-bin:rustfmt - Install rustfmt, Rust code formatter
 net-misc/xrdp:fuse - Enable clipboard file / device redirection via sys-fs/fuse
+net-misc/xrdp:pixman - Use pixman library x11-libs/pixman
