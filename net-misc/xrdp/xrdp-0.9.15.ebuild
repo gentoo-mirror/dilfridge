@@ -12,28 +12,40 @@ SRC_URI="https://github.com/neutrinolabs/xrdp/releases/download/v${PV}/${P}.tar.
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug fuse kerberos jpeg pam pulseaudio"
+IUSE="aac debug fuse ipv6 kerberos jpeg lame opus pam pixman pulseaudio"
 
 RDEPEND="dev-libs/openssl:0=
 	x11-libs/libX11:0=
 	x11-libs/libXfixes:0=
 	x11-libs/libXrandr:0=
+	aac? ( media-libs/fdk-aac:0= )
 	fuse? ( sys-fs/fuse:0= )
 	jpeg? ( virtual/jpeg:0= )
 	kerberos? ( virtual/krb5:0= )
+	lame? ( media-sound/lame:0= )
+	opus? ( media-libs/libopusenc:0= )
 	pam? ( sys-libs/pam:0= )
-	pulseaudio? ( media-sound/pulseaudio:0= )"
-DEPEND=${RDEPEND}
+	pixman? ( x11-libs/pixman:0= )
+	pulseaudio? ( media-sound/pulseaudio:0= )
+"
+BDEPEND="${RDEPEND}
+	virtual/pkgconfig
+"
 PDEPEND="
 	|| (
 		net-misc/tigervnc[server,xorgmodule]
 		net-misc/xorgxrdp
-	)"
+	)
+"
 
 # does not work with gentoo version of freerdp
 #	neutrinordp? ( net-misc/freerdp:0= )
-# incompatible with current ffmpeg/libav (surprising, isn't it?)
-#	xrdpvr? ( virtual/ffmpeg:0= )
+# does not work
+#	xrdpvr? ( media-video/ffmpeg:0= )
+
+PATCHES=(
+	"${FILESDIR}/${P}-flags.patch"
+)
 
 src_prepare() {
 	default
@@ -53,6 +65,7 @@ src_configure() {
 
 		# -- authentication backends --
 		# kerberos is inside !SESMAN_NOPAM conditional for no reason
+		#   (is this still correct?)
 		$(use pam || use kerberos || echo --enable-nopam)
 		$(usex kerberos --enable-kerberos '')
 
@@ -75,6 +88,11 @@ src_configure() {
 		# $(usex xrdpvr --enable-xrdpvr '')
 
 		--with-systemdsystemunitdir="$(systemd_get_systemunitdir)"
+		$(usex ipv6 --enable-ipv6 '')
+		$(usex aac --enable-fdkaac '')
+		$(usex opus --enable-opus '')
+		$(usex lame --enable-mp3lame '')
+		$(usex pixman --enable-pixman '')
 	)
 
 	econf "${myconf[@]}"

@@ -1,6 +1,7 @@
 *app-admin/logrotate
 *app-admin/sudo
 *app-admin/syslog-ng
+*app-crypt/certbot
 *app-crypt/gnupg
 *app-editors/kile
 *app-editors/nano
