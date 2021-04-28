@@ -1,3 +1,6 @@
 
 # let's stay with the LTS kernels
 >=sys-kernel/gentoo-sources-5.11
+
+# rust-bin is good enough
+dev-lang/rust
