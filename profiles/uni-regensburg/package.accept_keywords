@@ -68,7 +68,7 @@ dev-perl/Config-MVP
 =dev-perl/PPI-1.224.0
 =dev-perl/Role-HasMessage-0.6.0
 =dev-perl/Role-Identifiable-0.7.0
-=dev-perl/Software-License-0.103.12
+dev-perl/Software-License
 =dev-perl/String-Errf-0.8.0
 =dev-perl/String-Flogger-1.101.245
 =dev-perl/String-Formatter-0.102.84
