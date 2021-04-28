@@ -35,7 +35,7 @@ dev-perl/Test-Files
 dev-perl/TeX-Encode
 dev-perl/Version-Next
 =dev-perl/App-Cmd-0.331.0
-=dev-perl/Archive-Tar-Wrapper-0.230.0
+dev-perl/Archive-Tar-Wrapper
 =dev-perl/CPAN-Uploader-0.103.13
 =dev-perl/Config-INI-0.25.0
 dev-perl/Config-MVP
