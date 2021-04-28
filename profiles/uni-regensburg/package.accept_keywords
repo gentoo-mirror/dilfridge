@@ -38,7 +38,7 @@ dev-perl/Version-Next
 =dev-perl/Archive-Tar-Wrapper-0.230.0
 =dev-perl/CPAN-Uploader-0.103.13
 =dev-perl/Config-INI-0.25.0
-=dev-perl/Config-MVP-2.200.10
+dev-perl/Config-MVP
 =dev-perl/Config-MVP-Reader-INI-2.101.463
 =dev-perl/Data-Section-0.200.7
 =dev-perl/Dist-Zilla-6.10.0-r2
