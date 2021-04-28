@@ -35,7 +35,7 @@ dev-perl/Test-Files
 dev-perl/TeX-Encode
 dev-perl/Version-Next
 =dev-perl/App-Cmd-0.331.0
-=dev-perl/Archive-Tar-Wrapper-0.230.0
+dev-perl/Archive-Tar-Wrapper
 =dev-perl/CPAN-Uploader-0.103.13
 =dev-perl/Config-INI-0.25.0
 dev-perl/Config-MVP
@@ -68,7 +68,7 @@ dev-perl/Config-MVP
 =dev-perl/PPI-1.224.0
 =dev-perl/Role-HasMessage-0.6.0
 =dev-perl/Role-Identifiable-0.7.0
-=dev-perl/Software-License-0.103.12
+dev-perl/Software-License
 =dev-perl/String-Errf-0.8.0
 =dev-perl/String-Flogger-1.101.245
 =dev-perl/String-Formatter-0.102.84
