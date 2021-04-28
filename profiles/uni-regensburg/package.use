@@ -176,3 +176,4 @@ net-libs/zeromq drafts
 >=virtual/libcrypt-1-r1 abi_x86_32
 >=virtual/rust-1.47.0 abi_x86_32
 >=dev-lang/rust-1.47.0-r2 abi_x86_32
+>=dev-lang/rust-bin-1.51.0 abi_x86_32
