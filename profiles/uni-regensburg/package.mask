@@ -4,3 +4,6 @@
 
 # rust-bin is good enough
 dev-lang/rust
+
+# let's try to stick with udev
+sys-fs/eudev
