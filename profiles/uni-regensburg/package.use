@@ -27,6 +27,7 @@ sci-electronics/labone minimal
 sci-libs/armadillo arpack atlas blas hdf5 lapack tbb
 sci-libs/scipy sparse
 sys-fs/eudev static-libs
+sys-fs/udev static-libs
 sys-libs/ntdb python
 sys-libs/talloc python
 sys-libs/tdb python
