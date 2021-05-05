@@ -5,7 +5,7 @@ FCFLAGS="${CFLAGS}"
 
 # Defaults for X11
 # warning: use_expand does not mix well with profiles
-USE="-video_cards_* -input_devices_* video_cards_nvidia video_cards_intel video_cards_vmware input_devices_libinput"
+USE="-video_cards_* -input_devices_* video_cards_nouveau video_cards_intel video_cards_vmware input_devices_libinput"
 
 # use flags
 USE="${USE} -bluetooth crypt git -modemmanager -networkmanager perl ssl subversion -telepathy -wifi -wireless"
