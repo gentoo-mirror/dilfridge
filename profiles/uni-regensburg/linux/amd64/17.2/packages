@@ -1,0 +1,11 @@
+# we use systemd to its full extent, also as 
+# * uefi bootloader 
+# * logger
+# * ntp client
+
+-*app-admin/logrotate
+-*app-admin/syslog-ng
+-*net-misc/chrony
+-*net-misc/dhcpcd
+-*sys-apps/systemd-tmpfiles
+-*sys-boot/grub-static
