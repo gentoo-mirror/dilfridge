@@ -5,7 +5,11 @@
 
 -*app-admin/logrotate
 -*app-admin/syslog-ng
+-*app-portage/layman
 -*net-misc/chrony
 -*net-misc/dhcpcd
 -*sys-apps/systemd-tmpfiles
 -*sys-boot/grub-static
+
+*app-eselect/eselect-repository
+*sys-boot/grub
