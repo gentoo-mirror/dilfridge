@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit desktop rpm
+inherit desktop xdg rpm
 
 DESCRIPTION="Cisco video conferencing and online meeting software"
 HOMEPAGE="https://www.webex.com/"
