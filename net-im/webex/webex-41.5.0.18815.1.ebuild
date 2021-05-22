@@ -55,6 +55,9 @@ src_install() {
 	# dodir /usr/lib/debug
 	# mv usr/lib/.build-id "${D}/usr/lib/debug/" || die
 
+	sed -e 's:Utility;Application;:Network;InstantMessaging;:g' -i "${D}/opt/Webex/bin/webex.desktop"
+	sed -e '/^Version=.*$/d' -i "${D}/opt/Webex/bin/webex.desktop"
+
 	domenu "${D}/opt/Webex/bin/webex.desktop"
 	doicon "${D}/opt/Webex/bin/sparklogosmall.png"
 }
