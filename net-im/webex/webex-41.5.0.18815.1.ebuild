@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit rpm
+inherit desktop xdg rpm
 
 DESCRIPTION="Cisco video conferencing and online meeting software"
 HOMEPAGE="https://www.webex.com/"
@@ -49,8 +49,10 @@ QA_PREBUILT="*"
 
 src_install() {
 	mv opt "${D}/" || die
-	dodir /usr/lib/debug
-	mv usr/lib/.build-id "${D}/usr/lib/debug/" || die
+
+	# dodir /usr/lib/debug
+	# mv usr/lib/.build-id "${D}/usr/lib/debug/" || die
 
 	domenu "${D}/opt/Webex/bin/webex.desktop"
+	doicon "${D}/opt/Webex/bin/sparklogosmall.png"
 }
