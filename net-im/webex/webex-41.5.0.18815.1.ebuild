@@ -17,6 +17,8 @@ IUSE=""
 RESTRICT="bindist mirror strip"
 
 DEPEND=""
+
+# systemd-libs => virtual/libudev
 RDEPEND="
 	media-libs/alsa-lib
 	app-accessibility/at-spi2-atk
@@ -35,7 +37,7 @@ RDEPEND="
 	dev-libs/nss
 	x11-libs/pango
 	media-sound/pulseaudio
-	sys-apps/systemd
+	virtual/libudev
 	sys-power/upower
 	x11-libs/xcb-util-image
 	x11-libs/xcb-util-keysyms
@@ -52,6 +54,9 @@ src_install() {
 
 	# dodir /usr/lib/debug
 	# mv usr/lib/.build-id "${D}/usr/lib/debug/" || die
+
+	sed -e 's:Utility;Application;:Network;InstantMessaging;:g' -i "${D}/opt/Webex/bin/webex.desktop"
+	sed -e '/^Version=.*$/d' -i "${D}/opt/Webex/bin/webex.desktop"
 
 	domenu "${D}/opt/Webex/bin/webex.desktop"
 	doicon "${D}/opt/Webex/bin/sparklogosmall.png"
