@@ -22,3 +22,4 @@
 -*sci-visualization/spyview
 -*www-client/firefox
 -*x11-base/xorg-server
+-*x11-misc/sddm

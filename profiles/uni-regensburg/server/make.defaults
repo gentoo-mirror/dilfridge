@@ -1,0 +1,2 @@
+
+USE="${USE} -kwallet -kde"
