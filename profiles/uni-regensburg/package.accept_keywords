@@ -24,6 +24,7 @@ dev-perl/USB-LibUSB
 
 # dependencies of Lab-Measurement
 dev-perl/Class-Method-Modifiers
+dev-perl/Dist-Zilla
 dev-perl/Dist-Zilla-Plugin-Config-Git
 dev-perl/Dist-Zilla-Plugin-Git
 dev-perl/Git-Wrapper
@@ -31,6 +32,7 @@ dev-perl/MooseX-Has-Sugar
 dev-perl/MooseX-Types-Path-Tiny
 dev-perl/MooseX-Types-Stringlike
 dev-perl/MooseX-StrictConstructor
+dev-perl/PDL-Graphics-Gnuplot
 dev-perl/Test-Files
 dev-perl/TeX-Encode
 dev-perl/Version-Next
@@ -41,7 +43,6 @@ dev-perl/CPAN-Uploader
 dev-perl/Config-MVP
 =dev-perl/Config-MVP-Reader-INI-2.101.463
 =dev-perl/Data-Section-0.200.7
-=dev-perl/Dist-Zilla-6.10.0-r2
 =dev-perl/Dist-Zilla-Plugin-AuthorsFromGit-0.6.0
 =dev-perl/Dist-Zilla-Plugin-PodWeaver-4.8.0
 =dev-perl/Dist-Zilla-Plugin-RPM-0.15.0

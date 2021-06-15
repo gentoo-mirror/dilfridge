@@ -11,6 +11,7 @@ dev-libs/libpcre pcre16
 dev-libs/quazip qt5
 dev-libs/xmlsec nss
 dev-perl/Lab-Measurement debug
+dev-perl/Type-Tiny minimal
 dev-python/numpy lapack
 dev-python/QtPy printsupport
 dev-qt/designer -phonon
