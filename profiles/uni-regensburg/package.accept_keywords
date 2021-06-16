@@ -23,8 +23,6 @@ dev-perl/USB-TMC
 dev-perl/USB-LibUSB
 
 # dependencies of Lab-Measurement
-dev-perl/Class-Method-Modifiers
-dev-perl/Dist-Zilla
 dev-perl/Dist-Zilla-Plugin-Config-Git
 dev-perl/Dist-Zilla-Plugin-Git
 dev-perl/Git-Wrapper
@@ -38,9 +36,6 @@ dev-perl/TeX-Encode
 dev-perl/Version-Next
 =dev-perl/App-Cmd-0.331.0
 dev-perl/Archive-Tar-Wrapper
-dev-perl/CPAN-Uploader
-=dev-perl/Config-INI-0.25.0
-dev-perl/Config-MVP
 =dev-perl/Config-MVP-Reader-INI-2.101.463
 =dev-perl/Data-Section-0.200.7
 =dev-perl/Dist-Zilla-Plugin-AuthorsFromGit-0.6.0
@@ -84,7 +79,6 @@ dev-perl/Software-License
 =dev-perl/syntax-0.4.0
 
 # hardware backends
-=sci-libs/linux-gpib-4.0.4_rc2
 dev-perl/Lab-Zhinst
 sci-electronics/labone
 
@@ -113,6 +107,3 @@ sci-libs/armadillo
 
 # temporary stuff to avoid downgrades
 =sci-libs/gsl-2.4
-
-# use new revtex
-dev-tex/revtex
