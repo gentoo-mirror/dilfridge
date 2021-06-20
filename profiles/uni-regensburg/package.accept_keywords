@@ -23,12 +23,6 @@ dev-perl/USB-TMC
 dev-perl/USB-LibUSB
 
 # dependencies of Lab-Measurement
-dev-perl/Dist-Zilla-Plugin-Config-Git
-dev-perl/Dist-Zilla-Plugin-Git
-dev-perl/Git-Wrapper
-dev-perl/MooseX-Has-Sugar
-dev-perl/MooseX-Types-Path-Tiny
-dev-perl/MooseX-Types-Stringlike
 dev-perl/MooseX-StrictConstructor
 dev-perl/PDL-Graphics-Gnuplot
 dev-perl/Test-Files
