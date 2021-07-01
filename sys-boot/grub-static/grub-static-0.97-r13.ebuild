@@ -12,6 +12,8 @@ inherit eutils toolchain-funcs linux-info
 
 PATCHVER="1.14" # Not used, just for tracking with main grub
 
+TARBALL_R="r12"
+
 DESCRIPTION="GNU GRUB Legacy boot loader (static build)"
 
 HOMEPAGE="https://www.gnu.org/software/grub/"
@@ -38,9 +40,11 @@ pkg_setup() {
 }
 
 src_install() {
-	cp -a * "${D}"/
+	cp -a * "${D}"/ || die
+	rm -rf "${D}"/usr/share/doc/${P}-${TARBALL_R} || die
+
 	# Make sure the docs get compressed
-	dodoc usr/share/doc/${PF}/*
+	dodoc usr/share/doc/${P}-${TARBALL_R}/*
 
 	if [[ -z "${I_KNOW_WHAT_I_AM_DOING}" ]]; then
 		run_test_grub "${D}"/sbin/grub && einfo "New grub can run on your system, good!"
