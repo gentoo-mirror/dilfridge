@@ -23,19 +23,7 @@ dev-perl/USB-TMC
 dev-perl/USB-LibUSB
 
 # dependencies of Lab-Measurement
-dev-perl/MooseX-StrictConstructor
 dev-perl/PDL-Graphics-Gnuplot
-dev-perl/Test-Files
-dev-perl/TeX-Encode
-dev-perl/Version-Next
-=dev-perl/App-Cmd-0.331.0
-dev-perl/Archive-Tar-Wrapper
-=dev-perl/Config-MVP-Reader-INI-2.101.463
-=dev-perl/Data-Section-0.200.7
-=dev-perl/Dist-Zilla-Plugin-AuthorsFromGit-0.6.0
-=dev-perl/Dist-Zilla-Plugin-PodWeaver-4.8.0
-=dev-perl/Dist-Zilla-Plugin-RPM-0.15.0
-=dev-perl/Dist-Zilla-Plugin-SurgicalPodWeaver-0.2.300
 =dev-perl/IO-TieCombine-1.5.0
 =dev-perl/Log-Dispatchouli-2.15.0
 =dev-perl/Log-Message-0.80.0
