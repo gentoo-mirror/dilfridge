@@ -21,20 +21,6 @@ dev-perl/Lab-Measurement
 
 # dependencies of Lab-Measurement
 dev-perl/PDL-Graphics-Gnuplot
-=dev-perl/Role-Identifiable-0.7.0
-dev-perl/Software-License
-=dev-perl/String-Errf-0.8.0
-=dev-perl/String-Flogger-1.101.245
-=dev-perl/String-Formatter-0.102.84
-=dev-perl/String-RewritePrefix-0.7.0
-=dev-perl/String-Truncate-1.100.602
-=dev-perl/Sub-Exporter-GlobExporter-0.5.0
-=dev-perl/Syntax-Keyword-Junction-0.3.8
-=dev-perl/Term-Encoding-0.20.0
-=dev-perl/Term-UI-0.460.0
-=dev-perl/Time-Monotonic-0.9.8
-=dev-perl/Types-Path-Tiny-0.6.0
-=dev-perl/syntax-0.4.0
 
 # hardware backends
 dev-perl/Lab-Zhinst
