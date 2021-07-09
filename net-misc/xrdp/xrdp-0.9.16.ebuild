@@ -44,7 +44,7 @@ PDEPEND="
 #	xrdpvr? ( media-video/ffmpeg:0= )
 
 PATCHES=(
-	"${FILESDIR}/${P}-flags.patch"
+	"${FILESDIR}/${PN}-0.9.15-flags.patch"
 )
 
 src_prepare() {
