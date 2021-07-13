@@ -15,6 +15,10 @@ app-shells/quoter
 app-portage/gemato
 dev-python/bz2file
 
+# not in stable yet
+net-misc/xorgxrdp
+net-misc/xrdp
+
 # for measurement control
 dev-perl/Lab-Measurement
 =dev-perl/Lab-Measurement-9999 **
