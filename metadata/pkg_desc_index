@@ -15,3 +15,4 @@ sci-electronics/labone 16.12.42529 20.07.2325: Platform independent instrument c
 sci-libs/ni-visa 0: Placeholder for an NI-VISA library ebuild
 sci-visualization/qtiplot-bin 1.0.0_rc1-r1: Qt based clone of the Origin plotting package, commercial binary
 sys-boot/grub-static 0.97-r13: GNU GRUB Legacy boot loader (static build)
+sys-fs/e2fsprogs 1.46.3-r100: Standard EXT2/EXT3/EXT4 filesystem utilities and libraries

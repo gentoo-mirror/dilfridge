@@ -4,3 +4,6 @@
 
 net-misc/xrdp:fuse - Enable clipboard file / device redirection via sys-fs/fuse
 net-misc/xrdp:pixman - Use pixman library x11-libs/pixman
+sys-fs/e2fsprogs:cron - Install e2scrub_all cron script
+sys-fs/e2fsprogs:fuse - Build fuse2fs, a FUSE file system client for ext2/ext3/ext4 file systems
+sys-fs/e2fsprogs:lto - Build with link time optimization (LTO)
