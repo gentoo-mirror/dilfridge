@@ -1,7 +1,7 @@
 *app-crypt/certbot
 
 -*app-editors/kile
--*app-office/libreoffice-bin
+-*app-office/libreoffice
 -*app-office/texstudio
 -*app-text/xournalpp
 -*dev-perl/Lab-Measurement

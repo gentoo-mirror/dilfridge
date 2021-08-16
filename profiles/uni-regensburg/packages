@@ -5,7 +5,7 @@
 *app-crypt/gnupg
 *app-editors/kile
 *app-editors/nano
-*app-office/libreoffice-bin
+*app-office/libreoffice
 *app-office/texstudio
 *app-portage/eix
 *app-portage/gentoolkit
