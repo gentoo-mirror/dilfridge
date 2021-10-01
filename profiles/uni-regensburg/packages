@@ -46,7 +46,6 @@
 *sci-visualization/gwyddion
 *sci-visualization/spyview
 *sys-apps/systemd-tmpfiles
-*sys-boot/grub-static
 *sys-kernel/gentoo-sources
 *sys-process/cronie
 *www-client/firefox
