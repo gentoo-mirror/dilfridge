@@ -36,9 +36,9 @@ src_install() {
 
 		cp "release_notes_$(ver_cut 1-2).txt" "${D}${installation_directory}/" || die
 
-		dosym ../..${application_directory}/DataServer/ziServer /opt/bin/ziServer
-		dosym ../..${application_directory}/DataServer/ziDataServer /opt/bin/ziDataServer
-		dosym ../..${application_directory}/DataServer/ziWebServer /opt/bin/ziWebServer
+		dosym ../..${installation_directory}/DataServer/ziServer /opt/bin/ziServer
+		dosym ../..${installation_directory}/DataServer/ziDataServer /opt/bin/ziDataServer
+		dosym ../..${installation_directory}/DataServer/ziWebServer /opt/bin/ziWebServer
 
 		# the services
 
@@ -59,15 +59,15 @@ src_install() {
 
 	else
 
-		insinto "${application_directory}/API/C/lib"
+		insinto "${installation_directory}/API/C/lib"
 		doins API/C/lib/*.so
-		insinto "${application_directory}/API/C/include"
+		insinto "${installation_directory}/API/C/include"
 		doins API/C/include/*.h
 
 	fi
 
-	dosym "../..${application_directory}/API/C/include/ziAPI.h" "usr/include/ziAPI.h"
-	dosym "../..${application_directory}/API/C/lib/libziAPI-linux64.so" "usr/$(get_libdir)/libziAPI-linux64.so"
+	dosym "../..${installation_directory}/API/C/include/ziAPI.h" "usr/include/ziAPI.h"
+	dosym "../..${installation_directory}/API/C/lib/libziAPI-linux64.so" "usr/$(get_libdir)/libziAPI-linux64.so"
 
 	udev_dorules Installer/udev/55-zhinst.rules
 }
