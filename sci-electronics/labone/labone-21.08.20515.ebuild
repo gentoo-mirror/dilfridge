@@ -11,7 +11,7 @@ SRC_URI="https://www.zhinst.com/sites/default/files/media/release_file/2021-09/L
 
 LICENSE="zi-labone"
 SLOT="0"
-#KEYWORDS="-* ~amd64"
+KEYWORDS="-* ~amd64"
 RESTRICT="mirror bindist"
 IUSE="minimal"
 
