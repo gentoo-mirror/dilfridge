@@ -1,7 +1,9 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
+
+inherit systemd udev
 
 DESCRIPTION="Platform independent instrument control for Zurich Instruments devices"
 HOMEPAGE="https://www.zhinst.com/labone"
@@ -20,64 +22,52 @@ RDEPEND=""
 S=${WORKDIR}/LabOneLinux64-${PV}
 
 src_install() {
-	local instPath=/opt/zi
-	local instrDir="LabOne64-${PV}"
+	local application_directory=/opt/zi
+	local installation_directory="${application_directory}/LabOne64-${PV}"
 
 	if ! use minimal ; then
 
-		dodir ${instPath}/${instrDir}
-		for dir in API DataServer Documentation WebServer Firmware release_notes_20.07.txt ; do
-			mv "$dir" "${D}${instPath}/${instrDir}/" || die
+		# the applications
+
+		dodir ${installation_directory}
+		for dir in API DataServer Firmware Documentation WebServer ; do
+			mv "$dir" "${D}${installation_directory}/" || die
 		done
 
-		dosym ../..${instPath}/${instrDir}/DataServer/ziServer /opt/bin/ziServer
-		dosym ../..${instPath}/${instrDir}/DataServer/ziDataServer /opt/bin/ziDataServer
+		cp "release_notes_$(ver_cut 1-2).txt" "${D}${installation_directory}/" || die
 
-		echo "#!/bin/bash" > "${T}/startWebServer" || die
-		echo "${instPath}/${instrDir}/WebServer/ziWebServer -r ${instPath}/${instrDir}/WebServer/html --ip 127.0.0.1 --server-port 8004" >> "${T}/startWebServer" || die
-		chmod 755 "${T}/startWebServer" || die
-		exeinto /opt/bin
-		doexe "${T}/startWebServer"
-		elog For security reasons the startWebServer script listens on the localhost interface only.
+		dosym ../..${application_directory}/DataServer/ziServer /opt/bin/ziServer
+		dosym ../..${application_directory}/DataServer/ziDataServer /opt/bin/ziDataServer
+		dosym ../..${application_directory}/DataServer/ziWebServer /opt/bin/ziWebServer
+
+		# the services
+
+		# LabOne comes with systemd support.
+
+		local service
+		for service in labone-data-server hf2-data-server ; do
+			sed -e 's:/usr/local/bin/:/opt/bin/:g' -i Installer/systemd/${service}.service || die
+			systemd_dounit Installer/systemd/${service}.service
+		done
+
+		# For OpenRC we need to do our own thing...
+
+		for service in labone-data-server hf2-data-server ; do
+			doinitd "${FILESDIR}/${service}"
+			doconfd "${FILESDIR}/${service}.conf"
+		done
+
 	else
 
-		insinto "${instPath}/${instrDir}/API/C/lib"
+		insinto "${application_directory}/API/C/lib"
 		doins API/C/lib/*.so
-		insinto "${instPath}/${instrDir}/API/C/include"
+		insinto "${application_directory}/API/C/include"
 		doins API/C/include/*.h
 
 	fi
 
-	dosym "../..${instPath}/${instrDir}/API/C/include/ziAPI.h" "usr/include/ziAPI.h"
-	dosym "../..${instPath}/${instrDir}/API/C/lib/libziAPI-linux64.so" "usr/$(get_libdir)/libziAPI-linux64.so"
+	dosym "../..${application_directory}/API/C/include/ziAPI.h" "usr/include/ziAPI.h"
+	dosym "../..${application_directory}/API/C/lib/libziAPI-linux64.so" "usr/$(get_libdir)/libziAPI-linux64.so"
 
-
-	# environment
-
-	cat > "${T}/55-zhinst" <<ENTE
-HF2_DATA_SERVER_PORT=8005
-HF2_DATA_SERVER="/opt/bin/ziServer"
-HF2_DATA_SERVER_ARGS="--debug 7"
-LABONE_DATA_SERVER_PORT=8005
-LABONE_DATA_SERVER="/opt/bin/ziDataServer"
-LABONE_DATA_SERVER_ARGS="--debug 7"
-ENTE
-
-	# the udev integration
-
-	sed -e 's:/usr/bin/ziServer:/opt/bin/ziServer:g' -i Installer/udev/55-zhinst.rules || die
-	insinto /lib/udev/rules.d
-	doins Installer/udev/55-zhinst.rules
-	exeinto /opt/bin
-	doexe Installer/udev/ziService
-
-	# just to make sure
-	dosym ../../opt/bin/ziService usr/bin/ziService
-}
-
-pkg_prerm() {
-	if [[ -x /opt/bin/ziService ]]; then
-		einfo "Stopping ziService for safe unmerge"
-		/opt/bin/ziService stop
-	fi
+	udev_dorules Installer/udev/55-zhinst.rules
 }
