@@ -38,7 +38,7 @@ src_install() {
 
 		dosym ../..${installation_directory}/DataServer/ziServer /opt/bin/ziServer
 		dosym ../..${installation_directory}/DataServer/ziDataServer /opt/bin/ziDataServer
-		dosym ../..${installation_directory}/DataServer/ziWebServer /opt/bin/ziWebServer
+		dosym ../..${installation_directory}/WebServer/ziWebServer /opt/bin/ziWebServer
 
 		# the services
 
