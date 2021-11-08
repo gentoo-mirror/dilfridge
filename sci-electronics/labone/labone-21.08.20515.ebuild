@@ -27,7 +27,7 @@ src_install() {
 
 	if ! use minimal ; then
 
-        # the applications
+		# the applications
 
 		dodir ${installation_directory}
 		for dir in API DataServer Firmware Documentation WebServer ; do
