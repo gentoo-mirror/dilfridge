@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit systemd udev
+inherit xdg systemd udev
 
 DESCRIPTION="Platform independent instrument control for Zurich Instruments devices"
 HOMEPAGE="https://www.zhinst.com/labone"
@@ -38,7 +38,6 @@ src_install() {
 
 		dosym ../..${installation_directory}/DataServer/ziServer /opt/bin/ziServer
 		dosym ../..${installation_directory}/DataServer/ziDataServer /opt/bin/ziDataServer
-		dosym ../..${installation_directory}/WebServer/ziWebServer /opt/bin/ziWebServer
 
 		# the services
 
@@ -56,6 +55,17 @@ src_install() {
 			doinitd "${FILESDIR}/${service}"
 			doconfd "${FILESDIR}/${service}.conf"
 		done
+
+		echo "#!/bin/bash" > "${T}/startziWebServer" || die
+		echo "${installation_directory}/WebServer/ziWebServer -r ${installation_directory}/WebServer/html --ip 127.0.0.1 --server-port 8004 -a 1" '$@ &' >> "${T}/startziWebServer" || die
+		chmod 755 "${T}/startziWebServer" || die
+		exeinto /opt/bin
+		doexe "${T}/startziWebServer"
+		elog For security reasons the startziWebServer script listens on the localhost interface only.
+
+		doicon "${D}${installation_directory}/WebServer/html/images/favicons/firefox_app_128x128.png" zi-labone.png
+
+		make_desktop_entry /opt/bin/startziWebServer "ZI LabOne" zi-labone "Science;Physics;Engineering"
 
 	else
 
