@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit xdg systemd udev
+inherit xdg desktop systemd udev
 
 DESCRIPTION="Platform independent instrument control for Zurich Instruments devices"
 HOMEPAGE="https://www.zhinst.com/labone"
