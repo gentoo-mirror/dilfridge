@@ -63,7 +63,7 @@ src_install() {
 		doexe "${T}/startziWebServer"
 		elog For security reasons the startziWebServer script listens on the localhost interface only.
 
-		doicon "${D}${installation_directory}/WebServer/html/images/favicons/firefox_app_128x128.png" zi-labone.png
+		newicon "${D}${installation_directory}/WebServer/html/images/favicons/firefox_app_128x128.png" zi-labone.png
 
 		make_desktop_entry /opt/bin/startziWebServer "ZI LabOne" zi-labone "Science;Physics;Engineering"
 
