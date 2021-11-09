@@ -11,7 +11,6 @@ net-im/webex 41.5.0.18815.1: Cisco video conferencing and online meeting softwar
 net-misc/xorgxrdp 0.2.15: An open source Remote Desktop Protocol server; connector for local Xorg session
 net-misc/xrdp 0.9.15 0.9.16: An open source Remote Desktop Protocol server
 net-print/iprint 6.503.20111114.6.5: Micro Focus iPrint client
-sci-electronics/labone 21.08.20515: Platform independent instrument control for Zurich Instruments devices
 sci-libs/ni-visa 0: Placeholder for an NI-VISA library ebuild
 sci-visualization/qtiplot-bin 1.0.0_rc1-r1: Qt based clone of the Origin plotting package, commercial binary
 sys-boot/grub-static 0.97-r13: GNU GRUB Legacy boot loader (static build)
