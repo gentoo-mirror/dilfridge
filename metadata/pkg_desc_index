@@ -8,6 +8,7 @@ dev-tex/frutiger 1.0-r1: LaTeX2e macros for the Uni Regensburg Corporate Design
 dev-util/xwpe 1.5.30a: Simple programming environment mimicking ancient Borland C and Pascal
 media-video/miraclecast 1.0.9999: Wifi-Display/Miracast Implementation
 net-im/webex 41.5.0.18815.1: Cisco video conferencing and online meeting software
+net-im/zoom 5.10.3.2778 5.10.4.2845: Video conferencing and web conferencing service
 net-misc/xorgxrdp 0.2.15: An open source Remote Desktop Protocol server; connector for local Xorg session
 net-misc/xrdp 0.9.15 0.9.16: An open source Remote Desktop Protocol server
 net-print/iprint 6.503.20111114.6.5: Micro Focus iPrint client
