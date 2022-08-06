@@ -43,3 +43,5 @@ x11-base/xorg-server xvfb
 x11-libs/libdrm libkms
 x11-libs/qt-assistant compat
 x11-libs/wxGTK gstreamer
+
+x11-libs/motif xft
