@@ -25,6 +25,10 @@ dev-perl/Lab-Measurement
 
 # dependencies of Lab-Measurement
 dev-perl/PDL-Graphics-Gnuplot
+dev-perl/Dist-Zilla-Plugin-Test-ReportPrereqs
+dev-perl/Net-RFC3161-Timestamp
+dev-perl/Text-Diff
+dev-perl/Alien-OpenSSL
 
 # hardware backends
 dev-perl/Lab-Zhinst
