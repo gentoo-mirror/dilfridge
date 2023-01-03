@@ -9,5 +9,5 @@ LICENSE=public-domain
 RDEPEND=!=dev-db/sqlite-2*:0
 SLOT=2
 SRC_URI=http://www.sqlite.org/sqlite-2.8.16.tar.gz
-_eclasses_=edos2unix	33e347e171066657f91f8b0c72ec8773	strip-linguas	ac3ee41ee2d31d8c41a77c0838320cc7	wrapper	4a1902f969e5718126434fc35f3a0d9c	eutils	8f942ebdcf04334697649d4a0bf65a32	alternatives	ad206653f4297ab882a84e8fb7940190	multilib	5ca4e49abed8e3a2f7b56920eadee157	toolchain-funcs	37a4612ce5522df5a100359a8dbc8491
+_eclasses_=edos2unix	33e347e171066657f91f8b0c72ec8773	strip-linguas	ac3ee41ee2d31d8c41a77c0838320cc7	wrapper	4a1902f969e5718126434fc35f3a0d9c	eutils	8f942ebdcf04334697649d4a0bf65a32	alternatives	ad206653f4297ab882a84e8fb7940190	multilib	5ca4e49abed8e3a2f7b56920eadee157	toolchain-funcs	ec8bbc28394c7305b43ea07164bd8f5f
 _md5_=c64f46f35f49ff4391af4ecad48e9bb8
