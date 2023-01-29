@@ -17,8 +17,6 @@ IUSE=""
 RESTRICT="bindist mirror strip"
 
 DEPEND=""
-
-# systemd-libs => virtual/libudev
 RDEPEND="
 	media-libs/alsa-lib
 	app-accessibility/at-spi2-atk
