@@ -11,5 +11,5 @@ RDEPEND=!games-engines/zoom app-accessibility/at-spi2-atk app-accessibility/at-s
 RESTRICT=mirror bindist strip
 SLOT=0
 SRC_URI=https://zoom.us/client/5.10.4.2845/zoom_x86_64.tar.xz -> zoom-5.10.4.2845_x86_64.tar.xz
-_eclasses_=desktop	021728fdc1b03b36357dbc89489e0f0d	readme.gentoo-r1	b776ad4b42f564c406a95c41ccb42c55	wrapper	4a1902f969e5718126434fc35f3a0d9c	xdg-utils	ac0e315a3688929e34ac75b139e7349a
+_eclasses_=desktop	021728fdc1b03b36357dbc89489e0f0d	readme.gentoo-r1	204091a2cde6179cd9d3db26d09412d3	wrapper	4a1902f969e5718126434fc35f3a0d9c	xdg-utils	baea6080dd821f5562d715887954c9d3
 _md5_=47c8909e56b41bd625141f47bbc0f635
