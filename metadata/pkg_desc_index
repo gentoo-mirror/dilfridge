@@ -6,6 +6,7 @@ dev-perl/Lab-Measurement-DocWriter 1.000: Documentation formatting for Lab::Meas
 dev-perl/Lab-VISA 3.20.0: Perl interface to National Instrument's VISA library
 dev-tex/frutiger 1.0-r1: LaTeX2e macros for the Uni Regensburg Corporate Design
 dev-util/xwpe 1.5.30a: Simple programming environment mimicking ancient Borland C and Pascal
+media-gfx/odafileconverter 24.2: Open Design Alliance DWG-DXF Converter
 net-im/webex 42.12.0.24485: Cisco video conferencing and online meeting software
 net-im/zoom 5.10.3.2778 5.10.4.2845: Video conferencing and web conferencing service
 net-misc/xorgxrdp 0.2.15: An open source Remote Desktop Protocol server; connector for local Xorg session
