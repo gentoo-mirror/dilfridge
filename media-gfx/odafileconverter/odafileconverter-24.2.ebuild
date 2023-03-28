@@ -13,16 +13,34 @@ SRC_URI="https://download.opendesign.com/guestfiles/Demo/ODAFileConverter_QT5_ln
 KEYWORDS="-* ~amd64"
 SLOT="0"
 LICENSE="all-rights-reserved"
+IUSE="bundled-libs"
 
 RESTRICT="mirror bindist"
 
 RDEPEND="
-	media-libs/tiff-compat:4
+	bundled-libs? ( media-libs/tiff-compat:4 )
 "
 
 S=${WORKDIR}
 
 QA_PREBUILT="*"
+
+src_prepare() {
+	eapply_user
+
+	if ! use bundled-libs ; then
+		MY_REMOVE_LIBS=(
+			libQt5
+		)
+		for name in ${MY_REMOVE_LIBS} ; do
+			find "${S}" -name ${name}'*' -delete
+		done
+
+		# remove qt plugins
+		rm -rfv "${S}"/usr/local/bin/ODAFileConverter_${PV}*/plugins
+		rm -rfv "${S}"/usr/local/bin/ODAFileConverter_${PV}*/qt.conf
+	fi
+}
 
 src_install() {
 	# we dont want automated desktop icons
