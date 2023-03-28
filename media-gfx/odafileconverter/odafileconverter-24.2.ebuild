@@ -16,7 +16,13 @@ LICENSE="all-rights-reserved"
 
 RESTRICT="mirror bindist"
 
+RDEPEND="
+	media-libs/tiff-compat:4
+"
+
 S=${WORKDIR}
+
+QA_PREBUILT="*"
 
 src_install() {
 	# we dont want automated desktop icons
