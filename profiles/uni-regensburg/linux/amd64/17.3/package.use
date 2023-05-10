@@ -1,0 +1,2 @@
+sys-apps/dbus user-session
+sys-apps/systemd gnuefi static-libs
