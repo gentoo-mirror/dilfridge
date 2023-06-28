@@ -1,6 +1,5 @@
 app-office/akonadi-server soprano
 app-office/texstudio qt5
-app-portage/layman sync-plugin-portage
 app-text/texlive extra publishers science png truetype xml
 app-text/texlive-core xetex
 app-text/xournal vanilla

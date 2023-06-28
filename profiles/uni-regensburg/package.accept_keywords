@@ -9,7 +9,6 @@ sys-apps/portage
 app-portage/ufed
 app-portage/eix
 app-shells/push
-app-portage/layman
 dev-python/ssl-fetch
 app-shells/quoter
 app-portage/gemato
