@@ -5,11 +5,11 @@
 *app-crypt/gnupg
 *app-editors/kile
 *app-editors/nano
+*app-eselect/eselect-repository
 *app-office/libreoffice
 *app-office/texstudio
 *app-portage/eix
 *app-portage/gentoolkit
-*app-portage/layman
 *app-portage/ufed
 *app-text/pdftk
 *app-text/texlive
