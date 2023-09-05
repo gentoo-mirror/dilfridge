@@ -11,4 +11,3 @@ net-misc/xorgxrdp 0.2.15: An open source Remote Desktop Protocol server; connect
 net-print/iprint 6.503.20111114.6.5: Micro Focus iPrint client
 sci-libs/ni-visa 0: Placeholder for an NI-VISA library ebuild
 sci-visualization/qtiplot-bin 1.0.0_rc1-r1: Qt based clone of the Origin plotting package, commercial binary
-sys-devel/gcc 13.2.1_p20230826 13.2.1_p20230826-r1: The GNU Compiler Collection
