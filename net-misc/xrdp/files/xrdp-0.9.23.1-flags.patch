@@ -1,14 +1,14 @@
-diff -ruN xrdp-0.9.15.orig/configure.ac xrdp-0.9.15/configure.ac
---- xrdp-0.9.15.orig/configure.ac	2020-12-28 15:03:43.000000000 +0100
-+++ xrdp-0.9.15/configure.ac	2021-04-13 00:00:48.367314011 +0200
-@@ -156,13 +156,6 @@
+diff -ruN xrdp-0.9.23.1.orig/configure.ac xrdp-0.9.23.1/configure.ac
+--- xrdp-0.9.23.1.orig/configure.ac	2023-09-27 19:59:31.000000000 +0200
++++ xrdp-0.9.23.1/configure.ac	2023-10-05 11:38:12.625508282 +0200
+@@ -182,13 +182,6 @@
  AX_CFLAGS_WARN_ALL
  AX_APPEND_COMPILE_FLAGS([-Wwrite-strings])
  
 -AM_COND_IF([LINUX],
 -  [AX_APPEND_COMPILE_FLAGS([-Werror])]) # bsd has warnings that have not been fixed yet
 -
--AM_COND_IF([XRDP_DEBUG],
+-AM_COND_IF([DEVEL_DEBUG],
 -  [AX_APPEND_COMPILE_FLAGS([-g -O0])],
 -  [AX_APPEND_COMPILE_FLAGS([-O2])])
 -
