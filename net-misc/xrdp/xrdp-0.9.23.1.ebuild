@@ -1,9 +1,9 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-inherit autotools eutils pam systemd
+inherit autotools pam systemd
 
 DESCRIPTION="An open source Remote Desktop Protocol server"
 HOMEPAGE="http://www.xrdp.org/"
@@ -44,7 +44,7 @@ PDEPEND="
 #	xrdpvr? ( media-video/ffmpeg:0= )
 
 PATCHES=(
-	"${FILESDIR}/${P}-flags.patch"
+	"${FILESDIR}/${PN}-0.9.23.1-flags.patch"
 )
 
 src_prepare() {
