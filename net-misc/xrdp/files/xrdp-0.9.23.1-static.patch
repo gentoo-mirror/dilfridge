@@ -1,0 +1,24 @@
+diff -ruN xrdp-0.9.23.1.orig/libpainter/src/Makefile.am xrdp-0.9.23.1/libpainter/src/Makefile.am
+--- xrdp-0.9.23.1.orig/libpainter/src/Makefile.am	2023-09-27 19:59:34.000000000 +0200
++++ xrdp-0.9.23.1/libpainter/src/Makefile.am	2023-11-14 12:21:28.677401319 +0100
+@@ -11,7 +11,7 @@
+ 
+ lib_LTLIBRARIES = libpainter.la
+ 
+-libpainter_la_LDFLAGS =
++libpainter_la_LDFLAGS = -all-static
+ 
+ libpainter_ladir = $(moduledir)
+ 
+diff -ruN xrdp-0.9.23.1.orig/librfxcodec/src/Makefile.am xrdp-0.9.23.1/librfxcodec/src/Makefile.am
+--- xrdp-0.9.23.1.orig/librfxcodec/src/Makefile.am	2023-09-27 19:59:34.000000000 +0200
++++ xrdp-0.9.23.1/librfxcodec/src/Makefile.am	2023-11-14 12:22:14.614851942 +0100
+@@ -36,6 +36,8 @@
+ 
+ lib_LTLIBRARIES = librfxencode.la
+ 
++librfxencode_la_LDFLAGS = -all-static
++
+ librfxencode_la_SOURCES = $(noinst_HEADERS) rfxencode.c \
+   rfxencode_compose.c rfxencode_tile.c rfxencode_dwt.c \
+   rfxencode_quantization.c rfxencode_differential.c \

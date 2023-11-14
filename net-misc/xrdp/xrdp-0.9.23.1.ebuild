@@ -45,6 +45,7 @@ PDEPEND="
 
 PATCHES=(
 	"${FILESDIR}/${PN}-0.9.23.1-flags.patch"
+	"${FILESDIR}/${PN}-0.9.23.1-static.patch"
 )
 
 src_prepare() {
