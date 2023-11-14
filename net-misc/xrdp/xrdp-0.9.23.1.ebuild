@@ -33,7 +33,7 @@ BDEPEND="${RDEPEND}
 "
 PDEPEND="
 	|| (
-		net-misc/tigervnc[server,xorgmodule]
+		net-misc/tigervnc[server]
 		net-misc/xorgxrdp
 	)
 "
