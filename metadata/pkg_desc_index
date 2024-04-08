@@ -1,7 +1,5 @@
-app-admin/chr 9999: Set of chroot scripts, handled as OpenRC services
 dev-db/sqlite 2.8.16-r100: SQLite: an SQL Database Engine in a C Library
 dev-perl/Lab-Measurement 9999-r1: Measurement control and automation with Perl
-dev-perl/Lab-Measurement-DocWriter 1.000: Documentation formatting for Lab::Measurement
 dev-perl/Lab-VISA 3.20.0: Perl interface to National Instrument's VISA library
 dev-tex/frutiger 1.0-r1: LaTeX2e macros for the Uni Regensburg Corporate Design
 dev-util/xwpe 1.5.30a: Simple programming environment mimicking ancient Borland C and Pascal
