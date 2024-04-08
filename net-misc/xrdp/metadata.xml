@@ -9,4 +9,7 @@
 		<flag name="fuse">Enable clipboard file / device redirection via <pkg>sys-fs/fuse</pkg></flag>
 		<flag name="pixman">Use pixman library <pkg>x11-libs/pixman</pkg></flag>
 	</use>
+	<upstream>
+		<remote-id type="github">neutrinolabs/xrdp</remote-id>
+	</upstream>
 </pkgmetadata>

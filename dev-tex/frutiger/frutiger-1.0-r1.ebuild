@@ -18,8 +18,6 @@ KEYWORDS="amd64 x86"
 
 BDEPEND="app-arch/unzip"
 
-IUSE=""
-
 S="${WORKDIR}/${MY_P}"
 
 RESTRICT="bindist mirror primaryuri"
@@ -42,5 +40,5 @@ src_install() {
 	latex-package_src_install
 
 	rm -f manual/lf9.zip || die
-	dohtml -r manual/*
+	dodoc -r manual/*
 }

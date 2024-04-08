@@ -1,16 +1,14 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 # XXX: we need to review menu.lst vs grub.conf handling.  We've been converting
 #      all systems to grub.conf (and symlinking menu.lst to grub.conf), but
 #      we never updated any of the source code (it still all wants menu.lst),
 #      and there is no indication that upstream is making the transition.
 
-inherit eutils toolchain-funcs linux-info
-
-PATCHVER="1.14" # Not used, just for tracking with main grub
+inherit toolchain-funcs linux-info
 
 TARBALL_R="r12"
 
@@ -22,10 +20,6 @@ SRC_URI="https://dev.gentoo.org/~dilfridge/distfiles/${PF}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="-* amd64"
-IUSE=""
-
-DEPEND="!<sys-boot/grub-2"
-RDEPEND="${DEPEND}"
 
 S=${WORKDIR}
 
