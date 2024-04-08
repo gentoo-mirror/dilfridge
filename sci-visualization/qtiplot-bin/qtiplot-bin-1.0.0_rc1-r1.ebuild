@@ -11,7 +11,6 @@ LICENSE="all-rights-reserved"
 SLOT="0"
 KEYWORDS="-* ~amd64"
 RESTRICT="fetch mirror splitdebug"
-IUSE=""
 
 QA_PREBUILT="*"
 
@@ -29,7 +28,6 @@ RDEPEND="
 	x11-libs/libX11
 	x11-libs/libXext
 	x11-libs/libXrender
-	!sci-visualization/qtiplot
 "
 
 src_install() {
