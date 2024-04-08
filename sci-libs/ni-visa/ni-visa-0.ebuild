@@ -9,7 +9,6 @@ SRC_URI="NI-VISA-0.0.1.iso"
 HOMEPAGE="http://www.ni.com/"
 LICENSE="ni-visa"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 SLOT="0"
 
