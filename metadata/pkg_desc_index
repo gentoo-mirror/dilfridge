@@ -2,7 +2,6 @@ dev-db/sqlite 2.8.16-r100: SQLite: an SQL Database Engine in a C Library
 dev-perl/Lab-Measurement 9999-r1: Measurement control and automation with Perl
 dev-perl/Lab-VISA 3.20.0: Perl interface to National Instrument's VISA library
 dev-tex/frutiger 1.0-r1: LaTeX2e macros for the Uni Regensburg Corporate Design
-dev-util/xwpe 1.5.30a: Simple programming environment mimicking ancient Borland C and Pascal
 media-gfx/odafileconverter 24.2: Open Design Alliance DWG-DXF Converter
 net-im/webex 42.12.0.24485: Cisco video conferencing and online meeting software
 net-misc/xorgxrdp 0.2.15: An open source Remote Desktop Protocol server; connector for local Xorg session
@@ -10,3 +9,4 @@ net-misc/xrdp 0.9.23.1: An open source Remote Desktop Protocol server
 net-print/iprint 6.503.20111114.6.5: Micro Focus iPrint client
 sci-libs/ni-visa 0: Placeholder for an NI-VISA library ebuild
 sci-visualization/qtiplot-bin 1.0.0_rc1-r1: Qt based clone of the Origin plotting package, commercial binary
+sys-boot/grub-static 0.97-r13: GNU GRUB Legacy boot loader (static build)
