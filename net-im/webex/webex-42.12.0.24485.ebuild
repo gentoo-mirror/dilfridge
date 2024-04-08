@@ -12,11 +12,9 @@ SRC_URI="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.r
 LICENSE="all-rights-reserved"
 SLOT="0"
 KEYWORDS="-* ~amd64"
-IUSE=""
 
 RESTRICT="bindist mirror strip"
 
-DEPEND=""
 RDEPEND="
 	media-libs/alsa-lib
 	app-accessibility/at-spi2-atk
