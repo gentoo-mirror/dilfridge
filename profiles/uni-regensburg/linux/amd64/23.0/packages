@@ -1,0 +1,9 @@
+# we use systemd to its full extent, also as 
+# * uefi bootloader 
+# * ntp client
+
+-*net-misc/chrony
+-*net-misc/dhcpcd
+-*sys-apps/systemd-tmpfiles
+
+*sys-boot/grub
