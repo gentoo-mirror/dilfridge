@@ -11,8 +11,7 @@ SRC_URI="https://github.com/neutrinolabs/xrdp/releases/download/v${PV}/${P}.tar.
 
 LICENSE="Apache-2.0"
 SLOT="0"
-#KEYWORDS="~amd64 ~x86"
-# work in progress
+KEYWORDS="~amd64 ~x86"
 IUSE="aac debug fuse ipv6 kerberos jpeg lame opus pam pixman pulseaudio"
 
 RDEPEND="
@@ -39,18 +38,11 @@ BDEPEND="${RDEPEND}
 # does not work
 #	xrdpvr? ( media-video/ffmpeg:0= )
 
-PATCHES=(
-	"${FILESDIR}/${PN}-0.9.23.1-flags.patch"
-	"${FILESDIR}/${PN}-0.9.23.1-static.patch"
-)
-
 src_prepare() {
 	default
 
 	# disallow root login by default
 	sed -i -e '/^AllowRootLogin/s/true/false/' sesman/sesman.ini || die
-
-	eautoreconf
 }
 
 src_configure() {
