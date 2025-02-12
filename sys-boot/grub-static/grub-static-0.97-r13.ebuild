@@ -3,7 +3,7 @@
 
 EAPI=8
 
-# XXX: we need to review menu.lst vs grub.conf handling.  We've been converting
+#  XX: we need to review menu.lst vs grub.conf handling.  We've been converting
 #      all systems to grub.conf (and symlinking menu.lst to grub.conf), but
 #      we never updated any of the source code (it still all wants menu.lst),
 #      and there is no indication that upstream is making the transition.
